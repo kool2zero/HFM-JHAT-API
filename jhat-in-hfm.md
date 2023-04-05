@@ -53,7 +53,7 @@ jhat.bat -I E:\JHAT\test.txt
 
 Use `jhat.bat -H` command to explore the available options:
 
-
+[![image.png](https://shlsgfngit01.na.bicworld.com/uploads/images/gallery/2023-03/scaled-1680-/qIJimage.png)](https://shlsgfngit01.na.bicworld.com/uploads/images/gallery/2023-03/qIJimage.png)
 
 <p class="callout info">This utility can be used to launch consolidations, data load, data extraction, etc...</p>
 
@@ -1758,7 +1758,7 @@ AddItemToList("1","Value"," [elimination]");
 
 </details><details id="bkmrk-ExtractMetaData-"><summary>ExtractMetaData</summary>
 
-<p class="callout info">[Extract Metadata](https://shlsgfngit01.na.bicworld.com/books/hfm/page/extracting-metadata-from-hfm "Extracting Metadata from HFM") from HFM</p>
+<p class="callout info">Extracting Metadata from HFM</p>
 
 **Input**
 
@@ -3279,95 +3279,325 @@ These JHAT Commands have to do with Loading Data, Journals, etc.
 
 <details id="bkmrk-LoadSecurity-"><summary>LoadSecurity</summary>
 
-<p class="callout info">LoadSecurity</p>
+<p class="callout info">Load Security Into HFM</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--14" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">C:HfmSecurityLoadFile.sec</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">C:HfmSecurityLoadFile.sec</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">C:HfmSecurityLoad.log</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">C:HfmSecurityLoad.log</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">;</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">;</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">True/False Clear before Load</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">True/False Clear before Load</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">True/False Validate Users</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">True/False Validate Users</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">True/False Load Users</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">True/False Load Users</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">True/False Load Classes</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">True/False Load Classes</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">True/False Load Roles</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">True/False Load Roles</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">True/False Load Accesses</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">True/False Load Accesses</td></tr></tbody></table>
+<table border="1" id="bkmrk-parameter-mandatory--14" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Security File</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Security File</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Log</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Log</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Delmiter</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Delmiter</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Clear before Load</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Clear before Load
+
+- `true`
+- `false`
+
+</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Validate Users</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Validate Users
+
+- `true`
+- `false`
+
+</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Load Users</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Load Users
+
+- `true`
+- `false`
+
+</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Load Classes</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Load Classes
+
+- `true`
+- `false`
+
+</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Load Roles</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Load Roles
+
+- `true`
+- `false`
+
+</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Load Accesses</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Load Accesses
+
+- `true`
+- `false`
+
+</td></tr></tbody></table>
 
 **Example**
 
 ```dart
-LoadSecurity("C:HfmSecurityLoadFile.sec"," C:HfmSecurityLoad.log"," ;"," True/False Clear before Load"," True/False Validate Users"," True/False Load Users"," True/False Load Classes"," True/False Load Roles"," True/False Load Accesses");
+LoadSecurity("C:HfmSecurityLoadFile.sec"," C:HfmSecurityLoad.log",";"," True/False Clear before Load"," True/False Validate Users"," True/False Load Users"," True/False Load Classes"," True/False Load Roles"," True/False Load Accesses");
 ```
 
 </details><details id="bkmrk-LoadSecurityExpanded-"><summary>LoadSecurityExpanded</summary>
 
-<p class="callout info">LoadSecurityExpanded</p>
+<p class="callout info">Load Security Expanded</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory-" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">c:VoyagerDemoMetadata.app</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">c:VoyagerDemoMetadata.app</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">c:VoyagerMetadata\_Load.log</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">c:VoyagerMetadata\_Load.log</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">ï¿½;ï¿½</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">ï¿½;ï¿½</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">ï¿½falseï¿½</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">ï¿½falseï¿½</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">ï¿½trueï¿½</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">ï¿½trueï¿½</td></tr></tbody></table>
+<table border="1" id="bkmrk-parameter-mandatory-" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Security File</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Security File</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Log File</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Log File</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Delimiter</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Delimiter</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Clear All?</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Clear All?
+
+- `true`
+- `false`
+
+</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Validate Users?</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Validate Users?
+
+- `true`
+- `false`
+
+</td></tr><tr><td style="width: 31.6644%;">Filter Users?</td><td class="align-center" style="width: 18.1326%;">✓</td><td style="width: 50.203%;">Filter Users?
+
+- `true`
+- `false`
+
+</td></tr><tr><td style="width: 31.6644%;">Filter Security Class?</td><td class="align-center" style="width: 18.1326%;">✓</td><td style="width: 50.203%;">Filter Security Class?
+
+- `true`
+- `false`
+
+</td></tr><tr><td style="width: 31.6644%;">Filter Role Access?</td><td class="align-center" style="width: 18.1326%;">✓</td><td style="width: 50.203%;">Filter Role Access?
+
+- `true`
+- `false`
+
+</td></tr><tr><td style="width: 31.6644%;">Filter Security Class Access?</td><td class="align-center" style="width: 18.1326%;">✓</td><td style="width: 50.203%;">Filter Security Class Access?
+
+- `true`
+- `false`
+
+</td></tr></tbody></table>
 
 **Example**
 
 ```dart
-LoadSecurityExpanded("c:VoyagerDemoMetadata.app"," c:VoyagerMetadata_Load.log"," ï¿½;ï¿½"," ï¿½falseï¿½ "," ï¿½trueï¿½");
+LoadSecurityExpanded("Security File","Log File","Delimiter","Clear All?","Validate Users?","Filter Users?","Filter Security Class?","Filter Role Access?","Filter Security Class Access?");
 ```
 
 </details><details id="bkmrk-LoadMetaData-"><summary>LoadMetaData</summary>
 
-<p class="callout info">LoadMetaData</p>
+<p class="callout info">Load MetaData</p>
+
+<p class="callout info">Can have 3, 17 or 18 parameters</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--1" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">C:HfmMetadataLoadFile.xml</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">C:HfmMetadataLoadFile.xml</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">C:HfmMetadataLoad.log</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">C:HfmMetadataLoad.log</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">;</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">;</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Merge</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Merge</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Replace</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Replace</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">or Clear Mode</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">or Clear Mode</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">True or False Load Currencies</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">True or False Load Currencies</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">True or FalseLoad Scenarios</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">True or FalseLoad Scenarios</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">True or False Load Entities</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">True or False Load Entities</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">True or False Load Accounts</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">True or False Load Accounts</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">True or False Load Custom1</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">True or False Load Custom1</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">True or False Load Custom2</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">True or False Load Custom2</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">True or False Load Custom3</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">True or False Load Custom3</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">True or False Load Custom4</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">True or False Load Custom4</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">True or False Load Consolidation Methods</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">True or False Load Consolidation Methods</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">True or False Load App Settings</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">True or False Load App Settings</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">True or False System Accounts</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">True or False System Accounts</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">True or False Load Value Dimension</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">True or False Load Value Dimension</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">True or False Load ICP</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">True or False Load ICP</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">True or False Integrity Check</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">True or False Integrity Check</td></tr></tbody></table>
+<table border="1" id="bkmrk-parameter-mandatory--1" style="height: 1260.38px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Load File</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Load File</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Log File  
+</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Log File  
+</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Delimiter</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Delimiter</td></tr><tr style="height: 110.156px;"><td style="width: 31.6644%; height: 110.156px;">Mode</td><td class="align-center" style="width: 18.1326%; height: 110.156px;">✓</td><td style="width: 50.203%; height: 110.156px;">Mode
+
+- `Merge`
+- `Replace`
+- `Clear`
+
+</td></tr><tr style="height: 93.0469px;"><td style="width: 31.6644%; height: 93.0469px;">Load Currencies?</td><td class="align-center" style="width: 18.1326%; height: 93.0469px;">✓</td><td style="width: 50.203%; height: 93.0469px;">Load Currencies
+
+- `true`
+- `false`
+
+</td></tr><tr style="height: 93.0469px;"><td style="width: 31.6644%; height: 93.0469px;">Load Scenarios?</td><td class="align-center" style="width: 18.1326%; height: 93.0469px;">✓</td><td style="width: 50.203%; height: 93.0469px;">Load Scenarios
+
+- `true`
+- `false`
+
+</td></tr><tr style="height: 93.0469px;"><td style="width: 31.6644%; height: 93.0469px;">Load Entities?</td><td class="align-center" style="width: 18.1326%; height: 93.0469px;">✓</td><td style="width: 50.203%; height: 93.0469px;">Load Entities
+
+- `true`
+- `false`
+
+</td></tr><tr style="height: 93.0469px;"><td style="width: 31.6644%; height: 93.0469px;">Load Accounts?</td><td class="align-center" style="width: 18.1326%; height: 93.0469px;">✓</td><td style="width: 50.203%; height: 93.0469px;">Load Accounts
+
+- `true`
+- `false`
+
+</td></tr><tr style="height: 93.0469px;"><td style="width: 31.6644%; height: 93.0469px;">Load Custom1?</td><td class="align-center" style="width: 18.1326%; height: 93.0469px;">✓</td><td style="width: 50.203%; height: 93.0469px;">Load Custom1
+
+- `true`
+- `false`
+
+</td></tr><tr style="height: 93.0469px;"><td style="width: 31.6644%; height: 93.0469px;">Load Custom2?</td><td class="align-center" style="width: 18.1326%; height: 93.0469px;">✓</td><td style="width: 50.203%; height: 93.0469px;">Load Custom2
+
+- `true`
+- `false`
+
+</td></tr><tr style="height: 93.0469px;"><td style="width: 31.6644%; height: 93.0469px;">Load Custom3?</td><td class="align-center" style="width: 18.1326%; height: 93.0469px;">✓</td><td style="width: 50.203%; height: 93.0469px;">Load Custom3
+
+- `true`
+- `false`
+
+</td></tr><tr style="height: 93.0469px;"><td style="width: 31.6644%; height: 93.0469px;">Load Custom4?</td><td class="align-center" style="width: 18.1326%; height: 93.0469px;">✓</td><td style="width: 50.203%; height: 93.0469px;">Load Custom4
+
+- `true`
+- `false`
+
+</td></tr><tr style="height: 93.0469px;"><td style="width: 31.6644%; height: 93.0469px;">Load Consolidation Methods?</td><td class="align-center" style="width: 18.1326%; height: 93.0469px;">✓</td><td style="width: 50.203%; height: 93.0469px;">Load Consolidation Methods
+
+- `true`
+- `false`
+
+</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Load App Settings?</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Load App Settings
+
+- `true`
+- `false`
+
+</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">System Accounts?</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">System Accounts
+
+- `true`
+- `false`
+
+</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Load Value Dimension?</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Load Value Dimension
+
+- `true`
+- `false`
+
+</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Load ICP?</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Load ICP
+
+- `true`
+- `false`
+
+</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Integrity Check?</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Integrity Check
+
+- `true`
+- `false`
+
+</td></tr></tbody></table>
 
 **Example**
 
 ```dart
-LoadMetaData("C:HfmMetadataLoadFile.xml"," C:HfmMetadataLoad.log"," ;","Merge"," Replace"," or Clear Mode"," True or False Load Currencies"," True or FalseLoad Scenarios"," True or False Load Entities"," True or False Load Accounts"," True or False Load Custom1"," True or False Load Custom2"," True or False Load Custom3"," True or False Load Custom4"," True or False Load Consolidation Methods"," True or False Load App Settings","True or False System Accounts","True or False Load Value Dimension","True or False Load ICP","True or False Integrity Check");
+LoadMetaData("C:HfmMetadataLoadFile.xml"," C:HfmMetadataLoad.log",";","Merge, Replace or Clear Mode"," True or False Load Currencies"," True or FalseLoad Scenarios"," True or False Load Entities"," True or False Load Accounts"," True or False Load Custom1"," True or False Load Custom2"," True or False Load Custom3"," True or False Load Custom4"," True or False Load Consolidation Methods"," True or False Load App Settings","True or False System Accounts","True or False Load Value Dimension","True or False Load ICP","True or False Integrity Check");
 ```
 
 </details><details id="bkmrk-LoadMetaDataExtDim-"><summary>LoadMetaDataExtDim</summary>
 
-<p class="callout info">LoadMetaDataExtDim</p>
+<p class="callout info">Load MetaData Extended</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--2" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;"> </td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;"> </td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;"> </td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;"> </td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;"> </td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;"> </td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;"> </td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;"> </td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;"> </td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;"> </td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;"> </td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;"> </td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;"> </td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;"> </td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;"> </td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;"> </td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;"> </td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;"> </td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;"> </td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;"> </td></tr></tbody></table>
+<table border="1" id="bkmrk-parameter-mandatory--2" style="height: 689.031px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Load File</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Load File</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Log File</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Log File</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Delimiter</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Delimiter</td></tr><tr style="height: 110.156px;"><td style="width: 31.6644%; height: 110.156px;">Mode</td><td class="align-center" style="width: 18.1326%; height: 110.156px;">✓</td><td style="width: 50.203%; height: 110.156px;">Mode
+
+- `Merge`
+- `Replace`
+- `Clear`
+
+</td></tr><tr style="height: 93.0469px;"><td style="width: 31.6644%; height: 93.0469px;">Check Integrity</td><td class="align-center" style="width: 18.1326%; height: 93.0469px;">✓</td><td style="width: 50.203%; height: 93.0469px;">Check Integrity
+
+- `true`
+- `false`
+
+</td></tr><tr style="height: 35.3906px;"><td style="width: 31.6644%; height: 35.3906px;">Dimensions to Load
+
+</td><td class="align-center" style="width: 18.1326%; height: 35.3906px;">✓</td><td style="width: 50.203%; height: 35.3906px;">Dimensions to Load
+
+</td></tr><tr style="height: 93.0469px;"><td style="width: 31.6644%; height: 93.0469px;">Load Currencies</td><td class="align-center" style="width: 18.1326%; height: 93.0469px;">✓</td><td style="width: 50.203%; height: 93.0469px;">Load Currencies
+
+- `true`
+- `false`
+
+</td></tr><tr style="height: 93.0469px;"><td style="width: 31.6644%; height: 93.0469px;">Load App Settings</td><td class="align-center" style="width: 18.1326%; height: 93.0469px;">✓</td><td style="width: 50.203%; height: 93.0469px;">Load App Settings
+
+- `true`
+- `false`
+
+</td></tr><tr style="height: 93.0469px;"><td style="width: 31.6644%; height: 93.0469px;">Load Consolidation Methods</td><td class="align-center" style="width: 18.1326%; height: 93.0469px;">✓</td><td style="width: 50.203%; height: 93.0469px;">Load Consolidation Methods
+
+- `true`
+- `false`
+
+</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Load System Accounts</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Load System Accounts
+
+- `true`
+- `false`
+
+</td></tr></tbody></table>
 
 **Example**
 
 ```dart
-LoadMetaDataExtDim(""," "," "," "," "," ",""," "," "," ");
+LoadMetaDataExtDim("Load Filename", "Log Filename", "Delimiter", "ReplaceMode", "CheckIntegrity", "DimensionsToLoad","Load Currencies", "LoadAppSettings", "Load Consol Methods", "LoadSystemAccounts");
 ```
 
 </details><details id="bkmrk-LoadICTransactions-"><summary>LoadICTransactions</summary>
 
-<p class="callout info">LoadICTransactions</p>
+<p class="callout info">Load Intercompany Transactions</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--3" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">c:HFMICTrans.trn</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">c:HFMICTrans.trn</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">c:HFMICtrans.log</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">c:HFMICtrans.log</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Load</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Load</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Merge</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Merge</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">ï¿½;ï¿½</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">ï¿½;ï¿½</td></tr></tbody></table>
+<table border="1" id="bkmrk-parameter-mandatory--3" style="height: 206.672px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Load File</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">c:HFMICTrans.trn</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Log File</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">c:HFMICtrans.log</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Mode</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Mode
+
+- `Load`
+- `Scan`
+
+</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Load Option</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Load Option
+
+- `Merge`
+- `Replace`
+
+</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Delimiter</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Delimiter</td></tr></tbody></table>
 
 **Example**
 
 ```dart
-LoadICTransactions("c:HFMICTrans.trn"," c:HFMICtrans.log"," Load","Merge"," ï¿½;ï¿½");
+LoadICTransactions("c:HFMICTrans.trn"," c:HFMICtrans.log"," Load","Merge",";");
 ```
 
 </details><details id="bkmrk-LoadDocument-"><summary>LoadDocument</summary>
 
-<p class="callout info">LoadDocument</p>
+<p class="callout info">Load Document</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--4" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">FormTest</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">FormTest</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Test Description</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Test Description</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">C:inputdirCalc2col.wdf</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">C:inputdirCalc2col.wdf</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">US</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">US</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">true</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">true</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">ï¿½WebFormï¿½</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">ï¿½WebFormï¿½</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">ï¿½Formï¿½</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">ï¿½Formï¿½</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">ï¿½trueï¿½</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">ï¿½trueï¿½</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">ï¿½ï¿½</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">ï¿½ï¿½</td></tr></tbody></table>
+<table border="1" id="bkmrk-parameter-mandatory--4" style="height: 349.172px; width: 94.8718%;"><tbody><tr style="height: 30.7969px;"><td style="width: 31.6644%; height: 30.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 30.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 30.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">File Name</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">File Name</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">File Description</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">File Description</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Path to Document</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Path to Document on Local Machine</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Security Class</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Security Class</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Overwrite</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Overwrite
+
+- `true`
+- `false`
+
+</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Document Type</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Document Type
+
+- `WEBFORM`
+- `JOURNAL`
+- `INTERCOMPANY`
+- `ICTRANSACTION`
+- `ICMATCHACCOUNT`
+- `ICMATCHID`
+- `ICMATCHTEMPLATE`
+- `DATAEXPLORER`
+- `WEBGRID`
+- `WORKSPACE`
+- `CUSTOM`
+- `TASK`
+- `FOLDER`
+- `All`
+
+</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">File Type</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">File Type
+
+- `FORM`
+- `REPORT`
+- `XML`
+- `HTML`
+- `REPORTXML`
+- `CUSTOM`
+- `FOLDER`
+- `All`
+
+</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Is Private?</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Is Private?
+
+- `true`
+- `false`
+
+</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Path in HFM</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Path in HFM</td></tr></tbody></table>
 
 **Example**
 
 ```dart
-LoadDocument("FormTest","Test Description"," C:inputdirCalc2col.wdf"," US"," true","ï¿½WebFormï¿½","ï¿½Formï¿½","ï¿½trueï¿½","ï¿½ï¿½");
+LoadDocument("FormTest","Test Description"," C:inputdirCalc2col.wdf"," US"," true","WebForm","FORM","true","/RootFolder/Test");
 ```
 
 </details><details id="bkmrk-LoadRules-"><summary>LoadRules</summary>
 
-<p class="callout info">LoadRules</p>
+<p class="callout info">Load Rules</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--5" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">C:HfmRuleLoadFile.rul</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">C:HfmRuleLoadFile.rul</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">C:HfmRulesLoad.log</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">C:HfmRulesLoad.log</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Optional True or False Scan Only</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Optional True or False Scan Only</td></tr></tbody></table>
+<table border="1" id="bkmrk-parameter-mandatory--5" style="height: 135.922px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Rule File</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Path to Rule File</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Log File</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Path to Log File</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Scan Only?</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Scan Only
+
+- `true`
+- `false`
+
+<p class="callout info">Optional</p>
+
+</td></tr></tbody></table>
 
 **Example**
 
@@ -3377,11 +3607,18 @@ LoadRules("C:HfmRuleLoadFile.rul"," C:HfmRulesLoad.log"," Optional True or False
 
 </details><details id="bkmrk-LoadMemberLists-"><summary>LoadMemberLists</summary>
 
-<p class="callout info">LoadMemberLists</p>
+<p class="callout info">Load Member Lists</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--6" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">C:HfmMemberListsLoadFile.lst</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">C:HfmMemberListsLoadFile.lst</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">C:HfmMemberListsLoad.log</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">C:HfmMemberListsLoad.log</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Optional True or False Scan Only</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Optional True or False Scan Only</td></tr></tbody></table>
+<table border="1" id="bkmrk-parameter-mandatory--6" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Member List File</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Member List File</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Log File</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Path to Log File</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Scan Only?</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Scan Only
+
+- `true`
+- `false`
+
+<p class="callout info">Optional</p>
+
+</td></tr></tbody></table>
 
 **Example**
 
@@ -3391,11 +3628,28 @@ LoadMemberLists("C:HfmMemberListsLoadFile.lst"," C:HfmMemberListsLoad.log"," Opt
 
 </details><details id="bkmrk-LoadData-"><summary>LoadData</summary>
 
-<p class="callout info">LoadData</p>
+<p class="callout info">Load Data</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--43" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Merge</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Merge</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">C:HfmDataLoadFile.dat</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">C:HfmDataLoadFile.dat</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">C:HfmDataLoad.log</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">C:HfmDataLoad.log</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">True or False Accumulate in File</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">True or False Accumulate in File</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">True or False contains ownership data</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">True or False contains ownership data</td></tr></tbody></table>
+<table border="1" id="bkmrk-parameter-mandatory--43" style="height: 217.891px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Load Mode</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Load Mode
+
+- `Merge`
+- `Replace`
+- `Accumulate`
+- `ReplaceBySecurity`
+
+</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Data File</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Data File</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Log File</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Log File</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Accumulate withing File?</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Accumulate withing File?
+
+- `true`
+- `false`
+
+</td></tr><tr style="height: 46.5938px;"><td style="width: 31.6644%; height: 46.5938px;">Contains Ownership?</td><td class="align-center" style="width: 18.1326%; height: 46.5938px;">✓</td><td style="width: 50.203%; height: 46.5938px;">Contains Ownership?
+
+- `true`
+- `false`
+
+</td></tr></tbody></table>
 
 **Example**
 
@@ -3405,11 +3659,30 @@ LoadData("Merge"," C:HfmDataLoadFile.dat"," C:HfmDataLoad.log"," True or False A
 
 </details><details id="bkmrk-StartLoadData-"><summary>StartLoadData</summary>
 
-<p class="callout info">StartLoadData</p>
+<p class="callout info">Start Load Data</p>
+
+<p class="callout info">Calls the same API as `LoadData`</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--44" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Merge</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Merge</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">C:HfmDataLoadFile.dat</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">C:HfmDataLoadFile.dat</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">C:HfmDataLoad.log</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">C:HfmDataLoad.log</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">True or False Accumulate in File</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">True or False Accumulate in File</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">True or False contains ownership data</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">True or False contains ownership data</td></tr></tbody></table>
+<table border="1" id="bkmrk-parameter-mandatory--44" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Load Mode</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Load Mode
+
+- `Merge`
+- `Replace`
+- `Accumulate`
+- `ReplaceBySecurity`
+
+</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Data File</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Data File</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Log File</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Log File</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Accumulate withing File?</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Accumulate withing File?
+
+- `true`
+- `false`
+
+</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 46.5938px;">Contains Ownership?</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 46.5938px;">Contains Ownership?
+
+- `true`
+- `false`
+
+</td></tr></tbody></table>
 
 **Example**
 
@@ -3419,11 +3692,16 @@ StartLoadData("Merge"," C:HfmDataLoadFile.dat"," C:HfmDataLoad.log"," True or Fa
 
 </details><details id="bkmrk-LoadPhaseInfo-"><summary>LoadPhaseInfo</summary>
 
-<p class="callout info">LoadPhaseInfo</p>
+<p class="callout info">Load Phase Info</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--45" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Merge or Replace</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Merge or Replace</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">C:HfmDataLoadFile.dat</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">C:HfmDataLoadFile.dat</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">C:HfmDataLoad.log</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">C:HfmDataLoad.log</td></tr></tbody></table>
+<table border="1" id="bkmrk-parameter-mandatory--45" style="height: 158.766px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 46.7969px;"><td style="width: 31.6644%; height: 35.375px;">Load Mode</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Load Mode
+
+- `Merge`
+- `Replace`
+
+</td></tr><tr style="height: 46.7969px;"><td style="width: 31.6644%; height: 35.375px;">Data File</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Data File</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Log File</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Log File</td></tr><tr><td style="width: 31.6644%;">Delmiter</td><td class="align-center" style="width: 18.1326%;">✓</td><td style="width: 50.203%;">Delimiter</td></tr></tbody></table>
 
 **Example**
 
@@ -3433,11 +3711,11 @@ LoadPhaseInfo("Merge or Replace"," C:HfmDataLoadFile.dat"," C:HfmDataLoad.log","
 
 </details><details id="bkmrk-LoadJournal-"><summary>LoadJournal</summary>
 
-<p class="callout info">LoadJournal</p>
+<p class="callout info">Load Journal</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--46" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">C:HfmDataLoadFile.dat</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">C:HfmDataLoadFile.dat</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">C:HfmDataLoad.log</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">C:HfmDataLoad.log</td></tr></tbody></table>
+<table border="1" id="bkmrk-parameter-mandatory--46" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Data File</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Data File</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Log File</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Log File</td></tr><tr><td style="width: 31.6644%;">Delmiter</td><td class="align-center" style="width: 18.1326%;">✓</td><td style="width: 50.203%;">Delimiter</td></tr></tbody></table>
 
 **Example**
 
@@ -3447,11 +3725,11 @@ LoadJournal("C:HfmDataLoadFile.dat"," C:HfmDataLoad.log"," ");
 
 </details><details id="bkmrk-LoadModuleConfiguration-"><summary>LoadModuleConfiguration</summary>
 
-<p class="callout info">LoadModuleConfiguration</p>
+<p class="callout info">Load Module Configuration</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--7" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">C:HfmModuleConfiguration.XML</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">C:HfmModuleConfiguration.XML</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">C:HfmModuleConfiguration.log</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">C:HfmModuleConfiguration.log</td></tr></tbody></table>
+<table border="1" id="bkmrk-parameter-mandatory--7" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Data File</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Data File</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Log File</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Log File</td></tr></tbody></table>
 
 **Example**
 
@@ -3471,11 +3749,11 @@ These JHAT Commands are related to Macros
 
 <details id="bkmrk-SubstituteMacro-"><summary>SubstituteMacro</summary>
 
-<p class="callout info">SubstituteMacro</p>
+<p class="callout info">Substitute Macro</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--14" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">\_\_MacroName\_\_</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">\_\_MacroName\_\_</td></tr></tbody></table>
+<table border="1" id="bkmrk-parameter-mandatory--14" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Macro Name</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Macro Name</td></tr></tbody></table>
 
 **Example**
 
@@ -3485,11 +3763,11 @@ SubstituteMacro("__MacroName__");
 
 </details><details id="bkmrk-DefineMacro-"><summary>DefineMacro</summary>
 
-<p class="callout info">DefineMacro</p>
+<p class="callout info">Define Macro</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory-" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">\_\_MacroName\_\_</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">\_\_MacroName\_\_</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">MacroRecplacmentText</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">MacroRecplacmentText</td></tr></tbody></table>
+<table border="1" id="bkmrk-parameter-mandatory-" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Macro Name</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Macro Name</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Macro Replacement Text</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Macro Replacement Text</td></tr></tbody></table>
 
 **Example**
 
@@ -3499,7 +3777,7 @@ DefineMacro("__MacroName__"," MacroRecplacmentText");
 
 </details><details id="bkmrk-DefineMacroEx-"><summary>DefineMacroEx</summary>
 
-<p class="callout info">DefineMacroEx</p>
+<p class="callout info">Define Macro Ex</p>
 
 **Input**
 
@@ -3513,11 +3791,11 @@ DefineMacroEx("__ExMacroName__","__MacroName__/MacroRecplacmentText"," __MacroNa
 
 </details><details id="bkmrk-RemoveMacro-"><summary>RemoveMacro</summary>
 
-<p class="callout info">RemoveMacro</p>
+<p class="callout info">Remove Macro</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--2" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">\_\_MacroName\_\_</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">\_\_MacroName\_\_</td></tr></tbody></table>
+<table border="1" id="bkmrk-parameter-mandatory--2" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Macro Name</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Macro Name</td></tr></tbody></table>
 
 **Example**
 
@@ -3531,6 +3809,8 @@ RemoveMacro("__MacroName__");
 
 **Input**
 
+None
+
 **Example**
 
 ```dart
@@ -3543,7 +3823,7 @@ ShowMacros("");
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--3" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">comment text</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">comment text</td></tr></tbody></table>
+<table border="1" id="bkmrk-parameter-mandatory--3" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Comment Text</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Comment Text</td></tr></tbody></table>
 
 **Example**
 
@@ -3553,11 +3833,11 @@ Comment("comment text");
 
 </details><details id="bkmrk-LoadMacros-"><summary>LoadMacros</summary>
 
-<p class="callout info">LoadMacros</p>
+<p class="callout info">Load Macros</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--4" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">macro file name</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">macro file name</td></tr></tbody></table>
+<table border="1" id="bkmrk-parameter-mandatory--4" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Macro File Name</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Macro File Name</td></tr></tbody></table>
 
 **Example**
 
@@ -3601,11 +3881,49 @@ These JHAT Commands are related to miscellaneous actions
 
 <details id="bkmrk-CalculateOwnership-"><summary>CalculateOwnership</summary>
 
-<p class="callout info">CalculateOwnership</p>
+<p class="callout info">Calculate Ownership</p>
+
+<p class="callout warning">Must add periods to list</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--14" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Scenario</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Scenario</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">2001</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">2001</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">1</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">1</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Parent</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Parent</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">TRUE</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">TRUE</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">TRUE</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">TRUE</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">TRUE</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">TRUE</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">TRUE</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">TRUE</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">TRUE</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">TRUE</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">All Entities</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">All Entities</td></tr></tbody></table>
+<table border="1" id="bkmrk-parameter-mandatory--14" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Scenario</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Scenario</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Year</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Year</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Period List</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Period List
+
+- `All`
+- Valid Period List
+
+</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Parent</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Parent</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Shares Calculation Control?</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Shares Calculation Control?
+
+- `true`
+- `false`
+
+</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Shares Calculation Method?</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Shares Calculation Method?
+
+- `true`
+- `false`
+
+</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Shares Calculation Ownership?</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Shares Calculation Ownership?
+
+- `true`
+- `false`
+
+</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Shares Percent Control?</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Shares Percent Control?
+
+- `true`
+- `false`
+
+</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Shared Direct Ownership</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Shared Direct Ownership?
+
+- `true`
+- `false`
+
+</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Mode</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Mode
+
+- `Current Entity`
+- `Descendants`
+- `All Entities`
+
+</td></tr></tbody></table>
 
 **Example**
 
@@ -3615,11 +3933,62 @@ CalculateOwnership("Scenario","2001","1","Parent","TRUE","TRUE","TRUE","TRUE"," 
 
 </details><details id="bkmrk-CopyData-"><summary>CopyData</summary>
 
-<p class="callout info">CopyData</p>
+<p class="callout info">Copy Data</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory-" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Actual</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Actual</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Budget</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Budget</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">2000</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">2000</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">2005</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">2005</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">1</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">1</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">2</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">2</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">1</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">1</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">1</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">1</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">C:hfmoutboxDataCopy.log</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">C:hfmoutboxDataCopy.log</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">1.5</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">1.5</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">true</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">true</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">true</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">true</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">merge</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">merge</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">YTD</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">YTD</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Entity Curr Data</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Entity Curr Data</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Rates Sys Data</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Rates Sys Data</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Enable Logging</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Enable Logging</td></tr></tbody></table>
+<table border="1" id="bkmrk-parameter-mandatory-" style="height: 1108.41px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Source Scenario</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Source Scenario</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Target Scenario</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Target Scenario</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Source Year</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Source Year</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Target Year</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Target Year</td></tr><tr style="height: 92.7344px;"><td style="width: 31.6644%; height: 92.7344px;">Source Period List</td><td class="align-center" style="width: 18.1326%; height: 92.7344px;">✓</td><td style="width: 50.203%; height: 92.7344px;">Source Period List
+
+- `All`
+- Valid Period List
+
+</td></tr><tr style="height: 92.7344px;"><td style="width: 31.6644%; height: 92.7344px;">Target Period List</td><td class="align-center" style="width: 18.1326%; height: 92.7344px;">✓</td><td style="width: 50.203%; height: 92.7344px;">Target Period List
+
+- `All`
+- Valid Period List
+
+</td></tr><tr style="height: 92.7344px;"><td style="width: 31.6644%; height: 92.7344px;">Entity List</td><td class="align-center" style="width: 18.1326%; height: 92.7344px;">✓</td><td style="width: 50.203%; height: 92.7344px;">Entity List
+
+- `All`
+- Valid Entity List
+
+</td></tr><tr style="height: 92.7344px;"><td style="width: 31.6644%; height: 92.7344px;">Account List</td><td class="align-center" style="width: 18.1326%; height: 92.7344px;">✓</td><td style="width: 50.203%; height: 92.7344px;">Account List
+
+- `All`
+- Valid Account List
+
+</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Log File</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Log File</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Factor to Multiply</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Factor to Multiply</td></tr><tr style="height: 93.0469px;"><td style="width: 31.6644%; height: 93.0469px;">Copy Cell Text?</td><td class="align-center" style="width: 18.1326%; height: 93.0469px;">✓</td><td style="width: 50.203%; height: 93.0469px;">Copy Cell Text?
+
+- `true`
+- `false`
+
+</td></tr><tr style="height: 93.0469px;"><td style="width: 31.6644%; height: 93.0469px;">Copy Derived Data?</td><td class="align-center" style="width: 18.1326%; height: 93.0469px;">✓</td><td style="width: 50.203%; height: 93.0469px;">Copy Derived Data?
+
+- `true`
+- `false`
+
+</td></tr><tr style="height: 110.156px;"><td style="width: 31.6644%; height: 110.156px;">Copy Mode</td><td class="align-center" style="width: 18.1326%; height: 110.156px;">✓</td><td style="width: 50.203%; height: 110.156px;">Copy Mode
+
+- `MERGE`
+- `REPLACE`
+- `ACCUMULATE`
+
+</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">View</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">View</td></tr><tr style="height: 93.0469px;"><td style="width: 31.6644%; height: 93.0469px;">Copy Data?</td><td class="align-center" style="width: 18.1326%; height: 93.0469px;">✓</td><td style="width: 50.203%; height: 93.0469px;">Copy Data?
+
+- `true`
+- `false`
+
+</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Copy Rates?</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Copy Rates?
+
+- `true`
+- `false`
+
+</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Enable Logging</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Enable Logging
+
+- `true`
+- `false`
+
+</td></tr></tbody></table>
 
 **Example**
 
@@ -3629,11 +3998,41 @@ CopyData("Actual"," Budget"," 2000"," 2005"," 1"," 2"," 1"," 1"," C:hfmoutboxDat
 
 </details><details id="bkmrk-ClearData-"><summary>ClearData</summary>
 
-<p class="callout info">ClearData</p>
+<p class="callout info">Clear Data</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--1" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Actual</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Actual</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">2005</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">2005</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">1</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">1</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">2</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">2</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">1</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">1</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">true</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">true</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">true</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">true</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">true</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">true</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">C:hfmoutboxcleardata.log</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">C:hfmoutboxcleardata.log</td></tr></tbody></table>
+<table border="1" id="bkmrk-parameter-mandatory--1" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Scenario</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Scenario</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Year</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Year</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Period List</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Period List
+
+- `All`
+- Valid Period List
+
+</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Entity List</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Entity List
+
+- `All`
+- Valid Entity List
+
+</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Account List</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Account List
+
+- `All`
+- Valid Account List
+
+</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Clear Rates and System Data?</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Clear Rates and System Data?</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Enable Detailed Logging</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Enable Detailed Logging
+
+- `true`
+- `false`
+
+</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Clear Data</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Clear Data
+
+- `true`
+- `false`
+
+</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Log File</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Log File
+
+- `true`
+- `false`
+
+</td></tr></tbody></table>
 
 **Example**
 
@@ -3643,11 +4042,16 @@ ClearData("Actual"," 2005"," 1"," 2"," 1"," true"," true","true","C:hfmoutboxcle
 
 </details><details id="bkmrk-DeleteInvalidRecords-"><summary>DeleteInvalidRecords</summary>
 
-<p class="callout info">DeleteInvalidRecords</p>
+<p class="callout info">Delete Invalid Records</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--2" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">false</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">false</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">C:hfmoutboxInvalidRecords.log</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">C:hfmoutboxInvalidRecords.log</td></tr></tbody></table>
+<table border="1" id="bkmrk-parameter-mandatory--2" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Clear Invalid Records?</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Clear Invalid Records?
+
+- `true`
+- `false`
+
+</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Log File</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Log File</td></tr></tbody></table>
 
 **Example**
 
@@ -3661,19 +4065,23 @@ DeleteInvalidRecords("false","C:hfmoutboxInvalidRecords.log");
 
 **Input**
 
+None
+
 **Example**
 
 ```dart
-exit("");
+exit();
 ```
 
 </details><details id="bkmrk-UpdateParameter-"><summary>UpdateParameter</summary>
 
-<p class="callout info">UpdateParameter</p>
+<p class="callout info">Update Parameter</p>
+
+<p class="callout warning">Updates the `XFM_PARAMETERS` table</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--3" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;"> </td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;"> </td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;"> </td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;"> </td></tr></tbody></table>
+<table border="1" id="bkmrk-parameter-mandatory--3" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Parameter Name</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Parameter Name</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Parameter Value</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Parameter Value</td></tr></tbody></table>
 
 **Example**
 
@@ -3683,16 +4091,16 @@ UpdateParameter(""," ");
 
 </details><details id="bkmrk-GetMemberProperties-"><summary>GetMemberProperties</summary>
 
-<p class="callout info">GetMemberProperties</p>
+<p class="callout info">Get Member Properties</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--4" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;"> </td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;"> </td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;"> </td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;"> </td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;"> </td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;"> </td></tr></tbody></table>
+<table border="1" id="bkmrk-parameter-mandatory--4" style="height: 135.922px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Dimension Name</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Dimension Name</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Dimension Members</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Dimension Members</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">File Path</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">File Path</td></tr></tbody></table>
 
 **Example**
 
 ```dart
-GetMemberProperties(""," ","<output>");</output>
+GetMemberProperties("Dimension Name","Dimension Members","File Path");
 ```
 
 </details>
@@ -3707,11 +4115,23 @@ These JHAT Commands are related to Process Management actions
 
 <details id="bkmrk-ProcessFlowGetHistory-"><summary>ProcessFlowGetHistory</summary>
 
-<p class="callout info">ProcessFlowGetHistory</p>
+<p class="callout info">Process Flow Get History</p>
+
+<p class="callout warning">Must Call `SetPOV` prior to calling this.</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--14" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">C:hfmhistoryfile.log</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">C:hfmhistoryfile.log</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">true|false</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">true|false</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">true|false</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">true|false</td></tr></tbody></table>
+<table border="1" id="bkmrk-parameter-mandatory--14" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Log File</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Log File</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Suppress Time?</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Suppress Time?
+
+- `true`
+- `false`
+
+</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Suppress User?</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Suppress User?
+
+- `true`
+- `false`
+
+</td></tr></tbody></table>
 
 **Example**
 
@@ -3721,11 +4141,23 @@ ProcessFlowGetHistory("C:hfmhistoryfile.log"," true|false"," true|false");
 
 </details><details id="bkmrk-ProcessFlowChangeIncludeDescendants-"><summary>ProcessFlowChangeIncludeDescendants</summary>
 
-<p class="callout info">ProcessFlowChangeIncludeDescendants</p>
+<p class="callout info">Process Flow Change Include Descendants</p>
+
+<p class="callout warning">Must Call `SetPOV` prior to calling this.</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory-" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Start</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Start</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">NA</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">NA</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">1</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">1</td></tr></tbody></table>
+<table border="1" id="bkmrk-parameter-mandatory-" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Action</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Action
+
+- `START`
+- `PROMOTE`
+- `SIGNOFF`
+- `SUBMIT`
+- `APPROVE`
+- `PUBLISH`
+- `REJECT`
+
+</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Not Applicable</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Not Applicable</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Phases</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Phases (can be comma Delimited)</td></tr></tbody></table>
 
 **Example**
 
@@ -3735,11 +4167,25 @@ ProcessFlowChangeIncludeDescendants("Start","NA"," 1");
 
 </details><details id="bkmrk-ProcessFlowStart-"><summary>ProcessFlowStart</summary>
 
-<p class="callout info">ProcessFlowStart</p>
+<p class="callout info">Process Flow Start</p>
+
+<p class="callout warning">Must Call `SetPOV` prior to calling this.</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--1" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Comment</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Comment</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Use all members values true or false</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Use all members values true or false</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Filename to put history in</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Filename to put history in</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Supress timestamp true||false</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Supress timestamp true||false</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Supress user idtrue||false</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Supress user idtrue||false</td></tr></tbody></table>
+<table border="1" id="bkmrk-parameter-mandatory--1" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Comment</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Comment</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Use All Member Values</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Use All Member Values
+
+</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Output File</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Output File</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Suppress Timestamp</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Suppress Timestamp
+
+- `true`
+- `false`
+
+</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Suppress User ID</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Suppress User ID
+
+- `true`
+- `false`
+
+</td></tr></tbody></table>
 
 **Example**
 
@@ -3749,11 +4195,30 @@ ProcessFlowStart("Comment"," Use all members values true or false"," Filename to
 
 </details><details id="bkmrk-ProcessFlowPromote-"><summary>ProcessFlowPromote</summary>
 
-<p class="callout info">ProcessFlowPromote</p>
+<p class="callout info">Process Flow Promote</p>
+
+<p class="callout warning">Must Call `SetPOV` prior to calling this.</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--2" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Comment</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Comment</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Use all members values true or false</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Use all members values true or false</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Filename to put history in</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Filename to put history in</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Review Level to Promote to RL#</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Review Level to Promote to RL#</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Supress timestamp true||false</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Supress timestamp true||false</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Supress user idtrue||false</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Supress user idtrue||false</td></tr></tbody></table>
+<table border="1" id="bkmrk-parameter-mandatory--2" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Comment</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Comment</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Use All Member Values</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Use All Member Values</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Output File</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Output File</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Review Level to Promote to RL#</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Review Level to Promote to RL#
+
+- `RL1`
+- `RL2`
+- `RL3`
+- etc
+
+</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Suppress Timestamp</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Suppress Timestamp
+
+- `true`
+- `false`
+
+</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Suppress User ID</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Suppress User ID
+
+- `true`
+- `false`
+
+</td></tr></tbody></table>
 
 **Example**
 
@@ -3763,11 +4228,23 @@ ProcessFlowPromote("Comment"," Use all members values true or false"," Filename 
 
 </details><details id="bkmrk-ProcessFlowSubmit-"><summary>ProcessFlowSubmit</summary>
 
-<p class="callout info">ProcessFlowSubmit</p>
+<p class="callout info">Process Flow Submit</p>
+
+<p class="callout warning">Must Call `SetPOV` prior to calling this.</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--3" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Comment</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Comment</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Use all members values true or false</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Use all members values true or false</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Filename to put history in</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Filename to put history in</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Supress timestamp true||false</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Supress timestamp true||false</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Supress user idtrue||false</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Supress user idtrue||false</td></tr></tbody></table>
+<table border="1" id="bkmrk-parameter-mandatory--3" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Comment</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Comment</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Use All Member Values</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Use All Member Values</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Output File</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Output File</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Suppress Timestamp</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Suppress Timestamp
+
+- `true`
+- `false`
+
+</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Suppress User ID</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Suppress User ID
+
+- `true`
+- `false`
+
+</td></tr></tbody></table>
 
 **Example**
 
@@ -3777,11 +4254,23 @@ ProcessFlowSubmit("Comment"," Use all members values true or false"," Filename t
 
 </details><details id="bkmrk-ProcessFlowApprove-"><summary>ProcessFlowApprove</summary>
 
-<p class="callout info">ProcessFlowApprove</p>
+<p class="callout info">Process Flow Approve</p>
+
+<p class="callout warning">Must Call `SetPOV` prior to calling this.</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--4" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Comment</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Comment</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Use all members values true or false</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Use all members values true or false</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Filename to put history in</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Filename to put history in</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Supress timestamp true||false</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Supress timestamp true||false</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Supress user idtrue||false</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Supress user idtrue||false</td></tr></tbody></table>
+<table border="1" id="bkmrk-parameter-mandatory--4" style="height: 217.891px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Comment</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Comment</td></tr><tr style="height: 46.5938px;"><td style="width: 31.6644%; height: 35.375px;">Use All Member Values</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Use All Member Values</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Output File</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Output File</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Suppress Timestamp</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Suppress Timestamp
+
+- `true`
+- `false`
+
+</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Suppress User ID</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Suppress User ID
+
+- `true`
+- `false`
+
+</td></tr></tbody></table>
 
 **Example**
 
@@ -3791,11 +4280,23 @@ ProcessFlowApprove("Comment"," Use all members values true or false"," Filename 
 
 </details><details id="bkmrk-ProcessFlowPublish-"><summary>ProcessFlowPublish</summary>
 
-<p class="callout info">ProcessFlowPublish</p>
+<p class="callout info">Process Flow Publish</p>
+
+<p class="callout warning">Must Call `SetPOV` prior to calling this.</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--5" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Comment</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Comment</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Use all members values true or false</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Use all members values true or false</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Filename to put history in</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Filename to put history in</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Supress timestamp true||false</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Supress timestamp true||false</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Supress user idtrue||false</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Supress user idtrue||false</td></tr></tbody></table>
+<table border="1" id="bkmrk-parameter-mandatory--5" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Comment</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Comment</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Use All Member Values</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Use All Member Values</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Output File</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Output File</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Suppress Timestamp</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Suppress Timestamp
+
+- `true`
+- `false`
+
+</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Suppress User ID</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Suppress User ID
+
+- `true`
+- `false`
+
+</td></tr></tbody></table>
 
 **Example**
 
@@ -3805,11 +4306,23 @@ ProcessFlowPublish("Comment"," Use all members values true or false"," Filename 
 
 </details><details id="bkmrk-ProcessFlowSignOff-"><summary>ProcessFlowSignOff</summary>
 
-<p class="callout info">ProcessFlowSignOff</p>
+<p class="callout info">Process Flow Sign Off</p>
+
+<p class="callout warning">Must Call `SetPOV` prior to calling this.</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--6" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Comment</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Comment</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Use all members values true or false</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Use all members values true or false</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Filename to put history in</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Filename to put history in</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Supress timestamp true||false</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Supress timestamp true||false</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Supress user idtrue||false</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Supress user idtrue||false</td></tr></tbody></table>
+<table border="1" id="bkmrk-parameter-mandatory--6" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Comment</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Comment</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Use All Member Values</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Use All Member Values</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Output File</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Output File</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Suppress Timestamp</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Suppress Timestamp
+
+- `true`
+- `false`
+
+</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Suppress User ID</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Suppress User ID
+
+- `true`
+- `false`
+
+</td></tr></tbody></table>
 
 **Example**
 
@@ -3819,11 +4332,23 @@ ProcessFlowSignOff("Comment"," Use all members values true or false"," Filename 
 
 </details><details id="bkmrk-ProcessFlowReject-"><summary>ProcessFlowReject</summary>
 
-<p class="callout info">ProcessFlowReject</p>
+<p class="callout info">Process Flow Reject</p>
+
+<p class="callout warning">Must Call `SetPOV` prior to calling this.</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--7" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Comment</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Comment</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Use all members values true or false</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Use all members values true or false</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Filename to put history in</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Filename to put history in</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Supress timestamp true||false</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Supress timestamp true||false</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Supress user idtrue||false</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Supress user idtrue||false</td></tr></tbody></table>
+<table border="1" id="bkmrk-parameter-mandatory--7" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Comment</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Comment</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Use All Member Values</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Use All Member Values</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Output File</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Output File</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Suppress Timestamp</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Suppress Timestamp
+
+- `true`
+- `false`
+
+</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Suppress User ID</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Suppress User ID
+
+- `true`
+- `false`
+
+</td></tr></tbody></table>
 
 **Example**
 
@@ -3835,9 +4360,19 @@ ProcessFlowReject("Comment"," Use all members values true or false"," Filename t
 
 <p class="callout info">GetPhaseSubmissionGrid</p>
 
+<p class="callout warning">Must Call `SetPOV` prior to calling this.</p>
+
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--8" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Scenario</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Scenario</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">All | Phase number</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">All | Phase number</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Output File Path</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Output File Path</td></tr></tbody></table>
+<table border="1" id="bkmrk-parameter-mandatory--8" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Scenario</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Scenario</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Phase</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Phase
+
+- `All`
+- `1`
+- `2`
+- `3`
+- etc
+
+</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Output File Path</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Output File Path</td></tr></tbody></table>
 
 **Example**
 
@@ -3847,7 +4382,7 @@ GetPhaseSubmissionGrid("Scenario"," All | Phase number"," Output File Path");
 
 </details><details id="bkmrk-ViewUnassignedGroups-"><summary>ViewUnassignedGroups</summary>
 
-<p class="callout info">ViewUnassignedGroups</p>
+<p class="callout info">View Unassigned Groups</p>
 
 **Input**
 
@@ -3861,7 +4396,7 @@ ViewUnassignedGroups("Scenario"," Period"," Output File Path");
 
 </details><details id="bkmrk-SetSubmissionGroup-"><summary>SetSubmissionGroup</summary>
 
-<p class="callout info">SetSubmissionGroup</p>
+<p class="callout info">Set Submission Group</p>
 
 **Input**
 
@@ -3974,11 +4509,11 @@ Delay("interval");
 
 </details><details id="bkmrk-ReplaceLineInTextFile-"><summary>ReplaceLineInTextFile</summary>
 
-<p class="callout info">ReplaceLineInTextFile</p>
+<p class="callout info">Replace Line In Text File</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory-" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">“\_\_@SCRIPTDIR\_\_Rules.rle”</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">“\_\_@SCRIPTDIR\_\_Rules.rle”</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">“Const BuildandTieFolder =”</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">“Const BuildandTieFolder =”</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">“Const BuildandTieFolder = \_\_@DQUOTECHAR\_\_\_\_@BASEDIR\_\_\_\_@DQUOTECHAR\_\_</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">“Const BuildandTieFolder = \_\_@DQUOTECHAR\_\_\_\_@BASEDIR\_\_\_\_@DQUOTECHAR\_\_</td></tr></tbody></table>
+<table border="1" id="bkmrk-parameter-mandatory-" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">File Name</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">“\_\_@SCRIPTDIR\_\_Rules.rle”</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Text to Find</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">“Const BuildandTieFolder =”</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Replacement Text</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">“Const BuildandTieFolder = \_\_@DQUOTECHAR\_\_\_\_@BASEDIR\_\_\_\_@DQUOTECHAR\_\_</td></tr></tbody></table>
 
 **Example**
 
@@ -3988,7 +4523,7 @@ ReplaceLineInTextFile("“__@SCRIPTDIR__Rules.rle”"," “Const BuildandTieFold
 
 </details><details id="bkmrk-BeginLoop-"><summary>BeginLoop</summary>
 
-<p class="callout info">BeginLoop</p>
+<p class="callout info">Begin Loop</p>
 
 **Input**
 
@@ -4002,14 +4537,16 @@ BeginLoop("Repeat count");
 
 </details><details id="bkmrk-EndLoop-"><summary>EndLoop</summary>
 
-<p class="callout info">EndLoop</p>
+<p class="callout info">End Loop</p>
 
 **Input**
+
+None
 
 **Example**
 
 ```dart
-EndLoop("");
+EndLoop();
 ```
 
 </details><details id="bkmrk-StartTimer-"><summary>StartTimer</summary>
@@ -4018,7 +4555,7 @@ EndLoop("");
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--2" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">3</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">3</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Time to Load Metadata</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Time to Load Metadata</td></tr></tbody></table>
+<table border="1" id="bkmrk-parameter-mandatory--2" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Timer ID</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Timer ID</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Timer Name</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Timer Name</td></tr></tbody></table>
 
 **Example**
 
@@ -4028,11 +4565,13 @@ StartTimer("3","Time to Load Metadata");
 
 </details><details id="bkmrk-StopTimer-"><summary>StopTimer</summary>
 
-<p class="callout info">StopTimer</p>
+<p class="callout info">Stop Timer</p>
+
+<p class="callout warning">Must Run `StartTimer` first</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--3" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">1</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">1</td></tr></tbody></table>
+<table border="1" id="bkmrk-parameter-mandatory--3" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Timer ID</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">1</td></tr></tbody></table>
 
 **Example**
 
@@ -4042,14 +4581,21 @@ StopTimer("1");
 
 </details><details id="bkmrk-AbortOnError-"><summary>AbortOnError</summary>
 
-<p class="callout info">AbortOnError</p>
+<p class="callout info">Abort On Error</p>
 
 **Input**
+
+<table border="1" id="bkmrk-parameter-mandatory--4" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Abort on Error</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Abort on Error
+
+- `true`
+- `false`
+
+</td></tr></tbody></table>
 
 **Example**
 
 ```dart
-AbortOnError("");
+AbortOnError("true");
 ```
 
 </details><details id="bkmrk-SetNegativeTestingFlag-"><summary>SetNegativeTestingFlag</summary>
@@ -4058,19 +4604,28 @@ AbortOnError("");
 
 **Input**
 
+<table border="1" id="bkmrk-parameter-mandatory--5" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Set Negative Testing Flag</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Set Negative Testing Flag
+
+- `true`
+- `false`
+
+</td></tr></tbody></table>
+
 **Example**
 
 ```dart
-SetNegativeTestingFlag("");
+SetNegativeTestingFlag("true");
 ```
 
 </details><details id="bkmrk-CallOtherProcess-"><summary>CallOtherProcess</summary>
 
-<p class="callout info">CallOtherProcess</p>
+<p class="callout info">Call Other Process</p>
+
+<p class="callout info">Can have up to 100 arguments</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--4" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Wscript.exe</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Wscript.exe</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">C:hfmconsolidate.wsf</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">C:hfmconsolidate.wsf</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;"> </td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;"> </td></tr></tbody></table>
+<table border="1" id="bkmrk-parameter-mandatory--6" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Executable</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Executable</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Argument 1</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Argument 1</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Argument 2</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Argument 2</td></tr></tbody></table>
 
 **Example**
 
@@ -4080,39 +4635,43 @@ CallOtherProcess("Wscript.exe","C:hfmconsolidate.wsf","");
 
 </details><details id="bkmrk-CompareFiles-"><summary>CompareFiles</summary>
 
-<p class="callout info">CompareFiles</p>
+<p class="callout info">Compare Files</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--5" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">file1</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">file1</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">file2</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">file2</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">mode</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">mode</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">diffFile</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">diffFile</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">exclusion\_rules;</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">exclusion\_rules;</td></tr></tbody></table>
+<table border="1" id="bkmrk-parameter-mandatory--7" style="height: 206.672px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">File 1</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">File 1</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">File 2</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">File 2</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Mode</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Mode</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Diff File</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Diff File</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Exclusion Rules</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Exclusion Rules</td></tr></tbody></table>
 
 **Example**
 
 ```dart
-CompareFiles("file1"," file2"," mode"," diffFile"," exclusion_rules;","");
+CompareFiles("file1"," file2"," mode"," diffFile"," exclusion_rules");
 ```
 
 </details><details id="bkmrk-CompareFilesContentNotOrdered-"><summary>CompareFilesContentNotOrdered</summary>
 
-<p class="callout info">CompareFilesContentNotOrdered</p>
+<p class="callout info">Compare Files Content Not Ordered</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--6" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">file1</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">file1</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">file2</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">file2</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">diffFile;</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">diffFile;</td></tr></tbody></table>
+<table border="1" id="bkmrk-parameter-mandatory--8" style="height: 110.547px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">File 1</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">File 1</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">File 2</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">File 2</td></tr><tr style="height: 10px;"><td style="width: 31.6644%; height: 10px;">Diff File</td><td class="align-center" style="width: 18.1326%; height: 10px;">✓</td><td style="width: 50.203%; height: 10px;">Diff File</td></tr></tbody></table>
 
 **Example**
 
 ```dart
-CompareFilesContentNotOrdered("file1"," file2"," diffFile;"," ");
+CompareFilesContentNotOrdered("file1"," file2"," diffFile");
 ```
 
 </details><details id="bkmrk-CompareMultipleFiles-"><summary>CompareMultipleFiles</summary>
 
-<p class="callout info">CompareMultipleFiles</p>
+<p class="callout info">Compare Multiple Files</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--7" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">filenamespec</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">filenamespec</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">directory</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">directory</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">mode</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">mode</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">rules</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">rules</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">diffDirectory;</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">diffDirectory;</td></tr></tbody></table>
+<table border="1" id="bkmrk-parameter-mandatory--9" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">File Spec</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">File Spec</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Directory</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Directory</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Mode</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Mode
+
+- `TEXT`
+
+</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Exclusion Rules</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Exclusion Rules</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Difference Directory</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Difference Directory</td></tr></tbody></table>
 
 **Example**
 
