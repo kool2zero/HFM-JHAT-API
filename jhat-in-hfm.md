@@ -53,7 +53,7 @@ jhat.bat -I E:\JHAT\test.txt
 
 Use `jhat.bat -H` command to explore the available options:
 
-[![image.png](https://shlsgfngit01.na.bicworld.com/uploads/images/gallery/2023-03/scaled-1680-/qIJimage.png)](https://shlsgfngit01.na.bicworld.com/uploads/images/gallery/2023-03/qIJimage.png)
+
 
 <p class="callout info">This utility can be used to launch consolidations, data load, data extraction, etc...</p>
 
