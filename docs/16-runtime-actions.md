@@ -8,51 +8,47 @@ These JHAT Commands are related to Runtime actions
 
 #### Commands
 
+These commands don't need an open application.
+
+##### Script control
+
 <details id="bkmrk-Delay-"><summary>Delay</summary>
 
-<p class="callout info">Delay</p>
+<p class="callout info">Pauses the script.</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--14" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">interval</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Interval in miliseconds</td></tr></tbody></table>
+| Parameter | Mandatory | Comment |
+| --- | :---: | --- |
+| Interval | ✓ | Time to wait, in **milliseconds** |
 
 **Example**
 
 ```dart
-Delay("interval");
-```
-
-</details><details id="bkmrk-ReplaceLineInTextFile-"><summary>ReplaceLineInTextFile</summary>
-
-<p class="callout info">Replace Line In Text File</p>
-
-**Input**
-
-<table border="1" id="bkmrk-parameter-mandatory-" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">File Name</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">“\_\_@SCRIPTDIR\_\_Rules.rle”</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Text to Find</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">“Const BuildandTieFolder =”</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Replacement Text</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">“Const BuildandTieFolder = \_\_@DQUOTECHAR\_\_\_\_@BASEDIR\_\_\_\_@DQUOTECHAR\_\_</td></tr></tbody></table>
-
-**Example**
-
-```dart
-ReplaceLineInTextFile("“__@SCRIPTDIR__Rules.rle”"," “Const BuildandTieFolder =”"," “Const BuildandTieFolder = __@DQUOTECHAR____@BASEDIR____@DQUOTECHAR__ ");
+Delay("5000");
 ```
 
 </details><details id="bkmrk-BeginLoop-"><summary>BeginLoop</summary>
 
-<p class="callout info">Begin Loop</p>
+<p class="callout info">Marks the start of a block to repeat. The command itself only logs success. Any repeating is done by JHAT's script runner, which wasn't part of the source reviewed, so this behavior isn't confirmed.</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--1" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Repeat count</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Repeat count</td></tr></tbody></table>
+| Parameter | Mandatory | Comment |
+| --- | :---: | --- |
+| Repeat Count | ✓ | Number of times to repeat |
 
 **Example**
 
 ```dart
-BeginLoop("Repeat count");
+BeginLoop("3");
+Consolidate("Impacted");
+EndLoop();
 ```
 
 </details><details id="bkmrk-EndLoop-"><summary>EndLoop</summary>
 
-<p class="callout info">End Loop</p>
+<p class="callout info">Marks the end of a <code>BeginLoop</code> block. As for <code>BeginLoop</code>, the command itself does nothing.</p>
 
 **Input**
 
@@ -64,48 +60,15 @@ None
 EndLoop();
 ```
 
-</details><details id="bkmrk-StartTimer-"><summary>StartTimer</summary>
-
-<p class="callout info">StartTimer</p>
-
-**Input**
-
-<table border="1" id="bkmrk-parameter-mandatory--2" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Timer ID</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Timer ID</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Timer Name</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Timer Name</td></tr></tbody></table>
-
-**Example**
-
-```dart
-StartTimer("3","Time to Load Metadata");
-```
-
-</details><details id="bkmrk-StopTimer-"><summary>StopTimer</summary>
-
-<p class="callout info">Stop Timer</p>
-
-<p class="callout warning">Must Run `StartTimer` first</p>
-
-**Input**
-
-<table border="1" id="bkmrk-parameter-mandatory--3" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Timer ID</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">1</td></tr></tbody></table>
-
-**Example**
-
-```dart
-StopTimer("1");
-```
-
 </details><details id="bkmrk-AbortOnError-"><summary>AbortOnError</summary>
 
-<p class="callout info">Abort On Error</p>
+<p class="callout info">Sets whether the script should stop at the first failed command. The command only stores the setting. Stopping is done by JHAT's script runner, which wasn't part of the source reviewed.</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--4" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Abort on Error</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Abort on Error
-
-- `true`
-- `false`
-
-</td></tr></tbody></table>
+| Parameter | Mandatory | Comment |
+| --- | :---: | --- |
+| Abort | ✓ | `true` / `false` |
 
 **Example**
 
@@ -115,85 +78,162 @@ AbortOnError("true");
 
 </details><details id="bkmrk-SetNegativeTestingFlag-"><summary>SetNegativeTestingFlag</summary>
 
-<p class="callout info">SetNegativeTestingFlag</p>
+<p class="callout info">Marks the following commands as negative tests (tests expected to fail). While the flag is on, each command's log header ends in <code>: Negative Testcase</code>. The command itself isn't marked. It doesn't change whether a command succeeds or fails.</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--5" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Set Negative Testing Flag</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Set Negative Testing Flag
-
-- `true`
-- `false`
-
-</td></tr></tbody></table>
+| Parameter | Mandatory | Comment |
+| --- | :---: | --- |
+| Flag | ✓ | `true` / `false` |
 
 **Example**
 
 ```dart
 SetNegativeTestingFlag("true");
+OpenApplication("Cluster","NoSuchApp");
+SetNegativeTestingFlag("false");
 ```
 
 </details><details id="bkmrk-CallOtherProcess-"><summary>CallOtherProcess</summary>
 
-<p class="callout info">Call Other Process</p>
+<p class="callout info">Runs an external program and waits for it to finish. The command succeeds only if the program exits with code 0. The executable, the parameters and the exit status are written to the log.</p>
 
-<p class="callout info">Can have up to 100 arguments</p>
-
-<p class="callout warning">JHAT will add double quotes around each argument.</p>
+<p class="callout warning">JHAT wraps each parameter in double quotes and joins everything into one command line. Java then splits that line at every space, ignoring the quotes. As a result, a path or parameter containing spaces is split up, with stray quote characters. Use paths without spaces, or call a batch file that does the work.</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--6" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Executable</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Executable</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Argument 1</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Argument 1</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Argument 2</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Argument 2</td></tr></tbody></table>
+| Parameter | Mandatory | Comment |
+| --- | :---: | --- |
+| Executable | ✓ | Program to run |
+| Parameters … | | Up to 99 parameters for the program |
 
 **Example**
 
 ```dart
-CallOtherProcess("Wscript.exe","C:hfmconsolidate.wsf","");
+CallOtherProcess("C:\JHAT\scripts\notify.bat","MonthEnd");
+```
+
+</details>
+
+##### Timers
+
+<details id="bkmrk-StartTimer-"><summary>StartTimer</summary>
+
+<p class="callout info">Starts one of 25 timers. Use <code>StopTimer</code> to log the elapsed time.</p>
+
+**Input**
+
+| Parameter | Mandatory | Comment |
+| --- | :---: | --- |
+| Timer Number | ✓ | `1`–`25` |
+| Description | ✓ | Text used in the `StopTimer` log line. **Must not contain `:`**, or `StopTimer` fails. |
+
+**Example**
+
+```dart
+StartTimer("3","Load Metadata");
+```
+
+</details><details id="bkmrk-StopTimer-"><summary>StopTimer</summary>
+
+<p class="callout info">Stops a timer and writes the elapsed time to the log, in milliseconds and as hours, minutes and seconds. Fails if the timer wasn't started.</p>
+
+**Input**
+
+| Parameter | Mandatory | Comment |
+| --- | :---: | --- |
+| Timer Number | ✓ | `1`–`25` |
+
+**Example**
+
+```dart
+StopTimer("3");
+```
+
+</details>
+
+##### Files
+
+<details id="bkmrk-ReplaceLineInTextFile-"><summary>ReplaceLineInTextFile</summary>
+
+<p class="callout info">Replaces every line of a text file that matches a given line (whole line, ignoring case) with new text. The original is kept as <code>&lt;file&gt;backup</code>, and <code>&lt;file&gt;temp</code> is used while writing.</p>
+
+<p class="callout danger"><b>This command removes all line breaks from the file</b>, joining it into a single line. It also fails if a <code>&lt;file&gt;backup</code> file is left over from an earlier run.</p>
+
+**Input**
+
+| Parameter | Mandatory | Comment |
+| --- | :---: | --- |
+| File | ✓ | Local text file |
+| Match | ✓ | Line to replace, matched against the whole line |
+| Replacement | ✓ | New line |
+
+**Example**
+
+```dart
+ReplaceLineInTextFile("C:\JHAT\settings.txt","Environment = TEST","Environment = PROD");
 ```
 
 </details><details id="bkmrk-CompareFiles-"><summary>CompareFiles</summary>
 
-<p class="callout info">Compare Files</p>
+<p class="callout info">Compares two files and writes <code>Files Match.</code> or <code>Files are different.</code> to the log. The command reports success either way, so check the log line.</p>
+
+- **Text comparison:** line by line, ignoring case and leading/trailing spaces. `TEXT` and `TEXTIGNOREWS` behave the same.
+- **Diff file:** up to 1,000 differing lines are written to it, but **only if the file doesn't already exist**. If it exists, nothing is written.
+- **Binary comparison:** byte by byte. The diff file isn't used.
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--7" style="height: 206.672px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">File 1</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">File 1</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">File 2</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">File 2</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Mode</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Mode</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Diff File</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Diff File</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Exclusion Rules</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Exclusion Rules</td></tr></tbody></table>
+| # | Parameter | Comment |
+| --- | --- | --- |
+| 1 | File 1 | |
+| 2 | File 2 | |
+| 3 | Mode | Optional. `TEXT` (default), `TEXTIGNOREWS` or `BINARY`. Anything else makes the command fail. |
+| 4 | Diff File | Optional. Local file for the differences. |
+| 5 | Ignore Rules | Optional. Rules for lines to skip, as space-separated words (an odd number of words). The rule syntax is defined in a class that wasn't part of the source reviewed. |
 
 **Example**
 
 ```dart
-CompareFiles("file1"," file2"," mode"," diffFile"," exclusion_rules");
+CompareFiles("C:\Output\grid.txt","C:\Baseline\grid.txt","TEXT","C:\Output\grid_diff.txt");
 ```
 
 </details><details id="bkmrk-CompareFilesContentNotOrdered-"><summary>CompareFilesContentNotOrdered</summary>
 
-<p class="callout info">Compare Files Content Not Ordered</p>
+<p class="callout info">Writes to the log every line of File 1 that doesn't appear anywhere in File 2 (ignoring case and line order). Lines only in File 2 aren't reported. The command always reports success.</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--8" style="height: 110.547px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">File 1</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">File 1</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">File 2</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">File 2</td></tr><tr style="height: 10px;"><td style="width: 31.6644%; height: 10px;">Diff File</td><td class="align-center" style="width: 18.1326%; height: 10px;">✓</td><td style="width: 50.203%; height: 10px;">Diff File</td></tr></tbody></table>
+| Parameter | Mandatory | Comment |
+| --- | :---: | --- |
+| File 1 | ✓ | |
+| File 2 | ✓ | |
+| Diff File | | Accepted but ignored |
 
 **Example**
 
 ```dart
-CompareFilesContentNotOrdered("file1"," file2"," diffFile");
+CompareFilesContentNotOrdered("C:\Output\members.txt","C:\Baseline\members.txt");
 ```
 
 </details><details id="bkmrk-CompareMultipleFiles-"><summary>CompareMultipleFiles</summary>
 
-<p class="callout info">Compare Multiple Files</p>
+<p class="callout info">Compares each file matching a wildcard pattern with the file of the same name in another folder, as for <code>CompareFiles</code>. Missing counterparts and mismatches are written to the log, ending with <code>All files are the same.</code> or a list of the files that differ. The command reports success either way. It fails if no files match the pattern or a folder can't be read.</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--9" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">File Spec</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">File Spec</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Directory</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Directory</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Mode</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Mode
-
-- `TEXT`
-
-</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Exclusion Rules</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Exclusion Rules</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Difference Directory</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Difference Directory</td></tr></tbody></table>
+| # | Parameter | Comment |
+| --- | --- | --- |
+| 1 | File Pattern | Folder and wildcard pattern, e.g. `C:\Output\*.txt` |
+| 2 | Compare Folder | Folder holding the files to compare against |
+| 3 | Mode | Optional. As for `CompareFiles`. |
+| 4 | Ignore Rules | Optional. As for `CompareFiles`. |
+| 5 | Diff Folder | Optional. Created if needed. Diff files are named `<file>_diff.txt`. |
 
 **Example**
 
 ```dart
-CompareMultipleFiles("filenamespec"," directory"," mode"," rules","  diffDirectory;"," ");
+CompareMultipleFiles("C:\Output\*.txt","C:\Baseline","TEXT","","C:\Output\diffs");
 ```
 
 </details>

@@ -87,7 +87,7 @@ CalcEPU("Run");
 | Parameter | Mandatory | Comment |
 | --- | :---: | --- |
 | POV | ✓ | POV string for the report |
-| Report Format | ✓ | Name of an HFM report format. **Case-sensitive**: it must exactly match the format's internal name. JHAT's usage text shows `HFM_FORMAT`. |
+| Report Format | ✓ | Name of an HFM report format. **Case-sensitive**: it must exactly match the format's internal name. JHAT's usage text shows `HFM_FORMAT`. See [GenerateReport](15-journal-reports.md) for other format names. |
 | Output File Path | ✓ | Local path to save the report to |
 
 **Example**

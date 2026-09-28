@@ -8,299 +8,251 @@ These JHAT Commands are related to Process Management actions
 
 #### Commands
 
+These commands work on the process unit at the POV set by `SetPOV` (Scenario, Year, Period, Entity and Value) and need an open application. A command that needs a POV fails if none has been set.
+
+##### Process flow actions
+
 <details id="bkmrk-ProcessFlowGetHistory-"><summary>ProcessFlowGetHistory</summary>
 
-<p class="callout info">Process Flow Get History</p>
+<p class="callout info">Writes the cell's process flow history to a UTF-8 file: a `Process Flow History:` line, then one tab-separated line per entry (time, user, action, new state, comment).</p>
 
-<p class="callout warning">Must Call `SetPOV` prior to calling this.</p>
+<p class="callout warning">Because of a bug, the third parameter overwrites the second and user IDs are never suppressed. The command also reports success even if the history can't be written. Check the log for the error.</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--14" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Log File</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Log File</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Suppress Time?</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Suppress Time?
-
-- `true`
-- `false`
-
-</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Suppress User?</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Suppress User?
-
-- `true`
-- `false`
-
-</td></tr></tbody></table>
+| # | Parameter | Comment |
+| --- | --- | --- |
+| 1 | History File | Local file to write |
+| 2 | Suppress Timestamp | Optional. `true` to leave times out. |
+| 3 | Suppress User | Optional. See warning: this actually sets Suppress Timestamp. |
 
 **Example**
 
 ```dart
-ProcessFlowGetHistory("C:hfmhistoryfile.log"," true|false"," true|false");
-```
-
-</details><details id="bkmrk-ProcessFlowChangeIncludeDescendants-"><summary>ProcessFlowChangeIncludeDescendants</summary>
-
-<p class="callout info">Process Flow Change Include Descendants</p>
-
-<p class="callout warning">Must Call `SetPOV` prior to calling this.</p>
-
-**Input**
-
-<table border="1" id="bkmrk-parameter-mandatory-" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Action</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Action
-
-- `START`
-- `PROMOTE`
-- `SIGNOFF`
-- `SUBMIT`
-- `APPROVE`
-- `PUBLISH`
-- `REJECT`
-
-</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Not Applicable</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Not Applicable</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Phases</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Phases (can be comma Delimited)</td></tr></tbody></table>
-
-**Example**
-
-```dart
-ProcessFlowChangeIncludeDescendants("Start","NA"," 1");
+ProcessFlowGetHistory("C:\Output\history.txt");
 ```
 
 </details><details id="bkmrk-ProcessFlowStart-"><summary>ProcessFlowStart</summary>
 
-<p class="callout info">Process Flow Start</p>
+<p class="callout info">Starts the process unit at the current POV (without descendants), then writes its process flow history to a file (as for <code>ProcessFlowGetHistory</code>).</p>
 
-<p class="callout warning">Must Call `SetPOV` prior to calling this.</p>
+<p class="callout info">Unlike the other process flow commands, it doesn't write an "End execution" line to the log.</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--1" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Comment</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Comment</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Use All Member Values</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Use All Member Values
-
-</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Output File</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Output File</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Suppress Timestamp</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Suppress Timestamp
-
-- `true`
-- `false`
-
-</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Suppress User ID</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Suppress User ID
-
-- `true`
-- `false`
-
-</td></tr></tbody></table>
+| # | Parameter | Comment |
+| --- | --- | --- |
+| 1 | Comment | Comment recorded with the action |
+| 2 | Use All Members | Required but ignored |
+| 3 | History File | Local file for the history |
+| 4 | Suppress Timestamp | Optional. `true` to leave times out of the history. |
+| 5 | Suppress User | Optional. `true` to leave user IDs out of the history. |
 
 **Example**
 
 ```dart
-ProcessFlowStart("Comment"," Use all members values true or false"," Filename to put history in"," Supress timestamp true||false "," Supress user idtrue||false");
-```
-
-</details><details id="bkmrk-ProcessFlowPromote-"><summary>ProcessFlowPromote</summary>
-
-<p class="callout info">Process Flow Promote</p>
-
-<p class="callout warning">Must Call `SetPOV` prior to calling this.</p>
-
-**Input**
-
-<table border="1" id="bkmrk-parameter-mandatory--2" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Comment</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Comment</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Use All Member Values</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Use All Member Values</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Output File</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Output File</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Review Level to Promote to RL#</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Review Level to Promote to RL#
-
-- `RL1`
-- `RL2`
-- `RL3`
-- etc
-
-</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Suppress Timestamp</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Suppress Timestamp
-
-- `true`
-- `false`
-
-</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Suppress User ID</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Suppress User ID
-
-- `true`
-- `false`
-
-</td></tr></tbody></table>
-
-**Example**
-
-```dart
-ProcessFlowPromote("Comment"," Use all members values true or false"," Filename to put history in"," Review Level to Promote to RL#"," Supress timestamp true||false "," Supress user idtrue||false");
+ProcessFlowStart("Month-end","false","C:\Output\history.txt");
 ```
 
 </details><details id="bkmrk-ProcessFlowSubmit-"><summary>ProcessFlowSubmit</summary>
 
-<p class="callout info">Process Flow Submit</p>
-
-<p class="callout warning">Must Call `SetPOV` prior to calling this.</p>
+<p class="callout info">Submits the process unit at the current POV (without descendants), then writes its process flow history to a file (as for <code>ProcessFlowGetHistory</code>).</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--3" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Comment</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Comment</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Use All Member Values</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Use All Member Values</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Output File</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Output File</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Suppress Timestamp</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Suppress Timestamp
-
-- `true`
-- `false`
-
-</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Suppress User ID</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Suppress User ID
-
-- `true`
-- `false`
-
-</td></tr></tbody></table>
+| # | Parameter | Comment |
+| --- | --- | --- |
+| 1 | Comment | Comment recorded with the action |
+| 2 | Use All Members | Required but ignored |
+| 3 | History File | Local file for the history |
+| 4 | Suppress Timestamp | Optional. `true` to leave times out of the history. |
+| 5 | Suppress User | Optional. `true` to leave user IDs out of the history. |
 
 **Example**
 
 ```dart
-ProcessFlowSubmit("Comment"," Use all members values true or false"," Filename to put history in"," Supress timestamp true||false "," Supress user idtrue||false");
+ProcessFlowSubmit("Month-end","false","C:\Output\history.txt");
 ```
 
 </details><details id="bkmrk-ProcessFlowApprove-"><summary>ProcessFlowApprove</summary>
 
-<p class="callout info">Process Flow Approve</p>
-
-<p class="callout warning">Must Call `SetPOV` prior to calling this.</p>
+<p class="callout info">Approves the process unit at the current POV (without descendants), then writes its process flow history to a file (as for <code>ProcessFlowGetHistory</code>).</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--4" style="height: 217.891px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Comment</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Comment</td></tr><tr style="height: 46.5938px;"><td style="width: 31.6644%; height: 35.375px;">Use All Member Values</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Use All Member Values</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Output File</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Output File</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Suppress Timestamp</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Suppress Timestamp
-
-- `true`
-- `false`
-
-</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Suppress User ID</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Suppress User ID
-
-- `true`
-- `false`
-
-</td></tr></tbody></table>
+| # | Parameter | Comment |
+| --- | --- | --- |
+| 1 | Comment | Comment recorded with the action |
+| 2 | Use All Members | Required but ignored |
+| 3 | History File | Local file for the history |
+| 4 | Suppress Timestamp | Optional. `true` to leave times out of the history. |
+| 5 | Suppress User | Optional. `true` to leave user IDs out of the history. |
 
 **Example**
 
 ```dart
-ProcessFlowApprove("Comment"," Use all members values true or false"," Filename to put history in"," Supress timestamp true||false "," Supress user idtrue||false");
+ProcessFlowApprove("Month-end","false","C:\Output\history.txt");
 ```
 
 </details><details id="bkmrk-ProcessFlowPublish-"><summary>ProcessFlowPublish</summary>
 
-<p class="callout info">Process Flow Publish</p>
-
-<p class="callout warning">Must Call `SetPOV` prior to calling this.</p>
+<p class="callout info">Publishes the process unit at the current POV (without descendants), then writes its process flow history to a file (as for <code>ProcessFlowGetHistory</code>).</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--5" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Comment</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Comment</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Use All Member Values</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Use All Member Values</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Output File</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Output File</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Suppress Timestamp</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Suppress Timestamp
-
-- `true`
-- `false`
-
-</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Suppress User ID</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Suppress User ID
-
-- `true`
-- `false`
-
-</td></tr></tbody></table>
+| # | Parameter | Comment |
+| --- | --- | --- |
+| 1 | Comment | Comment recorded with the action |
+| 2 | Use All Members | Required but ignored |
+| 3 | History File | Local file for the history |
+| 4 | Suppress Timestamp | Optional. `true` to leave times out of the history. |
+| 5 | Suppress User | Optional. `true` to leave user IDs out of the history. |
 
 **Example**
 
 ```dart
-ProcessFlowPublish("Comment"," Use all members values true or false"," Filename to put history in"," Supress timestamp true||false "," Supress user idtrue||false");
+ProcessFlowPublish("Month-end","false","C:\Output\history.txt");
 ```
 
 </details><details id="bkmrk-ProcessFlowSignOff-"><summary>ProcessFlowSignOff</summary>
 
-<p class="callout info">Process Flow Sign Off</p>
-
-<p class="callout warning">Must Call `SetPOV` prior to calling this.</p>
+<p class="callout info">Signs off the process unit at the current POV (without descendants), then writes its process flow history to a file (as for <code>ProcessFlowGetHistory</code>).</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--6" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Comment</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Comment</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Use All Member Values</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Use All Member Values</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Output File</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Output File</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Suppress Timestamp</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Suppress Timestamp
-
-- `true`
-- `false`
-
-</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Suppress User ID</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Suppress User ID
-
-- `true`
-- `false`
-
-</td></tr></tbody></table>
+| # | Parameter | Comment |
+| --- | --- | --- |
+| 1 | Comment | Comment recorded with the action |
+| 2 | Use All Members | Required but ignored |
+| 3 | History File | Local file for the history |
+| 4 | Suppress Timestamp | Optional. `true` to leave times out of the history. |
+| 5 | Suppress User | Optional. `true` to leave user IDs out of the history. |
 
 **Example**
 
 ```dart
-ProcessFlowSignOff("Comment"," Use all members values true or false"," Filename to put history in"," Supress timestamp true||false "," Supress user idtrue||false");
+ProcessFlowSignOff("Month-end","false","C:\Output\history.txt");
 ```
 
 </details><details id="bkmrk-ProcessFlowReject-"><summary>ProcessFlowReject</summary>
 
-<p class="callout info">Process Flow Reject</p>
-
-<p class="callout warning">Must Call `SetPOV` prior to calling this.</p>
+<p class="callout info">Rejects the process unit at the current POV (without descendants), then writes its process flow history to a file (as for <code>ProcessFlowGetHistory</code>).</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--7" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Comment</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Comment</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Use All Member Values</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Use All Member Values</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Output File</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Output File</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Suppress Timestamp</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Suppress Timestamp
-
-- `true`
-- `false`
-
-</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Suppress User ID</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Suppress User ID
-
-- `true`
-- `false`
-
-</td></tr></tbody></table>
+| # | Parameter | Comment |
+| --- | --- | --- |
+| 1 | Comment | Comment recorded with the action |
+| 2 | Use All Members | Required but ignored |
+| 3 | History File | Local file for the history |
+| 4 | Suppress Timestamp | Optional. `true` to leave times out of the history. |
+| 5 | Suppress User | Optional. `true` to leave user IDs out of the history. |
 
 **Example**
 
 ```dart
-ProcessFlowReject("Comment"," Use all members values true or false"," Filename to put history in"," Supress timestamp true||false "," Supress user idtrue||false");
+ProcessFlowReject("Month-end","false","C:\Output\history.txt");
 ```
 
-</details><details id="bkmrk-GetPhaseSubmissionGrid-"><summary>GetPhaseSubmissionGrid</summary>
+</details><details id="bkmrk-ProcessFlowPromote-"><summary>ProcessFlowPromote</summary>
 
-<p class="callout info">GetPhaseSubmissionGrid</p>
-
-<p class="callout warning">Must Call `SetPOV` prior to calling this.</p>
+<p class="callout info">Promotes the process unit at the current POV (without descendants), then writes its process flow history to a file (as for <code>ProcessFlowGetHistory</code>).</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--8" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Scenario</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Scenario</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Phase</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Phase
-
-- `All`
-- `1`
-- `2`
-- `3`
-- etc
-
-</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Output File Path</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Output File Path</td></tr></tbody></table>
+| # | Parameter | Comment |
+| --- | --- | --- |
+| 1 | Comment | Comment recorded with the action |
+| 2 | Use All Members | Required but ignored |
+| 3 | History File | Local file for the history |
+| 4 | Review Level | `RL0` … `RL10` (any case). Anything else makes the command fail with no message. |
+| 5 | Suppress Timestamp | Optional. `true` to leave times out of the history. |
+| 6 | Suppress User | Optional. `true` to leave user IDs out of the history. |
 
 **Example**
 
 ```dart
-GetPhaseSubmissionGrid("Scenario"," All | Phase number"," Output File Path");
+ProcessFlowPromote("Month-end","false","C:\Output\history.txt","RL2");
+```
+
+</details><details id="bkmrk-ProcessFlowChangeIncludeDescendants-"><summary>ProcessFlowChangeIncludeDescendants</summary>
+
+<p class="callout info">Runs a process flow action on the process unit at the current POV <b>and its descendants</b>, for one or more phases. No history file is written.</p>
+
+**Input**
+
+| Parameter | Mandatory | Comment |
+| --- | :---: | --- |
+| Action | ✓ | `Start`, `Promote`, `SignOff`, `Submit`, `Approve`, `Publish` or `Reject`. Anything else fails with "Invalid action". |
+| Review Level | ✓ | For `Promote`: `RL0` … `RL10`. Ignored for other actions (e.g. `NA`). |
+| Phases | ✓ | Phase numbers separated by commas, or `""` for phase 1 |
+
+**Example**
+
+```dart
+ProcessFlowChangeIncludeDescendants("Start","NA","1");
+ProcessFlowChangeIncludeDescendants("Promote","RL2","1,2");
+```
+
+</details>
+
+##### Phased submission
+
+<details id="bkmrk-GetPhaseSubmissionGrid-"><summary>GetPhaseSubmissionGrid</summary>
+
+<p class="callout info">Writes the phased submission group assignments for a scenario to a UTF-8, semicolon-separated file: a header of <code>Period;Phase1;Phase2;…</code>, then one line per period. It doesn't use the current POV.</p>
+
+**Input**
+
+| Parameter | Mandatory | Comment |
+| --- | :---: | --- |
+| Scenario | ✓ | |
+| Phases | ✓ | `All` for phases 1–9, or one phase number |
+| Output File | ✓ | Local file to write |
+
+**Example**
+
+```dart
+GetPhaseSubmissionGrid("Actual","All","C:\Output\phases.txt");
 ```
 
 </details><details id="bkmrk-ViewUnassignedGroups-"><summary>ViewUnassignedGroups</summary>
 
-<p class="callout info">View Unassigned Groups</p>
+<p class="callout info">Writes the submission groups not assigned to a phase for a scenario and period to a UTF-8 file. The output is a single line: a header followed by the group names, each ending in <code>;</code>.</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--9" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Scenario</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Scenario</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Period</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Period</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Output File Path</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Output File Path</td></tr></tbody></table>
+| Parameter | Mandatory | Comment |
+| --- | :---: | --- |
+| Scenario | ✓ | |
+| Period | ✓ | |
+| Output File | ✓ | Local file to write |
 
 **Example**
 
 ```dart
-ViewUnassignedGroups("Scenario"," Period"," Output File Path");
+ViewUnassignedGroups("Actual","Dec","C:\Output\unassigned.txt");
 ```
 
 </details><details id="bkmrk-SetSubmissionGroup-"><summary>SetSubmissionGroup</summary>
 
-<p class="callout info">Set Submission Group</p>
+<p class="callout info">Sets the submission group value for a period in one phase of a scenario.</p>
+
+<p class="callout warning">JHAT's parameter-count setting says 3, but the command reads 4. Pass all 4. Because the range check never fails (see <a href="00-automation-with-jhat.md#parameter-checking">parameter checking</a>), 4 are accepted, and 3 make the command crash.</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--10" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Scenario</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Scenario</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Period</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Period</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Phase</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Phase</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Group Value</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Group Value</td></tr></tbody></table>
+| Parameter | Mandatory | Comment |
+| --- | :---: | --- |
+| Scenario | ✓ | |
+| Period | ✓ | Period to change (matched ignoring case) |
+| Phase | ✓ | Phase number |
+| Group Value | ✓ | New group value |
 
 **Example**
 
 ```dart
-SetSubmissionGroup("Scenario"," Period"," Phase"," Group Value");
+SetSubmissionGroup("Actual","Dec","1","GroupA");
 ```
 
 </details>
