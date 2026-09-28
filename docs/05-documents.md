@@ -2,18 +2,24 @@
 
 [← Back to index](../README.md)
 
-#### Overview
+## Overview
 
-These JHAT Commands are related to document management
+Commands for Document Manager, where HFM stores data forms, data grids, reports, task lists and folders. They need an open application.
+
+A **task list** is a document that groups links to other documents, such as the forms and reports a user works through at month end.
 
 - **Folders:** pass `\` for the root folder of Document Manager.
 - **Document Type** and **File Type:** see [Document and file types](#document-and-file-types) below.
 - **true/false parameters:** `true` (any case) means true. Any other value means false.
 - **Task lists:** stored in Document Manager as Workspace documents with the XML file type.
 
-#### Commands
+## Commands
 
-<details id="bkmrk-EnumDocuments-"><summary>EnumDocuments</summary>
+**Commands on this page:**
+
+[EnumDocuments](#enumdocuments), [EnumTasksUnderTaskList](#enumtasksundertasklist), [DeleteDocument](#deletedocument), [CreateTaskList](#createtasklist), [AddTaskToTaskList](#addtasktotasklist), [DeleteTaskFromTaskList](#deletetaskfromtasklist)
+
+### EnumDocuments
 
 <p class="callout info">Lists the documents in a Document Manager folder and writes them to a UTF-8 file, one <code>name;description</code> line per document.</p>
 
@@ -33,7 +39,7 @@ These JHAT Commands are related to document management
 EnumDocuments("\", "WebForm", "Form", "false", "C:\Output\documents.txt");
 ```
 
-</details><details id="bkmrk-EnumTasksUnderTaskList-"><summary>EnumTasksUnderTaskList</summary>
+### EnumTasksUnderTaskList
 
 <p class="callout info">Reads a task list and writes its XML definition, including the documents it contains, to a UTF-8 file.</p>
 
@@ -51,7 +57,7 @@ EnumDocuments("\", "WebForm", "Form", "false", "C:\Output\documents.txt");
 EnumTasksUnderTaskList("\TaskLists", "MonthEnd", "C:\Output\MonthEnd.xml");
 ```
 
-</details><details id="bkmrk-DeleteDocument-"><summary>DeleteDocument</summary>
+### DeleteDocument
 
 <p class="callout info">Deletes a document from Document Manager.</p>
 
@@ -72,7 +78,7 @@ EnumTasksUnderTaskList("\TaskLists", "MonthEnd", "C:\Output\MonthEnd.xml");
 DeleteDocument("MonthEnd", "Workspace", "XML", "\TaskLists");
 ```
 
-</details><details id="bkmrk-CreateTaskList-"><summary>CreateTaskList</summary>
+### CreateTaskList
 
 <p class="callout info">Creates an empty task list owned by the logged-on user. Use <code>AddTaskToTaskList</code> to add documents to it.</p>
 
@@ -93,7 +99,7 @@ DeleteDocument("MonthEnd", "Workspace", "XML", "\TaskLists");
 CreateTaskList("MonthEnd", "Month end tasks", "[Default]", "false", "true", "\TaskLists");
 ```
 
-</details><details id="bkmrk-AddTaskToTaskList-"><summary>AddTaskToTaskList</summary>
+### AddTaskToTaskList
 
 <p class="callout info">Adds an existing document to the end of a task list and saves the task list.</p>
 
@@ -115,7 +121,7 @@ CreateTaskList("MonthEnd", "Month end tasks", "[Default]", "false", "true", "\Ta
 AddTaskToTaskList("MonthEnd", "\TaskLists", "IncomeStatement", "\Forms\Actuals", "WebForm", "Form", "true");
 ```
 
-</details><details id="bkmrk-DeleteTaskFromTaskList-"><summary>DeleteTaskFromTaskList</summary>
+### DeleteTaskFromTaskList
 
 <p class="callout info">Removes a document from a task list and saves the task list. The entry is matched on name and path (ignoring case), document type and file type. If nothing matches, the task list is saved unchanged and the command still reports success.</p>
 
@@ -137,9 +143,7 @@ AddTaskToTaskList("MonthEnd", "\TaskLists", "IncomeStatement", "\Forms\Actuals",
 DeleteTaskFromTaskList("MonthEnd", "\TaskLists", "IncomeStatement", "\Forms\Actuals", "WebForm", "Form", "true");
 ```
 
-</details>
-
-#### Document and file types
+## Document and file types
 
 These names are used by the Documents commands and by `ExtractDocument` and `LoadDocument`. They're matched ignoring case. An unrecognized name isn't rejected by JHAT; it's passed to HFM as "no type", so the command fails or matches nothing.
 

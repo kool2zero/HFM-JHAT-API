@@ -2,9 +2,9 @@
 
 [← Back to index](../README.md)
 
-#### Overview
+## Overview
 
-These JHAT commands are related to Equity Pickup
+These JHAT commands are related to Equity Pickup.
 
 Equity pickup (EPU) functionality enables you to revaluate the investments owned by a holding company. The purpose of the reevaluation is to adjust the investments in the Balance Sheet of the holding company to reflect the current value of the corresponding share in the equity of the subsidiary. The underlying principle of the equity pickup adjustment is to provide a fair picture of the value of the portfolio owned by the holding company.
 
@@ -23,13 +23,17 @@ Direct Ownership Percentage * Equity of Owned Entity
 = Equity Pickup Adjustment
 ```
 
-#### Commands
+## Commands
 
 These commands need an open application.
 
-<details id="bkmrk-FilterEPUGrid-"><summary>FilterEPUGrid</summary>
+**Commands on this page:**
 
-<p class="callout info">Retrieves the equity pickup grid for a Scenario, Year and Period with the given filters, and writes it to a UTF-8 file.</p>
+[FilterEPUGrid](#filterepugrid), [CalcEPU](#calcepu), [GenerateEPUReport](#generateepureport), [GenerateFilteredEPUReport](#generatefilteredepureport)
+
+### FilterEPUGrid
+
+<p class="callout info">Retrieves the equity pickup grid, as shown on the Manage Equity Pickup page, for a Scenario, Year and Period with the given filters, and writes it to a UTF-8 file. Each row is an owner/owned entity pair with its ownership level, %EPU and status (whether it needs recalculating).</p>
 
 The output file is semicolon-separated. It starts with a header line (`Circular Ownership;Level;Owner;Owned;%EPU;Status;`) and a blank line, then one line per owner/owned pair. `%EPU` uses `.` as the decimal separator. JHAT requests a page size of 500 rows.
 
@@ -61,7 +65,7 @@ All 15 parameters are required, but most can be `""` to use the default shown.
 FilterEPUGrid("Actual", "2023", "Dec", "", "", "Include", "Both", "false", "BOTH", "2", ">=", "20", "0", "1", "C:\Output\epu.txt");
 ```
 
-</details><details id="bkmrk-CalcEPU-"><summary>CalcEPU</summary>
+### CalcEPU
 
 <p class="callout info">Runs the equity pickup calculation for the Scenario, Year and Period set by <code>SetPOV</code>, and waits for the task to finish. The command fails if the task doesn't complete (see <a href="00-automation-with-jhat.md#long-running-tasks">long-running tasks</a>).</p>
 
@@ -69,7 +73,7 @@ FilterEPUGrid("Actual", "2023", "Dec", "", "", "Include", "Both", "false", "BOTH
 
 | Parameter | Mandatory | Comment |
 | --- | :---: | --- |
-| Run Type | ✓ | `Force` (any case) to force the calculation. Any other value (e.g. `Run`) runs a normal calculation. |
+| Run Type | ✓ | `Run` (or any value other than `Force`): calculate only owner/owned pairs whose EPU status is *Impacted*, meaning the owner, the owned entity or an EPU descendant of the owned entity has changed. `Force` (any case): recalculate all pairs. |
 
 **Example**
 
@@ -78,7 +82,7 @@ SetPOV("Actual","2023","Dec","YTD","Group.Entity1","<Entity Currency>","Sales","
 CalcEPU("Run");
 ```
 
-</details><details id="bkmrk-GenerateEPUReport-"><summary>GenerateEPUReport</summary>
+### GenerateEPUReport
 
 <p class="callout info">Generates the EPU system report for a POV, waits for it to finish, and copies it to the output path.</p>
 
@@ -96,7 +100,7 @@ CalcEPU("Run");
 GenerateEPUReport("S#Actual.Y#2023.P#Dec", "HFM_FORMAT", "C:\Output\epu_report.html");
 ```
 
-</details><details id="bkmrk-GenerateFilteredEPUReport-"><summary>GenerateFilteredEPUReport</summary>
+### GenerateFilteredEPUReport
 
 <p class="callout info">Generates the EPU system report with owner, owned, circular ownership and status filters, waits for it to finish, and copies it to the output path.</p>
 
@@ -120,5 +124,3 @@ GenerateEPUReport("S#Actual.Y#2023.P#Dec", "HFM_FORMAT", "C:\Output\epu_report.h
 ```dart
 GenerateFilteredEPUReport("S#Actual.Y#2023.P#Dec", "HFM_FORMAT", "", "", "Exclude", "Impacted", "false", "C:\Output\epu_filtered.html");
 ```
-
-</details>

@@ -2,17 +2,21 @@
 
 [← Back to index](../README.md)
 
-#### Overview
+## Overview
 
-These JHAT Commands are related to miscellaneous actions
+Commands for managing data (copying, clearing and cleaning it up), calculating ownership, reading member properties, changing HFM system settings and ending a script.
 
-#### Commands
+## Commands
 
 These commands need an open application, except `exit`. Where a parameter takes a **list number**, use a list built with `AddItemToList` or `AddItemsToListFromMemberlist` (see [Extracts](07-extracts.md#lists)), or `All`.
 
-<details id="bkmrk-CalculateOwnership-"><summary>CalculateOwnership</summary>
+**Commands on this page:**
 
-<p class="callout info">Runs the Manage Ownership shares calculation for a scenario, year and periods.</p>
+[CalculateOwnership](#calculateownership), [CopyData](#copydata), [ClearData](#cleardata), [DeleteInvalidRecords](#deleteinvalidrecords), [exit](#exit), [UpdateParameter](#updateparameter), [GetMemberProperties](#getmemberproperties)
+
+### CalculateOwnership
+
+<p class="callout info">Calculates ownership from the shares data entered in Manage Ownership, like HFM's Calculate Ownership command. For each entity it can calculate percent control, consolidation method, percent ownership, percent consolidation and direct percent ownership. Parameters 5–9 choose which of these are calculated.</p>
 
 <p class="callout warning">Mode <code>Descendants</code> must be spelled <code>Decendants</code> (as in the code). The correct spelling isn't recognized and falls back to all entities.</p>
 
@@ -41,9 +45,9 @@ AddItemToList("1","Period","Dec");
 CalculateOwnership("Actual","2023","1","Group","true","true","true","true","true","All Entities");
 ```
 
-</details><details id="bkmrk-CopyData-"><summary>CopyData</summary>
+### CopyData
 
-<p class="callout info">Copies data from one scenario/year to another, and copies the server's log to a local file.</p>
+<p class="callout info">Copies data from one scenario and year to another, for example to seed a forecast from actuals. The server's log is copied to a local file.</p>
 
 **Input**
 
@@ -80,7 +84,7 @@ AddItemToList("2","Period","Jan");
 CopyData("Actual","Budget","2023","2024","1","2","All","All","C:\Output\copydata.log","","true","false","Replace","YTD","true","false","false");
 ```
 
-</details><details id="bkmrk-ClearData-"><summary>ClearData</summary>
+### ClearData
 
 <p class="callout info">Clears data for a scenario and year, and copies the server's log to a local file.</p>
 
@@ -110,9 +114,9 @@ All 9 parameters are required. Flags count only when exactly `true` (any case).
 ClearData("Actual","2023","All","All","All","false","true","true","C:\Output\cleardata.log");
 ```
 
-</details><details id="bkmrk-DeleteInvalidRecords-"><summary>DeleteInvalidRecords</summary>
+### DeleteInvalidRecords
 
-<p class="callout info">Runs HFM's Delete Invalid Records task and copies its log to a local file.</p>
+<p class="callout info">Runs HFM's Delete Invalid Records task, which removes data stored at intersections that are no longer valid, typically after metadata changes. Its log is copied to a local file. In HFM, only Provisioning Managers can delete invalid records.</p>
 
 **Input**
 
@@ -127,7 +131,7 @@ ClearData("Actual","2023","All","All","All","false","true","true","C:\Output\cle
 DeleteInvalidRecords("false","C:\Output\InvalidRecords.log");
 ```
 
-</details><details id="bkmrk-exit-"><summary>exit</summary>
+### exit
 
 <p class="callout warning">Stops JHAT immediately with exit code 0. The rest of the script is skipped. The application isn't closed and the user isn't logged out.</p>
 
@@ -141,7 +145,7 @@ None
 exit();
 ```
 
-</details><details id="bkmrk-UpdateParameter-"><summary>UpdateParameter</summary>
+### UpdateParameter
 
 <p class="callout info">Sets an HFM system parameter by writing directly to the <code>XFM_PARAMETERS</code> table in the HFM database, for cluster, server and application <code>ALL</code>. JHAT connects with the database credentials from the EPM registry, and records the logged-on user as <code>UpdatedBy</code>. Needs <code>Logon</code>. Fails if no row matches the parameter name.</p>
 
@@ -160,7 +164,7 @@ exit();
 UpdateParameter("<Parameter Name>","<Value>");
 ```
 
-</details><details id="bkmrk-GetMemberProperties-"><summary>GetMemberProperties</summary>
+### GetMemberProperties
 
 <p class="callout info">Writes the properties of one or more members to a UTF-8 file. For each member it writes the dimension, default parent, name and description, followed by one <code>Property:value</code> line per property.</p>
 
@@ -177,5 +181,3 @@ UpdateParameter("<Parameter Name>","<Value>");
 ```dart
 GetMemberProperties("Entity","Entity1,Entity2","C:\Output\entityprops.txt");
 ```
-
-</details>

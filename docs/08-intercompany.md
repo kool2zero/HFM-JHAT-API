@@ -2,11 +2,17 @@
 
 [← Back to index](../README.md)
 
-#### Overview
+## Overview
 
-These JHAT commands will perform intercompany tasks
+Commands for HFM's intercompany transactions module, where entities record the individual transactions they have with intercompany partners so that the two sides can be matched before consolidation. The usual cycle is:
 
-#### Commands
+1. **Open the IC period** with its matching tolerances (`OpenICPeriod`).
+2. **Load or create transactions** (`LoadICTransactions`, `CreateICTransaction`).
+3. **Match** each entity's transactions against its partner's, automatically (`ICAutoMatchByID`, `ICAutoMatchByAccount`) or manually (`ProcessICTransaction` with `ManualMatch`). Differences within the period's tolerances still count as matched. Reason codes explain mismatches.
+4. **Post** transactions to the application's data (`ProcessAllICTransactions` with `Post`). If the period's *Match/Validate Before Post* setting is on, only matched transactions, and mismatched transactions with a reason code, can be posted.
+5. **Lock entities** so their transactions can't change, and **close the period** (`LockICEntity`, `CloseICPeriod`). With Match/Validate Before Post on, an entity can only be locked once all its matched transactions, and mismatched ones with a reason code, are posted. A closed period's transactions can still be viewed and reported on.
+
+## Commands
 
 These commands need an open application. Text values are matched ignoring case.
 
@@ -14,9 +20,18 @@ These commands need an open application. Text values are matched ignoring case.
 - **Custom dimensions in POV strings:** in the POVs taken by `CreateICTransaction`, `ProcessICTransactions` and `EditICTransaction`, write custom dimensions with their **full dimension name** (e.g. `Flows#Increases`), not `C1#` or the short name. Only `AddICTransactionToList` accepts `C1#`, `C2#`, ….
 - **Output files:** written in UTF-8, semicolon-separated, and overwritten if they exist.
 
-##### Periods
+**Commands on this page:**
 
-<details id="bkmrk-OpenICPeriod-"><summary>OpenICPeriod</summary>
+- **Periods:** [OpenICPeriod](#openicperiod), [UpdateICPeriod](#updateicperiod), [CloseICPeriod](#closeicperiod), [ListICPeriods](#listicperiods)
+- **Transactions:** [CreateICTransaction](#createictransaction), [EditICTransaction](#editictransaction), [GetICTransactions](#getictransactions), [FilterICTransactions](#filterictransactions), [DisplayICTransactions](#displayictransactions)
+- **Processing transactions:** [ProcessAllICTransactions](#processallictransactions), [InitICTransactionList](#initictransactionlist), [AddICTransactionToList](#addictransactiontolist), [ProcessICTransaction](#processictransaction), [ProcessICTransactions](#processictransactions)
+- **Matching:** [ICAutoMatchByID](#icautomatchbyid), [ICAutoMatchByAccount](#icautomatchbyaccount), [CreateAutoMatchByIDTemplate](#createautomatchbyidtemplate), [CreateAutoMatchByAccountTemplate](#createautomatchbyaccounttemplate)
+- **Reason codes:** [CreateReasonCode](#createreasoncode), [DeleteReasonCode](#deletereasoncode), [DeleteAllReasonCodes](#deleteallreasoncodes), [ListReasonCodes](#listreasoncodes)
+- **Locking and monitoring:** [LockICEntity](#lockicentity), [UnLockICEntity](#unlockicentity), [ListMonitorIntercompany](#listmonitorintercompany), [ListMonitorIntercompanySummary](#listmonitorintercompanysummary), [FilterMonitorIntercompany](#filtermonitorintercompany)
+
+### Periods
+
+#### OpenICPeriod
 
 <p class="callout info">Opens an intercompany period and sets its matching tolerances.</p>
 
@@ -42,7 +57,7 @@ OpenICPeriod("Actual","2023","Dec","Yes","10");
 OpenICPeriod("Actual","2023","Dec","Yes","10","5","10","1");
 ```
 
-</details><details id="bkmrk-UpdateICPeriod-"><summary>UpdateICPeriod</summary>
+#### UpdateICPeriod
 
 <p class="callout info">Changes an intercompany period's settings. Parameters are as for <code>OpenICPeriod</code>. HFM's response status and error text are written to the log, but the command reports success either way.</p>
 
@@ -52,7 +67,7 @@ OpenICPeriod("Actual","2023","Dec","Yes","10","5","10","1");
 UpdateICPeriod("Actual","2023","Dec","Restrict","10","5","10","1");
 ```
 
-</details><details id="bkmrk-CloseICPeriod-"><summary>CloseICPeriod</summary>
+#### CloseICPeriod
 
 <p class="callout info">Closes an intercompany period.</p>
 
@@ -70,7 +85,7 @@ UpdateICPeriod("Actual","2023","Dec","Restrict","10","5","10","1");
 CloseICPeriod("Actual","2023","Dec");
 ```
 
-</details><details id="bkmrk-ListICPeriods-"><summary>ListICPeriods</summary>
+#### ListICPeriods
 
 <p class="callout info">Writes each intercompany period of a scenario and year to a file. Columns: <code>Period;Status;Trans id tolerance amount;Trans id tolerance percentage;Account Tolerance;Manual Tolerance;Match/Validate Before Post</code>. Status is Unopened, Opened or Closed.</p>
 
@@ -88,11 +103,9 @@ CloseICPeriod("Actual","2023","Dec");
 ListICPeriods("Actual","2023","C:\Output\icperiods.txt");
 ```
 
-</details>
+### Transactions
 
-##### Transactions
-
-<details id="bkmrk-CreateICTransaction-"><summary>CreateICTransaction</summary>
+#### CreateICTransaction
 
 <p class="callout info">Creates an intercompany transaction.</p>
 
@@ -121,7 +134,7 @@ All 12 parameters are required.
 CreateICTransaction("S#Actual.Y#2023.P#Dec.E#EntityA.I#EntityB.A#ICRec","T001","S01","REF1","12/31/2023","USD","1000","1000","","","","1");
 ```
 
-</details><details id="bkmrk-EditICTransaction-"><summary>EditICTransaction</summary>
+#### EditICTransaction
 
 <p class="callout info">Changes fields on the intercompany transactions that match a POV, transaction ID and sub ID. The field names and new values come from two string lists (built with <code>AddItemToList</code>, dimension <code>""</code>). The first name goes with the first value, and so on.</p>
 
@@ -150,7 +163,7 @@ AddItemToList("2","","Corrected");
 EditICTransaction("S#Actual.Y#2023.P#Dec.E#EntityA.I#EntityB.A#ICRec","T001","S01","1","2");
 ```
 
-</details><details id="bkmrk-GetICTransactions-"><summary>GetICTransactions</summary>
+#### GetICTransactions
 
 <p class="callout info">Writes every intercompany transaction for a scenario, year and period to a file.</p>
 
@@ -171,7 +184,7 @@ The columns are Status (`match:post`), Transaction ID, Transaction Sub ID, Entit
 GetICTransactions("Actual","2023","Dec","C:\Output\ictrans.txt");
 ```
 
-</details><details id="bkmrk-FilterICTransactions-"><summary>FilterICTransactions</summary>
+#### FilterICTransactions
 
 <p class="callout info">Writes the intercompany transactions matching the filters to a file, in the same format as <code>GetICTransactions</code>. Leave a filter as <code>""</code> to not filter on it.</p>
 
@@ -216,7 +229,7 @@ All 25 parameters are required.
 FilterICTransactions("Actual","2023","Dec","EntityA;EntityB","","","","","","","","","","","","","","","","true","true","true","true","true","C:\Output\ictrans.txt");
 ```
 
-</details><details id="bkmrk-DisplayICTransactions-"><summary>DisplayICTransactions</summary>
+#### DisplayICTransactions
 
 <p class="callout info">Writes every intercompany transaction for a scenario, year and period to a file (same format as <code>GetICTransactions</code>), with display options.</p>
 
@@ -237,11 +250,9 @@ FilterICTransactions("Actual","2023","Dec","EntityA;EntityB","","","","","","","
 DisplayICTransactions("Actual","2023","Dec","","","","E#BOTH","C:\Output\ictrans.txt");
 ```
 
-</details>
+### Processing transactions
 
-##### Processing transactions
-
-<details id="bkmrk-ProcessAllICTransactions-"><summary>ProcessAllICTransactions</summary>
+#### ProcessAllICTransactions
 
 <p class="callout info">Posts, unposts, deletes or unmatches every intercompany transaction in a period, and waits for the task to finish.</p>
 
@@ -260,7 +271,7 @@ DisplayICTransactions("Actual","2023","Dec","","","","E#BOTH","C:\Output\ictrans
 ProcessAllICTransactions("Post","Actual","2023","Dec");
 ```
 
-</details><details id="bkmrk-InitICTransactionList-"><summary>InitICTransactionList</summary>
+#### InitICTransactionList
 
 <p class="callout info">Empties the in-memory list of transactions used by <code>ProcessICTransaction</code>.</p>
 
@@ -274,7 +285,7 @@ None
 InitICTransactionList();
 ```
 
-</details><details id="bkmrk-AddICTransactionToList-"><summary>AddICTransactionToList</summary>
+#### AddICTransactionToList
 
 <p class="callout info">Adds a transaction to the in-memory list used by <code>ProcessICTransaction</code>. The transaction is identified by entity, partner, account, custom members, transaction ID and sub ID.</p>
 
@@ -292,7 +303,7 @@ InitICTransactionList();
 AddICTransactionToList("S#Actual.Y#2023.P#Dec.E#EntityA.I#EntityB.A#ICRec.C1#Increases.C2#[None].C3#[None].C4#[None]","T001","S01");
 ```
 
-</details><details id="bkmrk-ProcessICTransaction-"><summary>ProcessICTransaction</summary>
+#### ProcessICTransaction
 
 <p class="callout info">Processes the transactions in the list built with <code>AddICTransactionToList</code>. JHAT looks them up among the first 5,000 transactions of the period. Unlike <code>ProcessAllICTransactions</code>, it doesn't wait for a running task.</p>
 
@@ -313,7 +324,7 @@ AddICTransactionToList("S#Actual.Y#2023.P#Dec.E#EntityA.I#EntityB.A#ICRec.C1#[No
 ProcessICTransaction("Post","Actual","2023","Dec");
 ```
 
-</details><details id="bkmrk-ProcessICTransactions-"><summary>ProcessICTransactions</summary>
+#### ProcessICTransactions
 
 <p class="callout info">Processes the transactions matching a filter, and waits for the task to finish.</p>
 
@@ -332,11 +343,9 @@ ProcessICTransaction("Post","Actual","2023","Dec");
 ProcessICTransactions("Post","S#Actual.Y#2023.P#Dec.E#EntityA,EntityB","","");
 ```
 
-</details>
+### Matching
 
-##### Matching
-
-<details id="bkmrk-ICAutoMatchByID-"><summary>ICAutoMatchByID</summary>
+#### ICAutoMatchByID
 
 <p class="callout info">Runs Auto Match by transaction ID or reference ID and waits for the task to finish.</p>
 
@@ -360,7 +369,7 @@ All 10 parameters are required. Parameters 7 and 8 are ignored.
 ICAutoMatchByID("Actual","2023","Dec","All","All","no","no","no","Transaction","All");
 ```
 
-</details><details id="bkmrk-ICAutoMatchByAccount-"><summary>ICAutoMatchByAccount</summary>
+#### ICAutoMatchByAccount
 
 <p class="callout info">Runs Auto Match by account and waits for the task to finish.</p>
 
@@ -384,7 +393,7 @@ All 10 parameters are required. Parameters 7 and 8 are ignored.
 ICAutoMatchByAccount("Actual","2023","Dec","All","All","no","no","no","ICRec","ICPay");
 ```
 
-</details><details id="bkmrk-CreateAutoMatchByIDTemplate-"><summary>CreateAutoMatchByIDTemplate</summary>
+#### CreateAutoMatchByIDTemplate
 
 <p class="callout info">Saves an Auto Match by ID template to Document Manager.</p>
 
@@ -413,7 +422,7 @@ ICAutoMatchByAccount("Actual","2023","Dec","All","All","no","no","no","ICRec","I
 CreateAutoMatchByIDTemplate("MatchTID","Match by TID","","false","true","\","S#Actual.Y#2023.P#Dec","{[Base]}","{[Base]}","","TransactionID","");
 ```
 
-</details><details id="bkmrk-CreateAutoMatchByAccountTemplate-"><summary>CreateAutoMatchByAccountTemplate</summary>
+#### CreateAutoMatchByAccountTemplate
 
 <p class="callout info">Saves an Auto Match by Account template to Document Manager. Parameters 1–10 are as for <code>CreateAutoMatchByIDTemplate</code>, including the ICP warning.</p>
 
@@ -431,11 +440,9 @@ CreateAutoMatchByIDTemplate("MatchTID","Match by TID","","false","true","\","S#A
 CreateAutoMatchByAccountTemplate("MatchAcct","Match by account","","false","true","\","S#Actual.Y#2023.P#Dec","{[Base]}","{[Base]}","","ICRec","ICPay");
 ```
 
-</details>
+### Reason codes
 
-##### Reason codes
-
-<details id="bkmrk-CreateReasonCode-"><summary>CreateReasonCode</summary>
+#### CreateReasonCode
 
 <p class="callout info">Creates an intercompany reason code.</p>
 
@@ -452,7 +459,7 @@ CreateAutoMatchByAccountTemplate("MatchAcct","Match by account","","false","true
 CreateReasonCode("TIMING","Timing difference");
 ```
 
-</details><details id="bkmrk-DeleteReasonCode-"><summary>DeleteReasonCode</summary>
+#### DeleteReasonCode
 
 <p class="callout info">Deletes an intercompany reason code.</p>
 
@@ -468,7 +475,7 @@ CreateReasonCode("TIMING","Timing difference");
 DeleteReasonCode("TIMING");
 ```
 
-</details><details id="bkmrk-DeleteAllReasonCodes-"><summary>DeleteAllReasonCodes</summary>
+#### DeleteAllReasonCodes
 
 <p class="callout info">Deletes every intercompany reason code.</p>
 
@@ -484,7 +491,7 @@ None
 DeleteAllReasonCodes();
 ```
 
-</details><details id="bkmrk-ListReasonCodes-"><summary>ListReasonCodes</summary>
+#### ListReasonCodes
 
 <p class="callout info">Writes every reason code to a file (<code>Label;Description</code>).</p>
 
@@ -500,11 +507,9 @@ DeleteAllReasonCodes();
 ListReasonCodes("C:\Output\reasoncodes.txt");
 ```
 
-</details>
+### Locking and monitoring
 
-##### Locking and monitoring
-
-<details id="bkmrk-LockICEntity-"><summary>LockICEntity</summary>
+#### LockICEntity
 
 <p class="callout info">Locks entities for intercompany in a period. Each entity's result is written to the log. The command fails if any entity couldn't be locked.</p>
 
@@ -525,7 +530,7 @@ ListReasonCodes("C:\Output\reasoncodes.txt");
 LockICEntity("Actual","2023","Dec","EntityA,EntityB");
 ```
 
-</details><details id="bkmrk-UnLockICEntity-"><summary>UnLockICEntity</summary>
+#### UnLockICEntity
 
 <p class="callout info">Unlocks entities for intercompany in a period. The same-name warning for <code>LockICEntity</code> applies.</p>
 
@@ -544,7 +549,7 @@ LockICEntity("Actual","2023","Dec","EntityA,EntityB");
 UnLockICEntity("Actual","2023","Dec","EntityA,EntityB");
 ```
 
-</details><details id="bkmrk-ListMonitorIntercompany-"><summary>ListMonitorIntercompany</summary>
+#### ListMonitorIntercompany
 
 <p class="callout info">Writes the Monitor Intercompany list (up to 500 entities) to a file. Columns: <code>Entity;Process Status;Lock Status;UserId;Date/Time</code>.</p>
 
@@ -563,7 +568,7 @@ UnLockICEntity("Actual","2023","Dec","EntityA,EntityB");
 ListMonitorIntercompany("Actual","2023","Dec","C:\Output\icmonitor.txt");
 ```
 
-</details><details id="bkmrk-ListMonitorIntercompanySummary-"><summary>ListMonitorIntercompanySummary</summary>
+#### ListMonitorIntercompanySummary
 
 <p class="callout info">Writes the Monitor Intercompany summary to a file: the number of Not Started and Started entities that are locked, unlocked and in total.</p>
 
@@ -582,7 +587,7 @@ ListMonitorIntercompany("Actual","2023","Dec","C:\Output\icmonitor.txt");
 ListMonitorIntercompanySummary("Actual","2023","Dec","C:\Output\icsummary.txt");
 ```
 
-</details><details id="bkmrk-FilterMonitorIntercompany-"><summary>FilterMonitorIntercompany</summary>
+#### FilterMonitorIntercompany
 
 <p class="callout info">Writes a filtered Monitor Intercompany list (up to 500 entities) to a file, in the same format as <code>ListMonitorIntercompany</code>.</p>
 
@@ -604,5 +609,3 @@ Pass 5 parameters, or all 8.
 ```dart
 FilterMonitorIntercompany("Actual","2023","Dec","EntityA;EntityB","C:\Output\icmonitor.txt","true","Started","All");
 ```
-
-</details>

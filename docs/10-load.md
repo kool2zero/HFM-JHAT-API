@@ -2,9 +2,17 @@
 
 [← Back to index](../README.md)
 
-#### Overview
+## Overview
 
-These JHAT Commands have to do with Loading Data, Journals, etc.
+Commands for loading data, metadata, security, rules, member lists, journals, intercompany transactions and documents into HFM from local files.
+
+- **Scan:** most loads can scan instead of load. A scan checks the file and reports errors in the log without changing anything, which is useful before loading into a production application.
+- **Data load modes** decide what happens to data already in HFM:
+  - *Merge* (the default) overwrites the cells in the file and adds any that don't exist yet. Other data is untouched.
+  - *Replace* first clears the existing values for each unique point of view in the file, then loads.
+  - *Accumulate* adds the file's values to the existing ones.
+  - *Replace by security* works like Replace, but only for points of view the user has full access to. Cells the user can't fully access are ignored, so it can be used without access to every account.
+- **Metadata load modes:** *Merge* adds and updates members, while *Replace* and *Clear* rebuild the metadata (see `LoadMetaData`).
 
 The load commands need an open application.
 
@@ -14,9 +22,13 @@ The load commands need an open application.
 
 <p class="callout warning">Most load commands report <b>Successful</b> even when HFM reports that the load failed. JHAT writes "Load … failed" to its log but then marks the command successful anyway. Check the load log, or the "failed" line in JHAT's log, rather than the command's status. The exceptions are <code>LoadData</code>, <code>StartLoadData</code>, <code>LoadPhaseInfo</code> and <code>LoadICTransactions</code>, which wait for the task and report failure correctly.</p>
 
-#### Commands
+## Commands
 
-<details id="bkmrk-LoadSecurity-"><summary>LoadSecurity</summary>
+**Commands on this page:**
+
+[LoadSecurity](#loadsecurity), [LoadSecurityExpanded](#loadsecurityexpanded), [LoadMetaData](#loadmetadata), [LoadMetaDataExtDim](#loadmetadataextdim), [LoadICTransactions](#loadictransactions), [LoadDocument](#loaddocument), [LoadRules](#loadrules), [LoadMemberLists](#loadmemberlists), [LoadData](#loaddata), [StartLoadData](#startloaddata), [LoadPhaseInfo](#loadphaseinfo), [LoadJournal](#loadjournal), [LoadModuleConfiguration](#loadmoduleconfiguration)
+
+### LoadSecurity
 
 <p class="callout info">Loads a security file, including all parts (users, security classes, role access and security class access).</p>
 
@@ -38,7 +50,7 @@ The load commands need an open application.
 LoadSecurity("C:\Hfm\Security.sec","C:\Hfm\SecurityLoad.log",";","false","true");
 ```
 
-</details><details id="bkmrk-LoadSecurityExpanded-"><summary>LoadSecurityExpanded</summary>
+### LoadSecurityExpanded
 
 <p class="callout info">Loads a security file, choosing which parts to load.</p>
 
@@ -64,7 +76,7 @@ All 9 parameters are required.
 LoadSecurityExpanded("C:\Hfm\Security.sec","C:\Hfm\SecurityLoad.log",";","false","true","true","true","false","false");
 ```
 
-</details><details id="bkmrk-LoadMetaData-"><summary>LoadMetaData</summary>
+### LoadMetaData
 
 <p class="callout info">Loads a metadata file. The format comes from the file extension: <code>.xml</code> loads XML, and anything else loads the native (<code>.app</code>) format.</p>
 
@@ -105,7 +117,7 @@ LoadMetaData("C:\Hfm\Metadata.xml","C:\Hfm\MetadataLoad.log",";");
 LoadMetaData("C:\Hfm\Metadata.app","C:\Hfm\MetadataLoad.log",";","Merge","true","true","true","true","true","true","true","true","true","true","false","false","false","true");
 ```
 
-</details><details id="bkmrk-LoadMetaDataExtDim-"><summary>LoadMetaDataExtDim</summary>
+### LoadMetaDataExtDim
 
 <p class="callout info">Loads a metadata file, with dimensions chosen in a single string. The format comes from the file extension, as for <code>LoadMetaData</code>.</p>
 
@@ -140,7 +152,7 @@ In the Dimensions string:
 LoadMetaDataExtDim("C:\Hfm\Metadata.app","C:\Hfm\MetadataLoad.log",";","Merge","false","I#true.V#true");
 ```
 
-</details><details id="bkmrk-LoadICTransactions-"><summary>LoadICTransactions</summary>
+### LoadICTransactions
 
 <p class="callout info">Loads (or scans) an intercompany transactions file and waits for the task to finish.</p>
 
@@ -162,7 +174,7 @@ All 5 parameters are needed. JHAT doesn't check the count.
 LoadICTransactions("C:\HFM\ICTrans.trn","C:\HFM\ICTrans.log","Load","Merge",";");
 ```
 
-</details><details id="bkmrk-LoadDocument-"><summary>LoadDocument</summary>
+### LoadDocument
 
 <p class="callout info">Loads a local file into Document Manager, or creates a Document Manager folder when File Type is <code>Folder</code>. The command needs all 9 parameters, though JHAT doesn't check the count.</p>
 
@@ -201,7 +213,7 @@ LoadDocument("IncomeStatement","","C:\inputdir\IncomeStatement.wdf","[Default]",
 LoadDocument("Forms","Data forms","WebForm","[Default]","false","","Folder","false","");
 ```
 
-</details><details id="bkmrk-LoadRules-"><summary>LoadRules</summary>
+### LoadRules
 
 <p class="callout info">Loads (or scans) a rules file.</p>
 
@@ -219,7 +231,7 @@ LoadDocument("Forms","Data forms","WebForm","[Default]","false","","Folder","fal
 LoadRules("C:\Hfm\Rules.rle","C:\Hfm\RulesLoad.log");
 ```
 
-</details><details id="bkmrk-LoadMemberLists-"><summary>LoadMemberLists</summary>
+### LoadMemberLists
 
 <p class="callout info">Loads (or scans) a member lists file.</p>
 
@@ -237,7 +249,7 @@ LoadRules("C:\Hfm\Rules.rle","C:\Hfm\RulesLoad.log");
 LoadMemberLists("C:\Hfm\MemberLists.lst","C:\Hfm\MemberListsLoad.log");
 ```
 
-</details><details id="bkmrk-LoadData-"><summary>LoadData</summary>
+### LoadData
 
 <p class="callout info">Loads a native-format data file and waits for the task to finish (see <a href="00-automation-with-jhat.md#long-running-tasks">long-running tasks</a>). The command fails if the task doesn't complete.</p>
 
@@ -262,7 +274,7 @@ All 6 parameters are required.
 LoadData("Merge","C:\Hfm\Data.dat","C:\Hfm\DataLoad.log","false","false",";");
 ```
 
-</details><details id="bkmrk-StartLoadData-"><summary>StartLoadData</summary>
+### StartLoadData
 
 <p class="callout info">Identical to <code>LoadData</code>, including waiting for the load to finish.</p>
 
@@ -276,7 +288,7 @@ As for `LoadData`.
 StartLoadData("Merge","C:\Hfm\Data.dat","C:\Hfm\DataLoad.log","false","false",";");
 ```
 
-</details><details id="bkmrk-LoadPhaseInfo-"><summary>LoadPhaseInfo</summary>
+### LoadPhaseInfo
 
 <p class="callout info">Loads a phase submission data file and waits for the task to finish.</p>
 
@@ -295,7 +307,7 @@ StartLoadData("Merge","C:\Hfm\Data.dat","C:\Hfm\DataLoad.log","false","false",";
 LoadPhaseInfo("Merge","C:\Hfm\Phases.dat","C:\Hfm\PhaseLoad.log",";");
 ```
 
-</details><details id="bkmrk-LoadJournal-"><summary>LoadJournal</summary>
+### LoadJournal
 
 <p class="callout info">Loads a journals file.</p>
 
@@ -313,7 +325,7 @@ LoadPhaseInfo("Merge","C:\Hfm\Phases.dat","C:\Hfm\PhaseLoad.log",";");
 LoadJournal("C:\Hfm\Journals.jlf","C:\Hfm\JournalLoad.log",";");
 ```
 
-</details><details id="bkmrk-LoadModuleConfiguration-"><summary>LoadModuleConfiguration</summary>
+### LoadModuleConfiguration
 
 <p class="callout info">Loads a module configuration file. JHAT doesn't check the result, so it always reports success unless the call itself errors. Check the log.</p>
 
@@ -331,5 +343,3 @@ A third parameter is accepted and ignored.
 ```dart
 LoadModuleConfiguration("C:\Hfm\ModuleConfiguration.xml","C:\Hfm\ModuleConfiguration.log");
 ```
-
-</details>

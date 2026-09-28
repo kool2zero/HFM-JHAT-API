@@ -2,13 +2,17 @@
 
 [← Back to index](../README.md)
 
-#### Overview
+## Overview
 
-These JHAT Commands are related to configuration actions
+Commands for turning application modules, such as journals, intercompany transactions or equity pickup, on or off. See also `ModifyApplication` on the [Application](02-application.md) page and `ExtractModuleConfiguration` / `LoadModuleConfiguration`.
 
-#### Commands
+## Commands
 
-<details id="bkmrk-DisableEnableModule-"><summary>DisableEnableModule</summary>
+**Commands on this page:**
+
+[DisableEnableModule](#disableenablemodule)
+
+### DisableEnableModule
 
 <p class="callout info">Enables or disables one module of the open application. HFM stores the list of disabled modules: <code>Disable</code> adds the module to it and <code>Enable</code> removes it. If the module is already in the requested state, or the second parameter is neither value, nothing changes and the command still reports success.</p>
 
@@ -25,5 +29,3 @@ These JHAT Commands are related to configuration actions
 OpenApplication("Cluster","Application");
 DisableEnableModule("epu","Disable");
 ```
-
-</details>

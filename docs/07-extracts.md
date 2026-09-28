@@ -2,9 +2,9 @@
 
 [← Back to index](../README.md)
 
-#### Overview
+## Overview
 
-These JHAT commands are related to extracting data from HFM
+Commands for extracting data, metadata, security, rules, member lists, journals, intercompany transactions and documents from HFM to local files, for example to back up an application or move content between applications. Most have a matching load command on the [Load](10-load.md) page.
 
 The extract commands need an open application.
 
@@ -13,7 +13,7 @@ The extract commands need an open application.
 
 <p class="callout warning">Most extract commands report <b>Successful</b> even when HFM reports that the extract failed. JHAT writes "Extract … failed" to its log but then marks the command successful anyway. Check the extract log rather than the command's status. The exceptions are <code>ExtractData</code>, <code>EAExtract</code>, <code>ExtractPhaseInfo</code> and <code>ExtractDataExtDim</code>, which wait for the task and report failure correctly.</p>
 
-#### Lists
+## Lists
 
 Several extract commands take a **list number** instead of a member name. Lists are held in memory for the rest of the script:
 
@@ -24,9 +24,13 @@ Several extract commands take a **list number** instead of a member name. Lists 
 
 Using a list number that was never filled makes the command fail.
 
-#### Commands
+## Commands
 
-<details id="bkmrk-InitLists-"><summary>InitLists</summary>
+**Commands on this page:**
+
+[InitLists](#initlists), [ClearList](#clearlist), [AddItemsToListFromMemberlist](#additemstolistfrommemberlist), [AddItemToList](#additemtolist), [ExtractMetaData](#extractmetadata), [ExtractMetaDataExtDim](#extractmetadataextdim), [ExtractData](#extractdata), [EAExtract](#eaextract), [ExtractPhaseInfo](#extractphaseinfo), [ExtractSecurity](#extractsecurity), [ExtractSecurityExpanded](#extractsecurityexpanded), [ExtractJournal](#extractjournal), [ExtractJournalPlus](#extractjournalplus), [ExtractICTransactions](#extractictransactions), [ExtractRules](#extractrules), [ExtractMemberlists](#extractmemberlists), [ExtractDataExtDim](#extractdataextdim), [ExtractDocument](#extractdocument), [ExtractModuleConfiguration](#extractmoduleconfiguration)
+
+### InitLists
 
 <p class="callout info">Empties every list (all dimensions and all string lists).</p>
 
@@ -40,7 +44,7 @@ None
 InitLists();
 ```
 
-</details><details id="bkmrk-ClearList-"><summary>ClearList</summary>
+### ClearList
 
 <p class="callout info">Empties one list.</p>
 
@@ -57,7 +61,7 @@ InitLists();
 ClearList("1","Period");
 ```
 
-</details><details id="bkmrk-AddItemsToListFromMemberlist-"><summary>AddItemsToListFromMemberlist</summary>
+### AddItemsToListFromMemberlist
 
 <p class="callout info">Adds the members of an HFM member list to a list.</p>
 
@@ -76,7 +80,7 @@ ClearList("1","Period");
 AddItemsToListFromMemberlist("9","Entity","[Descendants]","Regional");
 ```
 
-</details><details id="bkmrk-AddItemToList-"><summary>AddItemToList</summary>
+### AddItemToList
 
 <p class="callout info">Adds one item to a list.</p>
 
@@ -97,7 +101,7 @@ AddItemToList("1","Value","[Elimination]");
 AddItemToList("2","","S#Actual.Y#2023.P#Dec.E#Entity2");
 ```
 
-</details><details id="bkmrk-ExtractMetaData-"><summary>ExtractMetaData</summary>
+### ExtractMetaData
 
 <p class="callout info">Extracts application metadata. The file format comes from the extension of the output file: <code>.xml</code> gives XML, and anything else gives the native (<code>.app</code>) format.</p>
 
@@ -131,7 +135,7 @@ ExtractMetaData("C:\hfm\outbox\Metadata.app","C:\hfm\outbox\MetadataExtract.log"
 ExtractMetaData("C:\hfm\outbox\Metadata.xml","C:\hfm\outbox\MetadataExtract.log",";","true","true","true","true","true","true","true","true","true","true","false","true","true","true");
 ```
 
-</details><details id="bkmrk-ExtractMetaDataExtDim-"><summary>ExtractMetaDataExtDim</summary>
+### ExtractMetaDataExtDim
 
 <p class="callout info">Extracts application metadata, with dimensions chosen in a single string. This suits applications with any number of custom dimensions. The file format comes from the extension of the output file, as for <code>ExtractMetaData</code>.</p>
 
@@ -163,7 +167,7 @@ Dimensions are extracted by default, except ICP and Value. In the Dimensions str
 ExtractMetaDataExtDim("C:\hfm\outbox\Metadata.app","C:\hfm\outbox\Metadata.log",";","I#true.V#true.C3#false","true","true","true","false","true");
 ```
 
-</details><details id="bkmrk-ExtractData-"><summary>ExtractData</summary>
+### ExtractData
 
 <p class="callout info">Extracts data for a scenario and year to a flat file (no header), and waits for the extract to finish.</p>
 
@@ -202,7 +206,7 @@ AddItemToList("1","Period","Dec");
 ExtractData("D:\Data_Extract.txt","D:\Data_Extract.log",";","YTD","2023","Actual","1","All","All","false");
 ```
 
-</details><details id="bkmrk-EAExtract-"><summary>EAExtract</summary>
+### EAExtract
 
 <p class="callout danger"><b>Not an Extended Analytics extract.</b> JHAT's usage text describes a 17-parameter extract to a database table (DSN, table prefix, …), but the command's code is a copy of <code>ExtractData</code>. It requires 17 parameters, reads the first 10 exactly as <code>ExtractData</code> does (so parameter 1 is used as the output file path, not a DSN), and ignores parameters 11–17. Use <code>ExtractData</code> instead.</p>
 
@@ -216,7 +220,7 @@ ExtractData("D:\Data_Extract.txt","D:\Data_Extract.log",";","YTD","2023","Actual
 EAExtract("D:\Data_Extract.txt","D:\Data_Extract.log",";","YTD","2023","Actual","All","All","All","false","","","","","","","");
 ```
 
-</details><details id="bkmrk-ExtractPhaseInfo-"><summary>ExtractPhaseInfo</summary>
+### ExtractPhaseInfo
 
 <p class="callout info">Extracts phase submission (phase group) data for all scenarios, years, periods and entities (Entity Currency, base accounts, ICPs and custom members), and waits for the extract to finish. The data file is copied only when the server compresses it, as for <code>ExtractData</code>.</p>
 
@@ -234,9 +238,9 @@ EAExtract("D:\Data_Extract.txt","D:\Data_Extract.log",";","YTD","2023","Actual",
 ExtractPhaseInfo("C:\Voyager\Phase_Extract.dat","C:\Voyager\Phase_Extract.log",";");
 ```
 
-</details><details id="bkmrk-ExtractSecurity-"><summary>ExtractSecurity</summary>
+### ExtractSecurity
 
-<p class="callout info">Extracts all security (users, security classes, role access and security class access) in the native format.</p>
+<p class="callout info">Extracts all security (users, security classes, role access and security class access) in the native format. The file can be loaded with <code>LoadSecurity</code>.</p>
 
 <p class="callout warning">JHAT's usage text shows 2 parameters, but the command needs 3. The delimiter is required.</p>
 
@@ -254,7 +258,7 @@ ExtractPhaseInfo("C:\Voyager\Phase_Extract.dat","C:\Voyager\Phase_Extract.log","
 ExtractSecurity("C:\Voyager\Security_Extract.sec","C:\Voyager\Security_Extract.log",";");
 ```
 
-</details><details id="bkmrk-ExtractSecurityExpanded-"><summary>ExtractSecurityExpanded</summary>
+### ExtractSecurityExpanded
 
 <p class="callout info">Extracts security in the native format, optionally choosing which parts to include.</p>
 
@@ -278,9 +282,9 @@ Pass either 3 parameters (everything is extracted) or all 7. With 4–6 paramete
 ExtractSecurityExpanded("C:\Voyager\Security_Extract.sec","C:\Voyager\Security_Extract.log",";","true","true","false","false");
 ```
 
-</details><details id="bkmrk-ExtractJournal-"><summary>ExtractJournal</summary>
+### ExtractJournal
 
-<p class="callout info">Extracts journals for a scenario, year and optionally one period. All statuses, journal types and balance types are included.</p>
+<p class="callout info">Extracts journals for a scenario, year and optionally one period. All statuses, journal types and balance types are included. To filter by entity, label, group, status or type, use <code>ExtractJournalPlus</code>.</p>
 
 **Input**
 
@@ -304,7 +308,7 @@ Parameters 3–5 must be exactly `true` to count. For example, `"True "` with a 
 ExtractJournal("C:\Hfm\JournalExtract.jlf","C:\Hfm\JournalExtract.log","true","true","true","Actual","2023","All",";");
 ```
 
-</details><details id="bkmrk-ExtractJournalPlus-"><summary>ExtractJournalPlus</summary>
+### ExtractJournalPlus
 
 <p class="callout info">Extracts journals with full control over periods, entities, values, labels, groups, statuses, types and balance types.</p>
 
@@ -337,7 +341,7 @@ The status, type and balance type names follow the earlier version of this page.
 ExtractJournalPlus("C:\JournalsTest.jlf","C:\JournalsTest.log","false","false","true","Actual","2023","All","All","All","","","true","false","false","false","false","true","true","true","true","true","true",";");
 ```
 
-</details><details id="bkmrk-ExtractICTransactions-"><summary>ExtractICTransactions</summary>
+### ExtractICTransactions
 
 <p class="callout info">Extracts intercompany transactions for a scenario, year and period. No log file is produced.</p>
 
@@ -366,9 +370,9 @@ ExtractJournalPlus("C:\JournalsTest.jlf","C:\JournalsTest.log","false","false","
 ExtractICTransactions("C:\ICM\Extract1.trn","Actual","2023","Dec","All","All","yes","yes","yes","yes","yes","yes","","");
 ```
 
-</details><details id="bkmrk-ExtractRules-"><summary>ExtractRules</summary>
+### ExtractRules
 
-<p class="callout info">Extracts the application's rules.</p>
+<p class="callout info">Extracts the application's rules (its calculation, translation and consolidation logic), for example to back them up before loading new rules with <code>LoadRules</code>.</p>
 
 **Input**
 
@@ -384,9 +388,9 @@ ExtractICTransactions("C:\ICM\Extract1.trn","Actual","2023","Dec","All","All","y
 ExtractRules("RLE","C:\Output\rules.rle","C:\Output\rules.log");
 ```
 
-</details><details id="bkmrk-ExtractMemberlists-"><summary>ExtractMemberlists</summary>
+### ExtractMemberlists
 
-<p class="callout info">Extracts the application's member lists file.</p>
+<p class="callout info">Extracts the application's member lists file, which defines the named member lists (such as <code>[Base]</code> alternatives) used in forms, grids and scripts. It can be loaded with <code>LoadMemberLists</code>.</p>
 
 **Input**
 
@@ -401,7 +405,7 @@ ExtractRules("RLE","C:\Output\rules.rle","C:\Output\rules.log");
 ExtractMemberlists("C:\Output\memberlists.lst","C:\Output\memberlists.log");
 ```
 
-</details><details id="bkmrk-ExtractDataExtDim-"><summary>ExtractDataExtDim</summary>
+### ExtractDataExtDim
 
 <p class="callout info">Extracts data for any POV (member lists allowed), with full control over what is included, and waits for the extract to finish. The data file is copied only when the server compresses it, as for <code>ExtractData</code>.</p>
 
@@ -430,7 +434,7 @@ All 12 parameters are required.
 ExtractDataExtDim("S#Actual.Y#2023.P{[Base]}.W#YTD.E{[Base]}.V#<Entity Currency>.A{[Base]}.I{[Base]}.C1{[Base]}.C2{[Base]}.C3{[Base]}.C4{[Base]}","true","true","false","false","false","","false","false",";","C:\Output\data.txt","C:\Output\data.log");
 ```
 
-</details><details id="bkmrk-ExtractDocument-"><summary>ExtractDocument</summary>
+### ExtractDocument
 
 <p class="callout info">Saves a document from Document Manager to a local file, encoded as UTF-16LE.</p>
 
@@ -450,9 +454,9 @@ ExtractDataExtDim("S#Actual.Y#2023.P{[Base]}.W#YTD.E{[Base]}.V#<Entity Currency>
 ExtractDocument("IncomeStatement","C:\Output\IncomeStatement.xml","WebForm","Form","\Forms\Actuals");
 ```
 
-</details><details id="bkmrk-ExtractModuleConfiguration-"><summary>ExtractModuleConfiguration</summary>
+### ExtractModuleConfiguration
 
-<p class="callout info">Extracts the application's module configuration.</p>
+<p class="callout info">Extracts the application's module configuration: which modules (such as journals, intercompany transactions and equity pickup) are enabled. It can be loaded with <code>LoadModuleConfiguration</code>.</p>
 
 **Input**
 
@@ -466,5 +470,3 @@ ExtractDocument("IncomeStatement","C:\Output\IncomeStatement.xml","WebForm","For
 ```dart
 ExtractModuleConfiguration("C:\Output\modules.xml","C:\Output\modules.log");
 ```
-
-</details>

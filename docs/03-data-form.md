@@ -2,13 +2,17 @@
 
 [← Back to index](../README.md)
 
-#### Overview
+## Overview
 
-These commands are related to the Data Form
+Commands for running data forms (web forms stored in Document Manager) and On Demand Rules. They need an open application.
 
-#### Commands
+## Commands
 
-<details id="bkmrk-getform-get-the-data"><summary>GetForm</summary>
+**Commands on this page:**
+
+[GetForm](#getform), [ExecuteOnDemandRule](#executeondemandrule)
+
+### GetForm
 
 <p class="callout info">Runs a data form stored in Document Manager and saves the result to an output file as an HTML table. Each data cell is written as <code>value(cell status)</code> (see <a href="04-data-grid.md#status-text">Status text</a>).</p>
 
@@ -40,7 +44,7 @@ GetForm("\Forms\Actuals", "IncomeStatement", "C:\Output\IncomeStatement.html", "
 GetForm("\Forms\Actuals", "IncomeStatement", "C:\Output\IncomeStatement.html", "false", "true", "true", "true", "false", "false", "false");
 ```
 
-</details><details id="bkmrk-executeondemandrule-"><summary>ExecuteOnDemandRule</summary>
+### ExecuteOnDemandRule
 
 <p class="callout info">Runs an On Demand Rule against the POV set by <code>SetPOV</code>. The rule must already be loaded in the application's rules file. If the server returns an error message, the command fails with that message.</p>
 
@@ -56,5 +60,3 @@ GetForm("\Forms\Actuals", "IncomeStatement", "C:\Output\IncomeStatement.html", "
 SetPOV("Actual","2023","Dec","YTD","Group.Entity1","<Entity Currency>","Sales","[ICP None]","[None]","[None]","[None]","[None]");
 ExecuteOnDemandRule("RuleName");
 ```
-
-</details>

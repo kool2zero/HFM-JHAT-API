@@ -2,17 +2,23 @@
 
 [← Back to index](../README.md)
 
-#### Overview
+## Overview
 
-These JHAT Commands are related to Runtime actions
+Commands that control how a script runs (loops, delays, abort on error, running other programs), time parts of a script, and compare or edit local files. Comparing files is useful for testing, for example checking an extract against a known-good copy. These commands don't need an open application.
 
-#### Commands
+## Commands
 
 These commands don't need an open application.
 
-##### Script control
+**Commands on this page:**
 
-<details id="bkmrk-Delay-"><summary>Delay</summary>
+- **Script control:** [Delay](#delay), [BeginLoop](#beginloop), [EndLoop](#endloop), [AbortOnError](#abortonerror), [SetNegativeTestingFlag](#setnegativetestingflag), [CallOtherProcess](#callotherprocess)
+- **Timers:** [StartTimer](#starttimer), [StopTimer](#stoptimer)
+- **Files:** [ReplaceLineInTextFile](#replacelineintextfile), [CompareFiles](#comparefiles), [CompareFilesContentNotOrdered](#comparefilescontentnotordered), [CompareMultipleFiles](#comparemultiplefiles)
+
+### Script control
+
+#### Delay
 
 <p class="callout info">Pauses the script.</p>
 
@@ -28,7 +34,7 @@ These commands don't need an open application.
 Delay("5000");
 ```
 
-</details><details id="bkmrk-BeginLoop-"><summary>BeginLoop</summary>
+#### BeginLoop
 
 <p class="callout info">Repeats the commands between <code>BeginLoop</code> and the next <code>EndLoop</code> the given number of times in total. JHAT expands the loop before the script starts, by copying the commands.</p>
 
@@ -48,7 +54,7 @@ Consolidate("Impacted");
 EndLoop();
 ```
 
-</details><details id="bkmrk-EndLoop-"><summary>EndLoop</summary>
+#### EndLoop
 
 <p class="callout info">Marks the end of a <code>BeginLoop</code> block.</p>
 
@@ -62,7 +68,7 @@ None
 EndLoop();
 ```
 
-</details><details id="bkmrk-AbortOnError-"><summary>AbortOnError</summary>
+#### AbortOnError
 
 <p class="callout info">Turns abort on error on or off from this point in the script. While it's on, the script stops after the first command that fails, and the log ends with <code>Aborting the script ...</code>. The <code>-X1</code> command-line option turns it on from the start.</p>
 
@@ -80,7 +86,7 @@ EndLoop();
 AbortOnError("true");
 ```
 
-</details><details id="bkmrk-SetNegativeTestingFlag-"><summary>SetNegativeTestingFlag</summary>
+#### SetNegativeTestingFlag
 
 <p class="callout info">Marks the following commands as negative tests (tests expected to fail). While the flag is on, each command's log header ends in <code>: Negative Testcase</code>. The command itself isn't marked. It doesn't change whether a command succeeds or fails.</p>
 
@@ -100,7 +106,7 @@ OpenApplication("Cluster","NoSuchApp");
 SetNegativeTestingFlag("false");
 ```
 
-</details><details id="bkmrk-CallOtherProcess-"><summary>CallOtherProcess</summary>
+#### CallOtherProcess
 
 <p class="callout info">Runs an external program and waits for it to finish. The command succeeds only if the program exits with code 0. The executable, the parameters and the exit status are written to the log.</p>
 
@@ -119,11 +125,9 @@ SetNegativeTestingFlag("false");
 CallOtherProcess("C:\JHAT\scripts\notify.bat","MonthEnd");
 ```
 
-</details>
+### Timers
 
-##### Timers
-
-<details id="bkmrk-StartTimer-"><summary>StartTimer</summary>
+#### StartTimer
 
 <p class="callout info">Starts one of 25 timers. Use <code>StopTimer</code> to log the elapsed time.</p>
 
@@ -140,7 +144,7 @@ CallOtherProcess("C:\JHAT\scripts\notify.bat","MonthEnd");
 StartTimer("3","Load Metadata");
 ```
 
-</details><details id="bkmrk-StopTimer-"><summary>StopTimer</summary>
+#### StopTimer
 
 <p class="callout info">Stops a timer and writes the elapsed time to the log, in milliseconds and as hours, minutes and seconds. Fails if the timer wasn't started.</p>
 
@@ -156,11 +160,9 @@ StartTimer("3","Load Metadata");
 StopTimer("3");
 ```
 
-</details>
+### Files
 
-##### Files
-
-<details id="bkmrk-ReplaceLineInTextFile-"><summary>ReplaceLineInTextFile</summary>
+#### ReplaceLineInTextFile
 
 <p class="callout info">Replaces every line of a text file that matches a given line (whole line, ignoring case) with new text. The original is kept as <code>&lt;file&gt;backup</code>, and <code>&lt;file&gt;temp</code> is used while writing.</p>
 
@@ -180,7 +182,7 @@ StopTimer("3");
 ReplaceLineInTextFile("C:\JHAT\settings.txt","Environment = TEST","Environment = PROD");
 ```
 
-</details><details id="bkmrk-CompareFiles-"><summary>CompareFiles</summary>
+#### CompareFiles
 
 <p class="callout info">Compares two files and writes <code>Files Match.</code> or <code>Files are different.</code> to the log. The command reports success either way, so check the log line.</p>
 
@@ -204,7 +206,7 @@ ReplaceLineInTextFile("C:\JHAT\settings.txt","Environment = TEST","Environment =
 CompareFiles("C:\Output\grid.txt","C:\Baseline\grid.txt","TEXT","C:\Output\grid_diff.txt");
 ```
 
-</details><details id="bkmrk-CompareFilesContentNotOrdered-"><summary>CompareFilesContentNotOrdered</summary>
+#### CompareFilesContentNotOrdered
 
 <p class="callout info">Writes to the log every line of File 1 that doesn't appear anywhere in File 2 (ignoring case and line order). Lines only in File 2 aren't reported. The command always reports success.</p>
 
@@ -222,7 +224,7 @@ CompareFiles("C:\Output\grid.txt","C:\Baseline\grid.txt","TEXT","C:\Output\grid_
 CompareFilesContentNotOrdered("C:\Output\members.txt","C:\Baseline\members.txt");
 ```
 
-</details><details id="bkmrk-CompareMultipleFiles-"><summary>CompareMultipleFiles</summary>
+#### CompareMultipleFiles
 
 <p class="callout info">Compares each file matching a wildcard pattern with the file of the same name in another folder, as for <code>CompareFiles</code>. Missing counterparts and mismatches are written to the log, ending with <code>All files are the same.</code> or a list of the files that differ. The command reports success either way. It fails if no files match the pattern or a folder can't be read.</p>
 
@@ -242,9 +244,7 @@ CompareFilesContentNotOrdered("C:\Output\members.txt","C:\Baseline\members.txt")
 CompareMultipleFiles("C:\Output\*.txt","C:\Baseline","TEXT","","C:\Output\diffs");
 ```
 
-</details>
-
-#### Ignore rules
+## Ignore rules
 
 `CompareFiles` and `CompareMultipleFiles` can skip lines that match ignore rules. Lines are checked in each file separately, so a matching line is skipped in one file without skipping a line in the other.
 

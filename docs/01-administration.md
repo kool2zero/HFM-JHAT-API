@@ -2,9 +2,14 @@
 
 [← Back to index](../README.md)
 
-#### Overview
+## Overview
 
-These JHAT Commands will deal with administration of HFM
+Commands for HFM's two audit logs. They need an open application.
+
+- The **task audit** records user activity: who ran which task (a consolidation, a data load, a logon, and so on) and when. Some tasks store an attachment, such as the task's log.
+- The **data audit** records changes to data values, for scenarios and accounts that have data auditing enabled.
+
+These commands export audit records to local files or delete them, for example to archive and purge the audit tables.
 
 <p class="callout info">All parameters are required: the command fails with "Incorrect number of parameters." if any are missing.</p>
 
@@ -13,9 +18,13 @@ These JHAT Commands will deal with administration of HFM
 - **Output File Path**: the audit file is generated on the HFM server and then copied to this local path.
 - Commands always cover all audit records up to the time the command runs. There is no date filter.
 
-#### Commands
+## Commands
 
-<details id="bkmrk-DeleteFilteredDataAuditRecords-"><summary>DeleteFilteredDataAuditRecords</summary>
+**Commands on this page:**
+
+[DeleteFilteredDataAuditRecords](#deletefiltereddataauditrecords), [DeleteFilteredTaskAuditRecords](#deletefilteredtaskauditrecords), [GetLatestTaskAuditAttachment](#getlatesttaskauditattachment), [FilterTaskAudit](#filtertaskaudit), [GetTaskAudit](#gettaskaudit), [FilterDataAudit](#filterdataaudit), [GetDataAudit](#getdataaudit)
+
+### DeleteFilteredDataAuditRecords
 
 <p class="callout info">Deletes the data audit records that match the user and POV filter.</p>
 
@@ -34,7 +43,7 @@ These JHAT Commands will deal with administration of HFM
 DeleteFilteredDataAuditRecords("User Name","POV String");
 ```
 
-</details><details id="bkmrk-DeleteFilteredTaskAuditRecords-"><summary>DeleteFilteredTaskAuditRecords</summary>
+### DeleteFilteredTaskAuditRecords
 
 <p class="callout info">Deletes the task audit records that match the user and task filter.</p>
 
@@ -53,7 +62,7 @@ DeleteFilteredDataAuditRecords("User Name","POV String");
 DeleteFilteredTaskAuditRecords("All","Consolidation");
 ```
 
-</details><details id="bkmrk-GetLatestTaskAuditAttachment-"><summary>GetLatestTaskAuditAttachment</summary>
+### GetLatestTaskAuditAttachment
 
 <p class="callout info">Finds the matching task audit record with the most recent end time and downloads its attachment (for example, the log of a consolidation or data load) to the output path.</p>
 
@@ -71,9 +80,9 @@ DeleteFilteredTaskAuditRecords("All","Consolidation");
 GetLatestTaskAuditAttachment("All","Data Load","C:\TaskAudit\lastload.log");
 ```
 
-</details><details id="bkmrk-FilterTaskAudit-"><summary>FilterTaskAudit</summary>
+### FilterTaskAudit
 
-<p class="callout info">Filter the task audit and export to file</p>
+<p class="callout info">Exports the task audit records for one user (or all users) and one task (or all tasks) to a file.</p>
 
 **Input**
 
@@ -89,7 +98,7 @@ GetLatestTaskAuditAttachment("All","Data Load","C:\TaskAudit\lastload.log");
 FilterTaskAudit("All","Consolidation","C:\TaskAudit\consolidations.txt");
 ```
 
-</details><details id="bkmrk-GetTaskAudit-"><summary>GetTaskAudit</summary>
+### GetTaskAudit
 
 <p class="callout info">Exports all task audit records, for all users and tasks, to a file.</p>
 
@@ -105,9 +114,9 @@ FilterTaskAudit("All","Consolidation","C:\TaskAudit\consolidations.txt");
 GetTaskAudit("C:\TaskAudit\task.txt");
 ```
 
-</details><details id="bkmrk-FilterDataAudit-"><summary>FilterDataAudit</summary>
+### FilterDataAudit
 
-<p class="callout info">Filter the Data Audit Records</p>
+<p class="callout info">Exports the data audit records for one user (or all users) that match a POV to a file.</p>
 
 **Input**
 
@@ -123,7 +132,7 @@ GetTaskAudit("C:\TaskAudit\task.txt");
 FilterDataAudit("All","S#Actual.Y#2023.P#Dec","C:\DataAudit\filtered.txt");
 ```
 
-</details><details id="bkmrk-GetDataAudit-"><summary>GetDataAudit</summary>
+### GetDataAudit
 
 <p class="callout info">Exports all data audit records, for all users and POVs, to a file.</p>
 
@@ -139,9 +148,7 @@ FilterDataAudit("All","S#Actual.Y#2023.P#Dec","C:\DataAudit\filtered.txt");
 GetDataAudit("C:\DataAudit\all.txt");
 ```
 
-</details>
-
-#### Task Names
+## Task Names
 
 Task name values accepted by `DeleteFilteredTaskAuditRecords`, `GetLatestTaskAuditAttachment` and `FilterTaskAudit`. Matching ignores case and surrounding spaces.
 
