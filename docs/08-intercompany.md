@@ -199,9 +199,9 @@ GetICTransactions("Actual","2023","Dec","C:\Output\ictrans.txt");
 
 > [!WARNING]
 > Known bugs in this command:
-
-- **Dates:** the date filters are parsed as `mm/dd/yyyy`, where `mm` means *minutes*, so the month is ignored and the dates come out wrong.
-- **Display Partner Transactions:** this parameter overwrites Display Entity Transactions instead of setting its own option.
+>
+> - **Dates:** the date filters are parsed as `mm/dd/yyyy`, where `mm` means *minutes*, so the month is ignored and the dates come out wrong.
+> - **Display Partner Transactions:** this parameter overwrites Display Entity Transactions instead of setting its own option.
 
 **Input**
 

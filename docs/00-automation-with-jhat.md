@@ -16,9 +16,9 @@ The `JHAT` tool is another way to automatize tasks using a batch file and the HF
 
 The batch file embeds all libraries, paths and other references to execute HFM tasks.
 
-Before the first run, it’ mandatory to create `setenv.cmd` file and set the parameter `EPM_ORACLE_INSTANCE_FOR_JHAT` to point to the EPM instance:
+Before the first run, it's mandatory to create `setenv.cmd` file and set the parameter `EPM_ORACLE_INSTANCE_FOR_JHAT` to point to the EPM instance:
 
-<img src="https://raw.githubusercontent.com/kool2zero/HFM-JHAT-API/main/img/a2Rimage.png?sanitize=true&raw=true" />
+![setenv.cmd in Notepad, setting EPM_ORACLE_INSTANCE_FOR_JHAT to the EPM instance folder](../img/a2Rimage.png)
 
 ## JHAT usage
 
@@ -36,7 +36,7 @@ Logout();
 
 **Example:**
 
-<img src="https://raw.githubusercontent.com/kool2zero/HFM-JHAT-API/main/img/azXimage.png?sanitize=true&raw=true" />
+![Example script: Logon, OpenApplication, SetPOV and Consolidate for three POVs, CloseApplication and Logout](../img/azXimage.png)
 
 > [!NOTE]
 > In most cases, you will need to call the `Logon`, `OpenApplication`, `CloseApplication` and `Logout` commands as part of the script execution.
@@ -86,7 +86,7 @@ JHAT reads options as a letter followed **directly** by its value, with no space
 
 Any other option fails with "Argument … Not Valid". Use `jhat.bat -H` to see JHAT's own help:
 
-<img src="https://raw.githubusercontent.com/kool2zero/HFM-JHAT-API/main/img/qIJimage.png?sanitize=true&raw=true" />
+![Output of jhat.bat -H listing JHAT's command-line options](../img/qIJimage.png)
 
 > [!WARNING]
 > JHAT's help shows `-I` and `-O` the wrong way round in its usage line: `-I` is the script and `-O` is the log.
@@ -154,7 +154,7 @@ If the count is wrong, the command is reported as a syntax error ("Incorrect num
 
 Each command writes a block to the log:
 
-```
+```text
 **********OpenApplication : Successful**********
 Start execution of action(script line 2) at <timestamp>
 Successful

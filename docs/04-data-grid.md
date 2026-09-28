@@ -7,11 +7,11 @@
 These JHAT Commands relate to the data grid.
 
 > Data grids are a powerful feature in HFM (Hyperion Financial Management) that allow users to view and manipulate financial data in a flexible and dynamic manner. Essentially, a data grid is a spreadsheet-like interface that displays financial data organized by dimensions such as time, accounts, entities, and scenarios.
-> 
+>
 > With data grids in HFM, users can perform a range of tasks such as entering, editing, and aggregating data, performing calculations and consolidations, and exporting data for analysis or reporting. They can also customize the appearance and behavior of the data grid by selecting columns, filtering data, and applying formatting options.
-> 
+>
 > Data grids in HFM offer several benefits for financial reporting and analysis. They provide a highly interactive and user-friendly interface for accessing and manipulating financial data, which can improve efficiency and accuracy in financial reporting processes. They also allow for real-time data analysis and scenario planning, which can help organizations to make informed financial decisions and respond quickly to changes in the business environment.
-> 
+>
 > Overall, data grids are an essential tool for any organization using HFM for financial management and reporting, providing a powerful and flexible way to manage financial data and support effective decision-making.
 
 ## Commands
@@ -167,10 +167,10 @@ GetCell();
 
 > [!NOTE]
 > Writes detailed information about the cell at the current POV to the log:
-
-- **POV:** process unit, POV detail, view, phase and account calculation attribute
-- **Status:** calculation status, process level, cell status and security class (see [Status text](#status-text))
-- **Data:** scale, number of decimals, and displayed, full-resolution and stored data
+>
+> - **POV:** process unit, POV detail, view, phase and account calculation attribute
+> - **Status:** calculation status, process level, cell status and security class (see [Status text](#status-text))
+> - **Data:** scale, number of decimals, and displayed, full-resolution and stored data
 
 **Input**
 
@@ -723,7 +723,7 @@ GetCellStatus();
 | `NODATA` | No data |
 | `NOACCESS` | No read access |
 
-` ND` is added to a code when the Value member has no data (e.g. `CN ND`).
+`ND` is added to a code, after a space, when the Value member has no data (e.g. `CN ND`).
 
 **Process management status.** Written with `PROCESS`: `Not Supported`, `Not Started`, `First Pass`, `Review Level 1` … `Review Level 10`, `Submitted`, `Approved`, `Published`, `NOACCESS` (no read access) or `Unknown`.
 
