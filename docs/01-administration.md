@@ -23,7 +23,10 @@ These JHAT Commands will deal with administration of HFM
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--14" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">User Name</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">User name to filter on. `All` or `""` for all users.</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">POV String</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">POV String</td></tr></tbody></table>
+| Parameter | Mandatory | Comment |
+| --- | :---: | --- |
+| User Name | ✓ | User name to filter on. `All` or `""` for all users. |
+| POV String | ✓ | POV to filter on, e.g. `S#Actual.Y#2023.P#Dec` |
 
 **Example**
 
@@ -39,12 +42,10 @@ DeleteFilteredDataAuditRecords("User Name","POV String");
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory-" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">UserName</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">User name to filter on. `All` or `""` for all users.</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Task Name</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Task Name
-
-- One of the [task names](#task-names)
-- `ALL`
-
-</td></tr></tbody></table>
+| Parameter | Mandatory | Comment |
+| --- | :---: | --- |
+| UserName | ✓ | User name to filter on. `All` or `""` for all users. |
+| Task Name | ✓ | `ALL`, or one of the [task names](#task-names) |
 
 **Example**
 
@@ -58,12 +59,11 @@ DeleteFilteredTaskAuditRecords("All","Consolidation");
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--1" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">UserName</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">User name to filter on. `All` or `""` for all users.</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Task Name</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Task Name
-
-- One of the [task names](#task-names)
-- `ALL`
-
-</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Output File Path</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Path to store the Audit Attachment</td></tr></tbody></table>
+| Parameter | Mandatory | Comment |
+| --- | :---: | --- |
+| UserName | ✓ | User name to filter on. `All` or `""` for all users. |
+| Task Name | ✓ | `ALL`, or one of the [task names](#task-names) |
+| Output File Path | ✓ | Local file to save the attachment to |
 
 **Example**
 
@@ -77,12 +77,11 @@ GetLatestTaskAuditAttachment("All","Data Load","C:\TaskAudit\lastload.log");
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--2" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">UserName</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">User name to filter on. `All` or `""` for all users.</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Task Name</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Task Name
-
-- One of the [task names](#task-names)
-- `ALL`
-
-</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Output File Path</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Path to store the audit</td></tr></tbody></table>
+| Parameter | Mandatory | Comment |
+| --- | :---: | --- |
+| UserName | ✓ | User name to filter on. `All` or `""` for all users. |
+| Task Name | ✓ | `ALL`, or one of the [task names](#task-names) |
+| Output File Path | ✓ | Local file to save the audit records to |
 
 **Example**
 
@@ -96,7 +95,9 @@ FilterTaskAudit("All","Consolidation","C:\TaskAudit\consolidations.txt");
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--3" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Output File Path</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Path to store the audit</td></tr></tbody></table>
+| Parameter | Mandatory | Comment |
+| --- | :---: | --- |
+| Output File Path | ✓ | Local file to save the audit records to |
 
 **Example**
 
@@ -110,7 +111,11 @@ GetTaskAudit("C:\TaskAudit\task.txt");
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--4" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">User Name</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">User name to filter on. `All` or `""` for all users.</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">POV String</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">POV String</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Output File Path</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Path to store the audit</td></tr></tbody></table>
+| Parameter | Mandatory | Comment |
+| --- | :---: | --- |
+| User Name | ✓ | User name to filter on. `All` or `""` for all users. |
+| POV String | ✓ | POV to filter on, e.g. `S#Actual.Y#2023.P#Dec` |
+| Output File Path | ✓ | Local file to save the audit records to |
 
 **Example**
 
@@ -124,7 +129,9 @@ FilterDataAudit("All","S#Actual.Y#2023.P#Dec","C:\DataAudit\filtered.txt");
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--5" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Output File Path</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Path to store the audit</td></tr></tbody></table>
+| Parameter | Mandatory | Comment |
+| --- | :---: | --- |
+| Output File Path | ✓ | Local file to save the audit records to |
 
 **Example**
 
