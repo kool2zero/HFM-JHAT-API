@@ -12,7 +12,7 @@ These JHAT Commands will handle the application.
 
 <p class="callout info">Sets the Point of View (POV) for the commands to follow.</p>
 
-<p class="callout info">`SetPOV` and `SetPOVName` are identical. All 12 parameters are required. Custom 1–4 map to the application's first four custom dimensions, in order. On success, the selected member for each dimension is written to the log.</p>
+<p class="callout info"><code>SetPOV</code> and <code>SetPOVName</code> are identical. All 12 parameters are required. Custom 1–4 map to the application's first four custom dimensions, in order. On success, the selected member for each dimension is written to the log.</p>
 
 **Input**
 
@@ -75,7 +75,7 @@ Logon("false", "", "user", "password");
 
 </details><details id="bkmrk-logout-logs-out-of-h"><summary>Logout</summary>
 
-<p class="callout info">Discards the SSO token and stored credentials from `Logon`. It does not call the server.</p>
+<p class="callout info">Discards the SSO token and stored credentials from <code>Logon</code>. It does not call the server.</p>
 
 **Input**
 
@@ -110,7 +110,7 @@ DeleteApplication("Server","Application");
 
 </details><details id="bkmrk-createapplicationext"><summary>CreateApplicationExtDim / CreateApplicationCAS</summary>
 
-<p class="callout info">Creates an Application on the Server. `CreateApplicationExtDim` and `CreateApplicationCAS` are identical and take 7 or 8 parameters.</p>
+<p class="callout info">Creates an Application on the Server. <code>CreateApplicationExtDim</code> and <code>CreateApplicationCAS</code> are identical and take 7 or 8 parameters.</p>
 
 <p class="callout danger">Be careful when running this command.</p>
 
@@ -136,7 +136,7 @@ CreateApplicationCAS("Server","TaxApp","Tax Provision","ProfilePath","StorageFol
 
 </details><details id="bkmrk-openapplication-open"><summary>OpenApplication</summary>
 
-<p class="callout info">Opens a session on the specified application (locale `en`) using the SSO token from `Logon`, and loads the application's dimensions for `SetPOV`. Most other commands need an open application.</p>
+<p class="callout info">Opens a session on the specified application (locale <code>en</code>) using the SSO token from <code>Logon</code>, and loads the application's dimensions for <code>SetPOV</code>. Most other commands need an open application.</p>
 
 **Input**
 
@@ -153,7 +153,7 @@ OpenApplication("Cluster","Application");
 
 </details><details id="bkmrk-closeapplication-clo"><summary>CloseApplication</summary>
 
-<p class="callout info">Closes the session opened by `OpenApplication`, removes any data grid the script created, and clears the cached dimensions. If no application is open, the command is ignored. It always reports success.</p>
+<p class="callout info">Closes the session opened by <code>OpenApplication</code>, removes any data grid the script created, and clears the cached dimensions. If no application is open, the command is ignored. It always reports success.</p>
 
 **Input**
 
@@ -167,11 +167,11 @@ CloseApplication();
 
 </details><details id="bkmrk-shutdownapplication-"><summary>shutdownApplication</summary>
 
-<p class="callout info">Shuts down the currently open application (the one from `OpenApplication`) on all the Jhsxserver instances across all the clusters and servers. If no application is open, nothing happens.</p>
+<p class="callout info">Shuts down the currently open application (the one from <code>OpenApplication</code>) on all the Jhsxserver instances across all the clusters and servers. If no application is open, nothing happens.</p>
 
 <p class="callout danger">Be careful when running this command.</p>
 
-<p class="callout warning">Although JHAT's built-in usage text shows `(<Application name>)`, the command takes no parameters. Passing one fails with "Incorrect number of parameters."</p>
+<p class="callout warning">Although JHAT's built-in usage text shows <code>(&lt;Application name&gt;)</code>, the command takes no parameters. Passing one fails with "Incorrect number of parameters."</p>
 
 **Input**
 
@@ -204,7 +204,7 @@ DeleteAllApplications("Server");
 
 </details><details id="bkmrk-copyapplication-copi"><summary>CopyApplication</summary>
 
-<p class="callout info">Copies one application to a new application. The copy flags are `true` only when the value is `true` (any case). Any other value counts as `false`.</p>
+<p class="callout info">Copies one application to a new application. The copy flags are <code>true</code> only when the value is <code>true</code> (any case). Any other value counts as <code>false</code>.</p>
 
 <p class="callout danger">Be careful when running this command.</p>
 
@@ -228,7 +228,7 @@ CopyApplication("PRODAPP", "TESTAPP", "Copy of PRODAPP", "Cluster", "Project Nam
 
 </details><details id="bkmrk-setpreferences-sets-"><summary>SetPreferences</summary>
 
-<p class="callout info">Sets the logged-on user's preferences for an application. It needs `Logon` but not `OpenApplication`.</p>
+<p class="callout info">Sets the logged-on user's preferences for an application. It needs <code>Logon</code> but not <code>OpenApplication</code>.</p>
 
 <p class="callout danger">Be careful when running this command.</p>
 
@@ -252,7 +252,7 @@ SetPreferences("Application", "Cluster", "English", ".", ",", "true", "false");
 
 </details><details id="bkmrk-getpreferences-gets-"><summary>GetPreferences</summary>
 
-<p class="callout info">Gets the logged-on user's preferences for an application and writes them to an output file, one `PREFERENCE=value` per line. The file is overwritten if it exists.</p>
+<p class="callout info">Gets the logged-on user's preferences for an application and writes them to an output file, one <code>PREFERENCE=value</code> per line. The file is overwritten if it exists.</p>
 
 **Input**
 
@@ -270,13 +270,13 @@ GetPreferences("Application Name", "Cluster","Output File Path");
 
 </details><details id="bkmrk-modifyapplication-mo"><summary>ModifyApplication</summary>
 
-<p class="callout info">[Modify the application](https://docs.oracle.com/cd/E57185_01/OHFMA/help_modifyapp.htm#OHFMA-applications_508)</p>
+<p class="callout info"><a href="https://docs.oracle.com/cd/E57185_01/OHFMA/help_modifyapp.htm#OHFMA-applications_508">Modify the application</a></p>
 
 <p class="callout danger">Be careful when running this command.</p>
 
 <p class="callout info">The application is put in admin mode while changes are made and taken out of it afterwards, including when the change fails.</p>
 
-<p class="callout warning">The module flags only disable modules. Each `false` flag disables that module. A `true` flag leaves the module's current setting alone, and if every flag is `true` no module change is sent at all. So this command can't re-enable a module that is already disabled.</p>
+<p class="callout warning">The module flags only disable modules. Each <code>false</code> flag disables that module. A <code>true</code> flag leaves the module's current setting alone, and if every flag is <code>true</code> no module change is sent at all. So this command can't re-enable a module that is already disabled.</p>
 
 **Input**
 

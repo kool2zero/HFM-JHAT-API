@@ -14,7 +14,7 @@ These commands work on the process unit at the POV set by `SetPOV` (Scenario, Ye
 
 <details id="bkmrk-ProcessFlowGetHistory-"><summary>ProcessFlowGetHistory</summary>
 
-<p class="callout info">Writes the cell's process flow history to a UTF-8 file: a `Process Flow History:` line, then one tab-separated line per entry (time, user, action, new state, comment).</p>
+<p class="callout info">Writes the cell's process flow history to a UTF-8 file: a <code>Process Flow History:</code> line, then one tab-separated line per entry (time, user, action, new state, comment).</p>
 
 <p class="callout warning">Because of a bug, the third parameter overwrites the second and user IDs are never suppressed. The command also reports success even if the history can't be written. Check the log for the error.</p>
 

@@ -14,7 +14,7 @@ These commands need an open application, except `exit`. Where a parameter takes 
 
 <p class="callout info">Runs the Manage Ownership shares calculation for a scenario, year and periods.</p>
 
-<p class="callout warning">Mode `Descendants` must be spelled `Decendants` (as in the code). The correct spelling isn't recognized and falls back to all entities.</p>
+<p class="callout warning">Mode <code>Descendants</code> must be spelled <code>Decendants</code> (as in the code). The correct spelling isn't recognized and falls back to all entities.</p>
 
 **Input**
 
@@ -86,7 +86,7 @@ CopyData("Actual","Budget","2023","2024","1","2","All","All","C:\Output\copydata
 
 <p class="callout danger">Be careful when running this command.</p>
 
-<p class="callout warning">Because of a bug, Clear Rates and System Data only takes effect when Detailed Logging is also `true`.</p>
+<p class="callout warning">Because of a bug, Clear Rates and System Data only takes effect when Detailed Logging is also <code>true</code>.</p>
 
 **Input**
 
@@ -143,9 +143,9 @@ exit();
 
 </details><details id="bkmrk-UpdateParameter-"><summary>UpdateParameter</summary>
 
-<p class="callout info">Sets an HFM system parameter by writing directly to the `XFM_PARAMETERS` table in the HFM database, for cluster, server and application `ALL`. JHAT connects with the database credentials from the EPM registry, and records the logged-on user as `UpdatedBy`. Needs `Logon`. Fails if no row matches the parameter name.</p>
+<p class="callout info">Sets an HFM system parameter by writing directly to the <code>XFM_PARAMETERS</code> table in the HFM database, for cluster, server and application <code>ALL</code>. JHAT connects with the database credentials from the EPM registry, and records the logged-on user as <code>UpdatedBy</code>. Needs <code>Logon</code>. Fails if no row matches the parameter name.</p>
 
-<p class="callout danger">This bypasses HFM and changes the database directly. Before connecting, it also prints every database connection property to the console, **including the database password**. Don't capture JHAT's console output where others can read it.</p>
+<p class="callout danger">This bypasses HFM and changes the database directly. Before connecting, it also prints every database connection property to the console, <b>including the database password</b>. Don't capture JHAT's console output where others can read it.</p>
 
 **Input**
 

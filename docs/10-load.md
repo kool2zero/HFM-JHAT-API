@@ -66,7 +66,7 @@ LoadSecurityExpanded("C:\Hfm\Security.sec","C:\Hfm\SecurityLoad.log",";","false"
 
 </details><details id="bkmrk-LoadMetaData-"><summary>LoadMetaData</summary>
 
-<p class="callout info">Loads a metadata file. The format comes from the file extension: `.xml` loads XML, and anything else loads the native (`.app`) format.</p>
+<p class="callout info">Loads a metadata file. The format comes from the file extension: <code>.xml</code> loads XML, and anything else loads the native (<code>.app</code>) format.</p>
 
 **Input**
 
@@ -175,8 +175,8 @@ LoadICTransactions("C:\HFM\ICTrans.trn","C:\HFM\ICTrans.log","Load","Merge",";")
 | 3 | Local File | Local file to load |
 | 4 | Security Class | Security class for the document |
 | 5 | Overwrite | `true` / `false` |
-| 6 | Document Type | Type of document (see [Documents](05-documents.md)) |
-| 7 | File Type | File type of document |
+| 6 | Document Type | e.g. `WebForm` (see [Document and file types](05-documents.md#document-and-file-types)) |
+| 7 | File Type | e.g. `Form` |
 | 8 | Private | `true` / `false` |
 | 9 | Folder | Document Manager folder, or `\` for the root |
 
@@ -197,7 +197,7 @@ LoadICTransactions("C:\HFM\ICTrans.trn","C:\HFM\ICTrans.log","Load","Merge",";")
 **Example**
 
 ```dart
-LoadDocument("IncomeStatement","","C:\inputdir\IncomeStatement.wdf","[Default]","true","<Document Type>","<File Type>","false","\Forms");
+LoadDocument("IncomeStatement","","C:\inputdir\IncomeStatement.wdf","[Default]","true","WebForm","Form","false","\Forms");
 LoadDocument("Forms","Data forms","WebForm","[Default]","false","","Folder","false","");
 ```
 

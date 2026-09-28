@@ -80,7 +80,7 @@ AddItemsToListFromMemberlist("9","Entity","[Descendants]","Regional");
 
 <p class="callout info">Adds one item to a list.</p>
 
-<p class="callout warning">Only `Period`, `Entity`, `Value`, `Account`, `ICP` and `""` (string list) are supported. For any other dimension, including `Scenario`, `Year` and `View`, nothing is added but the command still reports success.</p>
+<p class="callout warning">Only <code>Period</code>, <code>Entity</code>, <code>Value</code>, <code>Account</code>, <code>ICP</code> and <code>""</code> (string list) are supported. For any other dimension, including <code>Scenario</code>, <code>Year</code> and <code>View</code>, nothing is added but the command still reports success.</p>
 
 **Input**
 
@@ -99,7 +99,7 @@ AddItemToList("2","","S#Actual.Y#2023.P#Dec.E#Entity2");
 
 </details><details id="bkmrk-ExtractMetaData-"><summary>ExtractMetaData</summary>
 
-<p class="callout info">Extracts application metadata. The file format comes from the extension of the output file: `.xml` gives XML, and anything else gives the native (`.app`) format.</p>
+<p class="callout info">Extracts application metadata. The file format comes from the extension of the output file: <code>.xml</code> gives XML, and anything else gives the native (<code>.app</code>) format.</p>
 
 <p class="callout warning">The command reads parameters 8–11 as custom dimensions 1–4. If you pass them and the application has fewer than 4 custom dimensions, the command fails. Custom dimensions beyond the 4th are always extracted.</p>
 
@@ -133,7 +133,7 @@ ExtractMetaData("C:\hfm\outbox\Metadata.xml","C:\hfm\outbox\MetadataExtract.log"
 
 </details><details id="bkmrk-ExtractMetaDataExtDim-"><summary>ExtractMetaDataExtDim</summary>
 
-<p class="callout info">Extracts application metadata, with dimensions chosen in a single string. This suits applications with any number of custom dimensions. The file format comes from the extension of the output file, as for `ExtractMetaData`.</p>
+<p class="callout info">Extracts application metadata, with dimensions chosen in a single string. This suits applications with any number of custom dimensions. The file format comes from the extension of the output file, as for <code>ExtractMetaData</code>.</p>
 
 **Input**
 
@@ -175,7 +175,7 @@ The extract includes:
 - **Custom dimensions:** base members. Custom 1 also includes `[ConsolMethods]`, and Custom 1–2 include `[Currencies]`.
 - **Detail:** cell text and line item detail
 
-<p class="callout warning">JHAT only copies the data file when the server compresses it (`.gz`), which it decompresses. Otherwise only the log file is copied.</p>
+<p class="callout warning">JHAT only copies the data file when the server compresses it (<code>.gz</code>), which it decompresses. Otherwise only the log file is copied.</p>
 
 **Input**
 
@@ -204,7 +204,7 @@ ExtractData("D:\Data_Extract.txt","D:\Data_Extract.log",";","YTD","2023","Actual
 
 </details><details id="bkmrk-EAExtract-"><summary>EAExtract</summary>
 
-<p class="callout danger">**Not an Extended Analytics extract.** JHAT's usage text describes a 17-parameter extract to a database table (DSN, table prefix, …), but the command's code is a copy of `ExtractData`. It requires 17 parameters, reads the first 10 exactly as `ExtractData` does (so parameter 1 is used as the output file path, not a DSN), and ignores parameters 11–17. Use `ExtractData` instead.</p>
+<p class="callout danger"><b>Not an Extended Analytics extract.</b> JHAT's usage text describes a 17-parameter extract to a database table (DSN, table prefix, …), but the command's code is a copy of <code>ExtractData</code>. It requires 17 parameters, reads the first 10 exactly as <code>ExtractData</code> does (so parameter 1 is used as the output file path, not a DSN), and ignores parameters 11–17. Use <code>ExtractData</code> instead.</p>
 
 **Input**
 
@@ -218,7 +218,7 @@ EAExtract("D:\Data_Extract.txt","D:\Data_Extract.log",";","YTD","2023","Actual",
 
 </details><details id="bkmrk-ExtractPhaseInfo-"><summary>ExtractPhaseInfo</summary>
 
-<p class="callout info">Extracts phase submission (phase group) data for all scenarios, years, periods and entities (Entity Currency, base accounts, ICPs and custom members), and waits for the extract to finish. The data file is copied only when the server compresses it, as for `ExtractData`.</p>
+<p class="callout info">Extracts phase submission (phase group) data for all scenarios, years, periods and entities (Entity Currency, base accounts, ICPs and custom members), and waits for the extract to finish. The data file is copied only when the server compresses it, as for <code>ExtractData</code>.</p>
 
 **Input**
 
@@ -403,7 +403,7 @@ ExtractMemberlists("C:\Output\memberlists.lst","C:\Output\memberlists.log");
 
 </details><details id="bkmrk-ExtractDataExtDim-"><summary>ExtractDataExtDim</summary>
 
-<p class="callout info">Extracts data for any POV (member lists allowed), with full control over what is included, and waits for the extract to finish. The data file is copied only when the server compresses it, as for `ExtractData`.</p>
+<p class="callout info">Extracts data for any POV (member lists allowed), with full control over what is included, and waits for the extract to finish. The data file is copied only when the server compresses it, as for <code>ExtractData</code>.</p>
 
 **Input**
 
@@ -440,14 +440,14 @@ ExtractDataExtDim("S#Actual.Y#2023.P{[Base]}.W#YTD.E{[Base]}.V#<Entity Currency>
 | --- | :---: | --- |
 | Document Name | ✓ | Name of the document |
 | Output File | ✓ | Local file to write |
-| Document Type | ✓ | Type of the document (see [Documents](05-documents.md)) |
-| File Type | ✓ | File type of the document |
+| Document Type | ✓ | e.g. `WebForm` (see [Document and file types](05-documents.md#document-and-file-types)) |
+| File Type | ✓ | e.g. `Form` |
 | Folder | ✓ | Document Manager folder, or `\` for the root |
 
 **Example**
 
 ```dart
-ExtractDocument("IncomeStatement","C:\Output\IncomeStatement.xml","<Document Type>","<File Type>","\Forms\Actuals");
+ExtractDocument("IncomeStatement","C:\Output\IncomeStatement.xml","WebForm","Form","\Forms\Actuals");
 ```
 
 </details><details id="bkmrk-ExtractModuleConfiguration-"><summary>ExtractModuleConfiguration</summary>

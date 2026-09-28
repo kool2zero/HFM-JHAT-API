@@ -63,7 +63,7 @@ FilterEPUGrid("Actual", "2023", "Dec", "", "", "Include", "Both", "false", "BOTH
 
 </details><details id="bkmrk-CalcEPU-"><summary>CalcEPU</summary>
 
-<p class="callout info">Runs the equity pickup calculation for the Scenario, Year and Period set by `SetPOV`, and waits for the task to finish. The command fails if the task doesn't complete (see <a href="00-automation-with-jhat.md#long-running-tasks">long-running tasks</a>).</p>
+<p class="callout info">Runs the equity pickup calculation for the Scenario, Year and Period set by <code>SetPOV</code>, and waits for the task to finish. The command fails if the task doesn't complete (see <a href="00-automation-with-jhat.md#long-running-tasks">long-running tasks</a>).</p>
 
 **Input**
 

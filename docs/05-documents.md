@@ -7,7 +7,7 @@
 These JHAT Commands are related to document management
 
 - **Folders:** pass `\` for the root folder of Document Manager.
-- **Document Type** and **File Type:** names of HFM document types and file types (for example, a task list is a Workspace document with an XML file type). JHAT converts them in a helper class that wasn't part of the decompiled source reviewed, so the exact accepted spellings aren't documented here.
+- **Document Type** and **File Type:** see [Document and file types](#document-and-file-types) below.
 - **true/false parameters:** `true` (any case) means true. Any other value means false.
 - **Task lists:** stored in Document Manager as Workspace documents with the XML file type.
 
@@ -15,7 +15,7 @@ These JHAT Commands are related to document management
 
 <details id="bkmrk-EnumDocuments-"><summary>EnumDocuments</summary>
 
-<p class="callout info">Lists the documents in a Document Manager folder and writes them to a UTF-8 file, one `name;description` line per document.</p>
+<p class="callout info">Lists the documents in a Document Manager folder and writes them to a UTF-8 file, one <code>name;description</code> line per document.</p>
 
 **Input**
 
@@ -30,7 +30,7 @@ These JHAT Commands are related to document management
 **Example**
 
 ```dart
-EnumDocuments("\", "<Document Type>", "<File Type>", "false", "C:\Output\documents.txt");
+EnumDocuments("\", "WebForm", "Form", "false", "C:\Output\documents.txt");
 ```
 
 </details><details id="bkmrk-EnumTasksUnderTaskList-"><summary>EnumTasksUnderTaskList</summary>
@@ -69,12 +69,12 @@ EnumTasksUnderTaskList("\TaskLists", "MonthEnd", "C:\Output\MonthEnd.xml");
 **Example**
 
 ```dart
-DeleteDocument("MonthEnd", "<Document Type>", "<File Type>", "\TaskLists");
+DeleteDocument("MonthEnd", "Workspace", "XML", "\TaskLists");
 ```
 
 </details><details id="bkmrk-CreateTaskList-"><summary>CreateTaskList</summary>
 
-<p class="callout info">Creates an empty task list owned by the logged-on user. Use `AddTaskToTaskList` to add documents to it.</p>
+<p class="callout info">Creates an empty task list owned by the logged-on user. Use <code>AddTaskToTaskList</code> to add documents to it.</p>
 
 **Input**
 
@@ -112,7 +112,7 @@ CreateTaskList("MonthEnd", "Month end tasks", "[Default]", "false", "true", "\Ta
 **Example**
 
 ```dart
-AddTaskToTaskList("MonthEnd", "\TaskLists", "IncomeStatement", "\Forms\Actuals", "<Document Type>", "<File Type>", "true");
+AddTaskToTaskList("MonthEnd", "\TaskLists", "IncomeStatement", "\Forms\Actuals", "WebForm", "Form", "true");
 ```
 
 </details><details id="bkmrk-DeleteTaskFromTaskList-"><summary>DeleteTaskFromTaskList</summary>
@@ -134,7 +134,41 @@ AddTaskToTaskList("MonthEnd", "\TaskLists", "IncomeStatement", "\Forms\Actuals",
 **Example**
 
 ```dart
-DeleteTaskFromTaskList("MonthEnd", "\TaskLists", "IncomeStatement", "\Forms\Actuals", "<Document Type>", "<File Type>", "true");
+DeleteTaskFromTaskList("MonthEnd", "\TaskLists", "IncomeStatement", "\Forms\Actuals", "WebForm", "Form", "true");
 ```
 
 </details>
+
+#### Document and file types
+
+These names are used by the Documents commands and by `ExtractDocument` and `LoadDocument`. They're matched ignoring case. An unrecognized name isn't rejected by JHAT; it's passed to HFM as "no type", so the command fails or matches nothing.
+
+| Document Type | HFM document type |
+| --- | --- |
+| `WebForm` | Data form |
+| `WebGrid` | Data grid |
+| `Journal` | Journal report |
+| `Intercompany` | Intercompany report |
+| `ICTransaction` | IC transaction report |
+| `ICMatchAccount` | IC matching report by account |
+| `ICMatchID` | IC matching report by transaction ID |
+| `ICMatchTemplate` | IC matching template |
+| `DataExplorer` | Data Explorer report |
+| `Workspace` | Task list |
+| `Task` | Task |
+| `Custom` | Custom document |
+| `Folder` | Folder |
+| `All` | All types |
+
+| File Type | HFM file type |
+| --- | --- |
+| `Form` | Form definition |
+| `Report` | Report definition |
+| `XML` | XML (e.g. task lists) |
+| `HTML` | Report HTML |
+| `ReportXML` | Report XML |
+| `Custom` | Custom file |
+| `Folder` | Folder |
+| `All` | All file types |
+
+Common pairs are `WebForm` / `Form` for data forms and `Workspace` / `XML` for task lists.

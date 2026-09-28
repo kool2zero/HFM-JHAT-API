@@ -13,13 +13,15 @@ A macro is a name and a replacement text. When a macro is defined, JHAT replaces
 - **Matching:** plain text, case-sensitive, anywhere inside a parameter. It isn't a whole-word match.
 - **Naming:** give macros names that can't appear by accident, such as `__ENV__`.
 - **Scope:** macros last until the end of the script.
+- **When substitution happens:** just before each command runs, so a macro defined on one line applies to every later line.
+- **Built-in macros:** `__@SCRIPTDIR__`, `__@MACROFILEDIR__` and `__@BASEDIR__` are set automatically (see [How a script runs](00-automation-with-jhat.md#how-a-script-runs)). A macro file can also be loaded at startup with the `-M` option.
 - **Logging:** `Comment`, `LoadMacros` and `SubstituteMacro` don't write the usual start/end/success lines to the log.
 
 #### Commands
 
 <details id="bkmrk-SubstituteMacro-"><summary>SubstituteMacro</summary>
 
-<p class="callout info">The routine that replaces macro names in a command's parameters. It skips <code>DefineMacro</code> and <code>RemoveMacro</code>, so those see the macro name itself. The code that runs it for each script line wasn't in the reviewed source. Calling it from a script only substitutes within its own parameter, which has no useful effect.</p>
+<p class="callout info">The routine JHAT runs automatically before every command to replace macro names in its parameters. It skips <code>DefineMacro</code> and <code>RemoveMacro</code>, so those see the macro name itself. Calling it from a script only substitutes within its own parameter, which has no useful effect.</p>
 
 **Input**
 

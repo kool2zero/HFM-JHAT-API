@@ -30,7 +30,9 @@ Delay("5000");
 
 </details><details id="bkmrk-BeginLoop-"><summary>BeginLoop</summary>
 
-<p class="callout info">Marks the start of a block to repeat. The command itself only logs success. Any repeating is done by JHAT's script runner, which wasn't part of the source reviewed, so this behavior isn't confirmed.</p>
+<p class="callout info">Repeats the commands between <code>BeginLoop</code> and the next <code>EndLoop</code> the given number of times in total. JHAT expands the loop before the script starts, by copying the commands.</p>
+
+<p class="callout warning">Don't nest loops. JHAT's nesting check never triggers, so a nested loop doesn't repeat as you'd expect. Log entries of the repeated copies of a command are shared, so their log blocks run together. The repeat count must be a number.</p>
 
 **Input**
 
@@ -48,7 +50,7 @@ EndLoop();
 
 </details><details id="bkmrk-EndLoop-"><summary>EndLoop</summary>
 
-<p class="callout info">Marks the end of a <code>BeginLoop</code> block. As for <code>BeginLoop</code>, the command itself does nothing.</p>
+<p class="callout info">Marks the end of a <code>BeginLoop</code> block.</p>
 
 **Input**
 
@@ -62,7 +64,9 @@ EndLoop();
 
 </details><details id="bkmrk-AbortOnError-"><summary>AbortOnError</summary>
 
-<p class="callout info">Sets whether the script should stop at the first failed command. The command only stores the setting. Stopping is done by JHAT's script runner, which wasn't part of the source reviewed.</p>
+<p class="callout info">Turns abort on error on or off from this point in the script. While it's on, the script stops after the first command that fails, and the log ends with <code>Aborting the script ...</code>. The <code>-X1</code> command-line option turns it on from the start.</p>
+
+<p class="callout warning">Commands skipped for having the wrong number of parameters don't count as failures. Neither do load and extract commands that report success when HFM failed (see <a href="10-load.md">Load</a>). JHAT's exit code stays 0 even when it aborts.</p>
 
 **Input**
 
@@ -79,6 +83,8 @@ AbortOnError("true");
 </details><details id="bkmrk-SetNegativeTestingFlag-"><summary>SetNegativeTestingFlag</summary>
 
 <p class="callout info">Marks the following commands as negative tests (tests expected to fail). While the flag is on, each command's log header ends in <code>: Negative Testcase</code>. The command itself isn't marked. It doesn't change whether a command succeeds or fails.</p>
+
+<p class="callout info">In the end-of-script summary, a negative-test command that <b>succeeds</b> counts as a "negative test failed", and one that fails isn't counted. Abort on error still stops the script when a negative-test command fails.</p>
 
 **Input**
 
@@ -190,7 +196,7 @@ ReplaceLineInTextFile("C:\JHAT\settings.txt","Environment = TEST","Environment =
 | 2 | File 2 | |
 | 3 | Mode | Optional. `TEXT` (default), `TEXTIGNOREWS` or `BINARY`. Anything else makes the command fail. |
 | 4 | Diff File | Optional. Local file for the differences. |
-| 5 | Ignore Rules | Optional. Rules for lines to skip, as space-separated words (an odd number of words). The rule syntax is defined in a class that wasn't part of the source reviewed. |
+| 5 | Ignore Rules | Optional. Lines to skip. See [Ignore rules](#ignore-rules). |
 
 **Example**
 
@@ -237,3 +243,21 @@ CompareMultipleFiles("C:\Output\*.txt","C:\Baseline","TEXT","","C:\Output\diffs"
 ```
 
 </details>
+
+#### Ignore rules
+
+`CompareFiles` and `CompareMultipleFiles` can skip lines that match ignore rules. Lines are checked in each file separately, so a matching line is skipped in one file without skipping a line in the other.
+
+A rule is `beginswith=<text>` or `contains=<text>`. Rules can be joined with ` AND ` or ` OR ` (upper case, one space each side). For example:
+
+```dart
+CompareFiles("C:\Output\data.txt","C:\Baseline\data.txt","TEXT","","beginswith=!");
+```
+
+- The function name (`beginswith`, `contains`) is matched ignoring case. The text is matched **case-sensitively** against the untrimmed line.
+- The text can't contain spaces or `=`.
+- An invalid rule makes the command fail.
+
+<p class="callout warning"><b>Only the last rule counts.</b> Because of a bug in how rules are combined, <code>contains=A OR contains=B</code> skips only lines containing <code>B</code>. Use a single rule.</p>
+
+<p class="callout warning">If ignore rules are given and one file has more lines than the other, the command fails when it reaches the end of the shorter file.</p>

@@ -26,7 +26,7 @@ Unless noted otherwise, these commands work on the POV set by `SetPOV` / `SetPOV
 
 <details id="bkmrk-DefineGrid-"><summary>DefineGrid</summary>
 
-<p class="callout info">Defines a data grid with one row dimension and one column dimension. All other dimensions come from the current POV. The grid is used by `GetGrid`, `GetGridExtDim` and `GetCellsExtDim`. Defining a new grid removes the previous one.</p>
+<p class="callout info">Defines a data grid with one row dimension and one column dimension. All other dimensions come from the current POV. The grid is used by <code>GetGrid</code>, <code>GetGridExtDim</code> and <code>GetCellsExtDim</code>. Defining a new grid removes the previous one.</p>
 
 **Input**
 
@@ -48,7 +48,7 @@ DefineGrid("Entity","[Base]","TotalGroup","Period","[Base]","");
 
 </details><details id="bkmrk-DefineGridExtDim-"><summary>DefineGridExtDim / DefineDataRetrieval</summary>
 
-<p class="callout info">Defines a data grid that can have several row and column dimensions. `DefineGridExtDim` and `DefineDataRetrieval` are identical. All other dimensions come from the current POV. Defining a new grid removes the previous one.</p>
+<p class="callout info">Defines a data grid that can have several row and column dimensions. <code>DefineGridExtDim</code> and <code>DefineDataRetrieval</code> are identical. All other dimensions come from the current POV. Defining a new grid removes the previous one.</p>
 
 **Input**
 
@@ -70,7 +70,7 @@ DefineDataRetrieval("E{TotalGroup.[Descendants]}.A{NetIncome.[Descendants]}","P{
 
 </details><details id="bkmrk-GetGrid-"><summary>GetGrid</summary>
 
-<p class="callout info">Writes rows of the grid defined by `DefineGrid` / `DefineGridExtDim` to a semicolon-separated file. Column headers come first, then one line per row with its row headers followed by the cell values. JHAT remembers the current row between calls, so you can page through a grid with `DOWN`.</p>
+<p class="callout info">Writes rows of the grid defined by <code>DefineGrid</code> / <code>DefineGridExtDim</code> to a semicolon-separated file. Column headers come first, then one line per row with its row headers followed by the cell values. JHAT remembers the current row between calls, so you can page through a grid with <code>DOWN</code>.</p>
 
 **Input**
 
@@ -84,8 +84,8 @@ DefineDataRetrieval("E{TotalGroup.[Descendants]}.A{NetIncome.[Descendants]}","P{
 | Type of Extract | Cell contents |
 | --- | --- |
 | `VALUE` | Cell value |
-| `STATUS` or `CALCSTATUS` | Calculation status text |
-| `PROCESS` | Process management status text |
+| `STATUS` or `CALCSTATUS` | Calculation status code, e.g. `OK`, `CN` (see [Status text](#status-text)) |
+| `PROCESS` | Process management status, e.g. `Review Level 2` (see [Status text](#status-text)) |
 | `DROID` | Raw numeric cell status |
 | `STATUSHEX` | Raw cell status in hexadecimal |
 | `NOTHING` | No grid. The file only says how many rows the grid has. |
@@ -99,9 +99,9 @@ GetGrid("C:\Output\grid.txt","VALUE","ALL","0");
 
 </details><details id="bkmrk-GetGridExtDim-"><summary>GetGridExtDim / GetCellsExtDim</summary>
 
-<p class="callout info">Writes the whole grid defined by `DefineGrid` / `DefineGridExtDim` to a semicolon-separated file, in the same layout as `GetGrid`. `GetGridExtDim` and `GetCellsExtDim` are identical.</p>
+<p class="callout info">Writes the whole grid defined by <code>DefineGrid</code> / <code>DefineGridExtDim</code> to a semicolon-separated file, in the same layout as <code>GetGrid</code>. <code>GetGridExtDim</code> and <code>GetCellsExtDim</code> are identical.</p>
 
-<p class="callout warning">The extract types differ from `GetGrid`. Here `STATUS` gives the raw numeric cell status, and `CALCSTATUS` gives the calculation status text.</p>
+<p class="callout warning">The extract types differ from <code>GetGrid</code>. Here <code>STATUS</code> gives the raw numeric cell status, and <code>CALCSTATUS</code> gives the calculation status text.</p>
 
 **Input**
 
@@ -155,7 +155,7 @@ GetCell();
 <p class="callout info">Writes detailed information about the cell at the current POV to the log:</p>
 
 - **POV:** process unit, POV detail, view, phase and account calculation attribute
-- **Status:** calculation status, process level, cell status and security class
+- **Status:** calculation status, process level, cell status and security class (see [Status text](#status-text))
 - **Data:** scale, number of decimals, and displayed, full-resolution and stored data
 
 **Input**
@@ -207,7 +207,7 @@ GetCellEntityDetails("C:\Output\entitydetails.txt");
 
 </details><details id="bkmrk-GetSourceTransactions-"><summary>GetSourceTransactions</summary>
 
-<p class="callout info">Writes the source transactions for the cell at the current POV (statutory applications) to a semicolon-separated file. Columns: `Current Entity;Parent;Source Data;Destination Data;Factor;Nature`.</p>
+<p class="callout info">Writes the source transactions for the cell at the current POV (statutory applications) to a semicolon-separated file. Columns: <code>Current Entity;Parent;Source Data;Destination Data;Factor;Nature</code>.</p>
 
 **Input**
 
@@ -223,7 +223,7 @@ GetSourceTransactions("C:\Output\source.txt");
 
 </details><details id="bkmrk-GetDestinationTransactions-"><summary>GetDestinationTransactions</summary>
 
-<p class="callout info">Writes the destination transactions for the cell at the current POV (statutory applications) to a semicolon-separated file, in the same format as `GetSourceTransactions`.</p>
+<p class="callout info">Writes the destination transactions for the cell at the current POV (statutory applications) to a semicolon-separated file, in the same format as <code>GetSourceTransactions</code>.</p>
 
 **Input**
 
@@ -239,7 +239,7 @@ GetDestinationTransactions("C:\Output\destination.txt");
 
 </details><details id="bkmrk-GetLineItemDetail-"><summary>GetLineItemDetail</summary>
 
-<p class="callout info">Writes the line item detail for the cell at the current POV to a semicolon-separated file (`Description;Line Item Data`). Line item detail only applies to scenarios and accounts set up to use it, and only for the Entity Currency Value member.</p>
+<p class="callout info">Writes the line item detail for the cell at the current POV to a semicolon-separated file (<code>Description;Line Item Data</code>). Line item detail only applies to scenarios and accounts set up to use it, and only for the Entity Currency Value member.</p>
 
 **Input**
 
@@ -255,7 +255,7 @@ GetLineItemDetail("C:\Output\lineitems.txt");
 
 </details><details id="bkmrk-SetLineItemDetail-"><summary>SetLineItemDetail</summary>
 
-<p class="callout info">Sets one line item on each of several cells. The POVs and values come from two string lists built with `AddItemToList` (dimension `""`). The lists must have the same number of items. The first POV gets the first value, and so on. Every line item gets the same description.</p>
+<p class="callout info">Sets one line item on each of several cells. The POVs and values come from two string lists built with <code>AddItemToList</code> (dimension <code>""</code>). The lists must have the same number of items. The first POV gets the first value, and so on. Every line item gets the same description.</p>
 
 **Input**
 
@@ -331,7 +331,7 @@ DetachCellDocument("[Default]","Support.pdf");
 
 </details><details id="bkmrk-AttachCellDocumentEnhanced-"><summary>AttachCellDocumentEnhanced / AttachCellDocument</summary>
 
-<p class="callout info">Attaches a document that is already in Document Manager to the cell at the current POV. Existing text and attachments for the label are kept. `AttachCellDocument` always uses the `[Default]` label.</p>
+<p class="callout info">Attaches a document that is already in Document Manager to the cell at the current POV. Existing text and attachments for the label are kept. <code>AttachCellDocument</code> always uses the <code>[Default]</code> label.</p>
 
 **Input: AttachCellDocumentEnhanced**
 
@@ -357,7 +357,7 @@ AttachCellDocument("Support.pdf","\Documents\Support");
 
 </details><details id="bkmrk-GetCellTextAttachmentsEnhanced-"><summary>GetCellTextAttachmentsEnhanced</summary>
 
-<p class="callout info">Lists the attached documents on the cell at the current POV. Each is written to the file and the log as `Label <label> attachment is : <file>`.</p>
+<p class="callout info">Lists the attached documents on the cell at the current POV. Each is written to the file and the log as <code>Label &lt;label&gt; attachment is : &lt;file&gt;</code>.</p>
 
 **Input**
 
@@ -374,7 +374,7 @@ GetCellTextAttachmentsEnhanced("All","C:\Output\attachments.txt");
 
 </details><details id="bkmrk-GetCellTextEnhanced-"><summary>GetCellTextEnhanced</summary>
 
-<p class="callout info">Gets the cell text on the cell at the current POV. Each label is written to the file and the log as `Label <label> is : <text>`.</p>
+<p class="callout info">Gets the cell text on the cell at the current POV. Each label is written to the file and the log as <code>Label &lt;label&gt; is : &lt;text&gt;</code>.</p>
 
 **Input**
 
@@ -395,7 +395,7 @@ GetCellTextEnhanced("All","C:\Output\celltext.txt");
 
 <details id="bkmrk-Lock-"><summary>Lock</summary>
 
-<p class="callout info">Runs the [Lock](https://docs.oracle.com/cd/E57185_01/HFMUR/ch04s09.html) command on the current POV. The command fails if the server returns an error code.</p>
+<p class="callout info">Runs the <a href="https://docs.oracle.com/cd/E57185_01/HFMUR/ch04s09.html">Lock</a> command on the current POV. The command fails if the server returns an error code.</p>
 
 **Input**
 
@@ -409,7 +409,7 @@ Lock();
 
 </details><details id="bkmrk-Unlock-"><summary>Unlock</summary>
 
-<p class="callout info">Runs the [Unlock](https://docs.oracle.com/cd/E57185_01/HFMUR/ch04s10.html) command on the current POV. The command fails if the server returns an error code.</p>
+<p class="callout info">Runs the <a href="https://docs.oracle.com/cd/E57185_01/HFMUR/ch04s10.html">Unlock</a> command on the current POV. The command fails if the server returns an error code.</p>
 
 **Input**
 
@@ -423,7 +423,7 @@ Unlock();
 
 </details><details id="bkmrk-Translate-"><summary>Translate</summary>
 
-<p class="callout info">Runs the [Translate](https://docs.oracle.com/cd/E57185_01/HFMUR/ch05s05.html) command on the current POV. The command fails if the server returns an error code.</p>
+<p class="callout info">Runs the <a href="https://docs.oracle.com/cd/E57185_01/HFMUR/ch05s05.html">Translate</a> command on the current POV. The command fails if the server returns an error code.</p>
 
 **Input**
 
@@ -437,7 +437,7 @@ Translate();
 
 </details><details id="bkmrk-Allocate-"><summary>Allocate</summary>
 
-<p class="callout info">Runs the [Allocate](https://docs.oracle.com/cd/E57185_01/HFMUR/ch04s07.html) command on the current POV. The command fails if the server returns an error code.</p>
+<p class="callout info">Runs the <a href="https://docs.oracle.com/cd/E57185_01/HFMUR/ch04s07.html">Allocate</a> command on the current POV. The command fails if the server returns an error code.</p>
 
 **Input**
 
@@ -451,7 +451,7 @@ Allocate();
 
 </details><details id="bkmrk-Consolidate-"><summary>Consolidate</summary>
 
-<p class="callout info">Runs the [Consolidate](https://docs.oracle.com/cd/E57185_01/HFMUR/ch05s07.html) command on the current POV, and optionally on extra POVs from a string list. JHAT waits for every consolidation task to finish (see <a href="00-automation-with-jhat.md#long-running-tasks">long-running tasks</a>). The command fails if the last task doesn't complete.</p>
+<p class="callout info">Runs the <a href="https://docs.oracle.com/cd/E57185_01/HFMUR/ch05s07.html">Consolidate</a> command on the current POV, and optionally on extra POVs from a string list. JHAT waits for every consolidation task to finish (see <a href="00-automation-with-jhat.md#long-running-tasks">long-running tasks</a>). The command fails if the last task doesn't complete.</p>
 
 **Input**
 
@@ -469,7 +469,7 @@ Consolidate("AllWithData","3");
 
 </details><details id="bkmrk-ChartLogic-"><summary>ChartLogic</summary>
 
-<p class="callout info">Runs the [Calculate](https://docs.oracle.com/cd/E57185_01/HFMUR/ch05s04.html) command on the current POV. Unlike `Consolidate`, it doesn't wait for a running task. The command fails if the server returns an error code.</p>
+<p class="callout info">Runs the <a href="https://docs.oracle.com/cd/E57185_01/HFMUR/ch05s04.html">Calculate</a> command on the current POV. Unlike <code>Consolidate</code>, it doesn't wait for a running task. The command fails if the server returns an error code.</p>
 
 **Input**
 
@@ -606,7 +606,7 @@ DisplayProcessControlGrid("C:\Output\pcgrid.txt","PROCESS","ALL","0","","List","
 
 </details><details id="bkmrk-GetReviewLevelSummary-"><summary>GetReviewLevelSummary</summary>
 
-<p class="callout info">Writes the number of entities at each review level to a file. One `Level= count` line per level (Not Started, First Pass, Review Level 1–10, Submitted, Approved, Published), followed by `Entities Displayed= total`.</p>
+<p class="callout info">Writes the number of entities at each review level to a file. One <code>Level= count</code> line per level (Not Started, First Pass, Review Level 1–10, Submitted, Approved, Published), followed by <code>Entities Displayed= total</code>.</p>
 
 **Input**
 
@@ -661,7 +661,7 @@ GetValidationAccountInfo("S#Actual.Y#2023.P#Dec.E#Entity1","1","","true","true",
 
 </details><details id="bkmrk-GetCellStatus-"><summary>GetCellStatus</summary>
 
-<p class="callout danger">**Don't use.** This is leftover test code. It ignores the current POV, reads a hardcoded POV from a sample application (`S#Actual.Y#2011.P#Quarter4…E#GROUP.CORP_OPS…`) 20,000 times, and writes nothing.</p>
+<p class="callout danger"><b>Don't use.</b> This is leftover test code. It ignores the current POV, reads a hardcoded POV from a sample application (<code>S#Actual.Y#2011.P#Quarter4…E#GROUP.CORP_OPS…</code>) 20,000 times, and writes nothing.</p>
 
 **Input**
 
@@ -674,3 +674,30 @@ GetCellStatus();
 ```
 
 </details>
+
+#### Status text
+
+**Grid calculation status.** Written by `GetGrid` with `STATUS`/`CALCSTATUS`, by `GetGridExtDim` with `CALCSTATUS`, and by the process control grids:
+
+| Code | Meaning |
+| --- | --- |
+| `OK` | Calculated and up to date |
+| `OK SC` | OK, but the system has changed (e.g. rules or metadata reloaded) |
+| `CH` | Needs calculation |
+| `TR` | Needs translation |
+| `CN` | Needs consolidation |
+| `LOCKED` | Locked |
+| `NODATA` | No data |
+| `NOACCESS` | No read access |
+
+` ND` is added to a code when the Value member has no data (e.g. `CN ND`).
+
+**Process management status.** Written with `PROCESS`: `Not Supported`, `Not Started`, `First Pass`, `Review Level 1` … `Review Level 10`, `Submitted`, `Approved`, `Published`, `NOACCESS` (no read access) or `Unknown`.
+
+**Cell status.** Written by `GetCell` and `GetCellInfo`, and in brackets after each value by [`GetForm`](03-data-form.md). It's a comma-separated list of any of: `Invalid`, `No data`, `Parent level input`, `Derived`, `Supports journals`, `Has line items`, `Supports line items`, `Read only`, `Has text`. (An adjustment member with journal transactions is also reported as `Has text`.)
+
+**Calculation status** in `GetCell` and `GetCellInfo`: a comma-separated list of any of `OK`, `OK but the system has changed`, `No data`, `Locked`, `Needs calculation`, `Needs translation`, `Needs consolidation`.
+
+**Cell security class** in `GetCellInfo`: `All`, `Read only` or `None`.
+
+<p class="callout warning">JHAT mixes up <code>Read only</code> and <code>None</code> for cell security. A cell you can read but not write is reported as <code>None</code>, and a cell you can't read is reported as <code>Read only</code>. <code>All</code> is correct.</p>
