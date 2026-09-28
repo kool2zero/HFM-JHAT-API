@@ -453,13 +453,13 @@ Allocate();
 
 #### Consolidate
 
-<p class="callout info">Runs the <a href="https://docs.oracle.com/cd/E57185_01/HFMUR/ch05s07.html">Consolidate</a> command on the current POV, and optionally on extra POVs from a string list. JHAT waits for every consolidation task to finish (see <a href="00-automation-with-jhat.md#long-running-tasks">long-running tasks</a>). The command fails if the last task doesn't complete.</p>
+<p class="callout info">Runs the <a href="https://docs.oracle.com/cd/E57185_01/HFMUR/ch05s07.html">Consolidate</a> command on the current POV, and optionally on extra POVs from a string list. Consolidation also runs for all descendant entities and for all earlier periods in the same year. JHAT waits for every consolidation task to finish (see <a href="00-automation-with-jhat.md#long-running-tasks">long-running tasks</a>). The command fails if the last task doesn't complete.</p>
 
 **Input**
 
 | Parameter | Mandatory | Comment |
 | --- | :---: | --- |
-| Type | ✓ | `Impacted`: consolidate only the entities whose data has changed since the last consolidation. `AllWithData`: consolidate every entity that has data. `All`: consolidate every entity, even those without data (slowest). `EntityOnly`: calculate contribution, meaning the entity's contribution to its parent (translation, proportion and eliminations), without consolidating the parent. `ForceEntityOnly`: the same, even if nothing has changed. Any other value fails with "Invalid arguments value for consolidation." |
+| Type | ✓ | `Impacted`: consolidate only the entities whose data has changed since the last consolidation. `AllWithData`: consolidate every entity that has data. `All`: consolidate every entity, even those without data (slowest). `EntityOnly`: Calculate Contribution, which calculates the contribution values of all the entity's dependent entities, without consolidating. `ForceEntityOnly`: the same, even if nothing has changed. Any other value fails with "Invalid arguments value for consolidation." |
 | POV List Number | | Number of a string list (built with `AddItemToList`, dimension `""`) of extra POV strings to consolidate along with the current POV |
 
 **Example**

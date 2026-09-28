@@ -10,7 +10,7 @@ Commands for journals, which record adjustments to data with an audit trail. Jou
 - **Periods:** journals can only be posted in a period that is open for journals (`OpenPeriod`).
 - **Templates:** hold journal layouts for reuse. *Standard* templates are copied into new journals (`CreateJournalFromTemplate`). *Recurring* templates generate a journal each period (`GenerateRecurring`).
 - **Balance types:** *Balanced* (total debits equal total credits), *Balanced by entity* (balanced within each entity) or *Unbalanced*.
-- **Auto-reversing** journals automatically create a reversing journal in the next period.
+- **Journal types:** *Regular*, *Auto-reversing* and *Auto-reversal*. Posting an auto-reversing journal automatically creates an auto-reversal journal that reverses it in the next period, with status Approved. An auto-reversal journal can only be posted or unposted.
 - **Groups** are labels for organizing and filtering journals.
 
 ## Commands

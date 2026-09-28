@@ -73,7 +73,7 @@ FilterEPUGrid("Actual", "2023", "Dec", "", "", "Include", "Both", "false", "BOTH
 
 | Parameter | Mandatory | Comment |
 | --- | :---: | --- |
-| Run Type | ✓ | `Force` (any case) to force the calculation. Any other value (e.g. `Run`) runs a normal calculation. |
+| Run Type | ✓ | `Run` (or any value other than `Force`): calculate only owner/owned pairs whose EPU status is *Impacted*, meaning the owner, the owned entity or an EPU descendant of the owned entity has changed. `Force` (any case): recalculate all pairs. |
 
 **Example**
 

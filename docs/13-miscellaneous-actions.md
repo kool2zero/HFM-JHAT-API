@@ -116,7 +116,7 @@ ClearData("Actual","2023","All","All","All","false","true","true","C:\Output\cle
 
 ### DeleteInvalidRecords
 
-<p class="callout info">Runs HFM's Delete Invalid Records task, which removes data stored at intersections that are no longer valid, typically after metadata changes. Its log is copied to a local file.</p>
+<p class="callout info">Runs HFM's Delete Invalid Records task, which removes data stored at intersections that are no longer valid, typically after metadata changes. Its log is copied to a local file. In HFM, only Provisioning Managers can delete invalid records.</p>
 
 **Input**
 

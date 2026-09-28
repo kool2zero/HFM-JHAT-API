@@ -8,10 +8,10 @@ Commands for loading data, metadata, security, rules, member lists, journals, in
 
 - **Scan:** most loads can scan instead of load. A scan checks the file and reports errors in the log without changing anything, which is useful before loading into a production application.
 - **Data load modes** decide what happens to data already in HFM:
-  - *Merge* overwrites only the cells in the file.
-  - *Replace* first clears the data for each scenario, year, period, entity and value combination in the file.
+  - *Merge* (the default) overwrites the cells in the file and adds any that don't exist yet. Other data is untouched.
+  - *Replace* first clears the existing values for each unique point of view in the file, then loads.
   - *Accumulate* adds the file's values to the existing ones.
-  - *Replace by security* works like Replace but only clears data the user has access to.
+  - *Replace by security* works like Replace, but only for points of view the user has full access to. Cells the user can't fully access are ignored, so it can be used without access to every account.
 - **Metadata load modes:** *Merge* adds and updates members, while *Replace* and *Clear* rebuild the metadata (see `LoadMetaData`).
 
 The load commands need an open application.
