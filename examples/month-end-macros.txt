@@ -1,0 +1,10 @@
+' Settings for month-end-close.txt. Change these for each environment or period.
+' Format: name=value, with no spaces around the = (spaces become part of the name and value).
+__CLUSTER__=HFMCluster
+__APP__=COMMA
+__SCENARIO__=Actual
+__YEAR__=2026
+__PERIOD__=Sep
+__TOPENTITY__=GROUP
+__DATADIR__=D:\JHAT\Data
+__LOGDIR__=__@SCRIPTDIR__+\Logs

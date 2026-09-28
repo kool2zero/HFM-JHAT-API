@@ -2,11 +2,17 @@
 
 The purpose of this repo is to document the HFM JHAT API.
 
-## Contents
+## Start here
+
+- [Automation with JHAT](docs/00-automation-with-jhat.md): what JHAT is, script syntax and command-line options
+- [Known issues](docs/known-issues.md): JHAT behaviours that hide failures or give wrong results. Read this before writing a script.
+- [Quick reference](docs/quick-reference.md): every command A–Z, with its parameter count and page
+- [Examples](examples/README.md): a complete month-end job with a macro file and a batch wrapper for a scheduler
+
+## Commands by area
 
 | Section | Commands |
 | --- | --- |
-| [Automation with JHAT](docs/00-automation-with-jhat.md) |  |
 | [JHAT Commands: Administration](docs/01-administration.md) | 7 |
 | [JHAT Commands: Application](docs/02-application.md) | 14 |
 | [JHAT Commands: Data Form](docs/03-data-form.md) | 2 |
@@ -23,4 +29,3 @@ The purpose of this repo is to document the HFM JHAT API.
 | [JHAT Commands: Process Management](docs/14-process-management.md) | 12 |
 | [JHAT Commands: Journal Reports](docs/15-journal-reports.md) | 3 |
 | [JHAT Commands: Runtime Actions](docs/16-runtime-actions.md) | 12 |
-
