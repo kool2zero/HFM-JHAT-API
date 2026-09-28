@@ -1,0 +1,26 @@
+name: Docs
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: DavidAnson/markdownlint-cli2-action@v20
+        with:
+          globs: "**/*.md"
+
+  links:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: lycheeverse/lychee-action@v2
+        with:
+          # Check links between pages, including #anchors. External links
+          # (mostly Oracle's documentation) aren't checked.
+          args: --offline --include-fragments --no-progress "**/*.md"
+          fail: true

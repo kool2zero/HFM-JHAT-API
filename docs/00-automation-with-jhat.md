@@ -16,15 +16,15 @@ The `JHAT` tool is another way to automatize tasks using a batch file and the HF
 
 The batch file embeds all libraries, paths and other references to execute HFM tasks.
 
-Before the first run, it’ mandatory to create `setenv.cmd` file and set the parameter `EPM_ORACLE_INSTANCE_FOR_JHAT` to point to the EPM instance:
+Before the first run, it's mandatory to create `setenv.cmd` file and set the parameter `EPM_ORACLE_INSTANCE_FOR_JHAT` to point to the EPM instance:
 
-<img src="https://raw.githubusercontent.com/kool2zero/HFM-JHAT-API/main/img/a2Rimage.png?sanitize=true&raw=true" />
+![setenv.cmd in Notepad, setting EPM_ORACLE_INSTANCE_FOR_JHAT to the EPM instance folder](../img/a2Rimage.png)
 
 ## JHAT usage
 
 A text file (the script) lists the commands to run against HFM, one per line. A typical script looks like this:
 
-```dart
+```text
 ' Month-end consolidation
 Logon("false","","user","password");
 OpenApplication("HFMCluster","COMMA");
@@ -36,13 +36,16 @@ Logout();
 
 **Example:**
 
-<img src="https://raw.githubusercontent.com/kool2zero/HFM-JHAT-API/main/img/azXimage.png?sanitize=true&raw=true" />
+![Example script: Logon, OpenApplication, SetPOV and Consolidate for three POVs, CloseApplication and Logout](../img/azXimage.png)
 
-<p class="callout info">In most cases, you will need to call the <code>Logon</code>, <code>OpenApplication</code>, <code>CloseApplication</code> and <code>Logout</code> commands as part of the script execution.</p>
+> [!NOTE]
+> In most cases, you will need to call the `Logon`, `OpenApplication`, `CloseApplication` and `Logout` commands as part of the script execution.
 
-<p class="callout info">Certain commands will necessitate running the <code>SetPOV</code> command.</p>
+> [!NOTE]
+> Certain commands will necessitate running the `SetPOV` command.
 
-<p class="callout warning">The JHAT API is not fully documented by Oracle. This documentation is based on examples from others and on the decompiled JHAT source.</p>
+> [!WARNING]
+> The JHAT API is not fully documented by Oracle. This documentation is based on examples from others and on the decompiled JHAT source.
 
 ## Script syntax
 
@@ -63,7 +66,7 @@ The whole script is read and checked before anything runs. The script file's enc
 
 ## Running a script
 
-```shell
+```bat
 jhat.bat -I"E:\JHAT\script.txt" -O"E:\JHAT\script.log"
 ```
 
@@ -83,11 +86,13 @@ JHAT reads options as a letter followed **directly** by its value, with no space
 
 Any other option fails with "Argument … Not Valid". Use `jhat.bat -H` to see JHAT's own help:
 
-<img src="https://raw.githubusercontent.com/kool2zero/HFM-JHAT-API/main/img/qIJimage.png?sanitize=true&raw=true" />
+![Output of jhat.bat -H listing JHAT's command-line options](../img/qIJimage.png)
 
-<p class="callout warning">JHAT's help shows <code>-I</code> and <code>-O</code> the wrong way round in its usage line: <code>-I</code> is the script and <code>-O</code> is the log.</p>
+> [!WARNING]
+> JHAT's help shows `-I` and `-O` the wrong way round in its usage line: `-I` is the script and `-O` is the log.
 
-<p class="callout info">This utility can be used to launch consolidations, data load, data extraction, etc...</p>
+> [!NOTE]
+> This utility can be used to launch consolidations, data load, data extraction, etc...
 
 ## How a script runs
 
@@ -107,7 +112,8 @@ Any other option fails with "Argument … Not Valid". Use `jhat.bat -H` to see J
 | `__@MACROFILEDIR__` | The `JHAT_MACRODIR` Java system property, else the `JHAT_MACRODIR` environment variable, else the script folder |
 | `__@BASEDIR__` | The `-B` value, if given |
 
-<p class="callout warning"><b>JHAT's exit code doesn't reflect failures.</b> It exits with 1 only when it can't start or the command-line options are invalid (including <code>-H</code>). Otherwise it exits with 0, even if commands failed or the script was aborted. To detect failures from a scheduler, check the summary in the log (for example, search for <code>0 execution error(s)</code>).</p>
+> [!WARNING]
+> **JHAT's exit code doesn't reflect failures.** It exits with 1 only when it can't start or the command-line options are invalid (including `-H`). Otherwise it exits with 0, even if commands failed or the script was aborted. To detect failures from a scheduler, check the summary in the log (for example, search for `0 execution error(s)`).
 
 ## What commands need
 
@@ -138,15 +144,17 @@ Before a command runs, JHAT checks how many parameters it was given:
 
 If the count is wrong, the command is reported as a syntax error ("Incorrect number of parameters.", with the script line number, the parameters you passed, and the command's expected usage) and is **skipped**. These details go to the console only, not to the log file. The rest of the script still runs, even with abort on error turned on.
 
-<p class="callout warning">For commands whose parameter count is a range, JHAT's check never fails. This covers <code>GetForm</code>, <code>FilterProcessControlGrid</code>, <code>GetCalcStatusSummary</code>, <code>ExtractMetaData</code>, <code>ExtractMetaDataExtDim</code>, <code>ExtractSecurityExpanded</code>, <code>LoadMetaDataExtDim</code>, <code>LoadICTransactions</code>, <code>LoadDocument</code>, <code>OpenICPeriod</code>, <code>UpdateICPeriod</code> and <code>DefineMacroEx</code>. Passing too few parameters makes the command crash partway through instead of failing with a clear message.</p>
+> [!WARNING]
+> For commands whose parameter count is a range, JHAT's check never fails. This covers `GetForm`, `FilterProcessControlGrid`, `GetCalcStatusSummary`, `ExtractMetaData`, `ExtractMetaDataExtDim`, `ExtractSecurityExpanded`, `LoadMetaDataExtDim`, `LoadICTransactions`, `LoadDocument`, `OpenICPeriod`, `UpdateICPeriod` and `DefineMacroEx`. Passing too few parameters makes the command crash partway through instead of failing with a clear message.
 
-<p class="callout warning">Don't rely on a command's <b>Successful</b> status alone. Many load and extract commands report success even when HFM reports that the operation failed; see the <a href="10-load.md">Load</a> and <a href="07-extracts.md">Extracts</a> pages. Several other commands write HFM's errors to the log without failing.</p>
+> [!WARNING]
+> Don't rely on a command's **Successful** status alone. Many load and extract commands report success even when HFM reports that the operation failed; see the [Load](10-load.md) and [Extracts](07-extracts.md) pages. Several other commands write HFM's errors to the log without failing.
 
 ## Log output
 
 Each command writes a block to the log:
 
-```
+```text
 **********OpenApplication : Successful**********
 Start execution of action(script line 2) at <timestamp>
 Successful

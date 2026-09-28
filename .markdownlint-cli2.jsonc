@@ -1,0 +1,10 @@
+{
+  "config": {
+    // Tables and long explanations are easier to edit on one line.
+    "MD013": false,
+    // Pages use **Input** and **Example** as labels, not headings.
+    "MD036": false,
+    // Consecutive GitHub alerts must be separated by a blank line.
+    "MD028": false
+  }
+}

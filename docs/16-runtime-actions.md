@@ -20,7 +20,8 @@ These commands don't need an open application.
 
 #### Delay
 
-<p class="callout info">Pauses the script.</p>
+> [!NOTE]
+> Pauses the script.
 
 **Input**
 
@@ -30,15 +31,17 @@ These commands don't need an open application.
 
 **Example**
 
-```dart
+```text
 Delay("5000");
 ```
 
 #### BeginLoop
 
-<p class="callout info">Repeats the commands between <code>BeginLoop</code> and the next <code>EndLoop</code> the given number of times in total. JHAT expands the loop before the script starts, by copying the commands.</p>
+> [!NOTE]
+> Repeats the commands between `BeginLoop` and the next `EndLoop` the given number of times in total. JHAT expands the loop before the script starts, by copying the commands.
 
-<p class="callout warning">Don't nest loops. JHAT's nesting check never triggers, so a nested loop doesn't repeat as you'd expect. Log entries of the repeated copies of a command are shared, so their log blocks run together. The repeat count must be a number.</p>
+> [!WARNING]
+> Don't nest loops. JHAT's nesting check never triggers, so a nested loop doesn't repeat as you'd expect. Log entries of the repeated copies of a command are shared, so their log blocks run together. The repeat count must be a number.
 
 **Input**
 
@@ -48,7 +51,7 @@ Delay("5000");
 
 **Example**
 
-```dart
+```text
 BeginLoop("3");
 Consolidate("Impacted");
 EndLoop();
@@ -56,7 +59,8 @@ EndLoop();
 
 #### EndLoop
 
-<p class="callout info">Marks the end of a <code>BeginLoop</code> block.</p>
+> [!NOTE]
+> Marks the end of a `BeginLoop` block.
 
 **Input**
 
@@ -64,15 +68,17 @@ None
 
 **Example**
 
-```dart
+```text
 EndLoop();
 ```
 
 #### AbortOnError
 
-<p class="callout info">Turns abort on error on or off from this point in the script. While it's on, the script stops after the first command that fails, and the log ends with <code>Aborting the script ...</code>. The <code>-X1</code> command-line option turns it on from the start.</p>
+> [!NOTE]
+> Turns abort on error on or off from this point in the script. While it's on, the script stops after the first command that fails, and the log ends with `Aborting the script ...`. The `-X1` command-line option turns it on from the start.
 
-<p class="callout warning">Commands skipped for having the wrong number of parameters don't count as failures. Neither do load and extract commands that report success when HFM failed (see <a href="10-load.md">Load</a>). JHAT's exit code stays 0 even when it aborts.</p>
+> [!WARNING]
+> Commands skipped for having the wrong number of parameters don't count as failures. Neither do load and extract commands that report success when HFM failed (see [Load](10-load.md)). JHAT's exit code stays 0 even when it aborts.
 
 **Input**
 
@@ -82,15 +88,17 @@ EndLoop();
 
 **Example**
 
-```dart
+```text
 AbortOnError("true");
 ```
 
 #### SetNegativeTestingFlag
 
-<p class="callout info">Marks the following commands as negative tests (tests expected to fail). While the flag is on, each command's log header ends in <code>: Negative Testcase</code>. The command itself isn't marked. It doesn't change whether a command succeeds or fails.</p>
+> [!NOTE]
+> Marks the following commands as negative tests (tests expected to fail). While the flag is on, each command's log header ends in `: Negative Testcase`. The command itself isn't marked. It doesn't change whether a command succeeds or fails.
 
-<p class="callout info">In the end-of-script summary, a negative-test command that <b>succeeds</b> counts as a "negative test failed", and one that fails isn't counted. Abort on error still stops the script when a negative-test command fails.</p>
+> [!NOTE]
+> In the end-of-script summary, a negative-test command that **succeeds** counts as a "negative test failed", and one that fails isn't counted. Abort on error still stops the script when a negative-test command fails.
 
 **Input**
 
@@ -100,7 +108,7 @@ AbortOnError("true");
 
 **Example**
 
-```dart
+```text
 SetNegativeTestingFlag("true");
 OpenApplication("Cluster","NoSuchApp");
 SetNegativeTestingFlag("false");
@@ -108,9 +116,11 @@ SetNegativeTestingFlag("false");
 
 #### CallOtherProcess
 
-<p class="callout info">Runs an external program and waits for it to finish. The command succeeds only if the program exits with code 0. The executable, the parameters and the exit status are written to the log.</p>
+> [!NOTE]
+> Runs an external program and waits for it to finish. The command succeeds only if the program exits with code 0. The executable, the parameters and the exit status are written to the log.
 
-<p class="callout warning">JHAT wraps each parameter in double quotes and joins everything into one command line. Java then splits that line at every space, ignoring the quotes. As a result, a path or parameter containing spaces is split up, with stray quote characters. Use paths without spaces, or call a batch file that does the work.</p>
+> [!WARNING]
+> JHAT wraps each parameter in double quotes and joins everything into one command line. Java then splits that line at every space, ignoring the quotes. As a result, a path or parameter containing spaces is split up, with stray quote characters. Use paths without spaces, or call a batch file that does the work.
 
 **Input**
 
@@ -121,7 +131,7 @@ SetNegativeTestingFlag("false");
 
 **Example**
 
-```dart
+```text
 CallOtherProcess("C:\JHAT\scripts\notify.bat","MonthEnd");
 ```
 
@@ -129,7 +139,8 @@ CallOtherProcess("C:\JHAT\scripts\notify.bat","MonthEnd");
 
 #### StartTimer
 
-<p class="callout info">Starts one of 25 timers. Use <code>StopTimer</code> to log the elapsed time.</p>
+> [!NOTE]
+> Starts one of 25 timers. Use `StopTimer` to log the elapsed time.
 
 **Input**
 
@@ -140,13 +151,14 @@ CallOtherProcess("C:\JHAT\scripts\notify.bat","MonthEnd");
 
 **Example**
 
-```dart
+```text
 StartTimer("3","Load Metadata");
 ```
 
 #### StopTimer
 
-<p class="callout info">Stops a timer and writes the elapsed time to the log, in milliseconds and as hours, minutes and seconds. Fails if the timer wasn't started.</p>
+> [!NOTE]
+> Stops a timer and writes the elapsed time to the log, in milliseconds and as hours, minutes and seconds. Fails if the timer wasn't started.
 
 **Input**
 
@@ -156,7 +168,7 @@ StartTimer("3","Load Metadata");
 
 **Example**
 
-```dart
+```text
 StopTimer("3");
 ```
 
@@ -164,9 +176,11 @@ StopTimer("3");
 
 #### ReplaceLineInTextFile
 
-<p class="callout info">Replaces every line of a text file that matches a given line (whole line, ignoring case) with new text. The original is kept as <code>&lt;file&gt;backup</code>, and <code>&lt;file&gt;temp</code> is used while writing.</p>
+> [!NOTE]
+> Replaces every line of a text file that matches a given line (whole line, ignoring case) with new text. The original is kept as `<file>backup`, and `<file>temp` is used while writing.
 
-<p class="callout danger"><b>This command removes all line breaks from the file</b>, joining it into a single line. It also fails if a <code>&lt;file&gt;backup</code> file is left over from an earlier run.</p>
+> [!CAUTION]
+> **This command removes all line breaks from the file**, joining it into a single line. It also fails if a `<file>backup` file is left over from an earlier run.
 
 **Input**
 
@@ -178,13 +192,14 @@ StopTimer("3");
 
 **Example**
 
-```dart
+```text
 ReplaceLineInTextFile("C:\JHAT\settings.txt","Environment = TEST","Environment = PROD");
 ```
 
 #### CompareFiles
 
-<p class="callout info">Compares two files and writes <code>Files Match.</code> or <code>Files are different.</code> to the log. The command reports success either way, so check the log line.</p>
+> [!NOTE]
+> Compares two files and writes `Files Match.` or `Files are different.` to the log. The command reports success either way, so check the log line.
 
 - **Text comparison:** line by line, ignoring case and leading/trailing spaces. `TEXT` and `TEXTIGNOREWS` behave the same.
 - **Diff file:** up to 1,000 differing lines are written to it, but **only if the file doesn't already exist**. If it exists, nothing is written.
@@ -202,13 +217,14 @@ ReplaceLineInTextFile("C:\JHAT\settings.txt","Environment = TEST","Environment =
 
 **Example**
 
-```dart
+```text
 CompareFiles("C:\Output\grid.txt","C:\Baseline\grid.txt","TEXT","C:\Output\grid_diff.txt");
 ```
 
 #### CompareFilesContentNotOrdered
 
-<p class="callout info">Writes to the log every line of File 1 that doesn't appear anywhere in File 2 (ignoring case and line order). Lines only in File 2 aren't reported. The command always reports success.</p>
+> [!NOTE]
+> Writes to the log every line of File 1 that doesn't appear anywhere in File 2 (ignoring case and line order). Lines only in File 2 aren't reported. The command always reports success.
 
 **Input**
 
@@ -220,13 +236,14 @@ CompareFiles("C:\Output\grid.txt","C:\Baseline\grid.txt","TEXT","C:\Output\grid_
 
 **Example**
 
-```dart
+```text
 CompareFilesContentNotOrdered("C:\Output\members.txt","C:\Baseline\members.txt");
 ```
 
 #### CompareMultipleFiles
 
-<p class="callout info">Compares each file matching a wildcard pattern with the file of the same name in another folder, as for <code>CompareFiles</code>. Missing counterparts and mismatches are written to the log, ending with <code>All files are the same.</code> or a list of the files that differ. The command reports success either way. It fails if no files match the pattern or a folder can't be read.</p>
+> [!NOTE]
+> Compares each file matching a wildcard pattern with the file of the same name in another folder, as for `CompareFiles`. Missing counterparts and mismatches are written to the log, ending with `All files are the same.` or a list of the files that differ. The command reports success either way. It fails if no files match the pattern or a folder can't be read.
 
 **Input**
 
@@ -240,7 +257,7 @@ CompareFilesContentNotOrdered("C:\Output\members.txt","C:\Baseline\members.txt")
 
 **Example**
 
-```dart
+```text
 CompareMultipleFiles("C:\Output\*.txt","C:\Baseline","TEXT","","C:\Output\diffs");
 ```
 
@@ -250,7 +267,7 @@ CompareMultipleFiles("C:\Output\*.txt","C:\Baseline","TEXT","","C:\Output\diffs"
 
 A rule is `beginswith=<text>` or `contains=<text>`. Rules can be joined with ` AND ` or ` OR ` (upper case, one space each side). For example:
 
-```dart
+```text
 CompareFiles("C:\Output\data.txt","C:\Baseline\data.txt","TEXT","","beginswith=!");
 ```
 
@@ -258,6 +275,8 @@ CompareFiles("C:\Output\data.txt","C:\Baseline\data.txt","TEXT","","beginswith=!
 - The text can't contain spaces or `=`.
 - An invalid rule makes the command fail.
 
-<p class="callout warning"><b>Only the last rule counts.</b> Because of a bug in how rules are combined, <code>contains=A OR contains=B</code> skips only lines containing <code>B</code>. Use a single rule.</p>
+> [!WARNING]
+> **Only the last rule counts.** Because of a bug in how rules are combined, `contains=A OR contains=B` skips only lines containing `B`. Use a single rule.
 
-<p class="callout warning">If ignore rules are given and one file has more lines than the other, the command fails when it reaches the end of the shorter file.</p>
+> [!WARNING]
+> If ignore rules are given and one file has more lines than the other, the command fails when it reaches the end of the shorter file.

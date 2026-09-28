@@ -30,7 +30,8 @@ These commands need an open application. Value names are matched ignoring case.
 
 #### SubmitJournal
 
-<p class="callout info">Submits a journal. If HFM returns error messages, they are written to the log (as <code>error :…</code>) and the command fails.</p>
+> [!NOTE]
+> Submits a journal. If HFM returns error messages, they are written to the log (as `error :…`) and the command fails.
 
 **Input**
 
@@ -43,13 +44,14 @@ These commands need an open application. Value names are matched ignoring case.
 
 **Example**
 
-```dart
+```text
 SubmitJournal("Actual","2023","Dec","JE001");
 ```
 
 #### UnSubmitJournal
 
-<p class="callout info">Unsubmits a journal. If HFM returns error messages, they are written to the log (as <code>error :…</code>) and the command fails.</p>
+> [!NOTE]
+> Unsubmits a journal. If HFM returns error messages, they are written to the log (as `error :…`) and the command fails.
 
 **Input**
 
@@ -62,13 +64,14 @@ SubmitJournal("Actual","2023","Dec","JE001");
 
 **Example**
 
-```dart
+```text
 UnSubmitJournal("Actual","2023","Dec","JE001");
 ```
 
 #### ApproveJournal
 
-<p class="callout info">Approves a journal. If HFM returns error messages, they are written to the log (as <code>error :…</code>) and the command fails.</p>
+> [!NOTE]
+> Approves a journal. If HFM returns error messages, they are written to the log (as `error :…`) and the command fails.
 
 **Input**
 
@@ -81,13 +84,14 @@ UnSubmitJournal("Actual","2023","Dec","JE001");
 
 **Example**
 
-```dart
+```text
 ApproveJournal("Actual","2023","Dec","JE001");
 ```
 
 #### RejectJournal
 
-<p class="callout info">Rejects a journal. If HFM returns error messages, they are written to the log (as <code>error :…</code>) and the command fails.</p>
+> [!NOTE]
+> Rejects a journal. If HFM returns error messages, they are written to the log (as `error :…`) and the command fails.
 
 **Input**
 
@@ -100,13 +104,14 @@ ApproveJournal("Actual","2023","Dec","JE001");
 
 **Example**
 
-```dart
+```text
 RejectJournal("Actual","2023","Dec","JE001");
 ```
 
 #### PostJournal
 
-<p class="callout info">Posts a journal. If HFM returns error messages, they are written to the log (as <code>error :…</code>) and the command fails.</p>
+> [!NOTE]
+> Posts a journal. If HFM returns error messages, they are written to the log (as `error :…`) and the command fails.
 
 **Input**
 
@@ -119,13 +124,14 @@ RejectJournal("Actual","2023","Dec","JE001");
 
 **Example**
 
-```dart
+```text
 PostJournal("Actual","2023","Dec","JE001");
 ```
 
 #### UnPostJournal
 
-<p class="callout info">Unposts a journal. If HFM returns error messages, they are written to the log (as <code>error :…</code>) and the command fails.</p>
+> [!NOTE]
+> Unposts a journal. If HFM returns error messages, they are written to the log (as `error :…`) and the command fails.
 
 **Input**
 
@@ -138,15 +144,17 @@ PostJournal("Actual","2023","Dec","JE001");
 
 **Example**
 
-```dart
+```text
 UnPostJournal("Actual","2023","Dec","JE001");
 ```
 
 #### DeleteJournal
 
-<p class="callout info">Deletes a journal. If HFM returns error messages, they are written to the log (as <code>error :…</code>) and the command fails.</p>
+> [!NOTE]
+> Deletes a journal. If HFM returns error messages, they are written to the log (as `error :…`) and the command fails.
 
-<p class="callout danger">Be careful when running this command.</p>
+> [!CAUTION]
+> Be careful when running this command.
 
 **Input**
 
@@ -159,13 +167,14 @@ UnPostJournal("Actual","2023","Dec","JE001");
 
 **Example**
 
-```dart
+```text
 DeleteJournal("Actual","2023","Dec","JE001");
 ```
 
 #### ScanJournal
 
-<p class="callout info">Validates a journal. Any validation errors are written to the log and the command fails.</p>
+> [!NOTE]
+> Validates a journal. Any validation errors are written to the log and the command fails.
 
 **Input**
 
@@ -178,13 +187,14 @@ DeleteJournal("Actual","2023","Dec","JE001");
 
 **Example**
 
-```dart
+```text
 ScanJournal("Actual","2023","Dec","JE001");
 ```
 
 #### GetJournal
 
-<p class="callout info">Writes a journal to the log: label, description, type, group, status, balance type, security class, value and period, then one tab-separated line per entry (dimension members, debit/credit/unit, amount, description). If the journal doesn't exist, nothing is logged and the command still succeeds.</p>
+> [!NOTE]
+> Writes a journal to the log: label, description, type, group, status, balance type, security class, value and period, then one tab-separated line per entry (dimension members, debit/credit/unit, amount, description). If the journal doesn't exist, nothing is logged and the command still succeeds.
 
 **Input**
 
@@ -197,7 +207,7 @@ ScanJournal("Actual","2023","Dec","JE001");
 
 **Example**
 
-```dart
+```text
 GetJournal("Actual","2023","Dec","JE001");
 ```
 
@@ -205,7 +215,8 @@ GetJournal("Actual","2023","Dec","JE001");
 
 #### CreateJournal
 
-<p class="callout info">Creates an empty journal with status Working. Add entries with <code>AddLineItemToJournal</code>. The journal's ID is written to the log.</p>
+> [!NOTE]
+> Creates an empty journal with status Working. Add entries with `AddLineItemToJournal`. The journal's ID is written to the log.
 
 **Input**
 
@@ -222,13 +233,14 @@ GetJournal("Actual","2023","Dec","JE001");
 
 **Example**
 
-```dart
+```text
 CreateJournal("S#Actual.Y#2023.P#Dec.V#<Entity Curr Adjs>.E#Group.Entity1","Regular","Balanced","JE001","Accrual","","[Default]","Single");
 ```
 
 #### AddLineItemToJournal
 
-<p class="callout info">Adds an entry to an existing journal and saves the journal.</p>
+> [!NOTE]
+> Adds an entry to an existing journal and saves the journal.
 
 **Input**
 
@@ -242,14 +254,15 @@ CreateJournal("S#Actual.Y#2023.P#Dec.V#<Entity Curr Adjs>.E#Group.Entity1","Regu
 
 **Example**
 
-```dart
+```text
 AddLineItemToJournal("S#Actual.Y#2023.P#Dec.A#Accruals.I#[ICP None].C1#[None].C2#[None].C3#[None].C4#[None]","JE001","Credit","1000","Accrual");
 AddLineItemToJournal("S#Actual.Y#2023.P#Dec.A#Expenses.I#[ICP None].C1#[None].C2#[None].C3#[None].C4#[None]","JE001","Debit","1000","Accrual");
 ```
 
 #### GetAdjustments
 
-<p class="callout info">Writes the journal adjustments for the cell at the POV set by <code>SetPOV</code> to the log, or "No adjustments found."</p>
+> [!NOTE]
+> Writes the journal adjustments for the cell at the POV set by `SetPOV` to the log, or "No adjustments found."
 
 **Input**
 
@@ -257,7 +270,7 @@ None
 
 **Example**
 
-```dart
+```text
 GetAdjustments();
 ```
 
@@ -265,7 +278,8 @@ GetAdjustments();
 
 #### CreateTemplate
 
-<p class="callout info">Creates an empty journal template. Add entries with <code>AddLineToTemplate</code>.</p>
+> [!NOTE]
+> Creates an empty journal template. Add entries with `AddLineToTemplate`.
 
 **Input**
 
@@ -284,13 +298,14 @@ Note that Security Class is the **last** parameter here, unlike `CreateJournal`.
 
 **Example**
 
-```dart
+```text
 CreateTemplate("V#<Entity Curr Adjs>.E#Group.Entity1","Balanced","TPL001","Monthly accrual","","Recurring","Single","[Default]");
 ```
 
 #### AddLineToTemplate
 
-<p class="callout info">Adds an entry to an existing template and saves the template.</p>
+> [!NOTE]
+> Adds an entry to an existing template and saves the template.
 
 **Input**
 
@@ -304,13 +319,14 @@ CreateTemplate("V#<Entity Curr Adjs>.E#Group.Entity1","Balanced","TPL001","Month
 
 **Example**
 
-```dart
+```text
 AddLineToTemplate("A#Accruals.I#[ICP None].C1#[None].C2#[None].C3#[None].C4#[None]","TPL001","Credit","1000","Accrual");
 ```
 
 #### GetTemplate
 
-<p class="callout info">Writes a template to the log: label, description, type, group, balance type, security class and its entries.</p>
+> [!NOTE]
+> Writes a template to the log: label, description, type, group, balance type, security class and its entries.
 
 **Input**
 
@@ -320,13 +336,14 @@ AddLineToTemplate("A#Accruals.I#[ICP None].C1#[None].C2#[None].C3#[None].C4#[Non
 
 **Example**
 
-```dart
+```text
 GetTemplate("TPL001");
 ```
 
 #### DeleteTemplate
 
-<p class="callout info">Deletes a journal template.</p>
+> [!NOTE]
+> Deletes a journal template.
 
 **Input**
 
@@ -336,13 +353,14 @@ GetTemplate("TPL001");
 
 **Example**
 
-```dart
+```text
 DeleteTemplate("TPL001");
 ```
 
 #### ValidateJournalTemplatePOV
 
-<p class="callout info">Asks HFM to validate a journal POV. If HFM returns an error, it's written to the log and the command fails.</p>
+> [!NOTE]
+> Asks HFM to validate a journal POV. If HFM returns an error, it's written to the log and the command fails.
 
 **Input**
 
@@ -352,13 +370,14 @@ DeleteTemplate("TPL001");
 
 **Example**
 
-```dart
+```text
 ValidateJournalTemplatePOV("S#Actual.Y#2023.P#Dec.V#<Entity Curr Adjs>.E#Entity1");
 ```
 
 #### CreateJournalFromTemplate
 
-<p class="callout info">Creates a Working journal from a template, for the Scenario, Year, Period and Value in the POV. Parameters 3–8 override the template's settings. Pass <code>""</code> to keep the template's value. The journal's ID is written to the log.</p>
+> [!NOTE]
+> Creates a Working journal from a template, for the Scenario, Year, Period and Value in the POV. Parameters 3–8 override the template's settings. Pass `""` to keep the template's value. The journal's ID is written to the log.
 
 **Input**
 
@@ -375,15 +394,17 @@ ValidateJournalTemplatePOV("S#Actual.Y#2023.P#Dec.V#<Entity Curr Adjs>.E#Entity1
 
 **Example**
 
-```dart
+```text
 CreateJournalFromTemplate("S#Actual.Y#2023.P#Dec.V#<Entity Curr Adjs>","TPL001","JE-DEC","","","","","");
 ```
 
 #### GenerateRecurring
 
-<p class="callout info">Generates a journal from a recurring template for the Scenario, Year and Period in the POV.</p>
+> [!NOTE]
+> Generates a journal from a recurring template for the Scenario, Year and Period in the POV.
 
-<p class="callout warning">If HFM reports validation errors, the command fails, but the errors are only printed to the console, not written to the log.</p>
+> [!WARNING]
+> If HFM reports validation errors, the command fails, but the errors are only printed to the console, not written to the log.
 
 **Input**
 
@@ -394,13 +415,14 @@ CreateJournalFromTemplate("S#Actual.Y#2023.P#Dec.V#<Entity Curr Adjs>","TPL001",
 
 **Example**
 
-```dart
+```text
 GenerateRecurring("S#Actual.Y#2023.P#Dec","TPL001");
 ```
 
 #### GenerateRecurringJournal
 
-<p class="callout warning"><b>Does nothing.</b> The command's code is empty in this version of JHAT. Use <code>GenerateRecurring</code>.</p>
+> [!WARNING]
+> **Does nothing.** The command's code is empty in this version of JHAT. Use `GenerateRecurring`.
 
 **Input**
 
@@ -408,7 +430,7 @@ GenerateRecurring("S#Actual.Y#2023.P#Dec","TPL001");
 
 **Example**
 
-```dart
+```text
 GenerateRecurringJournal("","","","","","","","");
 ```
 
@@ -416,9 +438,11 @@ GenerateRecurringJournal("","","","","","","","");
 
 #### FilterJournals
 
-<p class="callout info">Writes a list of journals matching the filters to a UTF-8, semicolon-separated file, with a header line of column names.</p>
+> [!NOTE]
+> Writes a list of journals matching the filters to a UTF-8, semicolon-separated file, with a header line of column names.
 
-<p class="callout warning">JHAT's usage text lists 13 parameters, but the command needs 14. Its list leaves out the Description filter (parameter 11).</p>
+> [!WARNING]
+> JHAT's usage text lists 13 parameters, but the command needs 14. Its list leaves out the Description filter (parameter 11).
 
 **Input**
 
@@ -443,13 +467,14 @@ GenerateRecurringJournal("","","","","","","","");
 
 **Example**
 
-```dart
+```text
 FilterJournals("C:\Output\journals.txt","A","Actual","2023","Dec","<Entity Curr Adjs>","Jnl_Label;Jnl_Status;Jnl_Type","","","","","Regular;AutoReversing;AutoReversal;Unit","Balanced;UnBalanced;BalancedByEntity","Working;Submitted;Approved;Rejected;Posted");
 ```
 
 #### FilterTemplates
 
-<p class="callout info">Writes a list of journal templates matching the filters to a UTF-8, semicolon-separated file, with a header line of column names.</p>
+> [!NOTE]
+> Writes a list of journal templates matching the filters to a UTF-8, semicolon-separated file, with a header line of column names.
 
 **Input**
 
@@ -469,7 +494,7 @@ FilterJournals("C:\Output\journals.txt","A","Actual","2023","Dec","<Entity Curr 
 
 **Example**
 
-```dart
+```text
 FilterTemplates("C:\Output\templates.txt","A","Tmp_Label;Tmp_Type;Tmp_Description","","","","","Recurring","Balanced;UnBalanced;BalancedByEntity");
 ```
 
@@ -477,7 +502,8 @@ FilterTemplates("C:\Output\templates.txt","A","Tmp_Label;Tmp_Type;Tmp_Descriptio
 
 #### OpenPeriod
 
-<p class="callout info">Opens a period for journals.</p>
+> [!NOTE]
+> Opens a period for journals.
 
 **Input**
 
@@ -489,13 +515,14 @@ FilterTemplates("C:\Output\templates.txt","A","Tmp_Label;Tmp_Type;Tmp_Descriptio
 
 **Example**
 
-```dart
+```text
 OpenPeriod("Actual","2023","Dec");
 ```
 
 #### ClosePeriod
 
-<p class="callout info">Closes a period for journals.</p>
+> [!NOTE]
+> Closes a period for journals.
 
 **Input**
 
@@ -507,13 +534,14 @@ OpenPeriod("Actual","2023","Dec");
 
 **Example**
 
-```dart
+```text
 ClosePeriod("Actual","2023","Dec");
 ```
 
 #### ListJournalPeriods
 
-<p class="callout info">Writes each period's journal status for a scenario and year to the log (<code>Period:…</code> / <code>Status:…</code>).</p>
+> [!NOTE]
+> Writes each period's journal status for a scenario and year to the log (`Period:…` / `Status:…`).
 
 **Input**
 
@@ -524,13 +552,14 @@ ClosePeriod("Actual","2023","Dec");
 
 **Example**
 
-```dart
+```text
 ListJournalPeriods("Actual","2023");
 ```
 
 #### CreateJournalGroup
 
-<p class="callout info">Creates a journal group.</p>
+> [!NOTE]
+> Creates a journal group.
 
 **Input**
 
@@ -541,13 +570,14 @@ ListJournalPeriods("Actual","2023");
 
 **Example**
 
-```dart
+```text
 CreateJournalGroup("ACCRUALS","Month-end accruals");
 ```
 
 #### GetJournalGroups
 
-<p class="callout info">Writes every journal group's name and description to the log.</p>
+> [!NOTE]
+> Writes every journal group's name and description to the log.
 
 **Input**
 
@@ -555,13 +585,14 @@ None
 
 **Example**
 
-```dart
+```text
 GetJournalGroups();
 ```
 
 #### DeleteJournalGroup
 
-<p class="callout info">Deletes a journal group.</p>
+> [!NOTE]
+> Deletes a journal group.
 
 **Input**
 
@@ -571,15 +602,17 @@ GetJournalGroups();
 
 **Example**
 
-```dart
+```text
 DeleteJournalGroup("ACCRUALS");
 ```
 
 #### DeleteAllJournalGroups
 
-<p class="callout info">Deletes every journal group.</p>
+> [!NOTE]
+> Deletes every journal group.
 
-<p class="callout danger">Be careful when running this command.</p>
+> [!CAUTION]
+> Be careful when running this command.
 
 **Input**
 
@@ -587,7 +620,7 @@ None
 
 **Example**
 
-```dart
+```text
 DeleteAllJournalGroups();
 ```
 
@@ -595,9 +628,11 @@ DeleteAllJournalGroups();
 
 #### AddRegKey
 
-<p class="callout info">Sets HFM's cached journal-ordering system parameter.</p>
+> [!NOTE]
+> Sets HFM's cached journal-ordering system parameter.
 
-<p class="callout warning">The parameter is required but ignored. The command always sets the same fixed setting.</p>
+> [!WARNING]
+> The parameter is required but ignored. The command always sets the same fixed setting.
 
 **Input**
 
@@ -607,15 +642,17 @@ DeleteAllJournalGroups();
 
 **Example**
 
-```dart
+```text
 AddRegKey("");
 ```
 
 #### DeleteRegKey
 
-<p class="callout info">Deletes HFM's cached journal-ordering system parameter.</p>
+> [!NOTE]
+> Deletes HFM's cached journal-ordering system parameter.
 
-<p class="callout warning">The parameter is required but ignored.</p>
+> [!WARNING]
+> The parameter is required but ignored.
 
 **Input**
 
@@ -625,6 +662,6 @@ AddRegKey("");
 
 **Example**
 
-```dart
+```text
 DeleteRegKey("");
 ```

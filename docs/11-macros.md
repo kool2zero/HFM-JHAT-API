@@ -1,4 +1,4 @@
-# JHAT Command: Macros
+# JHAT Commands: Macros
 
 [← Back to index](../README.md)
 
@@ -25,7 +25,8 @@ A macro is a name and a replacement text. When a macro is defined, JHAT replaces
 
 ### SubstituteMacro
 
-<p class="callout info">The routine JHAT runs automatically before every command to replace macro names in its parameters. It skips <code>DefineMacro</code> and <code>RemoveMacro</code>, so those see the macro name itself. Calling it from a script only substitutes within its own parameter, which has no useful effect.</p>
+> [!NOTE]
+> The routine JHAT runs automatically before every command to replace macro names in its parameters. It skips `DefineMacro` and `RemoveMacro`, so those see the macro name itself. Calling it from a script only substitutes within its own parameter, which has no useful effect.
 
 **Input**
 
@@ -35,13 +36,14 @@ A macro is a name and a replacement text. When a macro is defined, JHAT replaces
 
 **Example**
 
-```dart
+```text
 SubstituteMacro("__MacroName__");
 ```
 
 ### DefineMacro
 
-<p class="callout info">Defines a macro, or replaces the value of an existing one.</p>
+> [!NOTE]
+> Defines a macro, or replaces the value of an existing one.
 
 **Input**
 
@@ -52,16 +54,18 @@ SubstituteMacro("__MacroName__");
 
 **Example**
 
-```dart
+```text
 DefineMacro("__APP__","COMMA");
 OpenApplication("HFMCluster","__APP__");
 ```
 
 ### DefineMacroEx
 
-<p class="callout info">Defines a macro whose value is the parameters after the name, joined together with nothing between them. Macros already defined are replaced inside each part.</p>
+> [!NOTE]
+> Defines a macro whose value is the parameters after the name, joined together with nothing between them. Macros already defined are replaced inside each part.
 
-<p class="callout warning">Only one macro is replaced in each part: the first one found, in no guaranteed order. Put at most one macro in each part.</p>
+> [!WARNING]
+> Only one macro is replaced in each part: the first one found, in no guaranteed order. Put at most one macro in each part.
 
 **Input**
 
@@ -73,14 +77,15 @@ OpenApplication("HFMCluster","__APP__");
 
 **Example**
 
-```dart
+```text
 DefineMacro("__DIR__","C:\JHAT\");
 DefineMacroEx("__LOG__","__DIR__","load.log");
 ```
 
 ### RemoveMacro
 
-<p class="callout info">Removes a macro. Fails with "Cannot remove. Macro [name] not found" if the macro isn't defined.</p>
+> [!NOTE]
+> Removes a macro. Fails with "Cannot remove. Macro [name] not found" if the macro isn't defined.
 
 **Input**
 
@@ -90,13 +95,14 @@ DefineMacroEx("__LOG__","__DIR__","load.log");
 
 **Example**
 
-```dart
+```text
 RemoveMacro("__APP__");
 ```
 
 ### ShowMacros
 
-<p class="callout info">Writes every defined macro to the log as <code>Macro: name = value</code>.</p>
+> [!NOTE]
+> Writes every defined macro to the log as `Macro: name = value`.
 
 **Input**
 
@@ -104,13 +110,14 @@ None
 
 **Example**
 
-```dart
+```text
 ShowMacros();
 ```
 
 ### Comment
 
-<p class="callout info">Writes the text to the log and does nothing else.</p>
+> [!NOTE]
+> Writes the text to the log and does nothing else.
 
 **Input**
 
@@ -120,13 +127,14 @@ ShowMacros();
 
 **Example**
 
-```dart
+```text
 Comment("Starting month-end load");
 ```
 
 ### LoadMacros
 
-<p class="callout info">Defines macros from a text file. Fails if the file doesn't exist.</p>
+> [!NOTE]
+> Defines macros from a text file. Fails if the file doesn't exist.
 
 File format:
 
@@ -143,7 +151,7 @@ File format:
 
 **Example**
 
-```dart
+```text
 LoadMacros("C:\JHAT\macros.txt");
 ```
 

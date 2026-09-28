@@ -1,0 +1,28 @@
+' Month-end close: load actuals, consolidate, then extract the consolidated data.
+' Run it with run-month-end.bat, which loads the credentials macro file (-M)
+' and checks the log for failures.
+
+' Environment and period settings (__APP__, __YEAR__, ...).
+LoadMacros("__@SCRIPTDIR__\month-end-macros.txt");
+
+Logon("false", "", "__USER__", "__PASSWORD__");
+OpenApplication("__CLUSTER__", "__APP__");
+
+' Load. LoadData waits for the load and fails if it fails.
+StartTimer("1", "Data load");
+LoadData("Merge", "__DATADIR__\Actuals.dat", "__LOGDIR__\LoadData.log", "false", "false", ";");
+StopTimer("1");
+
+' Consolidate the top entity for the period.
+StartTimer("2", "Consolidation");
+SetPOVExtDim("S#__SCENARIO__.Y#__YEAR__.P#__PERIOD__.W#YTD.E#__TOPENTITY__.V#<Entity Currency>", "SHOWNAMES");
+Consolidate("Impacted");
+StopTimer("2");
+
+' Extract the period's data, including calculated data.
+InitLists();
+AddItemToList("1", "Period", "__PERIOD__");
+ExtractData("__LOGDIR__\Extract.txt", "__LOGDIR__\Extract.log", ";", "YTD", "__YEAR__", "__SCENARIO__", "1", "All", "All", "true");
+
+CloseApplication();
+Logout();

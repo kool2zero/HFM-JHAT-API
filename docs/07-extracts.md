@@ -11,7 +11,8 @@ The extract commands need an open application.
 - **Output files** are extracted on the HFM server and copied to the local paths you give.
 - **true/false parameters:** `true` (any case) means true. Any other value means false, unless a table says otherwise.
 
-<p class="callout warning">Most extract commands report <b>Successful</b> even when HFM reports that the extract failed. JHAT writes "Extract … failed" to its log but then marks the command successful anyway. Check the extract log rather than the command's status. The exceptions are <code>ExtractData</code>, <code>EAExtract</code>, <code>ExtractPhaseInfo</code> and <code>ExtractDataExtDim</code>, which wait for the task and report failure correctly.</p>
+> [!WARNING]
+> Most extract commands report **Successful** even when HFM reports that the extract failed. JHAT writes "Extract … failed" to its log but then marks the command successful anyway. Check the extract log rather than the command's status. The exceptions are `ExtractData`, `EAExtract`, `ExtractPhaseInfo` and `ExtractDataExtDim`, which wait for the task and report failure correctly.
 
 ## Lists
 
@@ -32,7 +33,8 @@ Using a list number that was never filled makes the command fail.
 
 ### InitLists
 
-<p class="callout info">Empties every list (all dimensions and all string lists).</p>
+> [!NOTE]
+> Empties every list (all dimensions and all string lists).
 
 **Input**
 
@@ -40,13 +42,14 @@ None
 
 **Example**
 
-```dart
+```text
 InitLists();
 ```
 
 ### ClearList
 
-<p class="callout info">Empties one list.</p>
+> [!NOTE]
+> Empties one list.
 
 **Input**
 
@@ -57,13 +60,14 @@ InitLists();
 
 **Example**
 
-```dart
+```text
 ClearList("1","Period");
 ```
 
 ### AddItemsToListFromMemberlist
 
-<p class="callout info">Adds the members of an HFM member list to a list.</p>
+> [!NOTE]
+> Adds the members of an HFM member list to a list.
 
 **Input**
 
@@ -76,15 +80,17 @@ ClearList("1","Period");
 
 **Example**
 
-```dart
+```text
 AddItemsToListFromMemberlist("9","Entity","[Descendants]","Regional");
 ```
 
 ### AddItemToList
 
-<p class="callout info">Adds one item to a list.</p>
+> [!NOTE]
+> Adds one item to a list.
 
-<p class="callout warning">Only <code>Period</code>, <code>Entity</code>, <code>Value</code>, <code>Account</code>, <code>ICP</code> and <code>""</code> (string list) are supported. For any other dimension, including <code>Scenario</code>, <code>Year</code> and <code>View</code>, nothing is added but the command still reports success.</p>
+> [!WARNING]
+> Only `Period`, `Entity`, `Value`, `Account`, `ICP` and `""` (string list) are supported. For any other dimension, including `Scenario`, `Year` and `View`, nothing is added but the command still reports success.
 
 **Input**
 
@@ -96,16 +102,18 @@ AddItemsToListFromMemberlist("9","Entity","[Descendants]","Regional");
 
 **Example**
 
-```dart
+```text
 AddItemToList("1","Value","[Elimination]");
 AddItemToList("2","","S#Actual.Y#2023.P#Dec.E#Entity2");
 ```
 
 ### ExtractMetaData
 
-<p class="callout info">Extracts application metadata. The file format comes from the extension of the output file: <code>.xml</code> gives XML, and anything else gives the native (<code>.app</code>) format.</p>
+> [!NOTE]
+> Extracts application metadata. The file format comes from the extension of the output file: `.xml` gives XML, and anything else gives the native (`.app`) format.
 
-<p class="callout warning">The command reads parameters 8–11 as custom dimensions 1–4. If you pass them and the application has fewer than 4 custom dimensions, the command fails. Custom dimensions beyond the 4th are always extracted.</p>
+> [!WARNING]
+> The command reads parameters 8–11 as custom dimensions 1–4. If you pass them and the application has fewer than 4 custom dimensions, the command fails. Custom dimensions beyond the 4th are always extracted.
 
 **Input**
 
@@ -130,14 +138,15 @@ The first 3 parameters are required. The rest are optional and positional. Any v
 
 **Example**
 
-```dart
+```text
 ExtractMetaData("C:\hfm\outbox\Metadata.app","C:\hfm\outbox\MetadataExtract.log",";");
 ExtractMetaData("C:\hfm\outbox\Metadata.xml","C:\hfm\outbox\MetadataExtract.log",";","true","true","true","true","true","true","true","true","true","true","false","true","true","true");
 ```
 
 ### ExtractMetaDataExtDim
 
-<p class="callout info">Extracts application metadata, with dimensions chosen in a single string. This suits applications with any number of custom dimensions. The file format comes from the extension of the output file, as for <code>ExtractMetaData</code>.</p>
+> [!NOTE]
+> Extracts application metadata, with dimensions chosen in a single string. This suits applications with any number of custom dimensions. The file format comes from the extension of the output file, as for `ExtractMetaData`.
 
 **Input**
 
@@ -163,13 +172,14 @@ Dimensions are extracted by default, except ICP and Value. In the Dimensions str
 
 **Example**
 
-```dart
+```text
 ExtractMetaDataExtDim("C:\hfm\outbox\Metadata.app","C:\hfm\outbox\Metadata.log",";","I#true.V#true.C3#false","true","true","true","false","true");
 ```
 
 ### ExtractData
 
-<p class="callout info">Extracts data for a scenario and year to a flat file (no header), and waits for the extract to finish.</p>
+> [!NOTE]
+> Extracts data for a scenario and year to a flat file (no header), and waits for the extract to finish.
 
 The extract includes:
 
@@ -179,7 +189,8 @@ The extract includes:
 - **Custom dimensions:** base members. Custom 1 also includes `[ConsolMethods]`, and Custom 1–2 include `[Currencies]`.
 - **Detail:** cell text and line item detail
 
-<p class="callout warning">JHAT only copies the data file when the server compresses it (<code>.gz</code>), which it decompresses. Otherwise only the log file is copied.</p>
+> [!WARNING]
+> JHAT only copies the data file when the server compresses it (`.gz`), which it decompresses. Otherwise only the log file is copied.
 
 **Input**
 
@@ -200,7 +211,7 @@ Note the order: View, **Year**, then **Scenario**.
 
 **Example**
 
-```dart
+```text
 InitLists();
 AddItemToList("1","Period","Dec");
 ExtractData("D:\Data_Extract.txt","D:\Data_Extract.log",";","YTD","2023","Actual","1","All","All","false");
@@ -208,7 +219,8 @@ ExtractData("D:\Data_Extract.txt","D:\Data_Extract.log",";","YTD","2023","Actual
 
 ### EAExtract
 
-<p class="callout danger"><b>Not an Extended Analytics extract.</b> JHAT's usage text describes a 17-parameter extract to a database table (DSN, table prefix, …), but the command's code is a copy of <code>ExtractData</code>. It requires 17 parameters, reads the first 10 exactly as <code>ExtractData</code> does (so parameter 1 is used as the output file path, not a DSN), and ignores parameters 11–17. Use <code>ExtractData</code> instead.</p>
+> [!CAUTION]
+> **Not an Extended Analytics extract.** JHAT's usage text describes a 17-parameter extract to a database table (DSN, table prefix, …), but the command's code is a copy of `ExtractData`. It requires 17 parameters, reads the first 10 exactly as `ExtractData` does (so parameter 1 is used as the output file path, not a DSN), and ignores parameters 11–17. Use `ExtractData` instead.
 
 **Input**
 
@@ -216,13 +228,14 @@ ExtractData("D:\Data_Extract.txt","D:\Data_Extract.log",";","YTD","2023","Actual
 
 **Example**
 
-```dart
+```text
 EAExtract("D:\Data_Extract.txt","D:\Data_Extract.log",";","YTD","2023","Actual","All","All","All","false","","","","","","","");
 ```
 
 ### ExtractPhaseInfo
 
-<p class="callout info">Extracts phase submission (phase group) data for all scenarios, years, periods and entities (Entity Currency, base accounts, ICPs and custom members), and waits for the extract to finish. The data file is copied only when the server compresses it, as for <code>ExtractData</code>.</p>
+> [!NOTE]
+> Extracts phase submission (phase group) data for all scenarios, years, periods and entities (Entity Currency, base accounts, ICPs and custom members), and waits for the extract to finish. The data file is copied only when the server compresses it, as for `ExtractData`.
 
 **Input**
 
@@ -234,15 +247,17 @@ EAExtract("D:\Data_Extract.txt","D:\Data_Extract.log",";","YTD","2023","Actual",
 
 **Example**
 
-```dart
+```text
 ExtractPhaseInfo("C:\Voyager\Phase_Extract.dat","C:\Voyager\Phase_Extract.log",";");
 ```
 
 ### ExtractSecurity
 
-<p class="callout info">Extracts all security (users, security classes, role access and security class access) in the native format. The file can be loaded with <code>LoadSecurity</code>.</p>
+> [!NOTE]
+> Extracts all security (users, security classes, role access and security class access) in the native format. The file can be loaded with `LoadSecurity`.
 
-<p class="callout warning">JHAT's usage text shows 2 parameters, but the command needs 3. The delimiter is required.</p>
+> [!WARNING]
+> JHAT's usage text shows 2 parameters, but the command needs 3. The delimiter is required.
 
 **Input**
 
@@ -254,13 +269,14 @@ ExtractPhaseInfo("C:\Voyager\Phase_Extract.dat","C:\Voyager\Phase_Extract.log","
 
 **Example**
 
-```dart
+```text
 ExtractSecurity("C:\Voyager\Security_Extract.sec","C:\Voyager\Security_Extract.log",";");
 ```
 
 ### ExtractSecurityExpanded
 
-<p class="callout info">Extracts security in the native format, optionally choosing which parts to include.</p>
+> [!NOTE]
+> Extracts security in the native format, optionally choosing which parts to include.
 
 **Input**
 
@@ -278,13 +294,14 @@ Pass either 3 parameters (everything is extracted) or all 7. With 4–6 paramete
 
 **Example**
 
-```dart
+```text
 ExtractSecurityExpanded("C:\Voyager\Security_Extract.sec","C:\Voyager\Security_Extract.log",";","true","true","false","false");
 ```
 
 ### ExtractJournal
 
-<p class="callout info">Extracts journals for a scenario, year and optionally one period. All statuses, journal types and balance types are included. To filter by entity, label, group, status or type, use <code>ExtractJournalPlus</code>.</p>
+> [!NOTE]
+> Extracts journals for a scenario, year and optionally one period. All statuses, journal types and balance types are included. To filter by entity, label, group, status or type, use `ExtractJournalPlus`.
 
 **Input**
 
@@ -304,13 +321,14 @@ Parameters 3–5 must be exactly `true` to count. For example, `"True "` with a 
 
 **Example**
 
-```dart
+```text
 ExtractJournal("C:\Hfm\JournalExtract.jlf","C:\Hfm\JournalExtract.log","true","true","true","Actual","2023","All",";");
 ```
 
 ### ExtractJournalPlus
 
-<p class="callout info">Extracts journals with full control over periods, entities, values, labels, groups, statuses, types and balance types.</p>
+> [!NOTE]
+> Extracts journals with full control over periods, entities, values, labels, groups, statuses, types and balance types.
 
 **Input**
 
@@ -337,13 +355,14 @@ The status, type and balance type names follow the earlier version of this page.
 
 **Example**
 
-```dart
+```text
 ExtractJournalPlus("C:\JournalsTest.jlf","C:\JournalsTest.log","false","false","true","Actual","2023","All","All","All","","","true","false","false","false","false","true","true","true","true","true","true",";");
 ```
 
 ### ExtractICTransactions
 
-<p class="callout info">Extracts intercompany transactions for a scenario, year and period. No log file is produced.</p>
+> [!NOTE]
+> Extracts intercompany transactions for a scenario, year and period. No log file is produced.
 
 **Input**
 
@@ -366,13 +385,14 @@ ExtractJournalPlus("C:\JournalsTest.jlf","C:\JournalsTest.log","false","false","
 
 **Example**
 
-```dart
+```text
 ExtractICTransactions("C:\ICM\Extract1.trn","Actual","2023","Dec","All","All","yes","yes","yes","yes","yes","yes","","");
 ```
 
 ### ExtractRules
 
-<p class="callout info">Extracts the application's rules (its calculation, translation and consolidation logic), for example to back them up before loading new rules with <code>LoadRules</code>.</p>
+> [!NOTE]
+> Extracts the application's rules (its calculation, translation and consolidation logic), for example to back them up before loading new rules with `LoadRules`.
 
 **Input**
 
@@ -384,13 +404,14 @@ ExtractICTransactions("C:\ICM\Extract1.trn","Actual","2023","Dec","All","All","y
 
 **Example**
 
-```dart
+```text
 ExtractRules("RLE","C:\Output\rules.rle","C:\Output\rules.log");
 ```
 
 ### ExtractMemberlists
 
-<p class="callout info">Extracts the application's member lists file, which defines the named member lists (such as <code>[Base]</code> alternatives) used in forms, grids and scripts. It can be loaded with <code>LoadMemberLists</code>.</p>
+> [!NOTE]
+> Extracts the application's member lists file, which defines the named member lists (such as `[Base]` alternatives) used in forms, grids and scripts. It can be loaded with `LoadMemberLists`.
 
 **Input**
 
@@ -401,13 +422,14 @@ ExtractRules("RLE","C:\Output\rules.rle","C:\Output\rules.log");
 
 **Example**
 
-```dart
+```text
 ExtractMemberlists("C:\Output\memberlists.lst","C:\Output\memberlists.log");
 ```
 
 ### ExtractDataExtDim
 
-<p class="callout info">Extracts data for any POV (member lists allowed), with full control over what is included, and waits for the extract to finish. The data file is copied only when the server compresses it, as for <code>ExtractData</code>.</p>
+> [!NOTE]
+> Extracts data for any POV (member lists allowed), with full control over what is included, and waits for the extract to finish. The data file is copied only when the server compresses it, as for `ExtractData`.
 
 **Input**
 
@@ -430,13 +452,14 @@ All 12 parameters are required.
 
 **Example**
 
-```dart
+```text
 ExtractDataExtDim("S#Actual.Y#2023.P{[Base]}.W#YTD.E{[Base]}.V#<Entity Currency>.A{[Base]}.I{[Base]}.C1{[Base]}.C2{[Base]}.C3{[Base]}.C4{[Base]}","true","true","false","false","false","","false","false",";","C:\Output\data.txt","C:\Output\data.log");
 ```
 
 ### ExtractDocument
 
-<p class="callout info">Saves a document from Document Manager to a local file, encoded as UTF-16LE.</p>
+> [!NOTE]
+> Saves a document from Document Manager to a local file, encoded as UTF-16LE.
 
 **Input**
 
@@ -450,13 +473,14 @@ ExtractDataExtDim("S#Actual.Y#2023.P{[Base]}.W#YTD.E{[Base]}.V#<Entity Currency>
 
 **Example**
 
-```dart
+```text
 ExtractDocument("IncomeStatement","C:\Output\IncomeStatement.xml","WebForm","Form","\Forms\Actuals");
 ```
 
 ### ExtractModuleConfiguration
 
-<p class="callout info">Extracts the application's module configuration: which modules (such as journals, intercompany transactions and equity pickup) are enabled. It can be loaded with <code>LoadModuleConfiguration</code>.</p>
+> [!NOTE]
+> Extracts the application's module configuration: which modules (such as journals, intercompany transactions and equity pickup) are enabled. It can be loaded with `LoadModuleConfiguration`.
 
 **Input**
 
@@ -467,6 +491,6 @@ ExtractDocument("IncomeStatement","C:\Output\IncomeStatement.xml","WebForm","For
 
 **Example**
 
-```dart
+```text
 ExtractModuleConfiguration("C:\Output\modules.xml","C:\Output\modules.log");
 ```

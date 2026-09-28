@@ -16,7 +16,7 @@ Equity pickup adjustments are made in the local currency of the holding company,
 
 For each company owned, the adjustment is expressed as follows:
 
-```ini
+```text
 Direct Ownership Percentage * Equity of Owned Entity
 = Current Equity Value
 - Investment
@@ -33,7 +33,8 @@ These commands need an open application.
 
 ### FilterEPUGrid
 
-<p class="callout info">Retrieves the equity pickup grid, as shown on the Manage Equity Pickup page, for a Scenario, Year and Period with the given filters, and writes it to a UTF-8 file. Each row is an owner/owned entity pair with its ownership level, %EPU and status (whether it needs recalculating).</p>
+> [!NOTE]
+> Retrieves the equity pickup grid, as shown on the Manage Equity Pickup page, for a Scenario, Year and Period with the given filters, and writes it to a UTF-8 file. Each row is an owner/owned entity pair with its ownership level, %EPU and status (whether it needs recalculating).
 
 The output file is semicolon-separated. It starts with a header line (`Circular Ownership;Level;Owner;Owned;%EPU;Status;`) and a blank line, then one line per owner/owned pair. `%EPU` uses `.` as the decimal separator. JHAT requests a page size of 500 rows.
 
@@ -61,13 +62,14 @@ All 15 parameters are required, but most can be `""` to use the default shown.
 
 **Example**
 
-```dart
+```text
 FilterEPUGrid("Actual", "2023", "Dec", "", "", "Include", "Both", "false", "BOTH", "2", ">=", "20", "0", "1", "C:\Output\epu.txt");
 ```
 
 ### CalcEPU
 
-<p class="callout info">Runs the equity pickup calculation for the Scenario, Year and Period set by <code>SetPOV</code>, and waits for the task to finish. The command fails if the task doesn't complete (see <a href="00-automation-with-jhat.md#long-running-tasks">long-running tasks</a>).</p>
+> [!NOTE]
+> Runs the equity pickup calculation for the Scenario, Year and Period set by `SetPOV`, and waits for the task to finish. The command fails if the task doesn't complete (see [long-running tasks](00-automation-with-jhat.md#long-running-tasks)).
 
 **Input**
 
@@ -77,14 +79,15 @@ FilterEPUGrid("Actual", "2023", "Dec", "", "", "Include", "Both", "false", "BOTH
 
 **Example**
 
-```dart
+```text
 SetPOV("Actual","2023","Dec","YTD","Group.Entity1","<Entity Currency>","Sales","[ICP None]","[None]","[None]","[None]","[None]");
 CalcEPU("Run");
 ```
 
 ### GenerateEPUReport
 
-<p class="callout info">Generates the EPU system report for a POV, waits for it to finish, and copies it to the output path.</p>
+> [!NOTE]
+> Generates the EPU system report for a POV, waits for it to finish, and copies it to the output path.
 
 **Input**
 
@@ -96,15 +99,17 @@ CalcEPU("Run");
 
 **Example**
 
-```dart
+```text
 GenerateEPUReport("S#Actual.Y#2023.P#Dec", "HFM_FORMAT", "C:\Output\epu_report.html");
 ```
 
 ### GenerateFilteredEPUReport
 
-<p class="callout info">Generates the EPU system report with owner, owned, circular ownership and status filters, waits for it to finish, and copies it to the output path.</p>
+> [!NOTE]
+> Generates the EPU system report with owner, owned, circular ownership and status filters, waits for it to finish, and copies it to the output path.
 
-<p class="callout info">Other report options are fixed: levels 0 to 1, 2 decimals, labels only, no %EPU filter.</p>
+> [!NOTE]
+> Other report options are fixed: levels 0 to 1, 2 decimals, labels only, no %EPU filter.
 
 **Input**
 
@@ -121,6 +126,6 @@ GenerateEPUReport("S#Actual.Y#2023.P#Dec", "HFM_FORMAT", "C:\Output\epu_report.h
 
 **Example**
 
-```dart
+```text
 GenerateFilteredEPUReport("S#Actual.Y#2023.P#Dec", "HFM_FORMAT", "", "", "Exclude", "Impacted", "false", "C:\Output\epu_filtered.html");
 ```
