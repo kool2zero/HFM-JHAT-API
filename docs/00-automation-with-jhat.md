@@ -91,7 +91,7 @@ Any other option fails with "Argument … Not Valid". Use `jhat.bat -H` to see J
 
 #### How a script runs
 
-1. **Read:** every line is read and turned into a command. Commands with the wrong number of parameters are reported as syntax errors.
+1. **Read:** every line is read and turned into a command. Commands with the wrong number of parameters are reported as syntax errors. Syntax errors and unknown command names are printed to the **console only**, not to the `-O` log file, which only gets their counts in the summary.
 2. **Loops:** `BeginLoop` … `EndLoop` blocks are expanded (see [Runtime Actions](16-runtime-actions.md)).
 3. **Run:** commands run in order. Before each one, [macros](11-macros.md) in its arguments are replaced.
    - **Syntax errors:** commands with a syntax error are **skipped**, and the rest of the script still runs.
@@ -116,7 +116,7 @@ Before a command runs, JHAT checks how many parameters it was given:
 - Most commands need exactly the number of parameters shown on their page.
 - A few accept several counts (for example, `CreateApplicationCAS` accepts 7 or 8).
 
-If the count is wrong, the command is reported as a syntax error ("Incorrect number of parameters.", with the script line number, the parameters you passed, and the command's expected usage) and is **skipped**. The rest of the script still runs, even with abort on error turned on.
+If the count is wrong, the command is reported as a syntax error ("Incorrect number of parameters.", with the script line number, the parameters you passed, and the command's expected usage) and is **skipped**. These details go to the console only, not to the log file. The rest of the script still runs, even with abort on error turned on.
 
 <p class="callout warning">For commands whose parameter count is a range, JHAT's check never fails. This covers <code>GetForm</code>, <code>FilterProcessControlGrid</code>, <code>GetCalcStatusSummary</code>, <code>ExtractMetaData</code>, <code>ExtractMetaDataExtDim</code>, <code>ExtractSecurityExpanded</code>, <code>LoadMetaDataExtDim</code>, <code>LoadICTransactions</code>, <code>LoadDocument</code>, <code>OpenICPeriod</code>, <code>UpdateICPeriod</code> and <code>DefineMacroEx</code>. Passing too few parameters makes the command crash partway through instead of failing with a clear message.</p>
 
