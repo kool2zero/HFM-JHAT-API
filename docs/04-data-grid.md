@@ -16,112 +16,119 @@ These JHAT Commands relate to the data grid.
 
 #### Commands
 
+Unless noted otherwise, these commands work on the POV set by `SetPOV` / `SetPOVExtDim` and need an open application. A command that needs a POV fails with "SetPOV is not called before calling Set Cell…" if none has been set.
+
+- **Output files** are written in UTF-8 and overwritten if they exist.
+- **true/false parameters:** `true` (any case) means true. Any other value means false.
+- **Lists** (as in "StringList number") are the numbered lists built with `AddItemToList` on the [Extracts](07-extracts.md) page.
+
+##### Defining and reading grids
+
 <details id="bkmrk-DefineGrid-"><summary>DefineGrid</summary>
 
-<p class="callout info">The define Grid Command will set up a grid with a POV that can be used in later commands.</p>
-
-<p class="callout info">Should call `SetPOV` prior to running this function to set up the rest of the POV.</p>
+<p class="callout info">Defines a data grid with one row dimension and one column dimension. All other dimensions come from the current POV. The grid is used by `GetGrid`, `GetGridExtDim` and `GetCellsExtDim`. Defining a new grid removes the previous one.</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--14" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Row Dimension</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Row Dimension</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Row List</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Row List</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Row Top Member</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Row Top Member</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Column Dimension</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Column Dimension</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Column List</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Column List</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Column Top Member</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Column Top Member</td></tr></tbody></table>
+| Parameter | Mandatory | Comment |
+| --- | :---: | --- |
+| Row Dimension | ✓ | Dimension name or short name (`A`, `E`, `C1`…) for the rows |
+| Row List | ✓ | Member list for the rows, e.g. `[Hierarchy]`, `[Base]`, `[Descendants]` |
+| Row Top Member | ✓ | Top member for the list, or `""` for none |
+| Column Dimension | ✓ | Dimension for the columns |
+| Column List | ✓ | Member list for the columns |
+| Column Top Member | ✓ | Top member for the list, or `""` for none |
 
 **Example**
 
 ```dart
-DefineGrid("Row Dimension"," Row List"," Row Top Member"," Column Dimension"," Column List"," Column Top Member");
 DefineGrid("Account","[Hierarchy]","","Period","[Hierarchy]","");
+DefineGrid("Entity","[Base]","TotalGroup","Period","[Base]","");
 ```
 
 </details><details id="bkmrk-DefineGridExtDim-"><summary>DefineGridExtDim / DefineDataRetrieval</summary>
 
-<p class="callout info">Defines a Grid by passing in Rows and Dimensions. The grid can be used in later commands.</p>
-
-<p class="callout info">Both commands appear to call the same API codes.</p>
-
-<p class="callout info">Should call `SetPOV` prior to running this function to set up the rest of the POV.</p>
+<p class="callout info">Defines a data grid that can have several row and column dimensions. `DefineGridExtDim` and `DefineDataRetrieval` are identical. All other dimensions come from the current POV. Defining a new grid removes the previous one.</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory-" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Row Dimensions</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Row Dimensions</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Column Dimensions</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Column Dimensions</td></tr></tbody></table>
+Each parameter is one or more `Dimension{list}` or `Dimension{TopMember.list}` entries joined with `.`. The dimension can be a name or short name (`A`, `E`, `C1`…). **Each dimension must have a `{…}` part**. A bare dimension name like `"Account"` makes the command fail.
+
+| Parameter | Mandatory | Comment |
+| --- | :---: | --- |
+| Row Dimension(s) | ✓ | e.g. `A{[Base]}` or `E{TotalGroup.[Descendants]}.A{[Base]}` |
+| Column Dimension(s) | ✓ | e.g. `P{[Base]}` |
+
+An unknown dimension fails with "Invalid dimension short name".
 
 **Example**
 
 ```dart
-DefineGridExtDim("Account","ICP");
-DefineDataRetrieval("Account","ICP");
-
+DefineGridExtDim("A{[Base]}","P{[Base]}");
+DefineDataRetrieval("E{TotalGroup.[Descendants]}.A{NetIncome.[Descendants]}","P{[Base]}");
 ```
 
 </details><details id="bkmrk-GetGrid-"><summary>GetGrid</summary>
 
-<p class="callout info">Extract a previously defined grid to a flat file.</p>
-
-<p class="callout warning">Must run `SetPOV` and `DefineGrid` prior to running this command.</p>
+<p class="callout info">Writes rows of the grid defined by `DefineGrid` / `DefineGridExtDim` to a semicolon-separated file. Column headers come first, then one line per row with its row headers followed by the cell values. JHAT remembers the current row between calls, so you can page through a grid with `DOWN`.</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--2" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Output File</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Location to store the output file</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Type of Extract</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Type of Extract
+| Parameter | Mandatory | Comment |
+| --- | :---: | --- |
+| Output File | ✓ | Local file to write |
+| Type of Extract | ✓ | What to write for each cell (any case). See the table below. |
+| Direction | ✓ | `ALL`: every row, from the top. `DOWN`: the next *n* rows from the current row. `UP`: the *n* rows before the current row. |
+| Number of Rows | ✓ | Number of rows for `UP` / `DOWN`. Must be a number, even with `ALL`. |
 
-- `VALUE` - Values in Grid
-- `STATUS` - Calculation Status
-- `NOTHING` - Returns how many rows would be retrieved.
-- `DROID` - Unknown
-- `CALCSTATUS` - Calculation Status
-- `PROCESS` - Process Level
-- `STATUSHEX` - Cell Status in Hex
-
-</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Direction to Extract</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Direction of Extract
-
-- `UP` - If number of rows to extract is set, it will start from the top.
-- `DOWN` - If number of rows to extract is set, it will start from the bottom.
-- `ALL` - Will start from the top.
-
-</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Number of Rows To Extract</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Number of Rows To Extract</td></tr></tbody></table>
+| Type of Extract | Cell contents |
+| --- | --- |
+| `VALUE` | Cell value |
+| `STATUS` or `CALCSTATUS` | Calculation status text |
+| `PROCESS` | Process management status text |
+| `DROID` | Raw numeric cell status |
+| `STATUSHEX` | Raw cell status in hexadecimal |
+| `NOTHING` | No grid. The file only says how many rows the grid has. |
 
 **Example**
 
 ```dart
-GetGrid("Output File"," Type of Extract"," Direction to Extract"," Number of Rows To Extract");
+DefineGrid("Account","[Base]","","Period","[Base]","");
+GetGrid("C:\Output\grid.txt","VALUE","ALL","0");
 ```
 
 </details><details id="bkmrk-GetGridExtDim-"><summary>GetGridExtDim / GetCellsExtDim</summary>
 
-<p class="callout info">Extract a previously defined grid to a flat file.</p>
+<p class="callout info">Writes the whole grid defined by `DefineGrid` / `DefineGridExtDim` to a semicolon-separated file, in the same layout as `GetGrid`. `GetGridExtDim` and `GetCellsExtDim` are identical.</p>
 
-<p class="callout info">Both commands call the same Java code.</p>
-
-<p class="callout warning">Must run `SetPOV` and `DefineGrid` prior to running this command.</p>
+<p class="callout warning">The extract types differ from `GetGrid`. Here `STATUS` gives the raw numeric cell status, and `CALCSTATUS` gives the calculation status text.</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--1" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Output File</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Location to store the output file</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Type of Extract</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Type of Extract
-
-- `VALUE` - Values in Grid
-- `STATUS` - Calculation Status
-- `NOTHING` - Returns how many rows would be retrieved.
-- `DROID` - Unknown
-- `CALCSTATUS` - Calculation Status
-- `PROCESS` - Process Level
-- `STATUSHEX` - Cell Status in Hex
-
-</td></tr></tbody></table>
+| Parameter | Mandatory | Comment |
+| --- | :---: | --- |
+| Output File | ✓ | Local file to write |
+| Type of Extract | ✓ | `VALUE`, `CALCSTATUS` (calc status text), `STATUS` or `DROID` (numeric status), `STATUSHEX`, `PROCESS` or `NOTHING` |
 
 **Example**
 
 ```dart
-GetGridExtDim("<Output File Path>", "<Type of Extract>");
+GetGridExtDim("C:\Output\grid.txt","VALUE");
 ```
 
-</details><details id="bkmrk-SetCell-"><summary>SetCell</summary>
+</details>
 
-<p class="callout info">Sets the value of a Cell based on a POV. Cell will have to be inputable.</p>
+##### Cell data
 
-<p class="callout warning">Must run `SetPOV` prior to running this command.</p>
+<details id="bkmrk-SetCell-"><summary>SetCell</summary>
+
+<p class="callout info">Sets the value of the cell at the current POV. The cell must be an input cell.</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--3" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Value</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Value</td></tr></tbody></table>
+| Parameter | Mandatory | Comment |
+| --- | :---: | --- |
+| Value | ✓ | Value to store |
 
 **Example**
 
@@ -131,9 +138,7 @@ SetCell("999999");
 
 </details><details id="bkmrk-GetCell-"><summary>GetCell</summary>
 
-<p class="callout info">Gets the value of a Cell based on a POV. </p>
-
-<p class="callout warning">Must run `SetPOV` prior to running this command.</p>
+<p class="callout info">Writes the cell at the current POV to the log: displayed data, full-resolution data, stored data, calculation status and cell status.</p>
 
 **Input**
 
@@ -145,19 +150,13 @@ None
 GetCell();
 ```
 
-Returns the following information to the log:
-
-- Displayed Data
-- Full Resolution data
-- Stored data
-- Calculation status
-- Cell status
-
 </details><details id="bkmrk-GetCellInfo-"><summary>GetCellInfo</summary>
 
-<p class="callout info">Gets the Cell Info and Outputs it to the log.</p>
+<p class="callout info">Writes detailed information about the cell at the current POV to the log:</p>
 
-<p class="callout warning">Must run `SetPOV` prior to running this command.</p>
+- **POV:** process unit, POV detail, view, phase and account calculation attribute
+- **Status:** calculation status, process level, cell status and security class
+- **Data:** scale, number of decimals, and displayed, full-resolution and stored data
 
 **Input**
 
@@ -169,33 +168,234 @@ None
 GetCellInfo();
 ```
 
-Returns the following information to the log:
+</details><details id="bkmrk-GetCellHistory-"><summary>GetCellHistory</summary>
 
-```sql
----- Point of view ----
-Process Unit
-POV Detail
-View
-Phase
-Account Calculation Attribute
----- Status ----
-Calculation status
-Process Level
-Cell status
-Cell security class
----- Data ----
-Scale
-Num Decimals
-Displayed Data
-Full Resolution data
-Stored data
+<p class="callout info">Writes the change history of the cell at the current POV to a file: user, server, activity, time modified and value for each change.</p>
+
+**Input**
+
+| Parameter | Mandatory | Comment |
+| --- | :---: | --- |
+| Output File Path | ✓ | Local file to write |
+
+**Example**
+
+```dart
+GetCellHistory("C:\Output\history.txt");
 ```
 
-</details><details id="bkmrk-Lock-"><summary>Lock</summary>
+</details><details id="bkmrk-GetCellEntityDetails-"><summary>GetCellEntityDetails</summary>
 
-<p class="callout info">Runs the [Lock](https://docs.oracle.com/cd/E57185_01/HFMUR/ch04s09.html) command on the selected POV</p>
+<p class="callout info">Writes the Entity Details report for the current POV to a colon-separated file.</p>
 
-<p class="callout warning">Must run `SetPOV` prior to running this command.</p>
+The report includes:
+
+- **Rows:** base details, source and destination transactions, line item details, and journals
+- **Columns:** debit, credit, ID and remarks, broken out by Entity, Account, ICP and each custom dimension
+
+**Input**
+
+| Parameter | Mandatory | Comment |
+| --- | :---: | --- |
+| Output File Path | ✓ | Local file to write |
+
+**Example**
+
+```dart
+GetCellEntityDetails("C:\Output\entitydetails.txt");
+```
+
+</details><details id="bkmrk-GetSourceTransactions-"><summary>GetSourceTransactions</summary>
+
+<p class="callout info">Writes the source transactions for the cell at the current POV (statutory applications) to a semicolon-separated file. Columns: `Current Entity;Parent;Source Data;Destination Data;Factor;Nature`.</p>
+
+**Input**
+
+| Parameter | Mandatory | Comment |
+| --- | :---: | --- |
+| Output File Path | ✓ | Local file to write |
+
+**Example**
+
+```dart
+GetSourceTransactions("C:\Output\source.txt");
+```
+
+</details><details id="bkmrk-GetDestinationTransactions-"><summary>GetDestinationTransactions</summary>
+
+<p class="callout info">Writes the destination transactions for the cell at the current POV (statutory applications) to a semicolon-separated file, in the same format as `GetSourceTransactions`.</p>
+
+**Input**
+
+| Parameter | Mandatory | Comment |
+| --- | :---: | --- |
+| Output File Path | ✓ | Local file to write |
+
+**Example**
+
+```dart
+GetDestinationTransactions("C:\Output\destination.txt");
+```
+
+</details><details id="bkmrk-GetLineItemDetail-"><summary>GetLineItemDetail</summary>
+
+<p class="callout info">Writes the line item detail for the cell at the current POV to a semicolon-separated file (`Description;Line Item Data`). Line item detail only applies to scenarios and accounts set up to use it, and only for the Entity Currency Value member.</p>
+
+**Input**
+
+| Parameter | Mandatory | Comment |
+| --- | :---: | --- |
+| Output File Path | ✓ | Local file to write |
+
+**Example**
+
+```dart
+GetLineItemDetail("C:\Output\lineitems.txt");
+```
+
+</details><details id="bkmrk-SetLineItemDetail-"><summary>SetLineItemDetail</summary>
+
+<p class="callout info">Sets one line item on each of several cells. The POVs and values come from two string lists built with `AddItemToList` (dimension `""`). The lists must have the same number of items. The first POV gets the first value, and so on. Every line item gets the same description.</p>
+
+**Input**
+
+| Parameter | Mandatory | Comment |
+| --- | :---: | --- |
+| POV List Number | ✓ | Number of the string list holding the POV strings |
+| Values List Number | ✓ | Number of the string list holding the values |
+| Description | ✓ | Line item description |
+
+**Example**
+
+```dart
+InitLists();
+AddItemToList("1","","S#Actual.Y#2023.P#Jan.W#YTD.E#Entity1.V#<Entity Currency>.A#Cash.I#[ICP None].C1#[None].C2#[None].C3#[None].C4#[None]");
+AddItemToList("2","","1000");
+SetLineItemDetail("1","2","Opening balance");
+```
+
+</details>
+
+##### Cell text and attachments
+
+<details id="bkmrk-SetCellTextEnhanced-"><summary>SetCellTextEnhanced</summary>
+
+<p class="callout info">Sets the cell text for a cell text label on the cell at the current POV.</p>
+
+**Input**
+
+| Parameter | Mandatory | Comment |
+| --- | :---: | --- |
+| Cell Text Label | ✓ | Cell text label, e.g. `[Default]` |
+| Text | ✓ | Text to store |
+
+**Example**
+
+```dart
+SetCellTextEnhanced("[Default]","Reviewed by Finance");
+```
+
+</details><details id="bkmrk-deleteCellTextEnhanced-"><summary>deleteCellTextEnhanced</summary>
+
+<p class="callout info">Deletes the text, the attachments, or both, for a cell text label on the cell at the current POV.</p>
+
+**Input**
+
+| Parameter | Mandatory | Comment |
+| --- | :---: | --- |
+| Cell Text Label | ✓ | Cell text label |
+| What to Delete | ✓ | `All`, `Text` or `Attachments` |
+
+**Example**
+
+```dart
+deleteCellTextEnhanced("[Default]","All");
+```
+
+</details><details id="bkmrk-DetachCellDocument-"><summary>DetachCellDocument</summary>
+
+<p class="callout info">Removes one attached document from a cell text label on the cell at the current POV. The text and other attachments are kept.</p>
+
+**Input**
+
+| Parameter | Mandatory | Comment |
+| --- | :---: | --- |
+| Cell Text Label | ✓ | Cell text label |
+| File Name | ✓ | Name of the attached document to remove (matched ignoring case) |
+
+**Example**
+
+```dart
+DetachCellDocument("[Default]","Support.pdf");
+```
+
+</details><details id="bkmrk-AttachCellDocumentEnhanced-"><summary>AttachCellDocumentEnhanced / AttachCellDocument</summary>
+
+<p class="callout info">Attaches a document that is already in Document Manager to the cell at the current POV. Existing text and attachments for the label are kept. `AttachCellDocument` always uses the `[Default]` label.</p>
+
+**Input: AttachCellDocumentEnhanced**
+
+| Parameter | Mandatory | Comment |
+| --- | :---: | --- |
+| Cell Text Label | ✓ | Cell text label |
+| File Name | ✓ | Name of the document |
+| Folder | ✓ | Document Manager folder holding the document |
+
+**Input: AttachCellDocument**
+
+| Parameter | Mandatory | Comment |
+| --- | :---: | --- |
+| File Name | ✓ | Name of the document |
+| Folder | ✓ | Document Manager folder holding the document |
+
+**Example**
+
+```dart
+AttachCellDocumentEnhanced("[Default]","Support.pdf","\Documents\Support");
+AttachCellDocument("Support.pdf","\Documents\Support");
+```
+
+</details><details id="bkmrk-GetCellTextAttachmentsEnhanced-"><summary>GetCellTextAttachmentsEnhanced</summary>
+
+<p class="callout info">Lists the attached documents on the cell at the current POV. Each is written to the file and the log as `Label <label> attachment is : <file>`.</p>
+
+**Input**
+
+| Parameter | Mandatory | Comment |
+| --- | :---: | --- |
+| Cell Text Label | ✓ | Cell text label, or `All` for every label |
+| Output File Path | ✓ | Local file to write |
+
+**Example**
+
+```dart
+GetCellTextAttachmentsEnhanced("All","C:\Output\attachments.txt");
+```
+
+</details><details id="bkmrk-GetCellTextEnhanced-"><summary>GetCellTextEnhanced</summary>
+
+<p class="callout info">Gets the cell text on the cell at the current POV. Each label is written to the file and the log as `Label <label> is : <text>`.</p>
+
+**Input**
+
+| Parameter | Mandatory | Comment |
+| --- | :---: | --- |
+| Cell Text Label | ✓ | Cell text label, or `All` for every label |
+| Output File Path | ✓ | Local file to write |
+
+**Example**
+
+```dart
+GetCellTextEnhanced("All","C:\Output\celltext.txt");
+```
+
+</details>
+
+##### Calculation and consolidation
+
+<details id="bkmrk-Lock-"><summary>Lock</summary>
+
+<p class="callout info">Runs the [Lock](https://docs.oracle.com/cd/E57185_01/HFMUR/ch04s09.html) command on the current POV. The command fails if the server returns an error code.</p>
 
 **Input**
 
@@ -209,9 +409,7 @@ Lock();
 
 </details><details id="bkmrk-Unlock-"><summary>Unlock</summary>
 
-<p class="callout info">Runs the [Unlock](https://docs.oracle.com/cd/E57185_01/HFMUR/ch04s10.html) command on the selected POV</p>
-
-<p class="callout warning">Must run `SetPOV` prior to running this command.</p>
+<p class="callout info">Runs the [Unlock](https://docs.oracle.com/cd/E57185_01/HFMUR/ch04s10.html) command on the current POV. The command fails if the server returns an error code.</p>
 
 **Input**
 
@@ -225,9 +423,7 @@ Unlock();
 
 </details><details id="bkmrk-Translate-"><summary>Translate</summary>
 
-<p class="callout info">Runs the [Translate](https://docs.oracle.com/cd/E57185_01/HFMUR/ch05s05.html) command on the selected POV</p>
-
-<p class="callout warning">Must run `SetPOV` prior to running this command.</p>
+<p class="callout info">Runs the [Translate](https://docs.oracle.com/cd/E57185_01/HFMUR/ch05s05.html) command on the current POV. The command fails if the server returns an error code.</p>
 
 **Input**
 
@@ -241,9 +437,7 @@ Translate();
 
 </details><details id="bkmrk-Allocate-"><summary>Allocate</summary>
 
-<p class="callout info">Runs the [Allocate](https://docs.oracle.com/cd/E57185_01/HFMUR/ch04s07.html) command on the selected POV</p>
-
-<p class="callout warning">Must run `SetPOV` prior to running this command.</p>
+<p class="callout info">Runs the [Allocate](https://docs.oracle.com/cd/E57185_01/HFMUR/ch04s07.html) command on the current POV. The command fails if the server returns an error code.</p>
 
 **Input**
 
@@ -255,46 +449,33 @@ None
 Allocate();
 ```
 
-</details><details id="bkmrk-consolidate-runs-the"><summary>Consolidate</summary>
+</details><details id="bkmrk-Consolidate-"><summary>Consolidate</summary>
 
-<p class="callout info">Runs the [Consolidate](https://docs.oracle.com/cd/E57185_01/HFMUR/ch05s07.html) command based on the `SetPOV`.</p>
-
-<p class="callout warning">Must run `SetPOV` prior to running this command.</p>
+<p class="callout info">Runs the [Consolidate](https://docs.oracle.com/cd/E57185_01/HFMUR/ch05s07.html) command on the current POV, and optionally on extra POVs from a string list. JHAT waits for every consolidation task to finish (see <a href="00-automation-with-jhat.md#long-running-tasks">long-running tasks</a>). The command fails if the last task doesn't complete.</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--4" style="height: 454.484px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 19.0798%; height: 29.7969px;">**Parameter**</td><td style="width: 15.875%; height: 29.7969px;">**Mandatory**</td><td style="width: 64.9098%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.3906px;"><td style="width: 19.0798%; height: 35.3906px;">Consolidation Type</td><td style="width: 15.875%; height: 35.3906px;">✓
-
-</td><td style="width: 64.9098%; height: 35.3906px;">The type of consolidation to run:
-
-- `Impacted`
-- `AllWithData`
-- `All`
-- `EntityOnly` (Calculate Contribution)
-- `ForceEntityOnly` (Force Calculate Contribution)
-
-</td></tr></tbody></table>
+| Parameter | Mandatory | Comment |
+| --- | :---: | --- |
+| Type | ✓ | `Impacted`: Consolidate. `AllWithData`: Consolidate All with Data. `All`: Consolidate All. `EntityOnly`: Calculate Contribution. `ForceEntityOnly`: Force Calculate Contribution. Any other value fails with "Invalid arguments value for consolidation." |
+| POV List Number | | Number of a string list (built with `AddItemToList`, dimension `""`) of extra POV strings to consolidate along with the current POV |
 
 **Example**
 
 ```dart
 Consolidate("Impacted");
+Consolidate("AllWithData","3");
 ```
 
 </details><details id="bkmrk-ChartLogic-"><summary>ChartLogic</summary>
 
-<p class="callout info">Runs the [Calculate](https://docs.oracle.com/cd/E57185_01/HFMUR/ch05s04.html) command based on the `SetPOV`.</p>
-
-<p class="callout warning">Must run `SetPOV` prior to running this command.</p>
+<p class="callout info">Runs the [Calculate](https://docs.oracle.com/cd/E57185_01/HFMUR/ch05s04.html) command on the current POV. Unlike `Consolidate`, it doesn't wait for a running task. The command fails if the server returns an error code.</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--5" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Force Calculate</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Force Calculate
-
-- `true`
-- `false`
-
-</td></tr></tbody></table>
+| Parameter | Mandatory | Comment |
+| --- | :---: | --- |
+| Force | ✓ | `true`: Force Calculate. Any other value: Calculate. |
 
 **Example**
 
@@ -302,524 +483,185 @@ Consolidate("Impacted");
 ChartLogic("true");
 ```
 
-</details><details id="bkmrk-SetCellTextEnhanced-"><summary>SetCellTextEnhanced</summary>
-
-<p class="callout info">Sets the cell text for an intersection.</p>
-
-<p class="callout warning">Must run `SetPOV` prior to running this command.</p>
-
-**Input**
-
-<table border="1" id="bkmrk-parameter-mandatory--6" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Cell label</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Cell label</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Text for the label</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Text for the label</td></tr></tbody></table>
-
-**Example**
-
-```dart
-SetCellTextEnhanced("Cell label"," Text for the label");
-```
-
-</details><details id="bkmrk-deleteCellTextEnhanced-"><summary>deleteCellTextEnhanced</summary>
-
-<p class="callout info">Deletes Cell Text for an Intersection</p>
-
-<p class="callout warning">Must run `SetPOV` prior to running this command.</p>
-
-**Input**
-
-<table border="1" id="bkmrk-parameter-mandatory--7" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Cell label</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Cell label</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">What to Delete</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">What to Delete:
-
-- `All`
-- `Text`
-- `Attachments`
-
-</td></tr></tbody></table>
-
-**Example**
-
-```dart
-deleteCellTextEnhanced("Cell label"," All or Text or Attachments;");
-```
-
-</details><details id="bkmrk-DetachCellDocument-"><summary>DetachCellDocument</summary>
-
-<p class="callout info">Removes a document from the Cell</p>
-
-<p class="callout warning">Must run `SetPOV` prior to running this command.</p>
-
-**Input**
-
-<table border="1" id="bkmrk-parameter-mandatory--8" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Cell label</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Cell label</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">File Name</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">File Name</td></tr></tbody></table>
-
-**Example**
-
-```dart
-DetachCellDocument("Cell Text Label","File Name");
-```
-
-</details><details id="bkmrk-AttachCellDocumentEnhanced-"><summary>AttachCellDocumentEnhanced \\ AttachCellDocument</summary>
-
-<p class="callout info">Attach a document to the Cell</p>
-
-<p class="callout warning">Must run `SetPOV` prior to running this command.</p>
-
-**Input**
-
-<table border="1" id="bkmrk-parameter-mandatory--9" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 37.8843%; height: 29.7969px;">**Parameter**</td><td style="width: 11.9127%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 37.8843%; height: 35.375px;">Cell label</td><td class="align-center" style="width: 11.9127%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Cell label</td></tr><tr style="height: 35.375px;"><td style="width: 37.8843%; height: 35.375px;">File Name</td><td class="align-center" style="width: 11.9127%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">File Name</td></tr><tr><td style="width: 37.8843%;">Full Directory from Manage Documents</td><td class="align-center" style="width: 11.9127%;">✓</td><td style="width: 50.203%;">Full Directory from Manage Documents</td></tr></tbody></table>
-
-**Example**
-
-```dart
-AttachCellDocumentEnhanced("<Cell Text Label>", "<File name>", "<Full Directory from Manage Documents>");
-AttachCellDocument("<Cell Text Label>", "<File name with Full Directory>");
-```
-
-</details><details id="bkmrk-GetCellTextAttachmentsEnhanced-"><summary>GetCellTextAttachmentsEnhanced</summary>
-
-<p class="callout info">Get Cell Text Attachments</p>
-
-**Input**
-
-<table border="1" id="bkmrk-parameter-mandatory--10" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 37.8843%; height: 29.7969px;">**Parameter**</td><td style="width: 11.9127%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 37.8843%; height: 35.375px;">Cell label</td><td class="align-center" style="width: 11.9127%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Cell label</td></tr><tr style="height: 35.375px;"><td style="width: 37.8843%; height: 35.375px;">Full Path to File Name</td><td class="align-center" style="width: 11.9127%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Full Path to File Name</td></tr></tbody></table>
-
-**Example**
-
-```dart
-GetCellTextAttachmentsEnhanced("<Cell Text Label or All>", "<Full Path to File Name>");
-```
-
-</details><details id="bkmrk-GetCellTextEnhanced-"><summary>GetCellTextEnhanced</summary>
-
-<p class="callout info">Get Cell Text Attachments</p>
-
-**Input**
-
-<table border="1" id="bkmrk-parameter-mandatory--11" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 37.8843%; height: 29.7969px;">**Parameter**</td><td style="width: 11.9127%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 37.8843%; height: 35.375px;">Cell label</td><td class="align-center" style="width: 11.9127%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Cell label</td></tr><tr style="height: 35.375px;"><td style="width: 37.8843%; height: 35.375px;">Full Path to File Name</td><td class="align-center" style="width: 11.9127%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Full Path to File Name</td></tr></tbody></table>
-
-**Example**
-
-```dart
-GetCellTextEnhanced("<Cell Text Label or All>", "<Full Path to File Name>");
-```
-
 </details><details id="bkmrk-LockICEntity-"><summary>LockICEntity</summary>
 
-<p class="callout info">Locks an entity for a given scenario, year, and period.</p>
+<p class="callout warning">**Does nothing.** The command's code is empty in this version of JHAT, so it doesn't lock anything.</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--12" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Scenario</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Scenario</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Year</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Year</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Period</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Period</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Entity</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Entity</td></tr></tbody></table>
+| Parameter | Mandatory | Comment |
+| --- | :---: | --- |
+| Scenario | ✓ | |
+| Year | ✓ | |
+| Period | ✓ | |
+| Entity | ✓ | |
 
 **Example**
 
 ```dart
-LockICEntity("Scenario"," Year"," Period"," Entity");
+LockICEntity("Actual","2023","Dec","Entity1");
 ```
 
 </details><details id="bkmrk-UnlockICEntity-"><summary>UnlockICEntity</summary>
 
-<p class="callout info">Unlocks an entity for a given scenario, year, and period.</p>
+<p class="callout warning">**Does nothing.** The command's code is empty in this version of JHAT, so it doesn't unlock anything.</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--13" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Scenario</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Scenario</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Year</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Year</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Period</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Period</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Entity</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Entity</td></tr></tbody></table>
+| Parameter | Mandatory | Comment |
+| --- | :---: | --- |
+| Scenario | ✓ | |
+| Year | ✓ | |
+| Period | ✓ | |
+| Entity | ✓ | |
 
 **Example**
 
 ```dart
-UnlockICEntity("Scenario"," Year"," Period"," Entity");
+UnlockICEntity("Actual","2023","Dec","Entity1");
 ```
 
-</details><details id="bkmrk-GetCellHistory-"><summary>GetCellHistory</summary>
+</details>
 
-<p class="callout info">Gets the history of an intersection.</p>
+##### Process control
 
-<p class="callout warning">Must run `SetPOV` prior to running this command.</p>
+The process control commands don't use `DefineGrid`. They build their own grid from the Scenario, Year, Period and Entity in the current POV:
+
+- **Entity:** can be a single member or a member list in the form `{TopMember.[List]}` or `{[List]}`.
+- **Rows:** entities.
+- **Accounts:** the application's validation accounts.
+- **Value:** `<Entity Curr Total>` unless a Data View parameter changes it.
+- **Grid replacement:** each command replaces any grid from `DefineGrid`.
+
+**Data View** values (any case): `Translation` → `<Parent Curr Total>`, `Contribution` → `[Contribution Total]`, anything else → `<Entity Curr Total>`.
+
+<details id="bkmrk-GetProcessControlGrid-"><summary>GetProcessControlGrid</summary>
+
+<p class="callout info">Writes the process control grid to a file. The parameters and output are the same as <code>GetGrid</code>.</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--15" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">File Path</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Output file path</td></tr></tbody></table>
+| Parameter | Mandatory | Comment |
+| --- | :---: | --- |
+| Output File | ✓ | Local file to write |
+| Type of Extract | ✓ | As for `GetGrid`. `PROCESS` gives the process management status. |
+| Direction | ✓ | `ALL`, `DOWN` or `UP` |
+| Number of Rows | ✓ | Number of rows for `UP` / `DOWN` |
 
 **Example**
 
 ```dart
-GetCellHistory("output file path");
-```
-
-</details><details id="bkmrk-GetCellEntityDetails-"><summary>GetCellEntityDetails</summary>
-
-<p class="callout info">Gets the Cell Entity Details</p>
-
-<p class="callout warning">Must run `SetPOV` prior to running this command.</p>
-
-**Input**
-
-<table border="1" id="bkmrk-parameter-mandatory--16" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">File Path</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Output file path</td></tr></tbody></table>
-
-**Example**
-
-```dart
-GetCellEntityDetails("output file path");
-```
-
-</details><details id="bkmrk-GetProcessControlGrid-"><summary>GetProcessControlGrid</summary>
-
-<p class="callout info">Output the process control grid to a file.</p>
-
-<p class="callout warning">Must run `SetPOV` prior to running this command.</p>
-
-**Input**
-
-<table border="1" id="bkmrk-parameter-mandatory--17" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Output File</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">File to output the Grid to</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;"> Type of Extract</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Type of Extract
-
-- `VALUE` - Values in Grid
-- `STATUS` - Calculation Status
-- `NOTHING` - Returns how many rows would be retrieved.
-- `DROID` - Unknown
-- `CALCSTATUS` - Calculation Status
-- `PROCESS` - Process Level
-- `STATUSHEX` - Cell Status in Hex
-
-</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Direction to Extract
-
-</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Direction of Extract
-
-- `UP` - If number of rows to extract is set, it will start from the top.
-- `DOWN` - If number of rows to extract is set, it will start from the bottom.
-- `ALL` - Will start from the top.
-
-</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Number of Rows To Extract</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Number of Rows To Extract</td></tr></tbody></table>
-
-**Example**
-
-```dart
-GetProcessControlGrid("Output File"," Type of Extract"," Direction to Extract"," Number of Rows To Extract");
-```
-
-</details><details id="bkmrk-GetSourceTransactions-"><summary>GetSourceTransactions</summary>
-
-<p class="callout info">Returns information on source transactions for a cell in a statutory application.</p>
-
-<p class="callout warning">Must run `SetPOV` prior to running this command.</p>
-
-The following information is returned:
-
-- Header information, such as the dimension members that define the cell, the current username, the cell’s data, and so on. This information is returned in two arrays that have a one-to-one correspondence; one array contains labels for the header information, the other contains the values that correspond to the labels.
-- Detailed information on the transactions, such as the dimension members and data for the transactions. This information is contained in several arrays; the arrays contain one item per transaction, and have a one-to-one correspondence.
-- The sums of the cell’s source and destination transaction amounts.
-
-**Input**
-
-<table border="1" id="bkmrk-parameter-mandatory--18" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;"> Output File Path</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;"> Output File Path </td></tr></tbody></table>
-
-**Example**
-
-```dart
-GetSourceTransactions("Output File Path");
-```
-
-</details><details id="bkmrk-GetDestinationTransactions-"><summary>GetDestinationTransactions</summary>
-
-<p class="callout info">Returns information on destination transactions for a cell in a statutory application.</p>
-
-<p class="callout warning">Must run `SetPOV` prior to running this command.</p>
-
-The following information is returned:
-
-- Header information, such as the dimension members that define the cell, the current username, the cell’s data, and so on. This information is returned in two arrays that have a one-to-one correspondence; one array contains labels for the header information, the other contains the values that correspond to the labels.
-- Detailed information on the transactions, such as the dimension members and data for the transactions. This information is contained in several arrays; the arrays contain one item per transaction and have a one-to-one correspondence.
-- The sums of the cell’s source and destination transaction amounts.
-
-**Input**
-
-<table border="1" id="bkmrk-parameter-mandatory--19" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;"> Output File Path</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;"> Output File Path </td></tr></tbody></table>
-
-**Example**
-
-```dart
-GetDestinationTransactions("Output File Path");
-```
-
-</details><details id="bkmrk-GetLineItemDetail-"><summary>GetLineItemDetail</summary>
-
-<p class="callout info">In the Entity Detail Report, the option to display line item detail is only applicable for the scenario and account defined to use line item detail. Line item detail information is available only for the Entity Currency Value dimension.</p>
-
-<p class="callout warning">Must run `SetPOV` prior to running this command.</p>
-
-**Input**
-
-<table border="1" id="bkmrk-parameter-mandatory--20" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Output File Path</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Output File Path</td></tr></tbody></table>
-
-**Example**
-
-```dart
-GetLineItemDetail("Output File Path");
-```
-
-</details><details id="bkmrk-SetLineItemDetail-"><summary>SetLineItemDetail</summary>
-
-<p class="callout info">Line item detail enables you to collect detailed information about accounts. This function sets the detail</p>
-
-**Input**
-
-<table border="1" id="bkmrk-parameter-mandatory--21" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">POV Item List Number</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">POV Item List Number</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Cell Values Item List Number</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Cell Values Item List Number</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Description</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Description</td></tr></tbody></table>
-
-**Example**
-
-```dart
-SetLineItemDetail("POV ITem List Number","Cell Values Item List Number","Description");
+SetPOV("Actual","2023","Dec","YTD","{TotalGroup.[Descendants]}","<Entity Currency>","[None]","[ICP None]","[None]","[None]","[None]","[None]");
+GetProcessControlGrid("C:\Output\pcgrid.txt","PROCESS","ALL","0");
 ```
 
 </details><details id="bkmrk-FilterProcessControlGrid-"><summary>FilterProcessControlGrid</summary>
 
-<p class="callout info">Export Process Control Grid based on a Filter</p>
+<p class="callout info">Writes the process control grid to a file, filtered by phase, review level, pass/fail and calculation status. Text values are matched ignoring case. A filter value that isn't recognized is ignored.</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--22" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Output File Name</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Output File Name</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Type of Extract</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Type of Extract
+The first 9 parameters are required. The last 2 are optional.
 
-- `VALUE` - Values in Grid
-- `STATUS` - Calculation Status
-- `NOTHING` - Returns how many rows would be retrieved.
-- `DROID` - Unknown
-- `CALCSTATUS` - Calculation Status
-- `PROCESS` - Process Level
-- `STATUSHEX` - Cell Status in Hex
-
-</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Direction to Extract</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Direction of Extract
-
-- `UP` - If number of rows to extract is set, it will start from the top.
-- `DOWN` - If number of rows to extract is set, it will start from the bottom.
-- `ALL` - Will start from the top.
-
-</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Number of Rows To Extract</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Number of Rows To Extract</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Phase</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Phase to filter on
-
-- All
-- 1
-- 2
-- 3
-- etc
-
-</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Review Level</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Review Level to filter on
-
-- `ALL`
-- `NOT STARTED`
-- `FIRST PASS`
-- `LEVEL 1`
-- `LEVEL 2`
-- `LEVEL 3`
-- `LEVEL 4`
-- `LEVEL 5`
-- `LEVEL 6`
-- `LEVEL 7`
-- `LEVEL 8`
-- `LEVEL 9`
-- `LEVEL 10`
-- `SUBMITTED`
-- `APPROVED`
-- `PUBLISHED`
-
-</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Range</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Range
-
-- `ALL`
-- `AND ABOVE`
-- `AND BELOW`
-- `ONLY`
-
-</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Show Pass/Fail</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Show Pass/Fail
-
-- `PASS AND FAIL`
-- `PASS ONLY`
-- `FAIL ONLY`
-
-</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Status</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Status
-
-- `NODATA`
-- `OK`
-- `OK SC`
-- `CH`
-- `CN`
-- `TR`
-- `OK ND`
-- `CH ND`
-- `CN ND`
-- `TR ND`
-- `LOCKED`
-- `ALL`
-
-</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Data View</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Data View
-
-- `Value`
-- `Translation`
-- `Contribution`
-
-</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">SORT</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">SORT
-
-- `Ascending`
-- `Descending`
-
-</td></tr></tbody></table>
+| # | Parameter | Comment |
+| --- | --- | --- |
+| 1–4 | Output File, Type of Extract, Direction, Number of Rows | As for `GetGrid` |
+| 5 | Phase | Phase number, or `All` / `""` for all phases |
+| 6 | Review Level | `All`, `Not Started`, `First Pass`, `Level 1` … `Level 10`, `Submitted`, `Approved`, `Published` |
+| 7 | Range | `And Above`, `And Below` or `Only`. Ignored when Review Level is `All`. |
+| 8 | Show Pass/Fail | `Pass and Fail`, `Pass Only` or `Fail Only` |
+| 9 | Status | `All`, `NoData`, `OK`, `OK SC`, `CH`, `CN`, `TR`, `OK ND`, `CH ND`, `CN ND`, `TR ND`, `Locked` |
+| 10 | Data View | Optional. See Data View values above. |
+| 11 | Sort | Optional. `Ascending` or `Descending` by review level. Otherwise unsorted. |
 
 **Example**
 
 ```dart
-FilterProcessControlGrid("Output File Name"," Type of Extract"," Direction to Extract"," Number of Rows To Extract"," Phase"," Review Level","Range"," Show Pass/Fail"," Status"," Data View"," SORT");
+FilterProcessControlGrid("C:\Output\pcgrid.txt","PROCESS","ALL","0","All","Level 1","And Above","Pass and Fail","All","","Ascending");
 ```
 
 </details><details id="bkmrk-DisplayProcessControlGrid-"><summary>DisplayProcessControlGrid</summary>
 
-<p class="callout info">Output the Process Control Grid</p>
+<p class="callout info">Writes the process control grid to a file, with display options that match the Process Control page.</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--23" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Output File Name</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Output File Name</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Type of Extract</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Type of Extract
-
-- `VALUE` - Values in Grid
-- `STATUS` - Calculation Status
-- `NOTHING` - Returns how many rows would be retrieved.
-- `DROID` - Unknown
-- `CALCSTATUS` - Calculation Status
-- `PROCESS` - Process Level
-- `STATUSHEX` - Cell Status in Hex
-
-</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Direction to Extract</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Direction of Extract
-
-- `UP` - If number of rows to extract is set, it will start from the top.
-- `DOWN` - If number of rows to extract is set, it will start from the bottom.
-- `ALL` - Will start from the top.
-
-</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Number of Rows To Extract</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Number of Rows To Extract</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Data View</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Data View
-
-- `Value`
-- `Translation`
-- `Contribution`
-
-</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Style</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Style
-
-- `Tree`
-- `<Blank>` (Default)
-
-</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Entity View</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Entity View
-
-- `Label`
-- `Description`
-- `Both`
-
-</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Active</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Active
-
-- `Y`
-- `N`
-
-</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Period View</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Period View
-
-- `All`
-- <span style="font-family: Lucida Console, DejaVu Sans Mono, Ubuntu Mono, Monaco, monospace;"><span style="font-size: 11.76px; white-space: pre-wrap; background-color: rgb(180, 215, 255);">Single</span></span>
-
-</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Review Level Columns</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Review Level Columns.
-
-<p class="callout info">Multiple selections can be comma delimited.</p>
-
-- `REVIEW`
-- `PASS`
-- `VALIDATION`
-
-</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Status Columns</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Status Columns
-
-- `CALC`
-- `JOURNAL`
-
-</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">PhasesALL | Phase Number</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Phases
-
-<p class="callout info">Multiple selections can be comma delimited.</p>
-
-- `ALL`
-- `1`
-- `2`
-- `3`
-
-</td></tr></tbody></table>
+| # | Parameter | Comment |
+| --- | --- | --- |
+| 1–4 | Output File, Type of Extract, Direction, Number of Rows | As for `GetGrid` |
+| 5 | Data View | See Data View values above |
+| 6 | Style | `Tree` for a tree view. Anything else gives a list. |
+| 7 | Entity View | `Label`, `Description` or `Both` (`label - description`) |
+| 8 | Active | `Y` to show only entities active in the period (not with Period View `All`) |
+| 9 | Period View | `Single`: the POV period. `All`: every period in the scenario's frequency. |
+| 10 | Review Level Columns | Single period only. Include any of `REVIEW`, `PASS`, `VALIDATION`, e.g. `"Review,Pass"`. |
+| 11 | Status Columns | Include `CALC` for calculation status and/or `JOURNAL` for journal status, e.g. `"Calc,Journal"` |
+| 12 | Phases | `All` or a phase number |
 
 **Example**
 
 ```dart
-DisplayProcessControlGrid("File Name"," Type of Extract"," Direction to Extract"," Number of Rows To Extract"," Data View"," Style"," Entity View"," ActiveY|N"," Period View "," Review Level Columns"," Status Columns"," PhasesALL | Phase Number");
+DisplayProcessControlGrid("C:\Output\pcgrid.txt","PROCESS","ALL","0","","List","Both","N","Single","Review,Pass,Validation","Calc,Journal","All");
 ```
 
 </details><details id="bkmrk-GetReviewLevelSummary-"><summary>GetReviewLevelSummary</summary>
 
-<p class="callout info">Output the Review Level Summary to a file.</p>
-
-<p class="callout warning">Must run `SetPOV` and `DefineGrid` prior to running this command.</p>
+<p class="callout info">Writes the number of entities at each review level to a file. One `Level= count` line per level (Not Started, First Pass, Review Level 1–10, Submitted, Approved, Published), followed by `Entities Displayed= total`.</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--24" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Output File Name</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Output File Name</td></tr></tbody></table>
+| Parameter | Mandatory | Comment |
+| --- | :---: | --- |
+| Output File Path | ✓ | Local file to write |
 
 **Example**
 
 ```dart
-GetReviewLevelSummary("File Name");
+GetReviewLevelSummary("C:\Output\reviewlevels.txt");
 ```
 
 </details><details id="bkmrk-GetCalcStatusSummary-"><summary>GetCalcStatusSummary</summary>
 
-<p class="callout info">Output Calculation Status Summary which shows the number of entities at each status.</p>
-
-<p class="callout warning">Must run `SetPOV` and `DefineGrid` prior to running this command.</p>
+<p class="callout info">Writes the number of entities at each calculation status to a semicolon-separated file. The groups are OK (with totals), No Data, Impacted, and Locked.</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--25" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Output File Name</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Output File Name</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">DATA VIEW</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Data View
-
-- `Value`
-- `Translation`
-- `Contribution`
-
-</td></tr></tbody></table>
+| Parameter | Mandatory | Comment |
+| --- | :---: | --- |
+| Output File Path | ✓ | Local file to write |
+| Data View | | See Data View values above |
 
 **Example**
 
 ```dart
-GetCalcStatusSummary("File Name","DATA VIEW");
+GetCalcStatusSummary("C:\Output\calcstatus.txt","Translation");
 ```
 
 </details><details id="bkmrk-GetValidationAccountInfo-"><summary>GetValidationAccountInfo</summary>
 
-<p class="callout info">Get information on Validation Account</p>
+<p class="callout info">Writes the phase submission validation grid for a POV and phase to a comma-separated file. It doesn't use the current POV.</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--26" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">POV</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Point of View</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Phase</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Phase Number</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Data View</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Data View
-
-- `Value`
-- `Translation`
-- `Contribution`
-
-</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Suppress Zero</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Suppress Zero
-
-- `true`
-- `false`
-
-</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Suppress NODATA</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Suppress NODATA
-
-- `true`
-- `false`
-
-</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Formatted Data</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Formatted Data
-
-- `true`
-- `false`
-
-</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">OUTPUT file path</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">OUTPUT file path</td></tr></tbody></table>
+| Parameter | Mandatory | Comment |
+| --- | :---: | --- |
+| POV | ✓ | POV string |
+| Phase Number | ✓ | Phase number |
+| Data View | ✓ | `Translation`, `Contribution`, or anything else for local (entity currency) |
+| Suppress Zeros | ✓ | `true` / `false` |
+| Suppress No Data | ✓ | `true` / `false` |
+| Formatted Data | ✓ | `true` / `false` |
+| Output File Path | ✓ | Local file to write |
 
 **Example**
 
 ```dart
-GetValidationAccountInfo("POV"," PHASE NO."," DATA VIEW"," Suppress ZEROs"," Suppress NODATA"," Formatted Data"," OUTPUT file path");
+GetValidationAccountInfo("S#Actual.Y#2023.P#Dec.E#Entity1","1","","true","true","false","C:\Output\validation.csv");
 ```
 
 </details><details id="bkmrk-GetCellStatus-"><summary>GetCellStatus</summary>
 
-<p class="callout info">Get the Cell Status</p>
+<p class="callout danger">**Don't use.** This is leftover test code. It ignores the current POV, reads a hardcoded POV from a sample application (`S#Actual.Y#2011.P#Quarter4…E#GROUP.CORP_OPS…`) 20,000 times, and writes nothing.</p>
 
 **Input**
 
@@ -828,7 +670,7 @@ None
 **Example**
 
 ```dart
-GetCellStatus("");
+GetCellStatus();
 ```
 
 </details>

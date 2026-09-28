@@ -10,73 +10,50 @@ These commands are related to the Data Form
 
 <details id="bkmrk-getform-get-the-data"><summary>GetForm</summary>
 
-<p class="callout info">Get the data form and save it to an output file in HTML format.</p>
+<p class="callout info">Runs a data form stored in Document Manager and saves the result to an output file as an HTML table. Each data cell is written as `value(cell status)`.</p>
+
+<p class="callout warning">When "Use script POV" is `true`, the form definition is saved back to Document Manager with the `SetPOV` POV as its background POV. This permanently changes the stored form.</p>
+
+<p class="callout warning">JHAT's built-in usage text lists 12 parameters, but the command reads at most 10. It has no parameters for row or column header repeats; column header repeats are always turned off.</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--13" style="height: 392.297px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Path in document manager</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Path in Document Manager where Form is located</td></tr><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">Form Name</td><td class="align-center" style="width: 18.1326%; height: 29.7969px;">✓</td><td style="width: 50.203%; height: 29.7969px;">Form Name to Get</td></tr><tr style="height: 35.3906px;"><td style="width: 31.6644%; height: 35.3906px;">Output File</td><td class="align-center" style="width: 18.1326%; height: 35.3906px;">✓</td><td style="width: 50.203%; height: 35.3906px;">Output file
+The first four parameters are required. The six suppression parameters are optional and positional. `true` (any case) turns the option on, and any other value turns it off. If you leave a suppression parameter out, the form's own setting is used.
 
-</td></tr><tr style="height: 35.3906px;"><td style="width: 31.6644%; height: 35.3906px;">Use the user POV</td><td class="align-center" style="width: 18.1326%; height: 35.3906px;">✓</td><td style="width: 50.203%; height: 35.3906px;">Use the user POV
-
-- `true`
-    - Use POV set by `SetPOV`
-- `false`
-    - Use the POV defined in the form
-
-</td></tr><tr style="height: 35.3906px;"><td style="width: 31.6644%; height: 35.3906px;">Suppress Row Header Repeats</td><td class="align-center" style="width: 18.1326%; height: 35.3906px;">✓</td><td style="width: 50.203%; height: 35.3906px;">Suppress Row Header Repeats
-
-- `true`
-- `false`
-
-</td></tr><tr style="height: 35.3906px;"><td style="width: 31.6644%; height: 35.3906px;">Suppress NoData Rows</td><td class="align-center" style="width: 18.1326%; height: 35.3906px;">✓</td><td style="width: 50.203%; height: 35.3906px;">Suppress NoData Rows
-
-- `true`
-- `false`
-
-</td></tr><tr style="height: 35.3906px;"><td style="width: 31.6644%; height: 35.3906px;">Suppress Invalid Rows</td><td class="align-center" style="width: 18.1326%; height: 35.3906px;">✓</td><td style="width: 50.203%; height: 35.3906px;">Suppress Invalid Rows
-
-- `true`
-- `false`
-
-</td></tr><tr style="height: 35.3906px;"><td style="width: 31.6644%; height: 35.3906px;">Suppress Column Header Repeats</td><td class="align-center" style="width: 18.1326%; height: 35.3906px;">✓</td><td style="width: 50.203%; height: 35.3906px;">Suppress Column Header Repeats
-
-- `true`
-- `false`
-
-</td></tr><tr style="height: 49.5938px;"><td style="width: 31.6644%; height: 35.3906px;">Suppress NoData Column</td><td class="align-center" style="width: 18.1326%; height: 49.5938px;">✓</td><td style="width: 50.203%; height: 49.5938px;">Suppress NoData Column
-
-- `true`
-- `false`
-
-</td></tr><tr style="height: 35.3906px;"><td style="width: 31.6644%; height: 35.3906px;">Suppress Invalid Column</td><td class="align-center" style="width: 18.1326%; height: 35.3906px;">✓</td><td style="width: 50.203%; height: 35.3906px;">Suppress Invalid Column
-
-- `true`
-- `false`
-
-</td></tr></tbody></table>
+| # | Parameter | Mandatory | Comment |
+| --- | --- | :---: | --- |
+| 1 | Path | ✓ | Folder in Document Manager where the form is stored |
+| 2 | Form Name | ✓ | Name of the form |
+| 3 | Output File | ✓ | Local path of the HTML file to write. Overwritten if it exists. |
+| 4 | Use script POV | ✓ | `true`: use the POV set by `SetPOV` as the form's background POV (and save it to the form). Any other value: use the POV defined in the form. |
+| 5 | Suppress No Data Rows | | `true` / `false` |
+| 6 | Suppress Zero Rows | | `true` / `false` |
+| 7 | Suppress Invalid Rows | | `true` / `false` |
+| 8 | Suppress No Data Columns | | `true` / `false` |
+| 9 | Suppress Zero Columns | | `true` / `false` |
+| 10 | Suppress Invalid Columns | | `true` / `false` |
 
 **Example**
 
 ```dart
-GetForm("Path in the document manager", "Form name", "Out file", "Use the user POV", "Supress row header repeats", "Supress NoData Rows", "Supress Zero Rows","Supress Invalid Rows", "Supress column header repeats", "Supress No data Columns", "Supress zero columns", "Supress Invalid Columns");
+GetForm("\Forms\Actuals", "IncomeStatement", "C:\Output\IncomeStatement.html", "false");
+GetForm("\Forms\Actuals", "IncomeStatement", "C:\Output\IncomeStatement.html", "false", "true", "true", "true", "false", "false", "false");
 ```
 
 </details><details id="bkmrk-executeondemandrule-"><summary>ExecuteOnDemandRule</summary>
 
-<p class="callout info">Execute an On Demand Rule based on Set POV</p>
+<p class="callout info">Runs an On Demand Rule against the POV set by `SetPOV`. The rule must already be loaded in the application's rules file. If the server returns an error message, the command fails with that message.</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--14" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Rule Name</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">On Demand Rule to Execute
-
-- Must be a valid Rule
-- Uses POV set by `SetPOV`
-
-</td></tr></tbody></table>
+| Parameter | Mandatory | Comment |
+| --- | :---: | --- |
+| Rule Name | ✓ | Name of the On Demand Rule to run |
 
 **Example**
 
 ```dart
+SetPOV("Actual","2023","Dec","YTD","Group.Entity1","<Entity Currency>","Sales","[ICP None]","[None]","[None]","[None]","[None]");
 ExecuteOnDemandRule("RuleName");
 ```
 

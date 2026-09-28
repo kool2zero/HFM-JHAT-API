@@ -25,60 +25,100 @@ Direct Ownership Percentage * Equity of Owned Entity
 
 #### Commands
 
+These commands need an open application.
+
 <details id="bkmrk-FilterEPUGrid-"><summary>FilterEPUGrid</summary>
 
-<p class="callout info">Filter an EPU Grid</p>
+<p class="callout info">Retrieves the equity pickup grid for a Scenario, Year and Period with the given filters, and writes it to a UTF-8 file.</p>
+
+The output file is semicolon-separated. It starts with a header line (`Circular Ownership;Level;Owner;Owned;%EPU;Status;`) and a blank line, then one line per owner/owned pair. `%EPU` uses `.` as the decimal separator. JHAT requests a page size of 500 rows.
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--14" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">“Scenario”</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">“Scenario”</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">”Year”</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">”Year”</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">“Period”</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">“Period”</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">“Owner”</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">“Owner”</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">“Owned”</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">“Owned”</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">“Circular Ownership”</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">“Circular Ownership”</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">“Status”</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">“Status”</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">“ShowCombination”</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">“ShowCombination”</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">“Column Display Type”</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">“Column Display Type”</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">“No of decimals”</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">“No of decimals”</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">“%EPU comparator”</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">“%EPU comparator”</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">“%EPU”</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">“%EPU”</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">“Min Level”</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">“Min Level”</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">“Max Level”</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">“Max Level”</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">“OutputFilePath”</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">“OutputFilePath”</td></tr></tbody></table>
+All 15 parameters are required, but most can be `""` to use the default shown.
+
+| # | Parameter | Comment |
+| --- | --- | --- |
+| 1 | Scenario | Scenario member |
+| 2 | Year | Year member |
+| 3 | Period | Period member |
+| 4 | Owner | Owner entity filter |
+| 5 | Owned | Owned entity filter |
+| 6 | Circular Ownership | `Exclude`, `Display only`, or anything else for Include. Any value other than `Exclude` or `Display only` (including `Include`) logs "Improper Circular Ownership, taking Default value:Include". |
+| 7 | Status | `Impacted`, `Ok`, or anything else for both |
+| 8 | Show Combination | `true` / `false` |
+| 9 | Column Display Type | How owner and owned entities are shown: `LABEL` (default), `DESCRIPTION` or `BOTH` (`label - description`). Any case. Any other value makes the command fail. |
+| 10 | Number of Decimals | Decimal places for %EPU. Default `2`. |
+| 11 | %EPU Comparator | `>`, `>=`, `<`, `<=` or `=`. Anything else applies no %EPU filter. |
+| 12 | %EPU | Value to compare %EPU against. Default `20`. |
+| 13 | Min Level | Minimum ownership level. Default `0`. |
+| 14 | Max Level | Maximum ownership level. Default `1`. |
+| 15 | Output File Path | Local file to write. Overwritten if it exists. |
 
 **Example**
 
 ```dart
-FilterEPUGrid("“Scenario”","”Year”","“Period”","“Owner”","“Owned”","“Circular Ownership”","“Status”","“ShowCombination”","“Column Display Type”","“No of decimals”","“%EPU comparator”","“%EPU”","“Min Level”","“Max Level”","“OutputFilePath”");
+FilterEPUGrid("Actual", "2023", "Dec", "", "", "Include", "Both", "false", "BOTH", "2", ">=", "20", "0", "1", "C:\Output\epu.txt");
 ```
 
 </details><details id="bkmrk-CalcEPU-"><summary>CalcEPU</summary>
 
-<p class="callout info">Calculate an EPU Grid</p>
+<p class="callout info">Runs the equity pickup calculation for the Scenario, Year and Period set by `SetPOV`, and waits for the task to finish. The command fails if the task doesn't complete (see <a href="00-automation-with-jhat.md#long-running-tasks">long-running tasks</a>).</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory-" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Run/Force for type of EPU;</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Run/Force for type of EPU;</td></tr></tbody></table>
+| Parameter | Mandatory | Comment |
+| --- | :---: | --- |
+| Run Type | ✓ | `Force` (any case) to force the calculation. Any other value (e.g. `Run`) runs a normal calculation. |
 
 **Example**
 
 ```dart
-CalcEPU("Run/Force for type of EPU;"," ");
+SetPOV("Actual","2023","Dec","YTD","Group.Entity1","<Entity Currency>","Sales","[ICP None]","[None]","[None]","[None]","[None]");
+CalcEPU("Run");
 ```
 
 </details><details id="bkmrk-GenerateEPUReport-"><summary>GenerateEPUReport</summary>
 
-<p class="callout info">Generate an EPU Report</p>
+<p class="callout info">Generates the EPU system report for a POV, waits for it to finish, and copies it to the output path.</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--1" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">“POV”</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">“POV”</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">”HFM\_FORMAT”</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">”HFM\_FORMAT”</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">“OutputFilePath”</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">“OutputFilePath”</td></tr></tbody></table>
+| Parameter | Mandatory | Comment |
+| --- | :---: | --- |
+| POV | ✓ | POV string for the report |
+| Report Format | ✓ | Name of an HFM report format. **Case-sensitive**: it must exactly match the format's internal name. JHAT's usage text shows `HFM_FORMAT`. |
+| Output File Path | ✓ | Local path to save the report to |
 
 **Example**
 
 ```dart
-GenerateEPUReport("“POV”","”HFM_FORMAT”","“OutputFilePath”");
+GenerateEPUReport("S#Actual.Y#2023.P#Dec", "HFM_FORMAT", "C:\Output\epu_report.html");
 ```
 
 </details><details id="bkmrk-GenerateFilteredEPUReport-"><summary>GenerateFilteredEPUReport</summary>
 
-<p class="callout info">Generate a Filtered EPU Report</p>
+<p class="callout info">Generates the EPU system report with owner, owned, circular ownership and status filters, waits for it to finish, and copies it to the output path.</p>
+
+<p class="callout info">Other report options are fixed: levels 0 to 1, 2 decimals, labels only, no %EPU filter.</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--2" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">“POV”</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">“POV”</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">”HFM\_FORMAT”</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">”HFM\_FORMAT”</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">“Owner”</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">“Owner”</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">“Owned”</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">“Owned”</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">“Circular Ownership”</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">“Circular Ownership”</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">“Status”</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">“Status”</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">“ShowCombination”</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">“ShowCombination”</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">“OutputFilePath”</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">“OutputFilePath”</td></tr></tbody></table>
+| Parameter | Mandatory | Comment |
+| --- | :---: | --- |
+| POV | ✓ | POV string for the report |
+| Report Format | ✓ | As for `GenerateEPUReport` (case-sensitive) |
+| Owner | ✓ | Owner entity filter |
+| Owned | ✓ | Owned entity filter |
+| Circular Ownership | ✓ | `Exclude`, `Display only`, or anything else for Include |
+| Status | ✓ | `Impacted`, `Ok`, or anything else for both |
+| Show Combination | ✓ | `true` / `false` |
+| Output File Path | ✓ | Local path to save the report to |
 
 **Example**
 
 ```dart
-GenerateFilteredEPUReport("“POV”","”HFM_FORMAT”","“Owner”","“Owned”","“Circular Ownership”","“Status”","“ShowCombination”","“OutputFilePath”");
+GenerateFilteredEPUReport("S#Actual.Y#2023.P#Dec", "HFM_FORMAT", "", "", "Exclude", "Impacted", "false", "C:\Output\epu_filtered.html");
 ```
 
 </details>

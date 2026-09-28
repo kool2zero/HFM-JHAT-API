@@ -64,6 +64,8 @@ Before a command runs, JHAT checks how many parameters it was given:
 
 If the count is wrong, the command fails with "Incorrect number of parameters." The log shows the script line number, the parameters you passed, and the command's expected usage.
 
+<p class="callout warning">For commands whose parameter count is a range, JHAT's check never fails. This covers <code>GetForm</code>, <code>FilterProcessControlGrid</code>, <code>GetCalcStatusSummary</code>, <code>ExtractMetaData</code>, <code>ExtractMetaDataExtDim</code> and <code>ExtractSecurityExpanded</code>. Passing too few parameters makes the command crash partway through instead of failing with a clear message.</p>
+
 #### Log output
 
 Each command writes a block to the log:
