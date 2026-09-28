@@ -54,3 +54,39 @@ Use `jhat.bat -H` command to explore the available options:
 <img src="https://raw.githubusercontent.com/kool2zero/HFM-JHAT-API/main/img/qIJimage.png?sanitize=true&raw=true" />
 
 <p class="callout info">This utility can be used to launch consolidations, data load, data extraction, etc...</p>
+
+#### Parameter checking
+
+Before a command runs, JHAT checks how many parameters it was given:
+
+- Most commands need exactly the number of parameters shown on their page.
+- A few accept several counts (for example, `CreateApplicationCAS` accepts 7 or 8).
+
+If the count is wrong, the command fails with "Incorrect number of parameters." The log shows the script line number, the parameters you passed, and the command's expected usage.
+
+#### Log output
+
+Each command writes a block to the log:
+
+```
+**********OpenApplication : Successful**********
+Start execution of action(script line 2) at <timestamp>
+Successful
+End execution at <timestamp>
+```
+
+- When a command fails, the header reads `Failed` and is followed by `Line No: <n>`.
+- `Comment`, `LoadMacros` and `SubstituteMacro` are not logged.
+- While `SetNegativeTestingFlag` is on, each header is marked `: Negative Testcase`.
+
+#### Long-running tasks
+
+JHAT polls HFM until a task such as a consolidation, load or extract finishes:
+
+| Setting | Value |
+| --- | --- |
+| Poll interval | 2000 ms by default. Override with the `ASYNC_TASK_POLL_MILLI_SECONDS` environment variable (e.g. in `setenv.cmd`). |
+| Task start timeout | JHAT stops monitoring if no running task appears within 30 seconds. |
+| Overall timeout | JHAT stops waiting after 60 minutes. |
+
+When the task finishes, its log file is downloaded from the server. For data extracts, the data file is downloaded too.

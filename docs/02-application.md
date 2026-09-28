@@ -12,6 +12,8 @@ These JHAT Commands will handle the application.
 
 <p class="callout info">Sets the Point of View (POV) for the commands to follow.</p>
 
+<p class="callout info">`SetPOV` and `SetPOVName` are identical. All 12 parameters are required. Custom 1–4 map to the application's first four custom dimensions, in order. On success, the selected member for each dimension is written to the log.</p>
+
 **Input**
 
 <table border="1" id="bkmrk-parameter-mandatory--2" style="height: 454.484px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 19.0798%; height: 29.7969px;">**Parameter**</td><td style="width: 15.875%; height: 29.7969px;">**Mandatory**</td><td style="width: 64.9098%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.3906px;"><td style="width: 19.0798%; height: 35.3906px;">Scenario</td><td style="width: 15.875%; height: 35.3906px;">✓
@@ -66,12 +68,14 @@ SetPOV("ACTatACIFRS","2023","DEC","YTD","TGROUP","<Entity Currency>","TOTNI","[I
 
 e.g `S#ACTatACIFRS.E#TGROUPCONT.Y#2023.P#DEC`
 
+Custom dimensions can be written as `C1#`, `C2#`, … (either case). These are replaced with the application's custom dimension names, and the normalized POV string is written to the log.
+
 </td></tr><tr style="height: 24.7656px;"><td style="width: 19.0798%; height: 24.7656px;">Member Display Type</td><td style="width: 15.875%; height: 24.7656px;">✓
 
 </td><td style="width: 64.9098%; height: 24.7656px;">Whether you are providing the ID of the member or the name.
 
-- SHOWIDS
-- SHOWNAMES
+- SHOWIDS: log each dimension's member ID
+- SHOWNAMES: log each dimension's member name
 
 </td></tr></tbody></table>
 
@@ -83,11 +87,11 @@ SetPOVExtDim("S#ACTatACIFRS.Y#2023.P#DEC.W#YTD.E#TGROUP.V#<Entity Currency>.A#TO
 
 </details><details id="bkmrk-logon-logs-into-hfm-"><summary>Logon</summary>
 
-<p class="callout info">Logs into HFM based on the environment you are in.</p>
+<p class="callout info">Authenticates the user against Shared Services and keeps the SSO token for the rest of the script. Only the user name and password are used. The first two parameters must be present but are ignored.</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory-" style="height: 64px; width: 94.8718%;"><tbody><tr><td style="width: 19.0798%;">**Parameter**</td><td style="width: 15.875%;">**Mandatory**</td><td style="width: 64.9098%;">**Comment**</td></tr><tr><td style="width: 19.0798%;">Unused</td><td style="width: 15.875%;"></td><td style="width: 64.9098%;">Does not appear to be used but should be True or False</td></tr><tr><td style="width: 19.0798%;">Domain</td><td style="width: 15.875%;"></td><td style="width: 64.9098%;">Login Domain</td></tr><tr><td style="width: 19.0798%;">Username</td><td style="width: 15.875%;">✓
+<table border="1" id="bkmrk-parameter-mandatory-" style="height: 64px; width: 94.8718%;"><tbody><tr><td style="width: 19.0798%;">**Parameter**</td><td style="width: 15.875%;">**Mandatory**</td><td style="width: 64.9098%;">**Comment**</td></tr><tr><td style="width: 19.0798%;">Unused</td><td style="width: 15.875%;"></td><td style="width: 64.9098%;">Ignored. Must be supplied (e.g. `"true"`).</td></tr><tr><td style="width: 19.0798%;">Domain</td><td style="width: 15.875%;"></td><td style="width: 64.9098%;">Ignored. Must be supplied (e.g. `""`).</td></tr><tr><td style="width: 19.0798%;">Username</td><td style="width: 15.875%;">✓
 
 </td><td style="width: 64.9098%;">Login User Name</td></tr><tr><td style="width: 19.0798%;">Password</td><td style="width: 15.875%;">✓
 
@@ -101,7 +105,7 @@ Logon("false", "", "user", "password");
 
 </details><details id="bkmrk-logout-logs-out-of-h"><summary>Logout</summary>
 
-<p class="callout info">Logs out of HFM</p>
+<p class="callout info">Discards the SSO token and stored credentials from `Logon`. It does not call the server.</p>
 
 **Input**
 
@@ -119,6 +123,8 @@ Logout();
 
 <p class="callout danger">Be careful when running this command.</p>
 
+<p class="callout warning">This command always reports success. If the delete fails (for example, the application doesn't exist), it only logs "Not able to delete application. Application might not exist".</p>
+
 **Input**
 
 <table border="1" id="bkmrk-parameter-mandatory--5" style="height: 95.6094px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 19.0798%; height: 29.7969px;">**Parameter**</td><td style="width: 15.875%; height: 29.7969px;">**Mandatory**</td><td style="width: 64.9098%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.3906px;"><td style="width: 19.0798%; height: 35.3906px;">Server</td><td style="width: 15.875%; height: 35.3906px;">✓
@@ -135,9 +141,9 @@ Logout();
 DeleteApplication("Server","Application");
 ```
 
-</details><details id="bkmrk-createapplicationext"><summary>CreateApplicationExtDim</summary>
+</details><details id="bkmrk-createapplicationext"><summary>CreateApplicationExtDim / CreateApplicationCAS</summary>
 
-<p class="callout info">Creates an Application on the Server</p>
+<p class="callout info">Creates an Application on the Server. `CreateApplicationExtDim` and `CreateApplicationCAS` are identical and take 7 or 8 parameters.</p>
 
 <p class="callout danger">Be careful when running this command.</p>
 
@@ -155,7 +161,7 @@ DeleteApplication("Server","Application");
 
 </td></tr><tr style="height: 35.3906px;"><td style="width: 22.4582%; height: 35.3906px;">Profile File</td><td style="width: 12.4538%; height: 35.3906px;">✓
 
-</td><td style="width: 64.9526%; height: 35.3906px;">Path to Profile File
+</td><td style="width: 64.9526%; height: 35.3906px;">Local path to the application profile (`.per`) file. The command fails with "Failed reading the profile file" if it can't be opened.
 
 <p class="callout info">Creating a Profile File: [https://docs.oracle.com/cd/E57185\_01/HFMAD/ch02s04.html](https://docs.oracle.com/cd/E57185_01/HFMAD/ch02s04.html)</p>
 
@@ -171,24 +177,25 @@ DeleteApplication("Server","Application");
 
 </td><td style="width: 64.9526%; height: 35.3906px;">URL to App
 
-</td></tr><tr style="height: 18.0469px;"><td style="width: 22.4582%; height: 18.0469px;">Application Type</td><td style="width: 12.4538%; height: 18.0469px;">✓
+</td></tr><tr style="height: 18.0469px;"><td style="width: 22.4582%; height: 18.0469px;">Application Type</td><td style="width: 12.4538%; height: 18.0469px;">
 
-</td><td style="width: 64.9526%; height: 18.0469px;">Type of Application:
+</td><td style="width: 64.9526%; height: 18.0469px;">Optional. Type of Application:
 
-- `STANDARD_CONSOL` (Consolidation app)
-- `TAX_PROV` (Tax App)
+- `TAX`: Tax Provision application
+- Any other value, or omitted: Standard Consolidation application
 
 </td></tr></tbody></table>
 
 **Example**
 
 ```dart
-CreateApplicationExtDim("Server","Application","ApplicationDescription","ProfilePath","StorageFolder","ProjectName","http://myServer:80/HFM","6");
+CreateApplicationExtDim("Server","Application","ApplicationDescription","ProfilePath","StorageFolder","ProjectName","http://myServer:80/HFM");
+CreateApplicationCAS("Server","TaxApp","Tax Provision","ProfilePath","StorageFolder","ProjectName","http://myServer:80/HFM","TAX");
 ```
 
 </details><details id="bkmrk-openapplication-open"><summary>OpenApplication</summary>
 
-<p class="callout info">Opens the specified application</p>
+<p class="callout info">Opens a session on the specified application (locale `en`) using the SSO token from `Logon`, and loads the application's dimensions for `SetPOV`. Most other commands need an open application.</p>
 
 **Input**
 
@@ -206,7 +213,7 @@ OpenApplication("Cluster","Application");
 
 </details><details id="bkmrk-closeapplication-clo"><summary>CloseApplication</summary>
 
-<p class="callout info">Closes application that was opened in the session</p>
+<p class="callout info">Closes the session opened by `OpenApplication`, removes any data grid the script created, and clears the cached dimensions. If no application is open, the command is ignored. It always reports success.</p>
 
 **Input**
 
@@ -220,27 +227,26 @@ CloseApplication();
 
 </details><details id="bkmrk-shutdownapplication-"><summary>shutdownApplication</summary>
 
-<p class="callout info">Shuts down the application on all the Jhsxserver instances across all the clusters and servers.</p>
+<p class="callout info">Shuts down the currently open application (the one from `OpenApplication`) on all the Jhsxserver instances across all the clusters and servers. If no application is open, nothing happens.</p>
 
 <p class="callout danger">Be careful when running this command.</p>
 
+<p class="callout warning">Although JHAT's built-in usage text shows `(<Application name>)`, the command takes no parameters. Passing one fails with "Incorrect number of parameters."</p>
+
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--7" style="height: 95.6094px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 19.0798%; height: 29.7969px;">**Parameter**</td><td style="width: 15.875%; height: 29.7969px;">**Mandatory**</td><td style="width: 64.9098%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 30.4219px;"><td style="width: 19.0798%; height: 30.4219px;">Application</td><td style="width: 15.875%; height: 30.4219px;">✓
-
-</td><td style="width: 64.9098%; height: 30.4219px;">Application to be shutdown.
-
-</td></tr></tbody></table>
+None
 
 **Example**
 
 ```dart
-shutdownApplication("Application");
+OpenApplication("Cluster","Application");
+shutdownApplication();
 ```
 
-</details><details id="bkmrk-deleteallapplication"><summary>deleteAllApplications</summary>
+</details><details id="bkmrk-deleteallapplication"><summary>DeleteAllApplications</summary>
 
-<p class="callout info">Deletes all registered applications</p>
+<p class="callout info">Deletes every application on the given cluster or server, logging each one as it is deleted. Stops at the first failure.</p>
 
 <p class="callout danger">Be careful when running this command.</p>
 
@@ -260,7 +266,7 @@ DeleteAllApplications("Server");
 
 </details><details id="bkmrk-copyapplication-copi"><summary>CopyApplication</summary>
 
-<p class="callout info">Copies one application to another</p>
+<p class="callout info">Copies one application to a new application. The copy flags are `true` only when the value is `true` (any case). Any other value counts as `false`.</p>
 
 <p class="callout danger">Be careful when running this command.</p>
 
@@ -305,12 +311,12 @@ DeleteAllApplications("Server");
 **Example**
 
 ```dart
-CopyApplication("Original Application Name", "New Application Name", "Application Description", "Cluster","Project Name", "Copy Audit Tables", "Copy Data Tables");
+CopyApplication("PRODAPP", "TESTAPP", "Copy of PRODAPP", "Cluster", "Project Name", "false", "true");
 ```
 
 </details><details id="bkmrk-setpreferences-sets-"><summary>SetPreferences</summary>
 
-<p class="callout info">Sets Preferences of Application</p>
+<p class="callout info">Sets the logged-on user's preferences for an application. It needs `Logon` but not `OpenApplication`.</p>
 
 <p class="callout danger">Be careful when running this command.</p>
 
@@ -323,6 +329,8 @@ CopyApplication("Original Application Name", "New Application Name", "Applicatio
 - `German`
 - `Italian`
 - `Japanese`
+
+Any other value is treated as `English`.
 
 </td></tr><tr style="height: 29.7969px;"><td style="width: 27.6049%; height: 29.7969px;">Decimal Character</td><td class="align-center" style="width: 22.172%; height: 29.7969px;">✓</td><td style="width: 50.2231%; height: 29.7969px;">Decimal Preference</td></tr><tr style="height: 29.7969px;"><td style="width: 27.6049%; height: 29.7969px;">Thousands Character</td><td class="align-center" style="width: 22.172%; height: 29.7969px;">✓</td><td style="width: 50.2231%; height: 29.7969px;">Thousands delimiter
 
@@ -341,18 +349,16 @@ CopyApplication("Original Application Name", "New Application Name", "Applicatio
 **Example**
 
 ```dart
-SetPreferences("Application Name", "Cluster","Language", "Decimal Character", "Thousands Character", "Save in Unicode format", "Use DocManager as default Page");
+SetPreferences("Application", "Cluster", "English", ".", ",", "true", "false");
 ```
 
 </details><details id="bkmrk-getpreferences-gets-"><summary>GetPreferences</summary>
 
-<p class="callout info">Gets the preferences of an application and writes them to an output file</p>
-
-<p class="callout danger">Be careful when running this command.</p>
+<p class="callout info">Gets the logged-on user's preferences for an application and writes them to an output file, one `PREFERENCE=value` per line. The file is overwritten if it exists.</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--11" style="height: 224.156px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 27.6049%; height: 29.7969px;">**Parameter**</td><td style="width: 22.172%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.2231%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 27.6049%; height: 35.375px;">Application</td><td class="align-center" style="width: 22.172%; height: 35.375px;">✓</td><td style="width: 50.2231%; height: 35.375px;">Application to set preferences on</td></tr><tr style="height: 10px;"><td style="width: 27.6049%; height: 10px;">Cluster</td><td class="align-center" style="width: 22.172%; height: 10px;">✓</td><td style="width: 50.2231%; height: 10px;">Cluster to set preferences on</td></tr><tr style="height: 29.7969px;"><td style="width: 27.6049%; height: 29.7969px;">Output File Path</td><td class="align-center" style="width: 22.172%; height: 29.7969px;">✓</td><td style="width: 50.2231%; height: 29.7969px;">Path to output file
+<table border="1" id="bkmrk-parameter-mandatory--11" style="height: 224.156px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 27.6049%; height: 29.7969px;">**Parameter**</td><td style="width: 22.172%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.2231%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 27.6049%; height: 35.375px;">Application</td><td class="align-center" style="width: 22.172%; height: 35.375px;">✓</td><td style="width: 50.2231%; height: 35.375px;">Application to read preferences from</td></tr><tr style="height: 10px;"><td style="width: 27.6049%; height: 10px;">Cluster</td><td class="align-center" style="width: 22.172%; height: 10px;">✓</td><td style="width: 50.2231%; height: 10px;">Cluster the application is on</td></tr><tr style="height: 29.7969px;"><td style="width: 27.6049%; height: 29.7969px;">Output File Path</td><td class="align-center" style="width: 22.172%; height: 29.7969px;">✓</td><td style="width: 50.2231%; height: 29.7969px;">Path to output file
 
 </td></tr></tbody></table>
 
@@ -368,9 +374,13 @@ GetPreferences("Application Name", "Cluster","Output File Path");
 
 <p class="callout danger">Be careful when running this command.</p>
 
+<p class="callout info">The application is put in admin mode while changes are made and taken out of it afterwards, including when the change fails.</p>
+
+<p class="callout warning">The module flags only disable modules. Each `false` flag disables that module. A `true` flag leaves the module's current setting alone, and if every flag is `true` no module change is sent at all. So this command can't re-enable a module that is already disabled.</p>
+
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--12" style="height: 392.297px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Application</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Application to set preferences on</td></tr><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">Cluster</td><td class="align-center" style="width: 18.1326%; height: 29.7969px;">✓</td><td style="width: 50.203%; height: 29.7969px;">Cluster to set preferences on</td></tr><tr style="height: 35.3906px;"><td style="width: 31.6644%; height: 35.3906px;">Number of Years</td><td class="align-center" style="width: 18.1326%; height: 35.3906px;">✓</td><td style="width: 50.203%; height: 35.3906px;">Number of years the application should have from beginning
+<table border="1" id="bkmrk-parameter-mandatory--12" style="height: 392.297px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Application</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Application to modify</td></tr><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">Cluster</td><td class="align-center" style="width: 18.1326%; height: 29.7969px;">✓</td><td style="width: 50.203%; height: 29.7969px;">Cluster the application is on</td></tr><tr style="height: 35.3906px;"><td style="width: 31.6644%; height: 35.3906px;">Number of Years</td><td class="align-center" style="width: 18.1326%; height: 35.3906px;">✓</td><td style="width: 50.203%; height: 35.3906px;">Number of years the application should have from beginning. Pass `""` to leave the number of years unchanged.
 
 </td></tr><tr style="height: 35.3906px;"><td style="width: 31.6644%; height: 35.3906px;">Enable Process Control</td><td class="align-center" style="width: 18.1326%; height: 35.3906px;">✓</td><td style="width: 50.203%; height: 35.3906px;">Enable Process Control
 
@@ -412,7 +422,7 @@ GetPreferences("Application Name", "Cluster","Output File Path");
 **Example**
 
 ```dart
-ModifyApplication("Application Name","Cluster Name", "No Of Years", "EnableProcessControl", "EnableManageOwnership","EnableJournals", "EnableDataManagement", "EnableAuditTasks", "EnableIntercompanyTransactions", "EnableEquityPickUp");
+ModifyApplication("Application", "Cluster", "", "true", "true", "true", "true", "true", "true", "false");
 ```
 
 </details>
