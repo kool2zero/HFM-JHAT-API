@@ -6,15 +6,26 @@
 
 These JHAT Commands are related to Macros
 
+#### How macros work
+
+A macro is a name and a replacement text. When a macro is defined, JHAT replaces every occurrence of its name in a command's parameters with the replacement text:
+
+- **Matching:** plain text, case-sensitive, anywhere inside a parameter. It isn't a whole-word match.
+- **Naming:** give macros names that can't appear by accident, such as `__ENV__`.
+- **Scope:** macros last until the end of the script.
+- **Logging:** `Comment`, `LoadMacros` and `SubstituteMacro` don't write the usual start/end/success lines to the log.
+
 #### Commands
 
 <details id="bkmrk-SubstituteMacro-"><summary>SubstituteMacro</summary>
 
-<p class="callout info">Substitute Macro</p>
+<p class="callout info">The routine that replaces macro names in a command's parameters. It skips <code>DefineMacro</code> and <code>RemoveMacro</code>, so those see the macro name itself. The code that runs it for each script line wasn't in the reviewed source. Calling it from a script only substitutes within its own parameter, which has no useful effect.</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--14" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Macro Name</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Macro Name</td></tr></tbody></table>
+| Parameter | Mandatory | Comment |
+| --- | :---: | --- |
+| Text | ✓ | Text to substitute macros in |
 
 **Example**
 
@@ -24,49 +35,62 @@ SubstituteMacro("__MacroName__");
 
 </details><details id="bkmrk-DefineMacro-"><summary>DefineMacro</summary>
 
-<p class="callout info">Define Macro</p>
+<p class="callout info">Defines a macro, or replaces the value of an existing one.</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory-" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Macro Name</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Macro Name</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Macro Replacement Text</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Macro Replacement Text</td></tr></tbody></table>
+| Parameter | Mandatory | Comment |
+| --- | :---: | --- |
+| Macro Name | ✓ | Text to be replaced, e.g. `__APP__` |
+| Replacement Text | ✓ | Text to put in its place |
 
 **Example**
 
 ```dart
-DefineMacro("__MacroName__"," MacroRecplacmentText");
+DefineMacro("__APP__","COMMA");
+OpenApplication("HFMCluster","__APP__");
 ```
 
 </details><details id="bkmrk-DefineMacroEx-"><summary>DefineMacroEx</summary>
 
-<p class="callout info">Define Macro Ex</p>
+<p class="callout info">Defines a macro whose value is the parameters after the name, joined together with nothing between them. Macros already defined are replaced inside each part.</p>
+
+<p class="callout warning">Only one macro is replaced in each part: the first one found, in no guaranteed order. Put at most one macro in each part.</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--1" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">\_\_ExMacroName\_\_</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">\_\_ExMacroName\_\_</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">\_\_MacroName\_\_/MacroRecplacmentText</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">\_\_MacroName\_\_/MacroRecplacmentText</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">\_\_MacroName\_\_/MacroRecplacmentText ...</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">\_\_MacroName\_\_/MacroRecplacmentText ...</td></tr></tbody></table>
+| Parameter | Mandatory | Comment |
+| --- | :---: | --- |
+| Macro Name | ✓ | Name of the new macro |
+| Part 1 | ✓ | First part of the value (text or an existing macro) |
+| Part 2 … | | More parts, up to 98 in total |
 
 **Example**
 
 ```dart
-DefineMacroEx("__ExMacroName__","__MacroName__/MacroRecplacmentText"," __MacroName__/MacroRecplacmentText ...");
+DefineMacro("__DIR__","C:\JHAT\");
+DefineMacroEx("__LOG__","__DIR__","load.log");
 ```
 
 </details><details id="bkmrk-RemoveMacro-"><summary>RemoveMacro</summary>
 
-<p class="callout info">Remove Macro</p>
+<p class="callout info">Removes a macro. Fails with "Cannot remove. Macro [name] not found" if the macro isn't defined.</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--2" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Macro Name</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Macro Name</td></tr></tbody></table>
+| Parameter | Mandatory | Comment |
+| --- | :---: | --- |
+| Macro Name | ✓ | Name of the macro to remove |
 
 **Example**
 
 ```dart
-RemoveMacro("__MacroName__");
+RemoveMacro("__APP__");
 ```
 
 </details><details id="bkmrk-ShowMacros-"><summary>ShowMacros</summary>
 
-<p class="callout info">ShowMacros</p>
+<p class="callout info">Writes every defined macro to the log as <code>Macro: name = value</code>.</p>
 
 **Input**
 
@@ -75,35 +99,55 @@ None
 **Example**
 
 ```dart
-ShowMacros("");
+ShowMacros();
 ```
 
 </details><details id="bkmrk-Comment-"><summary>Comment</summary>
 
-<p class="callout info">Comment</p>
+<p class="callout info">Writes the text to the log and does nothing else.</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--3" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Comment Text</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Comment Text</td></tr></tbody></table>
+| Parameter | Mandatory | Comment |
+| --- | :---: | --- |
+| Text | ✓ | Text to log |
 
 **Example**
 
 ```dart
-Comment("comment text");
+Comment("Starting month-end load");
 ```
 
 </details><details id="bkmrk-LoadMacros-"><summary>LoadMacros</summary>
 
-<p class="callout info">Load Macros</p>
+<p class="callout info">Defines macros from a text file. Fails if the file doesn't exist.</p>
+
+File format:
+
+- One `name=value` per line. Spaces are kept as part of the name and value.
+- Lines starting with `'` or `!` are comments. Lines without `=` are skipped.
+- The value can be built from parts joined with `+` (e.g. `__DIR__+load.log`). An existing macro is replaced in each part, as for `DefineMacroEx`.
+- Everything after a second `=` on a line is dropped, so values can't contain `=`.
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--4" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Macro File Name</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Macro File Name</td></tr></tbody></table>
+| Parameter | Mandatory | Comment |
+| --- | :---: | --- |
+| Macro File | ✓ | Path to the macro file |
 
 **Example**
 
 ```dart
-LoadMacros("macro file name");
+LoadMacros("C:\JHAT\macros.txt");
+```
+
+With `macros.txt`:
+
+```ini
+' Environment settings
+__APP__=COMMA
+__DIR__=C:\JHAT\
+__LOG__=__DIR__+load.log
 ```
 
 </details>

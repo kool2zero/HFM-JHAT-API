@@ -485,7 +485,7 @@ ChartLogic("true");
 
 </details><details id="bkmrk-LockICEntity-"><summary>LockICEntity</summary>
 
-<p class="callout warning">**Does nothing.** The command's code is empty in this version of JHAT, so it doesn't lock anything.</p>
+<p class="callout warning">This version's code is empty, so it does nothing. The <a href="08-intercompany.md">Intercompany</a> handler registers a working command with the same name (<code>LockICEntity</code>, parameters as below except Entities is a comma-separated list). JHAT keeps only one command per name, depending on the order the handlers are loaded. See the Intercompany page.</p>
 
 **Input**
 
@@ -504,7 +504,7 @@ LockICEntity("Actual","2023","Dec","Entity1");
 
 </details><details id="bkmrk-UnlockICEntity-"><summary>UnlockICEntity</summary>
 
-<p class="callout warning">**Does nothing.** The command's code is empty in this version of JHAT, so it doesn't unlock anything.</p>
+<p class="callout warning">This version's code is empty, so it does nothing. The <a href="08-intercompany.md">Intercompany</a> handler registers a working command with the same name (<code>UnLockICEntity</code>, parameters as below except Entities is a comma-separated list). JHAT keeps only one command per name, depending on the order the handlers are loaded. See the Intercompany page.</p>
 
 **Input**
 

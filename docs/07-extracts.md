@@ -11,6 +11,8 @@ The extract commands need an open application.
 - **Output files** are extracted on the HFM server and copied to the local paths you give.
 - **true/false parameters:** `true` (any case) means true. Any other value means false, unless a table says otherwise.
 
+<p class="callout warning">Most extract commands report <b>Successful</b> even when HFM reports that the extract failed. JHAT writes "Extract … failed" to its log but then marks the command successful anyway. Check the extract log rather than the command's status. The exceptions are <code>ExtractData</code>, <code>EAExtract</code>, <code>ExtractPhaseInfo</code> and <code>ExtractDataExtDim</code>, which wait for the task and report failure correctly.</p>
+
 #### Lists
 
 Several extract commands take a **list number** instead of a member name. Lists are held in memory for the rest of the script:

@@ -64,7 +64,9 @@ Before a command runs, JHAT checks how many parameters it was given:
 
 If the count is wrong, the command fails with "Incorrect number of parameters." The log shows the script line number, the parameters you passed, and the command's expected usage.
 
-<p class="callout warning">For commands whose parameter count is a range, JHAT's check never fails. This covers <code>GetForm</code>, <code>FilterProcessControlGrid</code>, <code>GetCalcStatusSummary</code>, <code>ExtractMetaData</code>, <code>ExtractMetaDataExtDim</code> and <code>ExtractSecurityExpanded</code>. Passing too few parameters makes the command crash partway through instead of failing with a clear message.</p>
+<p class="callout warning">For commands whose parameter count is a range, JHAT's check never fails. This covers <code>GetForm</code>, <code>FilterProcessControlGrid</code>, <code>GetCalcStatusSummary</code>, <code>ExtractMetaData</code>, <code>ExtractMetaDataExtDim</code>, <code>ExtractSecurityExpanded</code>, <code>LoadMetaDataExtDim</code>, <code>LoadICTransactions</code>, <code>LoadDocument</code>, <code>OpenICPeriod</code>, <code>UpdateICPeriod</code> and <code>DefineMacroEx</code>. Passing too few parameters makes the command crash partway through instead of failing with a clear message.</p>
+
+<p class="callout warning">Don't rely on a command's <b>Successful</b> status alone. Many load and extract commands report success even when HFM reports that the operation failed; see the <a href="10-load.md">Load</a> and <a href="07-extracts.md">Extracts</a> pages. Several other commands write HFM's errors to the log without failing.</p>
 
 #### Log output
 

@@ -6,466 +6,330 @@
 
 These JHAT Commands have to do with Loading Data, Journals, etc.
 
+The load commands need an open application.
+
+- **Files:** each command copies your local load file to the HFM server, runs the load, and copies HFM's log back to the log path you give.
+- **Log copy failures:** if the log can't be copied, JHAT only notes it in its own log. The command doesn't fail.
+- **true/false parameters:** count only when exactly `true` (any case).
+
+<p class="callout warning">Most load commands report <b>Successful</b> even when HFM reports that the load failed. JHAT writes "Load … failed" to its log but then marks the command successful anyway. Check the load log, or the "failed" line in JHAT's log, rather than the command's status. The exceptions are <code>LoadData</code>, <code>StartLoadData</code>, <code>LoadPhaseInfo</code> and <code>LoadICTransactions</code>, which wait for the task and report failure correctly.</p>
+
 #### Commands
 
 <details id="bkmrk-LoadSecurity-"><summary>LoadSecurity</summary>
 
-<p class="callout info">Load Security Into HFM</p>
+<p class="callout info">Loads a security file, including all parts (users, security classes, role access and security class access).</p>
+
+<p class="callout warning">JHAT's usage text lists 9 parameters, but this command only accepts exactly 5. To choose which parts to load, use <code>LoadSecurityExpanded</code>.</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--14" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Security File</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Security File</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Log</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Log</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Delmiter</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Delmiter</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Clear before Load</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Clear before Load
-
-- `true`
-- `false`
-
-</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Validate Users</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Validate Users
-
-- `true`
-- `false`
-
-</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Load Users</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Load Users
-
-- `true`
-- `false`
-
-</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Load Classes</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Load Classes
-
-- `true`
-- `false`
-
-</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Load Roles</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Load Roles
-
-- `true`
-- `false`
-
-</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Load Accesses</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Load Accesses
-
-- `true`
-- `false`
-
-</td></tr></tbody></table>
+| Parameter | Mandatory | Comment |
+| --- | :---: | --- |
+| Load File | ✓ | Local security file |
+| Log File | ✓ | Local file for the log |
+| Delimiter | ✓ | e.g. `;` |
+| Clear Before Load | ✓ | `true` / `false` |
+| Validate Users | ✓ | `true` / `false` |
 
 **Example**
 
 ```dart
-LoadSecurity("C:HfmSecurityLoadFile.sec"," C:HfmSecurityLoad.log",";"," True/False Clear before Load"," True/False Validate Users"," True/False Load Users"," True/False Load Classes"," True/False Load Roles"," True/False Load Accesses");
+LoadSecurity("C:\Hfm\Security.sec","C:\Hfm\SecurityLoad.log",";","false","true");
 ```
 
 </details><details id="bkmrk-LoadSecurityExpanded-"><summary>LoadSecurityExpanded</summary>
 
-<p class="callout info">Load Security Expanded</p>
+<p class="callout info">Loads a security file, choosing which parts to load.</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory-" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Security File</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Security File</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Log File</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Log File</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Delimiter</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Delimiter</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Clear All?</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Clear All?
+All 9 parameters are required.
 
-- `true`
-- `false`
-
-</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Validate Users?</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Validate Users?
-
-- `true`
-- `false`
-
-</td></tr><tr><td style="width: 31.6644%;">Filter Users?</td><td class="align-center" style="width: 18.1326%;">✓</td><td style="width: 50.203%;">Filter Users?
-
-- `true`
-- `false`
-
-</td></tr><tr><td style="width: 31.6644%;">Filter Security Class?</td><td class="align-center" style="width: 18.1326%;">✓</td><td style="width: 50.203%;">Filter Security Class?
-
-- `true`
-- `false`
-
-</td></tr><tr><td style="width: 31.6644%;">Filter Role Access?</td><td class="align-center" style="width: 18.1326%;">✓</td><td style="width: 50.203%;">Filter Role Access?
-
-- `true`
-- `false`
-
-</td></tr><tr><td style="width: 31.6644%;">Filter Security Class Access?</td><td class="align-center" style="width: 18.1326%;">✓</td><td style="width: 50.203%;">Filter Security Class Access?
-
-- `true`
-- `false`
-
-</td></tr></tbody></table>
+| # | Parameter | Comment |
+| --- | --- | --- |
+| 1 | Load File | Local security file |
+| 2 | Log File | Local file for the log |
+| 3 | Delimiter | e.g. `;` |
+| 4 | Clear Before Load | `true` / `false` |
+| 5 | Validate Users | `true` / `false` |
+| 6 | Users | `true` / `false` |
+| 7 | Security Classes | `true` / `false` |
+| 8 | Role Access | `true` / `false` |
+| 9 | Security Class Access | `true` / `false` |
 
 **Example**
 
 ```dart
-LoadSecurityExpanded("Security File","Log File","Delimiter","Clear All?","Validate Users?","Filter Users?","Filter Security Class?","Filter Role Access?","Filter Security Class Access?");
+LoadSecurityExpanded("C:\Hfm\Security.sec","C:\Hfm\SecurityLoad.log",";","false","true","true","true","false","false");
 ```
 
 </details><details id="bkmrk-LoadMetaData-"><summary>LoadMetaData</summary>
 
-<p class="callout info">Load MetaData</p>
-
-<p class="callout info">Can have 3, 17 or 18 parameters</p>
+<p class="callout info">Loads a metadata file. The format comes from the file extension: `.xml` loads XML, and anything else loads the native (`.app`) format.</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--1" style="height: 1260.38px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Load File</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Load File</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Log File  
-</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Log File  
-</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Delimiter</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Delimiter</td></tr><tr style="height: 110.156px;"><td style="width: 31.6644%; height: 110.156px;">Mode</td><td class="align-center" style="width: 18.1326%; height: 110.156px;">✓</td><td style="width: 50.203%; height: 110.156px;">Mode
+Takes exactly 3, 17 or 18 parameters.
 
-- `Merge`
-- `Replace`
-- `Clear`
+- **With 3:** loads currencies, scenarios, entities, accounts, all custom dimensions, consolidation methods, application settings and cell text labels in merge mode, without an integrity check.
+- **With 17 or 18:** you choose the mode and what to load.
 
-</td></tr><tr style="height: 93.0469px;"><td style="width: 31.6644%; height: 93.0469px;">Load Currencies?</td><td class="align-center" style="width: 18.1326%; height: 93.0469px;">✓</td><td style="width: 50.203%; height: 93.0469px;">Load Currencies
+| # | Parameter | Comment |
+| --- | --- | --- |
+| 1 | Load File | Local metadata file |
+| 2 | Log File | Local file for the log |
+| 3 | Delimiter | e.g. `;` |
+| 4 | Mode | `Merge`, `Replace`, `Clear`, or `Scan` (check the file without loading). Anything else fails. |
+| 5 | Currencies | `true` / `false` |
+| 6 | Scenarios | `true` / `false` |
+| 7 | Entities | `true` / `false` |
+| 8 | Accounts | `true` / `false` |
+| 9–12 | Custom 1 – Custom 4 | `true` / `false` |
+| 13 | Consolidation Methods | `true` / `false` |
+| 14 | Application Settings | `true` / `false` |
+| 15 | System Accounts | `true` / `false`. `true` also loads Accounts. |
+| 16 | Values | `true` / `false` |
+| 17 | ICPs | `true` / `false` |
+| 18 | Integrity Check | Optional. `true` / `false`. |
 
-- `true`
-- `false`
+**Mode overrides:**
 
-</td></tr><tr style="height: 93.0469px;"><td style="width: 31.6644%; height: 93.0469px;">Load Scenarios?</td><td class="align-center" style="width: 18.1326%; height: 93.0469px;">✓</td><td style="width: 50.203%; height: 93.0469px;">Load Scenarios
-
-- `true`
-- `false`
-
-</td></tr><tr style="height: 93.0469px;"><td style="width: 31.6644%; height: 93.0469px;">Load Entities?</td><td class="align-center" style="width: 18.1326%; height: 93.0469px;">✓</td><td style="width: 50.203%; height: 93.0469px;">Load Entities
-
-- `true`
-- `false`
-
-</td></tr><tr style="height: 93.0469px;"><td style="width: 31.6644%; height: 93.0469px;">Load Accounts?</td><td class="align-center" style="width: 18.1326%; height: 93.0469px;">✓</td><td style="width: 50.203%; height: 93.0469px;">Load Accounts
-
-- `true`
-- `false`
-
-</td></tr><tr style="height: 93.0469px;"><td style="width: 31.6644%; height: 93.0469px;">Load Custom1?</td><td class="align-center" style="width: 18.1326%; height: 93.0469px;">✓</td><td style="width: 50.203%; height: 93.0469px;">Load Custom1
-
-- `true`
-- `false`
-
-</td></tr><tr style="height: 93.0469px;"><td style="width: 31.6644%; height: 93.0469px;">Load Custom2?</td><td class="align-center" style="width: 18.1326%; height: 93.0469px;">✓</td><td style="width: 50.203%; height: 93.0469px;">Load Custom2
-
-- `true`
-- `false`
-
-</td></tr><tr style="height: 93.0469px;"><td style="width: 31.6644%; height: 93.0469px;">Load Custom3?</td><td class="align-center" style="width: 18.1326%; height: 93.0469px;">✓</td><td style="width: 50.203%; height: 93.0469px;">Load Custom3
-
-- `true`
-- `false`
-
-</td></tr><tr style="height: 93.0469px;"><td style="width: 31.6644%; height: 93.0469px;">Load Custom4?</td><td class="align-center" style="width: 18.1326%; height: 93.0469px;">✓</td><td style="width: 50.203%; height: 93.0469px;">Load Custom4
-
-- `true`
-- `false`
-
-</td></tr><tr style="height: 93.0469px;"><td style="width: 31.6644%; height: 93.0469px;">Load Consolidation Methods?</td><td class="align-center" style="width: 18.1326%; height: 93.0469px;">✓</td><td style="width: 50.203%; height: 93.0469px;">Load Consolidation Methods
-
-- `true`
-- `false`
-
-</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Load App Settings?</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Load App Settings
-
-- `true`
-- `false`
-
-</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">System Accounts?</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">System Accounts
-
-- `true`
-- `false`
-
-</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Load Value Dimension?</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Load Value Dimension
-
-- `true`
-- `false`
-
-</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Load ICP?</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Load ICP
-
-- `true`
-- `false`
-
-</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Integrity Check?</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Integrity Check
-
-- `true`
-- `false`
-
-</td></tr></tbody></table>
+- **`Clear`:** clears existing metadata first, and forces currencies, scenarios, entities, accounts, consolidation methods and application settings on.
+- **`Replace`:** forces those on, plus Custom 1–4.
 
 **Example**
 
 ```dart
-LoadMetaData("C:HfmMetadataLoadFile.xml"," C:HfmMetadataLoad.log",";","Merge, Replace or Clear Mode"," True or False Load Currencies"," True or FalseLoad Scenarios"," True or False Load Entities"," True or False Load Accounts"," True or False Load Custom1"," True or False Load Custom2"," True or False Load Custom3"," True or False Load Custom4"," True or False Load Consolidation Methods"," True or False Load App Settings","True or False System Accounts","True or False Load Value Dimension","True or False Load ICP","True or False Integrity Check");
+LoadMetaData("C:\Hfm\Metadata.xml","C:\Hfm\MetadataLoad.log",";");
+LoadMetaData("C:\Hfm\Metadata.app","C:\Hfm\MetadataLoad.log",";","Merge","true","true","true","true","true","true","true","true","true","true","false","false","false","true");
 ```
 
 </details><details id="bkmrk-LoadMetaDataExtDim-"><summary>LoadMetaDataExtDim</summary>
 
-<p class="callout info">Load MetaData Extended</p>
+<p class="callout info">Loads a metadata file, with dimensions chosen in a single string. The format comes from the file extension, as for <code>LoadMetaData</code>.</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--2" style="height: 689.031px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Load File</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Load File</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Log File</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Log File</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Delimiter</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Delimiter</td></tr><tr style="height: 110.156px;"><td style="width: 31.6644%; height: 110.156px;">Mode</td><td class="align-center" style="width: 18.1326%; height: 110.156px;">✓</td><td style="width: 50.203%; height: 110.156px;">Mode
+The first 5 parameters are required. The rest are optional and positional.
 
-- `Merge`
-- `Replace`
-- `Clear`
+| # | Parameter | Comment |
+| --- | --- | --- |
+| 1 | Load File | Local metadata file |
+| 2 | Log File | Local file for the log |
+| 3 | Delimiter | e.g. `;` |
+| 4 | Mode | `Merge`, `Replace`, `Clear` or `Scan`, as for `LoadMetaData` (including its overrides) |
+| 5 | Integrity Check | `true` / `false` |
+| 6 | Dimensions | `Dim#true` / `Dim#false` entries joined with `.`, e.g. `S#false.I#true`. See below. |
+| 7 | Currencies | `true` / `false` (loaded if left out) |
+| 8 | Application Settings | `true` / `false` (loaded if left out) |
+| 9 | Consolidation Methods | `true` / `false` (loaded if left out) |
+| 10 | System Accounts | `true` / `false`. `true` also loads Accounts. |
 
-</td></tr><tr style="height: 93.0469px;"><td style="width: 31.6644%; height: 93.0469px;">Check Integrity</td><td class="align-center" style="width: 18.1326%; height: 93.0469px;">✓</td><td style="width: 50.203%; height: 93.0469px;">Check Integrity
+In the Dimensions string:
 
-- `true`
-- `false`
+- `S`, `E` and `A` can only be turned off.
+- `I` and `V` can only be turned on.
+- Custom dimensions are named by their short name, written in upper case. `C1`-style aliases aren't recognized here.
 
-</td></tr><tr style="height: 35.3906px;"><td style="width: 31.6644%; height: 35.3906px;">Dimensions to Load
-
-</td><td class="align-center" style="width: 18.1326%; height: 35.3906px;">✓</td><td style="width: 50.203%; height: 35.3906px;">Dimensions to Load
-
-</td></tr><tr style="height: 93.0469px;"><td style="width: 31.6644%; height: 93.0469px;">Load Currencies</td><td class="align-center" style="width: 18.1326%; height: 93.0469px;">✓</td><td style="width: 50.203%; height: 93.0469px;">Load Currencies
-
-- `true`
-- `false`
-
-</td></tr><tr style="height: 93.0469px;"><td style="width: 31.6644%; height: 93.0469px;">Load App Settings</td><td class="align-center" style="width: 18.1326%; height: 93.0469px;">✓</td><td style="width: 50.203%; height: 93.0469px;">Load App Settings
-
-- `true`
-- `false`
-
-</td></tr><tr style="height: 93.0469px;"><td style="width: 31.6644%; height: 93.0469px;">Load Consolidation Methods</td><td class="align-center" style="width: 18.1326%; height: 93.0469px;">✓</td><td style="width: 50.203%; height: 93.0469px;">Load Consolidation Methods
-
-- `true`
-- `false`
-
-</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Load System Accounts</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Load System Accounts
-
-- `true`
-- `false`
-
-</td></tr></tbody></table>
+<p class="callout warning">If you name any custom dimension, name all of them. JHAT builds the custom dimension list only from the ones you name, so leaving some out can shift the settings onto the wrong dimensions.</p>
 
 **Example**
 
 ```dart
-LoadMetaDataExtDim("Load Filename", "Log Filename", "Delimiter", "ReplaceMode", "CheckIntegrity", "DimensionsToLoad","Load Currencies", "LoadAppSettings", "Load Consol Methods", "LoadSystemAccounts");
+LoadMetaDataExtDim("C:\Hfm\Metadata.app","C:\Hfm\MetadataLoad.log",";","Merge","false","I#true.V#true");
 ```
 
 </details><details id="bkmrk-LoadICTransactions-"><summary>LoadICTransactions</summary>
 
-<p class="callout info">Load Intercompany Transactions</p>
+<p class="callout info">Loads (or scans) an intercompany transactions file and waits for the task to finish.</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--3" style="height: 206.672px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Load File</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">c:HFMICTrans.trn</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Log File</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">c:HFMICtrans.log</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Mode</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Mode
+All 5 parameters are needed. JHAT doesn't check the count.
 
-- `Load`
-- `Scan`
-
-</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Load Option</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Load Option
-
-- `Merge`
-- `Replace`
-
-</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Delimiter</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Delimiter</td></tr></tbody></table>
+| Parameter | Mandatory | Comment |
+| --- | :---: | --- |
+| Load File | ✓ | Local transactions file |
+| Log File | ✓ | Local file for the log |
+| Load or Scan | ✓ | `Scan` to only check the file. Anything else loads. |
+| Merge or Replace | ✓ | `Merge` or `Replace` (passed to HFM as given) |
+| Delimiter | ✓ | e.g. `;` |
 
 **Example**
 
 ```dart
-LoadICTransactions("c:HFMICTrans.trn"," c:HFMICtrans.log"," Load","Merge",";");
+LoadICTransactions("C:\HFM\ICTrans.trn","C:\HFM\ICTrans.log","Load","Merge",";");
 ```
 
 </details><details id="bkmrk-LoadDocument-"><summary>LoadDocument</summary>
 
-<p class="callout info">Load Document</p>
+<p class="callout info">Loads a local file into Document Manager, or creates a Document Manager folder when File Type is <code>Folder</code>. The command needs all 9 parameters, though JHAT doesn't check the count.</p>
 
-**Input**
+**Input: loading a document**
 
-<table border="1" id="bkmrk-parameter-mandatory--4" style="height: 349.172px; width: 94.8718%;"><tbody><tr style="height: 30.7969px;"><td style="width: 31.6644%; height: 30.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 30.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 30.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">File Name</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">File Name</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">File Description</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">File Description</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Path to Document</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Path to Document on Local Machine</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Security Class</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Security Class</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Overwrite</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Overwrite
+| # | Parameter | Comment |
+| --- | --- | --- |
+| 1 | Name | Document name in Document Manager |
+| 2 | Description | Not used when loading a document |
+| 3 | Local File | Local file to load |
+| 4 | Security Class | Security class for the document |
+| 5 | Overwrite | `true` / `false` |
+| 6 | Document Type | Type of document (see [Documents](05-documents.md)) |
+| 7 | File Type | File type of document |
+| 8 | Private | `true` / `false` |
+| 9 | Folder | Document Manager folder, or `\` for the root |
 
-- `true`
-- `false`
+**Input: creating a folder**
 
-</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Document Type</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Document Type
-
-- `WEBFORM`
-- `JOURNAL`
-- `INTERCOMPANY`
-- `ICTRANSACTION`
-- `ICMATCHACCOUNT`
-- `ICMATCHID`
-- `ICMATCHTEMPLATE`
-- `DATAEXPLORER`
-- `WEBGRID`
-- `WORKSPACE`
-- `CUSTOM`
-- `TASK`
-- `FOLDER`
-- `All`
-
-</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">File Type</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">File Type
-
-- `FORM`
-- `REPORT`
-- `XML`
-- `HTML`
-- `REPORTXML`
-- `CUSTOM`
-- `FOLDER`
-- `All`
-
-</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Is Private?</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Is Private?
-
-- `true`
-- `false`
-
-</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Path in HFM</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Path in HFM</td></tr></tbody></table>
+| # | Parameter | Comment |
+| --- | --- | --- |
+| 1 | Folder Name | Name of the new folder |
+| 2 | Description | Folder description |
+| 3 | Content Type | `WebForm`, `WebGrid`, `Journal`, `Intercompany`, `ICTransaction`, `ICMatchAccount`, `ICMatchID`, `ICMatchTemplate`, `DataExplorer`, `Workspace`, `Custom`, `Task`, `Folder` or `All` |
+| 4 | Security Class | Security class for the folder |
+| 5 | Overwrite | `true` / `false` |
+| 6 | Document Type | Not used |
+| 7 | File Type | `Folder` |
+| 8 | Private | `true` / `false` |
+| 9 | Parent Folder | Folder to create it in (`\` isn't converted to root here) |
 
 **Example**
 
 ```dart
-LoadDocument("FormTest","Test Description"," C:inputdirCalc2col.wdf"," US"," true","WebForm","FORM","true","/RootFolder/Test");
+LoadDocument("IncomeStatement","","C:\inputdir\IncomeStatement.wdf","[Default]","true","<Document Type>","<File Type>","false","\Forms");
+LoadDocument("Forms","Data forms","WebForm","[Default]","false","","Folder","false","");
 ```
 
 </details><details id="bkmrk-LoadRules-"><summary>LoadRules</summary>
 
-<p class="callout info">Load Rules</p>
+<p class="callout info">Loads (or scans) a rules file.</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--5" style="height: 135.922px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Rule File</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Path to Rule File</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Log File</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Path to Log File</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Scan Only?</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Scan Only
-
-- `true`
-- `false`
-
-<p class="callout info">Optional</p>
-
-</td></tr></tbody></table>
+| Parameter | Mandatory | Comment |
+| --- | :---: | --- |
+| Load File | ✓ | Local rules file |
+| Log File | ✓ | Local file for the log |
+| Scan Only | | `true` to only check the file |
 
 **Example**
 
 ```dart
-LoadRules("C:HfmRuleLoadFile.rul"," C:HfmRulesLoad.log"," Optional True or False Scan Only");
+LoadRules("C:\Hfm\Rules.rle","C:\Hfm\RulesLoad.log");
 ```
 
 </details><details id="bkmrk-LoadMemberLists-"><summary>LoadMemberLists</summary>
 
-<p class="callout info">Load Member Lists</p>
+<p class="callout info">Loads (or scans) a member lists file.</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--6" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Member List File</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Member List File</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Log File</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Path to Log File</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Scan Only?</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Scan Only
-
-- `true`
-- `false`
-
-<p class="callout info">Optional</p>
-
-</td></tr></tbody></table>
+| Parameter | Mandatory | Comment |
+| --- | :---: | --- |
+| Load File | ✓ | Local member lists file |
+| Log File | ✓ | Local file for the log |
+| Scan Only | | `true` to only check the file |
 
 **Example**
 
 ```dart
-LoadMemberLists("C:HfmMemberListsLoadFile.lst"," C:HfmMemberListsLoad.log"," Optional True or False Scan Only");
+LoadMemberLists("C:\Hfm\MemberLists.lst","C:\Hfm\MemberListsLoad.log");
 ```
 
 </details><details id="bkmrk-LoadData-"><summary>LoadData</summary>
 
-<p class="callout info">Load Data</p>
+<p class="callout info">Loads a native-format data file and waits for the task to finish (see <a href="00-automation-with-jhat.md#long-running-tasks">long-running tasks</a>). The command fails if the task doesn't complete.</p>
+
+<p class="callout warning">An unrecognized Mode is only logged as invalid usage. The load still runs with HFM's default handling of duplicates.</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--43" style="height: 217.891px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Load Mode</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Load Mode
+All 6 parameters are required.
 
-- `Merge`
-- `Replace`
-- `Accumulate`
-- `ReplaceBySecurity`
-
-</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Data File</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Data File</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Log File</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Log File</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Accumulate withing File?</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Accumulate withing File?
-
-- `true`
-- `false`
-
-</td></tr><tr style="height: 46.5938px;"><td style="width: 31.6644%; height: 46.5938px;">Contains Ownership?</td><td class="align-center" style="width: 18.1326%; height: 46.5938px;">✓</td><td style="width: 50.203%; height: 46.5938px;">Contains Ownership?
-
-- `true`
-- `false`
-
-</td></tr></tbody></table>
+| # | Parameter | Comment |
+| --- | --- | --- |
+| 1 | Mode | `Merge`, `Replace`, `Accumulate`, `ReplaceBySecurity`, or `Scan` (check only) |
+| 2 | Load File | Local data file |
+| 3 | Log File | Local file for the log |
+| 4 | Accumulate Within File | `true` / `false` |
+| 5 | Contains Ownership Data | `true` / `false` |
+| 6 | Delimiter | e.g. `;` |
 
 **Example**
 
 ```dart
-LoadData("Merge"," C:HfmDataLoadFile.dat"," C:HfmDataLoad.log"," True or False Accumulate in File"," True or False contains ownership data"," ");
+LoadData("Merge","C:\Hfm\Data.dat","C:\Hfm\DataLoad.log","false","false",";");
 ```
 
 </details><details id="bkmrk-StartLoadData-"><summary>StartLoadData</summary>
 
-<p class="callout info">Start Load Data</p>
-
-<p class="callout info">Calls the same API as `LoadData`</p>
+<p class="callout info">Identical to <code>LoadData</code>, including waiting for the load to finish.</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--44" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Load Mode</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Load Mode
-
-- `Merge`
-- `Replace`
-- `Accumulate`
-- `ReplaceBySecurity`
-
-</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Data File</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Data File</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Log File</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Log File</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Accumulate withing File?</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Accumulate withing File?
-
-- `true`
-- `false`
-
-</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 46.5938px;">Contains Ownership?</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 46.5938px;">Contains Ownership?
-
-- `true`
-- `false`
-
-</td></tr></tbody></table>
+As for `LoadData`.
 
 **Example**
 
 ```dart
-StartLoadData("Merge"," C:HfmDataLoadFile.dat"," C:HfmDataLoad.log"," True or False Accumulate in File"," True or False contains ownership data"," ");
+StartLoadData("Merge","C:\Hfm\Data.dat","C:\Hfm\DataLoad.log","false","false",";");
 ```
 
 </details><details id="bkmrk-LoadPhaseInfo-"><summary>LoadPhaseInfo</summary>
 
-<p class="callout info">Load Phase Info</p>
+<p class="callout info">Loads a phase submission data file and waits for the task to finish.</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--45" style="height: 158.766px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 46.7969px;"><td style="width: 31.6644%; height: 35.375px;">Load Mode</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Load Mode
-
-- `Merge`
-- `Replace`
-
-</td></tr><tr style="height: 46.7969px;"><td style="width: 31.6644%; height: 35.375px;">Data File</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Data File</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Log File</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Log File</td></tr><tr><td style="width: 31.6644%;">Delmiter</td><td class="align-center" style="width: 18.1326%;">✓</td><td style="width: 50.203%;">Delimiter</td></tr></tbody></table>
+| Parameter | Mandatory | Comment |
+| --- | :---: | --- |
+| Mode | ✓ | `Merge`, or anything else for Replace |
+| Load File | ✓ | Local file |
+| Log File | ✓ | Local file for the log |
+| Delimiter | ✓ | e.g. `;` |
 
 **Example**
 
 ```dart
-LoadPhaseInfo("Merge or Replace"," C:HfmDataLoadFile.dat"," C:HfmDataLoad.log"," ");
+LoadPhaseInfo("Merge","C:\Hfm\Phases.dat","C:\Hfm\PhaseLoad.log",";");
 ```
 
 </details><details id="bkmrk-LoadJournal-"><summary>LoadJournal</summary>
 
-<p class="callout info">Load Journal</p>
+<p class="callout info">Loads a journals file.</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--46" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Data File</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Data File</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Log File</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Log File</td></tr><tr><td style="width: 31.6644%;">Delmiter</td><td class="align-center" style="width: 18.1326%;">✓</td><td style="width: 50.203%;">Delimiter</td></tr></tbody></table>
+| Parameter | Mandatory | Comment |
+| --- | :---: | --- |
+| Load File | ✓ | Local journals file |
+| Log File | ✓ | Local file for the log |
+| Delimiter | ✓ | e.g. `;` |
 
 **Example**
 
 ```dart
-LoadJournal("C:HfmDataLoadFile.dat"," C:HfmDataLoad.log"," ");
+LoadJournal("C:\Hfm\Journals.jlf","C:\Hfm\JournalLoad.log",";");
 ```
 
 </details><details id="bkmrk-LoadModuleConfiguration-"><summary>LoadModuleConfiguration</summary>
 
-<p class="callout info">Load Module Configuration</p>
+<p class="callout info">Loads a module configuration file. JHAT doesn't check the result, so it always reports success unless the call itself errors. Check the log.</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--7" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Data File</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Data File</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Log File</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Log File</td></tr></tbody></table>
+A third parameter is accepted and ignored.
+
+| Parameter | Mandatory | Comment |
+| --- | :---: | --- |
+| Load File | ✓ | Local configuration file |
+| Log File | ✓ | Local file for the log |
 
 **Example**
 
 ```dart
-LoadModuleConfiguration("C:HfmModuleConfiguration.XML"," C:HfmModuleConfiguration.log");
+LoadModuleConfiguration("C:\Hfm\ModuleConfiguration.xml","C:\Hfm\ModuleConfiguration.log");
 ```
 
 </details>
