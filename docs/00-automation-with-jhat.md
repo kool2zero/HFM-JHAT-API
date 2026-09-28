@@ -22,35 +22,130 @@ Before the first run, it’ mandatory to create `setenv.cmd` file and set the pa
 
 #### JHAT usage
 
-A text file provides the tasks to be executed against HFM. Basically, the structure of the file is as below:
+A text file (the script) lists the commands to run against HFM, one per line. A typical script looks like this:
 
 ```dart
-Logon()
-OpenApplication()
-SetPOV()
-Consolidate() '(or other HFM function)'
-CloseApplication()
-Logout()
+' Month-end consolidation
+Logon("false","","user","password");
+OpenApplication("HFMCluster","COMMA");
+SetPOV("Actual","2023","Dec","YTD","Group.Entity1","<Entity Currency>","[None]","[ICP None]","[None]","[None]","[None]","[None]");
+Consolidate("Impacted");
+CloseApplication();
+Logout();
 ```
 
 **Example:**
 
 <img src="https://raw.githubusercontent.com/kool2zero/HFM-JHAT-API/main/img/azXimage.png?sanitize=true&raw=true" />
 
-<p class="callout info">In most cases, you will need to call the `Logon`, `OpenApplication`, `CloseApplication` and `Logout` commands as part of the script execution.</p>
+<p class="callout info">In most cases, you will need to call the <code>Logon</code>, <code>OpenApplication</code>, <code>CloseApplication</code> and <code>Logout</code> commands as part of the script execution.</p>
 
-<p class="callout info">Certain commands will necessitate running the `SetPOV` command.</p>
+<p class="callout info">Certain commands will necessitate running the <code>SetPOV</code> command.</p>
 
-<p class="callout warning">The JHAT API is not fully documented by Oracle. Commands used are based on examples from others.</p>
+<p class="callout warning">The JHAT API is not fully documented by Oracle. This documentation is based on examples from others and on the decompiled JHAT source.</p>
 
-You only have to provide the file previously create as argument and call the utility to run the task:
+#### Script syntax
+
+JHAT reads the script as follows:
+
+- **One command per line.** A command can't span several lines.
+- **Command name:** the text before the first `(`, ignoring case. A line without `(` is skipped. An unknown command name is printed to the console as "Invalid function name … Ignoring it" and skipped.
+- **Comments:** lines starting with `'`, `!` or `#` are skipped.
+- **Arguments:** everything from the first `(` to the first `")` on the line. Each argument is the text between a pair of double quotes. Anything outside the quotes is ignored, including commas, spaces and the trailing `;`.
+
+This has some consequences:
+
+- **Every argument must be in straight double quotes** (`"`). Unquoted values are dropped: `Delay(5000);` has no arguments and fails the parameter check, while `Delay("5000");` works. Typographic quotes (“ ”) aren't recognized.
+- **An argument can't contain `"`**, and there is no escape character. An argument containing `")` cuts the line short.
+- **Empty arguments are written `""`.**
+
+The whole script is read and checked before anything runs. The script file's encoding is detected automatically.
+
+#### Running a script
 
 ```shell
-jhat.bat -I E:\JHAT\test.txt
+jhat.bat -I"E:\JHAT\script.txt" -O"E:\JHAT\script.log"
 ```
 
-Use `jhat.bat -H` command to explore the available options:
+JHAT reads options as a letter followed **directly** by its value, with no space (`-IE:\JHAT\script.txt` or `-I"E:\JHAT\script.txt"`). An option written as `-I E:\JHAT\script.txt` gets an empty value, so the script isn't found. Arguments that don't start with `-` are ignored. This describes how JHAT's Java code reads its arguments. `jhat.bat` itself wasn't part of the source reviewed.
+
+| Option | Meaning |
+| --- | --- |
+| `-I<file>` | Script to run. Required. |
+| `-O<file>` | Log file to write. Effectively required: JHAT fails without it. The file is overwritten on each run. |
+| `-X1` | Stop the script at the first failed command (same as `AbortOnError("true")`). |
+| `-W<minutes>` | How long to wait for a long-running task. Default `60`. |
+| `-L<ms>` | Poll interval while waiting for a long-running task. Default `2000`. The `ASYNC_TASK_POLL_MILLI_SECONDS` environment variable takes precedence if set. |
+| `-M<file>` | Load a macro file before the script runs (same format as `LoadMacros`). |
+| `-B<folder>` | Sets the `__@BASEDIR__` macro. |
+| `-H` | Print help, then exit without running anything. |
+| `-A`, `-E`, `-R`, `-P`, `-S`, `-T` | Accepted but have no effect. In particular, `-A1` doesn't append to the log. |
+
+Any other option fails with "Argument … Not Valid". Use `jhat.bat -H` to see JHAT's own help:
 
 <img src="https://raw.githubusercontent.com/kool2zero/HFM-JHAT-API/main/img/qIJimage.png?sanitize=true&raw=true" />
 
+<p class="callout warning">JHAT's help shows <code>-I</code> and <code>-O</code> the wrong way round in its usage line: <code>-I</code> is the script and <code>-O</code> is the log.</p>
+
 <p class="callout info">This utility can be used to launch consolidations, data load, data extraction, etc...</p>
+
+#### How a script runs
+
+1. **Read:** every line is read and turned into a command. Commands with the wrong number of parameters are reported as syntax errors. Syntax errors and unknown command names are printed to the **console only**, not to the `-O` log file, which only gets their counts in the summary.
+2. **Loops:** `BeginLoop` … `EndLoop` blocks are expanded (see [Runtime Actions](16-runtime-actions.md)).
+3. **Run:** commands run in order. Before each one, [macros](11-macros.md) in its arguments are replaced.
+   - **Syntax errors:** commands with a syntax error are **skipped**, and the rest of the script still runs.
+   - **Abort on error:** if it's on (`-X1` or `AbortOnError`), the script stops after the first command that fails.
+4. **Log:** each command's log block is written to the `-O` file as it finishes, followed by `Action elapsed time: HH:mm:ss.SSS`. At the end, every command's log is also printed to the console.
+5. **Summary:** written to the console and the log. It gives the total commands, execution errors (split into positive and negative test failures), syntax errors, invalid function names, file compare errors and elapsed time. `Aborting the script ...` is written first if the script was stopped by abort on error.
+
+**Built-in macros** are set before the script runs:
+
+| Macro | Value |
+| --- | --- |
+| `__@SCRIPTDIR__` | Folder containing the script |
+| `__@MACROFILEDIR__` | The `JHAT_MACRODIR` Java system property, else the `JHAT_MACRODIR` environment variable, else the script folder |
+| `__@BASEDIR__` | The `-B` value, if given |
+
+<p class="callout warning"><b>JHAT's exit code doesn't reflect failures.</b> It exits with 1 only when it can't start or the command-line options are invalid (including <code>-H</code>). Otherwise it exits with 0, even if commands failed or the script was aborted. To detect failures from a scheduler, check the summary in the log (for example, search for <code>0 execution error(s)</code>).</p>
+
+#### Parameter checking
+
+Before a command runs, JHAT checks how many parameters it was given:
+
+- Most commands need exactly the number of parameters shown on their page.
+- A few accept several counts (for example, `CreateApplicationCAS` accepts 7 or 8).
+
+If the count is wrong, the command is reported as a syntax error ("Incorrect number of parameters.", with the script line number, the parameters you passed, and the command's expected usage) and is **skipped**. These details go to the console only, not to the log file. The rest of the script still runs, even with abort on error turned on.
+
+<p class="callout warning">For commands whose parameter count is a range, JHAT's check never fails. This covers <code>GetForm</code>, <code>FilterProcessControlGrid</code>, <code>GetCalcStatusSummary</code>, <code>ExtractMetaData</code>, <code>ExtractMetaDataExtDim</code>, <code>ExtractSecurityExpanded</code>, <code>LoadMetaDataExtDim</code>, <code>LoadICTransactions</code>, <code>LoadDocument</code>, <code>OpenICPeriod</code>, <code>UpdateICPeriod</code> and <code>DefineMacroEx</code>. Passing too few parameters makes the command crash partway through instead of failing with a clear message.</p>
+
+<p class="callout warning">Don't rely on a command's <b>Successful</b> status alone. Many load and extract commands report success even when HFM reports that the operation failed; see the <a href="10-load.md">Load</a> and <a href="07-extracts.md">Extracts</a> pages. Several other commands write HFM's errors to the log without failing.</p>
+
+#### Log output
+
+Each command writes a block to the log:
+
+```
+**********OpenApplication : Successful**********
+Start execution of action(script line 2) at <timestamp>
+Successful
+End execution at <timestamp>
+```
+
+- When a command fails, the header reads `Failed` and is followed by `Line No: <n>`.
+- When a command stops with an error, the log shows `Encountered unexpected exception <message>` followed by a Java stack trace. Some commands raise errors without a message, so the line reads `Encountered unexpected exception null`. The lines just above it usually say what was wrong (for example, `Invalid type specified`).
+- `Comment`, `LoadMacros` and `SubstituteMacro` are not logged.
+- While `SetNegativeTestingFlag` is on, each header is marked `: Negative Testcase`.
+
+#### Long-running tasks
+
+JHAT polls HFM until a task such as a consolidation, load or extract finishes:
+
+| Setting | Value |
+| --- | --- |
+| Poll interval | 2000 ms by default. Set with `-L`, or with the `ASYNC_TASK_POLL_MILLI_SECONDS` environment variable (e.g. in `setenv.cmd`), which takes precedence. |
+| Task start timeout | JHAT stops monitoring if no running task appears within 30 seconds. |
+| Overall timeout | JHAT stops waiting after 60 minutes by default. Set with `-W`. |
+
+When the task finishes, its log file is downloaded from the server. For data extracts, the data file is downloaded too.

@@ -10,16 +10,20 @@ These JHAT Commands are related to configuration actions
 
 <details id="bkmrk-DisableEnableModule-"><summary>DisableEnableModule</summary>
 
-<p class="callout info">DisableEnableModule</p>
+<p class="callout info">Enables or disables one module of the open application. HFM stores the list of disabled modules: <code>Disable</code> adds the module to it and <code>Enable</code> removes it. If the module is already in the requested state, or the second parameter is neither value, nothing changes and the command still reports success.</p>
 
 **Input**
 
-<table border="1" id="bkmrk-parameter-mandatory--14" style="height: 815.594px; width: 94.8718%;"><tbody><tr style="height: 29.7969px;"><td style="width: 31.6644%; height: 29.7969px;">**Parameter**</td><td style="width: 18.1326%; height: 29.7969px;">**Mandatory**</td><td style="width: 50.203%; height: 29.7969px;">**Comment**</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Module Name</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Module Name</td></tr><tr style="height: 35.375px;"><td style="width: 31.6644%; height: 35.375px;">Enable/Disable</td><td class="align-center" style="width: 18.1326%; height: 35.375px;">✓</td><td style="width: 50.203%; height: 35.375px;">Enable/Disable</td></tr></tbody></table>
+| Parameter | Mandatory | Comment |
+| --- | :---: | --- |
+| Module Name | ✓ | e.g. `processmanagement`, `manageownership`, `journals`, `datamanagement`, `audittasks`, `ict`, `epu` (the names `ModifyApplication` uses). Matched ignoring case. |
+| Enable or Disable | ✓ | `Enable` or `Disable` |
 
 **Example**
 
 ```dart
-DisableEnableModule("Module Name"," Enable/Disable");
+OpenApplication("Cluster","Application");
+DisableEnableModule("epu","Disable");
 ```
 
 </details>
