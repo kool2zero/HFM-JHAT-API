@@ -31,7 +31,7 @@ These commands don't need an open application.
 
 **Example**
 
-```dart
+```text
 Delay("5000");
 ```
 
@@ -51,7 +51,7 @@ Delay("5000");
 
 **Example**
 
-```dart
+```text
 BeginLoop("3");
 Consolidate("Impacted");
 EndLoop();
@@ -68,7 +68,7 @@ None
 
 **Example**
 
-```dart
+```text
 EndLoop();
 ```
 
@@ -88,7 +88,7 @@ EndLoop();
 
 **Example**
 
-```dart
+```text
 AbortOnError("true");
 ```
 
@@ -108,7 +108,7 @@ AbortOnError("true");
 
 **Example**
 
-```dart
+```text
 SetNegativeTestingFlag("true");
 OpenApplication("Cluster","NoSuchApp");
 SetNegativeTestingFlag("false");
@@ -131,7 +131,7 @@ SetNegativeTestingFlag("false");
 
 **Example**
 
-```dart
+```text
 CallOtherProcess("C:\JHAT\scripts\notify.bat","MonthEnd");
 ```
 
@@ -151,7 +151,7 @@ CallOtherProcess("C:\JHAT\scripts\notify.bat","MonthEnd");
 
 **Example**
 
-```dart
+```text
 StartTimer("3","Load Metadata");
 ```
 
@@ -168,7 +168,7 @@ StartTimer("3","Load Metadata");
 
 **Example**
 
-```dart
+```text
 StopTimer("3");
 ```
 
@@ -192,7 +192,7 @@ StopTimer("3");
 
 **Example**
 
-```dart
+```text
 ReplaceLineInTextFile("C:\JHAT\settings.txt","Environment = TEST","Environment = PROD");
 ```
 
@@ -217,7 +217,7 @@ ReplaceLineInTextFile("C:\JHAT\settings.txt","Environment = TEST","Environment =
 
 **Example**
 
-```dart
+```text
 CompareFiles("C:\Output\grid.txt","C:\Baseline\grid.txt","TEXT","C:\Output\grid_diff.txt");
 ```
 
@@ -236,7 +236,7 @@ CompareFiles("C:\Output\grid.txt","C:\Baseline\grid.txt","TEXT","C:\Output\grid_
 
 **Example**
 
-```dart
+```text
 CompareFilesContentNotOrdered("C:\Output\members.txt","C:\Baseline\members.txt");
 ```
 
@@ -257,7 +257,7 @@ CompareFilesContentNotOrdered("C:\Output\members.txt","C:\Baseline\members.txt")
 
 **Example**
 
-```dart
+```text
 CompareMultipleFiles("C:\Output\*.txt","C:\Baseline","TEXT","","C:\Output\diffs");
 ```
 
@@ -267,7 +267,7 @@ CompareMultipleFiles("C:\Output\*.txt","C:\Baseline","TEXT","","C:\Output\diffs"
 
 A rule is `beginswith=<text>` or `contains=<text>`. Rules can be joined with ` AND ` or ` OR ` (upper case, one space each side). For example:
 
-```dart
+```text
 CompareFiles("C:\Output\data.txt","C:\Baseline\data.txt","TEXT","","beginswith=!");
 ```
 

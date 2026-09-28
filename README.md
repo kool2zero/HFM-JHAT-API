@@ -14,10 +14,10 @@ The purpose of this repo is to document the HFM JHAT API.
 | [JHAT Commands: Documents](docs/05-documents.md) | 6 |
 | [JHAT Commands: EPU](docs/06-epu.md) | 4 |
 | [JHAT Commands: Extracts](docs/07-extracts.md) | 19 |
-| [JHAT Commands: InterCompany](docs/08-intercompany.md) | 27 |
+| [JHAT Commands: Intercompany](docs/08-intercompany.md) | 27 |
 | [JHAT Commands: Journals](docs/09-journals.md) | 31 |
 | [JHAT Commands: Load](docs/10-load.md) | 13 |
-| [JHAT Command: Macros](docs/11-macros.md) | 7 |
+| [JHAT Commands: Macros](docs/11-macros.md) | 7 |
 | [JHAT Commands: Configuration](docs/12-configuration.md) | 1 |
 | [JHAT Commands: Miscellaneous Actions](docs/13-miscellaneous-actions.md) | 7 |
 | [JHAT Commands: Process Management](docs/14-process-management.md) | 12 |

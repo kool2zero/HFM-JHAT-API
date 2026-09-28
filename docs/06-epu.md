@@ -16,7 +16,7 @@ Equity pickup adjustments are made in the local currency of the holding company,
 
 For each company owned, the adjustment is expressed as follows:
 
-```ini
+```text
 Direct Ownership Percentage * Equity of Owned Entity
 = Current Equity Value
 - Investment
@@ -62,7 +62,7 @@ All 15 parameters are required, but most can be `""` to use the default shown.
 
 **Example**
 
-```dart
+```text
 FilterEPUGrid("Actual", "2023", "Dec", "", "", "Include", "Both", "false", "BOTH", "2", ">=", "20", "0", "1", "C:\Output\epu.txt");
 ```
 
@@ -79,7 +79,7 @@ FilterEPUGrid("Actual", "2023", "Dec", "", "", "Include", "Both", "false", "BOTH
 
 **Example**
 
-```dart
+```text
 SetPOV("Actual","2023","Dec","YTD","Group.Entity1","<Entity Currency>","Sales","[ICP None]","[None]","[None]","[None]","[None]");
 CalcEPU("Run");
 ```
@@ -99,7 +99,7 @@ CalcEPU("Run");
 
 **Example**
 
-```dart
+```text
 GenerateEPUReport("S#Actual.Y#2023.P#Dec", "HFM_FORMAT", "C:\Output\epu_report.html");
 ```
 
@@ -126,6 +126,6 @@ GenerateEPUReport("S#Actual.Y#2023.P#Dec", "HFM_FORMAT", "C:\Output\epu_report.h
 
 **Example**
 
-```dart
+```text
 GenerateFilteredEPUReport("S#Actual.Y#2023.P#Dec", "HFM_FORMAT", "", "", "Exclude", "Impacted", "false", "C:\Output\epu_filtered.html");
 ```

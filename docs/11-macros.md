@@ -1,4 +1,4 @@
-# JHAT Command: Macros
+# JHAT Commands: Macros
 
 [← Back to index](../README.md)
 
@@ -36,7 +36,7 @@ A macro is a name and a replacement text. When a macro is defined, JHAT replaces
 
 **Example**
 
-```dart
+```text
 SubstituteMacro("__MacroName__");
 ```
 
@@ -54,7 +54,7 @@ SubstituteMacro("__MacroName__");
 
 **Example**
 
-```dart
+```text
 DefineMacro("__APP__","COMMA");
 OpenApplication("HFMCluster","__APP__");
 ```
@@ -77,7 +77,7 @@ OpenApplication("HFMCluster","__APP__");
 
 **Example**
 
-```dart
+```text
 DefineMacro("__DIR__","C:\JHAT\");
 DefineMacroEx("__LOG__","__DIR__","load.log");
 ```
@@ -95,7 +95,7 @@ DefineMacroEx("__LOG__","__DIR__","load.log");
 
 **Example**
 
-```dart
+```text
 RemoveMacro("__APP__");
 ```
 
@@ -110,7 +110,7 @@ None
 
 **Example**
 
-```dart
+```text
 ShowMacros();
 ```
 
@@ -127,7 +127,7 @@ ShowMacros();
 
 **Example**
 
-```dart
+```text
 Comment("Starting month-end load");
 ```
 
@@ -151,7 +151,7 @@ File format:
 
 **Example**
 
-```dart
+```text
 LoadMacros("C:\JHAT\macros.txt");
 ```
 

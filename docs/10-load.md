@@ -49,7 +49,7 @@ The load commands need an open application.
 
 **Example**
 
-```dart
+```text
 LoadSecurity("C:\Hfm\Security.sec","C:\Hfm\SecurityLoad.log",";","false","true");
 ```
 
@@ -76,7 +76,7 @@ All 9 parameters are required.
 
 **Example**
 
-```dart
+```text
 LoadSecurityExpanded("C:\Hfm\Security.sec","C:\Hfm\SecurityLoad.log",";","false","true","true","true","false","false");
 ```
 
@@ -117,7 +117,7 @@ Takes exactly 3, 17 or 18 parameters.
 
 **Example**
 
-```dart
+```text
 LoadMetaData("C:\Hfm\Metadata.xml","C:\Hfm\MetadataLoad.log",";");
 LoadMetaData("C:\Hfm\Metadata.app","C:\Hfm\MetadataLoad.log",";","Merge","true","true","true","true","true","true","true","true","true","true","false","false","false","true");
 ```
@@ -155,7 +155,7 @@ In the Dimensions string:
 
 **Example**
 
-```dart
+```text
 LoadMetaDataExtDim("C:\Hfm\Metadata.app","C:\Hfm\MetadataLoad.log",";","Merge","false","I#true.V#true");
 ```
 
@@ -178,7 +178,7 @@ All 5 parameters are needed. JHAT doesn't check the count.
 
 **Example**
 
-```dart
+```text
 LoadICTransactions("C:\HFM\ICTrans.trn","C:\HFM\ICTrans.log","Load","Merge",";");
 ```
 
@@ -217,7 +217,7 @@ LoadICTransactions("C:\HFM\ICTrans.trn","C:\HFM\ICTrans.log","Load","Merge",";")
 
 **Example**
 
-```dart
+```text
 LoadDocument("IncomeStatement","","C:\inputdir\IncomeStatement.wdf","[Default]","true","WebForm","Form","false","\Forms");
 LoadDocument("Forms","Data forms","WebForm","[Default]","false","","Folder","false","");
 ```
@@ -237,7 +237,7 @@ LoadDocument("Forms","Data forms","WebForm","[Default]","false","","Folder","fal
 
 **Example**
 
-```dart
+```text
 LoadRules("C:\Hfm\Rules.rle","C:\Hfm\RulesLoad.log");
 ```
 
@@ -256,7 +256,7 @@ LoadRules("C:\Hfm\Rules.rle","C:\Hfm\RulesLoad.log");
 
 **Example**
 
-```dart
+```text
 LoadMemberLists("C:\Hfm\MemberLists.lst","C:\Hfm\MemberListsLoad.log");
 ```
 
@@ -283,7 +283,7 @@ All 6 parameters are required.
 
 **Example**
 
-```dart
+```text
 LoadData("Merge","C:\Hfm\Data.dat","C:\Hfm\DataLoad.log","false","false",";");
 ```
 
@@ -298,7 +298,7 @@ As for `LoadData`.
 
 **Example**
 
-```dart
+```text
 StartLoadData("Merge","C:\Hfm\Data.dat","C:\Hfm\DataLoad.log","false","false",";");
 ```
 
@@ -318,7 +318,7 @@ StartLoadData("Merge","C:\Hfm\Data.dat","C:\Hfm\DataLoad.log","false","false",";
 
 **Example**
 
-```dart
+```text
 LoadPhaseInfo("Merge","C:\Hfm\Phases.dat","C:\Hfm\PhaseLoad.log",";");
 ```
 
@@ -337,7 +337,7 @@ LoadPhaseInfo("Merge","C:\Hfm\Phases.dat","C:\Hfm\PhaseLoad.log",";");
 
 **Example**
 
-```dart
+```text
 LoadJournal("C:\Hfm\Journals.jlf","C:\Hfm\JournalLoad.log",";");
 ```
 
@@ -357,6 +357,6 @@ A third parameter is accepted and ignored.
 
 **Example**
 
-```dart
+```text
 LoadModuleConfiguration("C:\Hfm\ModuleConfiguration.xml","C:\Hfm\ModuleConfiguration.log");
 ```

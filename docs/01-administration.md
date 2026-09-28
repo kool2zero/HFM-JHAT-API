@@ -42,7 +42,7 @@ These commands export audit records to local files or delete them, for example t
 
 **Example**
 
-```dart
+```text
 DeleteFilteredDataAuditRecords("User Name","POV String");
 ```
 
@@ -58,12 +58,12 @@ DeleteFilteredDataAuditRecords("User Name","POV String");
 
 | Parameter | Mandatory | Comment |
 | --- | :---: | --- |
-| UserName | ✓ | User name to filter on. `All` or `""` for all users. |
+| User Name | ✓ | User name to filter on. `All` or `""` for all users. |
 | Task Name | ✓ | `ALL`, or one of the [task names](#task-names) |
 
 **Example**
 
-```dart
+```text
 DeleteFilteredTaskAuditRecords("All","Consolidation");
 ```
 
@@ -76,13 +76,13 @@ DeleteFilteredTaskAuditRecords("All","Consolidation");
 
 | Parameter | Mandatory | Comment |
 | --- | :---: | --- |
-| UserName | ✓ | User name to filter on. `All` or `""` for all users. |
+| User Name | ✓ | User name to filter on. `All` or `""` for all users. |
 | Task Name | ✓ | `ALL`, or one of the [task names](#task-names) |
 | Output File Path | ✓ | Local file to save the attachment to |
 
 **Example**
 
-```dart
+```text
 GetLatestTaskAuditAttachment("All","Data Load","C:\TaskAudit\lastload.log");
 ```
 
@@ -95,13 +95,13 @@ GetLatestTaskAuditAttachment("All","Data Load","C:\TaskAudit\lastload.log");
 
 | Parameter | Mandatory | Comment |
 | --- | :---: | --- |
-| UserName | ✓ | User name to filter on. `All` or `""` for all users. |
+| User Name | ✓ | User name to filter on. `All` or `""` for all users. |
 | Task Name | ✓ | `ALL`, or one of the [task names](#task-names) |
 | Output File Path | ✓ | Local file to save the audit records to |
 
 **Example**
 
-```dart
+```text
 FilterTaskAudit("All","Consolidation","C:\TaskAudit\consolidations.txt");
 ```
 
@@ -118,7 +118,7 @@ FilterTaskAudit("All","Consolidation","C:\TaskAudit\consolidations.txt");
 
 **Example**
 
-```dart
+```text
 GetTaskAudit("C:\TaskAudit\task.txt");
 ```
 
@@ -137,7 +137,7 @@ GetTaskAudit("C:\TaskAudit\task.txt");
 
 **Example**
 
-```dart
+```text
 FilterDataAudit("All","S#Actual.Y#2023.P#Dec","C:\DataAudit\filtered.txt");
 ```
 
@@ -154,7 +154,7 @@ FilterDataAudit("All","S#Actual.Y#2023.P#Dec","C:\DataAudit\filtered.txt");
 
 **Example**
 
-```dart
+```text
 GetDataAudit("C:\DataAudit\all.txt");
 ```
 

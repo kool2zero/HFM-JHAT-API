@@ -44,7 +44,7 @@ These commands need an open application. Value names are matched ignoring case.
 
 **Example**
 
-```dart
+```text
 SubmitJournal("Actual","2023","Dec","JE001");
 ```
 
@@ -64,7 +64,7 @@ SubmitJournal("Actual","2023","Dec","JE001");
 
 **Example**
 
-```dart
+```text
 UnSubmitJournal("Actual","2023","Dec","JE001");
 ```
 
@@ -84,7 +84,7 @@ UnSubmitJournal("Actual","2023","Dec","JE001");
 
 **Example**
 
-```dart
+```text
 ApproveJournal("Actual","2023","Dec","JE001");
 ```
 
@@ -104,7 +104,7 @@ ApproveJournal("Actual","2023","Dec","JE001");
 
 **Example**
 
-```dart
+```text
 RejectJournal("Actual","2023","Dec","JE001");
 ```
 
@@ -124,7 +124,7 @@ RejectJournal("Actual","2023","Dec","JE001");
 
 **Example**
 
-```dart
+```text
 PostJournal("Actual","2023","Dec","JE001");
 ```
 
@@ -144,7 +144,7 @@ PostJournal("Actual","2023","Dec","JE001");
 
 **Example**
 
-```dart
+```text
 UnPostJournal("Actual","2023","Dec","JE001");
 ```
 
@@ -167,7 +167,7 @@ UnPostJournal("Actual","2023","Dec","JE001");
 
 **Example**
 
-```dart
+```text
 DeleteJournal("Actual","2023","Dec","JE001");
 ```
 
@@ -187,7 +187,7 @@ DeleteJournal("Actual","2023","Dec","JE001");
 
 **Example**
 
-```dart
+```text
 ScanJournal("Actual","2023","Dec","JE001");
 ```
 
@@ -207,7 +207,7 @@ ScanJournal("Actual","2023","Dec","JE001");
 
 **Example**
 
-```dart
+```text
 GetJournal("Actual","2023","Dec","JE001");
 ```
 
@@ -233,7 +233,7 @@ GetJournal("Actual","2023","Dec","JE001");
 
 **Example**
 
-```dart
+```text
 CreateJournal("S#Actual.Y#2023.P#Dec.V#<Entity Curr Adjs>.E#Group.Entity1","Regular","Balanced","JE001","Accrual","","[Default]","Single");
 ```
 
@@ -254,7 +254,7 @@ CreateJournal("S#Actual.Y#2023.P#Dec.V#<Entity Curr Adjs>.E#Group.Entity1","Regu
 
 **Example**
 
-```dart
+```text
 AddLineItemToJournal("S#Actual.Y#2023.P#Dec.A#Accruals.I#[ICP None].C1#[None].C2#[None].C3#[None].C4#[None]","JE001","Credit","1000","Accrual");
 AddLineItemToJournal("S#Actual.Y#2023.P#Dec.A#Expenses.I#[ICP None].C1#[None].C2#[None].C3#[None].C4#[None]","JE001","Debit","1000","Accrual");
 ```
@@ -270,7 +270,7 @@ None
 
 **Example**
 
-```dart
+```text
 GetAdjustments();
 ```
 
@@ -298,7 +298,7 @@ Note that Security Class is the **last** parameter here, unlike `CreateJournal`.
 
 **Example**
 
-```dart
+```text
 CreateTemplate("V#<Entity Curr Adjs>.E#Group.Entity1","Balanced","TPL001","Monthly accrual","","Recurring","Single","[Default]");
 ```
 
@@ -319,7 +319,7 @@ CreateTemplate("V#<Entity Curr Adjs>.E#Group.Entity1","Balanced","TPL001","Month
 
 **Example**
 
-```dart
+```text
 AddLineToTemplate("A#Accruals.I#[ICP None].C1#[None].C2#[None].C3#[None].C4#[None]","TPL001","Credit","1000","Accrual");
 ```
 
@@ -336,7 +336,7 @@ AddLineToTemplate("A#Accruals.I#[ICP None].C1#[None].C2#[None].C3#[None].C4#[Non
 
 **Example**
 
-```dart
+```text
 GetTemplate("TPL001");
 ```
 
@@ -353,7 +353,7 @@ GetTemplate("TPL001");
 
 **Example**
 
-```dart
+```text
 DeleteTemplate("TPL001");
 ```
 
@@ -370,7 +370,7 @@ DeleteTemplate("TPL001");
 
 **Example**
 
-```dart
+```text
 ValidateJournalTemplatePOV("S#Actual.Y#2023.P#Dec.V#<Entity Curr Adjs>.E#Entity1");
 ```
 
@@ -394,7 +394,7 @@ ValidateJournalTemplatePOV("S#Actual.Y#2023.P#Dec.V#<Entity Curr Adjs>.E#Entity1
 
 **Example**
 
-```dart
+```text
 CreateJournalFromTemplate("S#Actual.Y#2023.P#Dec.V#<Entity Curr Adjs>","TPL001","JE-DEC","","","","","");
 ```
 
@@ -415,7 +415,7 @@ CreateJournalFromTemplate("S#Actual.Y#2023.P#Dec.V#<Entity Curr Adjs>","TPL001",
 
 **Example**
 
-```dart
+```text
 GenerateRecurring("S#Actual.Y#2023.P#Dec","TPL001");
 ```
 
@@ -430,7 +430,7 @@ GenerateRecurring("S#Actual.Y#2023.P#Dec","TPL001");
 
 **Example**
 
-```dart
+```text
 GenerateRecurringJournal("","","","","","","","");
 ```
 
@@ -467,7 +467,7 @@ GenerateRecurringJournal("","","","","","","","");
 
 **Example**
 
-```dart
+```text
 FilterJournals("C:\Output\journals.txt","A","Actual","2023","Dec","<Entity Curr Adjs>","Jnl_Label;Jnl_Status;Jnl_Type","","","","","Regular;AutoReversing;AutoReversal;Unit","Balanced;UnBalanced;BalancedByEntity","Working;Submitted;Approved;Rejected;Posted");
 ```
 
@@ -494,7 +494,7 @@ FilterJournals("C:\Output\journals.txt","A","Actual","2023","Dec","<Entity Curr 
 
 **Example**
 
-```dart
+```text
 FilterTemplates("C:\Output\templates.txt","A","Tmp_Label;Tmp_Type;Tmp_Description","","","","","Recurring","Balanced;UnBalanced;BalancedByEntity");
 ```
 
@@ -515,7 +515,7 @@ FilterTemplates("C:\Output\templates.txt","A","Tmp_Label;Tmp_Type;Tmp_Descriptio
 
 **Example**
 
-```dart
+```text
 OpenPeriod("Actual","2023","Dec");
 ```
 
@@ -534,7 +534,7 @@ OpenPeriod("Actual","2023","Dec");
 
 **Example**
 
-```dart
+```text
 ClosePeriod("Actual","2023","Dec");
 ```
 
@@ -552,7 +552,7 @@ ClosePeriod("Actual","2023","Dec");
 
 **Example**
 
-```dart
+```text
 ListJournalPeriods("Actual","2023");
 ```
 
@@ -570,7 +570,7 @@ ListJournalPeriods("Actual","2023");
 
 **Example**
 
-```dart
+```text
 CreateJournalGroup("ACCRUALS","Month-end accruals");
 ```
 
@@ -585,7 +585,7 @@ None
 
 **Example**
 
-```dart
+```text
 GetJournalGroups();
 ```
 
@@ -602,7 +602,7 @@ GetJournalGroups();
 
 **Example**
 
-```dart
+```text
 DeleteJournalGroup("ACCRUALS");
 ```
 
@@ -620,7 +620,7 @@ None
 
 **Example**
 
-```dart
+```text
 DeleteAllJournalGroups();
 ```
 
@@ -642,7 +642,7 @@ DeleteAllJournalGroups();
 
 **Example**
 
-```dart
+```text
 AddRegKey("");
 ```
 
@@ -662,6 +662,6 @@ AddRegKey("");
 
 **Example**
 
-```dart
+```text
 DeleteRegKey("");
 ```

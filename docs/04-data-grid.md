@@ -50,7 +50,7 @@ Unless noted otherwise, these commands work on the POV set by `SetPOV` / `SetPOV
 
 **Example**
 
-```dart
+```text
 DefineGrid("Account","[Hierarchy]","","Period","[Hierarchy]","");
 DefineGrid("Entity","[Base]","TotalGroup","Period","[Base]","");
 ```
@@ -73,7 +73,7 @@ An unknown dimension fails with "Invalid dimension short name".
 
 **Example**
 
-```dart
+```text
 DefineGridExtDim("A{[Base]}","P{[Base]}");
 DefineDataRetrieval("E{TotalGroup.[Descendants]}.A{NetIncome.[Descendants]}","P{[Base]}");
 ```
@@ -103,7 +103,7 @@ DefineDataRetrieval("E{TotalGroup.[Descendants]}.A{NetIncome.[Descendants]}","P{
 
 **Example**
 
-```dart
+```text
 DefineGrid("Account","[Base]","","Period","[Base]","");
 GetGrid("C:\Output\grid.txt","VALUE","ALL","0");
 ```
@@ -125,7 +125,7 @@ GetGrid("C:\Output\grid.txt","VALUE","ALL","0");
 
 **Example**
 
-```dart
+```text
 GetGridExtDim("C:\Output\grid.txt","VALUE");
 ```
 
@@ -144,7 +144,7 @@ GetGridExtDim("C:\Output\grid.txt","VALUE");
 
 **Example**
 
-```dart
+```text
 SetCell("999999");
 ```
 
@@ -159,7 +159,7 @@ None
 
 **Example**
 
-```dart
+```text
 GetCell();
 ```
 
@@ -178,7 +178,7 @@ None
 
 **Example**
 
-```dart
+```text
 GetCellInfo();
 ```
 
@@ -195,7 +195,7 @@ GetCellInfo();
 
 **Example**
 
-```dart
+```text
 GetCellHistory("C:\Output\history.txt");
 ```
 
@@ -217,7 +217,7 @@ The report includes:
 
 **Example**
 
-```dart
+```text
 GetCellEntityDetails("C:\Output\entitydetails.txt");
 ```
 
@@ -234,7 +234,7 @@ GetCellEntityDetails("C:\Output\entitydetails.txt");
 
 **Example**
 
-```dart
+```text
 GetSourceTransactions("C:\Output\source.txt");
 ```
 
@@ -251,7 +251,7 @@ GetSourceTransactions("C:\Output\source.txt");
 
 **Example**
 
-```dart
+```text
 GetDestinationTransactions("C:\Output\destination.txt");
 ```
 
@@ -268,7 +268,7 @@ GetDestinationTransactions("C:\Output\destination.txt");
 
 **Example**
 
-```dart
+```text
 GetLineItemDetail("C:\Output\lineitems.txt");
 ```
 
@@ -287,7 +287,7 @@ GetLineItemDetail("C:\Output\lineitems.txt");
 
 **Example**
 
-```dart
+```text
 InitLists();
 AddItemToList("1","","S#Actual.Y#2023.P#Jan.W#YTD.E#Entity1.V#<Entity Currency>.A#Cash.I#[ICP None].C1#[None].C2#[None].C3#[None].C4#[None]");
 AddItemToList("2","","1000");
@@ -310,7 +310,7 @@ SetLineItemDetail("1","2","Opening balance");
 
 **Example**
 
-```dart
+```text
 SetCellTextEnhanced("[Default]","Reviewed by Finance");
 ```
 
@@ -328,7 +328,7 @@ SetCellTextEnhanced("[Default]","Reviewed by Finance");
 
 **Example**
 
-```dart
+```text
 deleteCellTextEnhanced("[Default]","All");
 ```
 
@@ -346,7 +346,7 @@ deleteCellTextEnhanced("[Default]","All");
 
 **Example**
 
-```dart
+```text
 DetachCellDocument("[Default]","Support.pdf");
 ```
 
@@ -372,7 +372,7 @@ DetachCellDocument("[Default]","Support.pdf");
 
 **Example**
 
-```dart
+```text
 AttachCellDocumentEnhanced("[Default]","Support.pdf","\Documents\Support");
 AttachCellDocument("Support.pdf","\Documents\Support");
 ```
@@ -391,7 +391,7 @@ AttachCellDocument("Support.pdf","\Documents\Support");
 
 **Example**
 
-```dart
+```text
 GetCellTextAttachmentsEnhanced("All","C:\Output\attachments.txt");
 ```
 
@@ -409,7 +409,7 @@ GetCellTextAttachmentsEnhanced("All","C:\Output\attachments.txt");
 
 **Example**
 
-```dart
+```text
 GetCellTextEnhanced("All","C:\Output\celltext.txt");
 ```
 
@@ -426,7 +426,7 @@ None
 
 **Example**
 
-```dart
+```text
 Lock();
 ```
 
@@ -441,7 +441,7 @@ None
 
 **Example**
 
-```dart
+```text
 Unlock();
 ```
 
@@ -456,7 +456,7 @@ None
 
 **Example**
 
-```dart
+```text
 Translate();
 ```
 
@@ -471,7 +471,7 @@ None
 
 **Example**
 
-```dart
+```text
 Allocate();
 ```
 
@@ -489,7 +489,7 @@ Allocate();
 
 **Example**
 
-```dart
+```text
 Consolidate("Impacted");
 Consolidate("AllWithData","3");
 ```
@@ -507,7 +507,7 @@ Consolidate("AllWithData","3");
 
 **Example**
 
-```dart
+```text
 ChartLogic("true");
 ```
 
@@ -527,7 +527,7 @@ ChartLogic("true");
 
 **Example**
 
-```dart
+```text
 LockICEntity("Actual","2023","Dec","Entity1");
 ```
 
@@ -547,7 +547,7 @@ LockICEntity("Actual","2023","Dec","Entity1");
 
 **Example**
 
-```dart
+```text
 UnlockICEntity("Actual","2023","Dec","Entity1");
 ```
 
@@ -579,7 +579,7 @@ The process control commands don't use `DefineGrid`. They build their own grid f
 
 **Example**
 
-```dart
+```text
 SetPOV("Actual","2023","Dec","YTD","{TotalGroup.[Descendants]}","<Entity Currency>","[None]","[ICP None]","[None]","[None]","[None]","[None]");
 GetProcessControlGrid("C:\Output\pcgrid.txt","PROCESS","ALL","0");
 ```
@@ -606,7 +606,7 @@ The first 9 parameters are required. The last 2 are optional.
 
 **Example**
 
-```dart
+```text
 FilterProcessControlGrid("C:\Output\pcgrid.txt","PROCESS","ALL","0","All","Level 1","And Above","Pass and Fail","All","","Ascending");
 ```
 
@@ -631,7 +631,7 @@ FilterProcessControlGrid("C:\Output\pcgrid.txt","PROCESS","ALL","0","All","Level
 
 **Example**
 
-```dart
+```text
 DisplayProcessControlGrid("C:\Output\pcgrid.txt","PROCESS","ALL","0","","List","Both","N","Single","Review,Pass,Validation","Calc,Journal","All");
 ```
 
@@ -648,7 +648,7 @@ DisplayProcessControlGrid("C:\Output\pcgrid.txt","PROCESS","ALL","0","","List","
 
 **Example**
 
-```dart
+```text
 GetReviewLevelSummary("C:\Output\reviewlevels.txt");
 ```
 
@@ -666,7 +666,7 @@ GetReviewLevelSummary("C:\Output\reviewlevels.txt");
 
 **Example**
 
-```dart
+```text
 GetCalcStatusSummary("C:\Output\calcstatus.txt","Translation");
 ```
 
@@ -689,7 +689,7 @@ GetCalcStatusSummary("C:\Output\calcstatus.txt","Translation");
 
 **Example**
 
-```dart
+```text
 GetValidationAccountInfo("S#Actual.Y#2023.P#Dec.E#Entity1","1","","true","true","false","C:\Output\validation.csv");
 ```
 
@@ -704,7 +704,7 @@ None
 
 **Example**
 
-```dart
+```text
 GetCellStatus();
 ```
 

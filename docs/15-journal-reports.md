@@ -30,7 +30,7 @@ These commands need an open application.
 
 **Example**
 
-```dart
+```text
 GetAutoJournalReportWithFilter("S#Actual.Y#2023.P#Dec.V#<Entity Curr Adjs>","C:\Output\journals.txt","Entity1","");
 ```
 
@@ -56,7 +56,7 @@ Unit entries have `null` in the debit and credit columns.
 
 **Example**
 
-```dart
+```text
 GetAutoJournalReport("S#Actual.Y#2023.P#Dec.V#<Entity Curr Adjs>","C:\Output\journals.txt");
 ```
 
@@ -81,6 +81,6 @@ GetAutoJournalReport("S#Actual.Y#2023.P#Dec.V#<Entity Curr Adjs>","C:\Output\jou
 
 **Example**
 
-```dart
+```text
 GenerateReport("\","JournalDetail","journal","PDF_FORMAT","C:\Output\journals.pdf","");
 ```

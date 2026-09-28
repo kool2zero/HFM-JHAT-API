@@ -42,7 +42,7 @@ None
 
 **Example**
 
-```dart
+```text
 InitLists();
 ```
 
@@ -60,7 +60,7 @@ InitLists();
 
 **Example**
 
-```dart
+```text
 ClearList("1","Period");
 ```
 
@@ -80,7 +80,7 @@ ClearList("1","Period");
 
 **Example**
 
-```dart
+```text
 AddItemsToListFromMemberlist("9","Entity","[Descendants]","Regional");
 ```
 
@@ -102,7 +102,7 @@ AddItemsToListFromMemberlist("9","Entity","[Descendants]","Regional");
 
 **Example**
 
-```dart
+```text
 AddItemToList("1","Value","[Elimination]");
 AddItemToList("2","","S#Actual.Y#2023.P#Dec.E#Entity2");
 ```
@@ -138,7 +138,7 @@ The first 3 parameters are required. The rest are optional and positional. Any v
 
 **Example**
 
-```dart
+```text
 ExtractMetaData("C:\hfm\outbox\Metadata.app","C:\hfm\outbox\MetadataExtract.log",";");
 ExtractMetaData("C:\hfm\outbox\Metadata.xml","C:\hfm\outbox\MetadataExtract.log",";","true","true","true","true","true","true","true","true","true","true","false","true","true","true");
 ```
@@ -172,7 +172,7 @@ Dimensions are extracted by default, except ICP and Value. In the Dimensions str
 
 **Example**
 
-```dart
+```text
 ExtractMetaDataExtDim("C:\hfm\outbox\Metadata.app","C:\hfm\outbox\Metadata.log",";","I#true.V#true.C3#false","true","true","true","false","true");
 ```
 
@@ -211,7 +211,7 @@ Note the order: View, **Year**, then **Scenario**.
 
 **Example**
 
-```dart
+```text
 InitLists();
 AddItemToList("1","Period","Dec");
 ExtractData("D:\Data_Extract.txt","D:\Data_Extract.log",";","YTD","2023","Actual","1","All","All","false");
@@ -228,7 +228,7 @@ ExtractData("D:\Data_Extract.txt","D:\Data_Extract.log",";","YTD","2023","Actual
 
 **Example**
 
-```dart
+```text
 EAExtract("D:\Data_Extract.txt","D:\Data_Extract.log",";","YTD","2023","Actual","All","All","All","false","","","","","","","");
 ```
 
@@ -247,7 +247,7 @@ EAExtract("D:\Data_Extract.txt","D:\Data_Extract.log",";","YTD","2023","Actual",
 
 **Example**
 
-```dart
+```text
 ExtractPhaseInfo("C:\Voyager\Phase_Extract.dat","C:\Voyager\Phase_Extract.log",";");
 ```
 
@@ -269,7 +269,7 @@ ExtractPhaseInfo("C:\Voyager\Phase_Extract.dat","C:\Voyager\Phase_Extract.log","
 
 **Example**
 
-```dart
+```text
 ExtractSecurity("C:\Voyager\Security_Extract.sec","C:\Voyager\Security_Extract.log",";");
 ```
 
@@ -294,7 +294,7 @@ Pass either 3 parameters (everything is extracted) or all 7. With 4–6 paramete
 
 **Example**
 
-```dart
+```text
 ExtractSecurityExpanded("C:\Voyager\Security_Extract.sec","C:\Voyager\Security_Extract.log",";","true","true","false","false");
 ```
 
@@ -321,7 +321,7 @@ Parameters 3–5 must be exactly `true` to count. For example, `"True "` with a 
 
 **Example**
 
-```dart
+```text
 ExtractJournal("C:\Hfm\JournalExtract.jlf","C:\Hfm\JournalExtract.log","true","true","true","Actual","2023","All",";");
 ```
 
@@ -355,7 +355,7 @@ The status, type and balance type names follow the earlier version of this page.
 
 **Example**
 
-```dart
+```text
 ExtractJournalPlus("C:\JournalsTest.jlf","C:\JournalsTest.log","false","false","true","Actual","2023","All","All","All","","","true","false","false","false","false","true","true","true","true","true","true",";");
 ```
 
@@ -385,7 +385,7 @@ ExtractJournalPlus("C:\JournalsTest.jlf","C:\JournalsTest.log","false","false","
 
 **Example**
 
-```dart
+```text
 ExtractICTransactions("C:\ICM\Extract1.trn","Actual","2023","Dec","All","All","yes","yes","yes","yes","yes","yes","","");
 ```
 
@@ -404,7 +404,7 @@ ExtractICTransactions("C:\ICM\Extract1.trn","Actual","2023","Dec","All","All","y
 
 **Example**
 
-```dart
+```text
 ExtractRules("RLE","C:\Output\rules.rle","C:\Output\rules.log");
 ```
 
@@ -422,7 +422,7 @@ ExtractRules("RLE","C:\Output\rules.rle","C:\Output\rules.log");
 
 **Example**
 
-```dart
+```text
 ExtractMemberlists("C:\Output\memberlists.lst","C:\Output\memberlists.log");
 ```
 
@@ -452,7 +452,7 @@ All 12 parameters are required.
 
 **Example**
 
-```dart
+```text
 ExtractDataExtDim("S#Actual.Y#2023.P{[Base]}.W#YTD.E{[Base]}.V#<Entity Currency>.A{[Base]}.I{[Base]}.C1{[Base]}.C2{[Base]}.C3{[Base]}.C4{[Base]}","true","true","false","false","false","","false","false",";","C:\Output\data.txt","C:\Output\data.log");
 ```
 
@@ -473,7 +473,7 @@ ExtractDataExtDim("S#Actual.Y#2023.P{[Base]}.W#YTD.E{[Base]}.V#<Entity Currency>
 
 **Example**
 
-```dart
+```text
 ExtractDocument("IncomeStatement","C:\Output\IncomeStatement.xml","WebForm","Form","\Forms\Actuals");
 ```
 
@@ -491,6 +491,6 @@ ExtractDocument("IncomeStatement","C:\Output\IncomeStatement.xml","WebForm","For
 
 **Example**
 
-```dart
+```text
 ExtractModuleConfiguration("C:\Output\modules.xml","C:\Output\modules.log");
 ```

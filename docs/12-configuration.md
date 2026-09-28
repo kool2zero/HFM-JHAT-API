@@ -26,7 +26,7 @@ Commands for turning application modules, such as journals, intercompany transac
 
 **Example**
 
-```dart
+```text
 OpenApplication("Cluster","Application");
 DisableEnableModule("epu","Disable");
 ```

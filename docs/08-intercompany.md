@@ -1,4 +1,4 @@
-# JHAT Commands: InterCompany
+# JHAT Commands: Intercompany
 
 [← Back to index](../README.md)
 
@@ -53,7 +53,7 @@ Pass 5 parameters, or all 8. Passing 6 or 7 makes the command fail.
 
 **Example**
 
-```dart
+```text
 OpenICPeriod("Actual","2023","Dec","Yes","10");
 OpenICPeriod("Actual","2023","Dec","Yes","10","5","10","1");
 ```
@@ -65,7 +65,7 @@ OpenICPeriod("Actual","2023","Dec","Yes","10","5","10","1");
 
 **Example**
 
-```dart
+```text
 UpdateICPeriod("Actual","2023","Dec","Restrict","10","5","10","1");
 ```
 
@@ -84,7 +84,7 @@ UpdateICPeriod("Actual","2023","Dec","Restrict","10","5","10","1");
 
 **Example**
 
-```dart
+```text
 CloseICPeriod("Actual","2023","Dec");
 ```
 
@@ -103,7 +103,7 @@ CloseICPeriod("Actual","2023","Dec");
 
 **Example**
 
-```dart
+```text
 ListICPeriods("Actual","2023","C:\Output\icperiods.txt");
 ```
 
@@ -135,7 +135,7 @@ All 12 parameters are required.
 
 **Example**
 
-```dart
+```text
 CreateICTransaction("S#Actual.Y#2023.P#Dec.E#EntityA.I#EntityB.A#ICRec","T001","S01","REF1","12/31/2023","USD","1000","1000","","","","1");
 ```
 
@@ -161,7 +161,7 @@ Field names: `TRANS_ID`, `TRANS_SUB_ID`, `REFERENCE_ID`, `TRANS_DATE` (value as 
 
 **Example**
 
-```dart
+```text
 InitLists();
 AddItemToList("1","","REFERENCE_ID");
 AddItemToList("1","","COMMENT_1");
@@ -188,7 +188,7 @@ The columns are Status (`match:post`), Transaction ID, Transaction Sub ID, Entit
 
 **Example**
 
-```dart
+```text
 GetICTransactions("Actual","2023","Dec","C:\Output\ictrans.txt");
 ```
 
@@ -235,7 +235,7 @@ All 25 parameters are required.
 
 **Example**
 
-```dart
+```text
 FilterICTransactions("Actual","2023","Dec","EntityA;EntityB","","","","","","","","","","","","","","","","true","true","true","true","true","C:\Output\ictrans.txt");
 ```
 
@@ -257,7 +257,7 @@ FilterICTransactions("Actual","2023","Dec","EntityA;EntityB","","","","","","","
 
 **Example**
 
-```dart
+```text
 DisplayICTransactions("Actual","2023","Dec","","","","E#BOTH","C:\Output\ictrans.txt");
 ```
 
@@ -279,7 +279,7 @@ DisplayICTransactions("Actual","2023","Dec","","","","E#BOTH","C:\Output\ictrans
 
 **Example**
 
-```dart
+```text
 ProcessAllICTransactions("Post","Actual","2023","Dec");
 ```
 
@@ -294,7 +294,7 @@ None
 
 **Example**
 
-```dart
+```text
 InitICTransactionList();
 ```
 
@@ -313,7 +313,7 @@ InitICTransactionList();
 
 **Example**
 
-```dart
+```text
 AddICTransactionToList("S#Actual.Y#2023.P#Dec.E#EntityA.I#EntityB.A#ICRec.C1#Increases.C2#[None].C3#[None].C4#[None]","T001","S01");
 ```
 
@@ -333,7 +333,7 @@ AddICTransactionToList("S#Actual.Y#2023.P#Dec.E#EntityA.I#EntityB.A#ICRec.C1#Inc
 
 **Example**
 
-```dart
+```text
 InitICTransactionList();
 AddICTransactionToList("S#Actual.Y#2023.P#Dec.E#EntityA.I#EntityB.A#ICRec.C1#[None].C2#[None].C3#[None].C4#[None]","T001","S01");
 ProcessICTransaction("Post","Actual","2023","Dec");
@@ -355,7 +355,7 @@ ProcessICTransaction("Post","Actual","2023","Dec");
 
 **Example**
 
-```dart
+```text
 ProcessICTransactions("Post","S#Actual.Y#2023.P#Dec.E#EntityA,EntityB","","");
 ```
 
@@ -382,7 +382,7 @@ All 10 parameters are required. Parameters 7 and 8 are ignored.
 
 **Example**
 
-```dart
+```text
 ICAutoMatchByID("Actual","2023","Dec","All","All","no","no","no","Transaction","All");
 ```
 
@@ -407,7 +407,7 @@ All 10 parameters are required. Parameters 7 and 8 are ignored.
 
 **Example**
 
-```dart
+```text
 ICAutoMatchByAccount("Actual","2023","Dec","All","All","no","no","no","ICRec","ICPay");
 ```
 
@@ -438,7 +438,7 @@ ICAutoMatchByAccount("Actual","2023","Dec","All","All","no","no","no","ICRec","I
 
 **Example**
 
-```dart
+```text
 CreateAutoMatchByIDTemplate("MatchTID","Match by TID","","false","true","\","S#Actual.Y#2023.P#Dec","{[Base]}","{[Base]}","","TransactionID","");
 ```
 
@@ -457,7 +457,7 @@ CreateAutoMatchByIDTemplate("MatchTID","Match by TID","","false","true","\","S#A
 
 **Example**
 
-```dart
+```text
 CreateAutoMatchByAccountTemplate("MatchAcct","Match by account","","false","true","\","S#Actual.Y#2023.P#Dec","{[Base]}","{[Base]}","","ICRec","ICPay");
 ```
 
@@ -477,7 +477,7 @@ CreateAutoMatchByAccountTemplate("MatchAcct","Match by account","","false","true
 
 **Example**
 
-```dart
+```text
 CreateReasonCode("TIMING","Timing difference");
 ```
 
@@ -494,7 +494,7 @@ CreateReasonCode("TIMING","Timing difference");
 
 **Example**
 
-```dart
+```text
 DeleteReasonCode("TIMING");
 ```
 
@@ -512,7 +512,7 @@ None
 
 **Example**
 
-```dart
+```text
 DeleteAllReasonCodes();
 ```
 
@@ -529,7 +529,7 @@ DeleteAllReasonCodes();
 
 **Example**
 
-```dart
+```text
 ListReasonCodes("C:\Output\reasoncodes.txt");
 ```
 
@@ -554,7 +554,7 @@ ListReasonCodes("C:\Output\reasoncodes.txt");
 
 **Example**
 
-```dart
+```text
 LockICEntity("Actual","2023","Dec","EntityA,EntityB");
 ```
 
@@ -574,7 +574,7 @@ LockICEntity("Actual","2023","Dec","EntityA,EntityB");
 
 **Example**
 
-```dart
+```text
 UnLockICEntity("Actual","2023","Dec","EntityA,EntityB");
 ```
 
@@ -594,7 +594,7 @@ UnLockICEntity("Actual","2023","Dec","EntityA,EntityB");
 
 **Example**
 
-```dart
+```text
 ListMonitorIntercompany("Actual","2023","Dec","C:\Output\icmonitor.txt");
 ```
 
@@ -614,7 +614,7 @@ ListMonitorIntercompany("Actual","2023","Dec","C:\Output\icmonitor.txt");
 
 **Example**
 
-```dart
+```text
 ListMonitorIntercompanySummary("Actual","2023","Dec","C:\Output\icsummary.txt");
 ```
 
@@ -638,6 +638,6 @@ Pass 5 parameters, or all 8.
 
 **Example**
 
-```dart
+```text
 FilterMonitorIntercompany("Actual","2023","Dec","EntityA;EntityB","C:\Output\icmonitor.txt","true","Started","All");
 ```

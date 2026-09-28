@@ -36,7 +36,7 @@ A **task list** is a document that groups links to other documents, such as the 
 
 **Example**
 
-```dart
+```text
 EnumDocuments("\", "WebForm", "Form", "false", "C:\Output\documents.txt");
 ```
 
@@ -55,7 +55,7 @@ EnumDocuments("\", "WebForm", "Form", "false", "C:\Output\documents.txt");
 
 **Example**
 
-```dart
+```text
 EnumTasksUnderTaskList("\TaskLists", "MonthEnd", "C:\Output\MonthEnd.xml");
 ```
 
@@ -78,7 +78,7 @@ EnumTasksUnderTaskList("\TaskLists", "MonthEnd", "C:\Output\MonthEnd.xml");
 
 **Example**
 
-```dart
+```text
 DeleteDocument("MonthEnd", "Workspace", "XML", "\TaskLists");
 ```
 
@@ -100,7 +100,7 @@ DeleteDocument("MonthEnd", "Workspace", "XML", "\TaskLists");
 
 **Example**
 
-```dart
+```text
 CreateTaskList("MonthEnd", "Month end tasks", "[Default]", "false", "true", "\TaskLists");
 ```
 
@@ -123,7 +123,7 @@ CreateTaskList("MonthEnd", "Month end tasks", "[Default]", "false", "true", "\Ta
 
 **Example**
 
-```dart
+```text
 AddTaskToTaskList("MonthEnd", "\TaskLists", "IncomeStatement", "\Forms\Actuals", "WebForm", "Form", "true");
 ```
 
@@ -146,7 +146,7 @@ AddTaskToTaskList("MonthEnd", "\TaskLists", "IncomeStatement", "\Forms\Actuals",
 
 **Example**
 
-```dart
+```text
 DeleteTaskFromTaskList("MonthEnd", "\TaskLists", "IncomeStatement", "\Forms\Actuals", "WebForm", "Form", "true");
 ```
 

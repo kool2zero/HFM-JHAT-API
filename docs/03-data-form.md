@@ -42,7 +42,7 @@ The first four parameters are required. The six suppression parameters are optio
 
 **Example**
 
-```dart
+```text
 GetForm("\Forms\Actuals", "IncomeStatement", "C:\Output\IncomeStatement.html", "false");
 GetForm("\Forms\Actuals", "IncomeStatement", "C:\Output\IncomeStatement.html", "false", "true", "true", "true", "false", "false", "false");
 ```
@@ -60,7 +60,7 @@ GetForm("\Forms\Actuals", "IncomeStatement", "C:\Output\IncomeStatement.html", "
 
 **Example**
 
-```dart
+```text
 SetPOV("Actual","2023","Dec","YTD","Group.Entity1","<Entity Currency>","Sales","[ICP None]","[None]","[None]","[None]","[None]");
 ExecuteOnDemandRule("RuleName");
 ```

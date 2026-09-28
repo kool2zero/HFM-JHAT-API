@@ -45,7 +45,7 @@ Commands for logging on, opening and closing applications, setting the point of 
 
 **Example**
 
-```dart
+```text
 SetPOV("ACTatACIFRS","2023","DEC","YTD","TGROUP","<Entity Currency>","TOTNI","[ICP Top]","TOTC1","TOTC2","TOTC3","TOTC4");
 ```
 
@@ -63,7 +63,7 @@ SetPOV("ACTatACIFRS","2023","DEC","YTD","TGROUP","<Entity Currency>","TOTNI","[I
 
 **Example**
 
-```dart
+```text
 SetPOVExtDim("S#ACTatACIFRS.Y#2023.P#DEC.W#YTD.E#TGROUP.V#<Entity Currency>.A#TOTNI.I#[ICP Top].C1#TOTC1.C2#TOTC2.C3#TOTC3.C4#TOTC4","SHOWNAMES");
 ```
 
@@ -78,12 +78,12 @@ SetPOVExtDim("S#ACTatACIFRS.Y#2023.P#DEC.W#YTD.E#TGROUP.V#<Entity Currency>.A#TO
 | --- | :---: | --- |
 | Unused | ✓ | Ignored. Must be supplied (e.g. `"true"`). |
 | Domain | ✓ | Ignored. Must be supplied (e.g. `""`). |
-| Username | ✓ | Login User Name |
+| User Name | ✓ | Login User Name |
 | Password | ✓ | Login Password |
 
 **Example**
 
-```dart
+```text
 Logon("false", "", "user", "password");
 ```
 
@@ -98,7 +98,7 @@ None
 
 **Example**
 
-```dart
+```text
 Logout();
 ```
 
@@ -122,7 +122,7 @@ Logout();
 
 **Example**
 
-```dart
+```text
 DeleteApplication("Server","Application");
 ```
 
@@ -149,7 +149,7 @@ DeleteApplication("Server","Application");
 
 **Example**
 
-```dart
+```text
 CreateApplicationExtDim("Server","Application","ApplicationDescription","ProfilePath","StorageFolder","ProjectName","http://myServer:80/HFM");
 CreateApplicationCAS("Server","TaxApp","Tax Provision","ProfilePath","StorageFolder","ProjectName","http://myServer:80/HFM","TAX");
 ```
@@ -168,7 +168,7 @@ CreateApplicationCAS("Server","TaxApp","Tax Provision","ProfilePath","StorageFol
 
 **Example**
 
-```dart
+```text
 OpenApplication("Cluster","Application");
 ```
 
@@ -183,7 +183,7 @@ None
 
 **Example**
 
-```dart
+```text
 CloseApplication();
 ```
 
@@ -204,7 +204,7 @@ None
 
 **Example**
 
-```dart
+```text
 OpenApplication("Cluster","Application");
 shutdownApplication();
 ```
@@ -225,7 +225,7 @@ shutdownApplication();
 
 **Example**
 
-```dart
+```text
 DeleteAllApplications("Server");
 ```
 
@@ -251,7 +251,7 @@ DeleteAllApplications("Server");
 
 **Example**
 
-```dart
+```text
 CopyApplication("PRODAPP", "TESTAPP", "Copy of PRODAPP", "Cluster", "Project Name", "false", "true");
 ```
 
@@ -277,7 +277,7 @@ CopyApplication("PRODAPP", "TESTAPP", "Copy of PRODAPP", "Cluster", "Project Nam
 
 **Example**
 
-```dart
+```text
 SetPreferences("Application", "Cluster", "English", ".", ",", "true", "false");
 ```
 
@@ -296,7 +296,7 @@ SetPreferences("Application", "Cluster", "English", ".", ",", "true", "false");
 
 **Example**
 
-```dart
+```text
 GetPreferences("Application Name", "Cluster","Output File Path");
 ```
 
@@ -331,6 +331,6 @@ GetPreferences("Application Name", "Cluster","Output File Path");
 
 **Example**
 
-```dart
+```text
 ModifyApplication("Application", "Cluster", "", "true", "true", "true", "true", "true", "true", "false");
 ```

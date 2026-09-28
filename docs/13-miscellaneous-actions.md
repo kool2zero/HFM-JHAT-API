@@ -41,7 +41,7 @@ All 10 parameters are required. Flags count only when exactly `true` (any case).
 
 **Example**
 
-```dart
+```text
 InitLists();
 AddItemToList("1","Period","Dec");
 CalculateOwnership("Actual","2023","1","Group","true","true","true","true","true","All Entities");
@@ -80,7 +80,7 @@ JHAT's usage text shows placeholder labels for parameters 15–17. They are true
 
 **Example**
 
-```dart
+```text
 InitLists();
 AddItemToList("1","Period","Jan");
 AddItemToList("2","Period","Jan");
@@ -116,7 +116,7 @@ All 9 parameters are required. Flags count only when exactly `true` (any case).
 
 **Example**
 
-```dart
+```text
 ClearData("Actual","2023","All","All","All","false","true","true","C:\Output\cleardata.log");
 ```
 
@@ -134,7 +134,7 @@ ClearData("Actual","2023","All","All","All","false","true","true","C:\Output\cle
 
 **Example**
 
-```dart
+```text
 DeleteInvalidRecords("false","C:\Output\InvalidRecords.log");
 ```
 
@@ -149,7 +149,7 @@ None
 
 **Example**
 
-```dart
+```text
 exit();
 ```
 
@@ -170,7 +170,7 @@ exit();
 
 **Example**
 
-```dart
+```text
 UpdateParameter("<Parameter Name>","<Value>");
 ```
 
@@ -189,6 +189,6 @@ UpdateParameter("<Parameter Name>","<Value>");
 
 **Example**
 
-```dart
+```text
 GetMemberProperties("Entity","Entity1,Entity2","C:\Output\entityprops.txt");
 ```

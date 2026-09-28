@@ -24,7 +24,7 @@ Before the first run, it’ mandatory to create `setenv.cmd` file and set the pa
 
 A text file (the script) lists the commands to run against HFM, one per line. A typical script looks like this:
 
-```dart
+```text
 ' Month-end consolidation
 Logon("false","","user","password");
 OpenApplication("HFMCluster","COMMA");
@@ -66,7 +66,7 @@ The whole script is read and checked before anything runs. The script file's enc
 
 ## Running a script
 
-```shell
+```bat
 jhat.bat -I"E:\JHAT\script.txt" -O"E:\JHAT\script.log"
 ```
 
