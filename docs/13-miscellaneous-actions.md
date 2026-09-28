@@ -16,9 +16,11 @@ These commands need an open application, except `exit`. Where a parameter takes 
 
 ### CalculateOwnership
 
-<p class="callout info">Calculates ownership from the shares data entered in Manage Ownership, like HFM's Calculate Ownership command. For each entity it can calculate percent control, consolidation method, percent ownership, percent consolidation and direct percent ownership. Parameters 5–9 choose which of these are calculated.</p>
+> [!NOTE]
+> Calculates ownership from the shares data entered in Manage Ownership, like HFM's Calculate Ownership command. For each entity it can calculate percent control, consolidation method, percent ownership, percent consolidation and direct percent ownership. Parameters 5–9 choose which of these are calculated.
 
-<p class="callout warning">Mode <code>Descendants</code> must be spelled <code>Decendants</code> (as in the code). The correct spelling isn't recognized and falls back to all entities.</p>
+> [!WARNING]
+> Mode `Descendants` must be spelled `Decendants` (as in the code). The correct spelling isn't recognized and falls back to all entities.
 
 **Input**
 
@@ -47,7 +49,8 @@ CalculateOwnership("Actual","2023","1","Group","true","true","true","true","true
 
 ### CopyData
 
-<p class="callout info">Copies data from one scenario and year to another, for example to seed a forecast from actuals. The server's log is copied to a local file.</p>
+> [!NOTE]
+> Copies data from one scenario and year to another, for example to seed a forecast from actuals. The server's log is copied to a local file.
 
 **Input**
 
@@ -86,11 +89,14 @@ CopyData("Actual","Budget","2023","2024","1","2","All","All","C:\Output\copydata
 
 ### ClearData
 
-<p class="callout info">Clears data for a scenario and year, and copies the server's log to a local file.</p>
+> [!NOTE]
+> Clears data for a scenario and year, and copies the server's log to a local file.
 
-<p class="callout danger">Be careful when running this command.</p>
+> [!CAUTION]
+> Be careful when running this command.
 
-<p class="callout warning">Because of a bug, Clear Rates and System Data only takes effect when Detailed Logging is also <code>true</code>.</p>
+> [!WARNING]
+> Because of a bug, Clear Rates and System Data only takes effect when Detailed Logging is also `true`.
 
 **Input**
 
@@ -116,7 +122,8 @@ ClearData("Actual","2023","All","All","All","false","true","true","C:\Output\cle
 
 ### DeleteInvalidRecords
 
-<p class="callout info">Runs HFM's Delete Invalid Records task, which removes data stored at intersections that are no longer valid, typically after metadata changes. Its log is copied to a local file. In HFM, only Provisioning Managers can delete invalid records.</p>
+> [!NOTE]
+> Runs HFM's Delete Invalid Records task, which removes data stored at intersections that are no longer valid, typically after metadata changes. Its log is copied to a local file. In HFM, only Provisioning Managers can delete invalid records.
 
 **Input**
 
@@ -133,7 +140,8 @@ DeleteInvalidRecords("false","C:\Output\InvalidRecords.log");
 
 ### exit
 
-<p class="callout warning">Stops JHAT immediately with exit code 0. The rest of the script is skipped. The application isn't closed and the user isn't logged out.</p>
+> [!WARNING]
+> Stops JHAT immediately with exit code 0. The rest of the script is skipped. The application isn't closed and the user isn't logged out.
 
 **Input**
 
@@ -147,9 +155,11 @@ exit();
 
 ### UpdateParameter
 
-<p class="callout info">Sets an HFM system parameter by writing directly to the <code>XFM_PARAMETERS</code> table in the HFM database, for cluster, server and application <code>ALL</code>. JHAT connects with the database credentials from the EPM registry, and records the logged-on user as <code>UpdatedBy</code>. Needs <code>Logon</code>. Fails if no row matches the parameter name.</p>
+> [!NOTE]
+> Sets an HFM system parameter by writing directly to the `XFM_PARAMETERS` table in the HFM database, for cluster, server and application `ALL`. JHAT connects with the database credentials from the EPM registry, and records the logged-on user as `UpdatedBy`. Needs `Logon`. Fails if no row matches the parameter name.
 
-<p class="callout danger">This bypasses HFM and changes the database directly. Before connecting, it also prints every database connection property to the console, <b>including the database password</b>. Don't capture JHAT's console output where others can read it.</p>
+> [!CAUTION]
+> This bypasses HFM and changes the database directly. Before connecting, it also prints every database connection property to the console, **including the database password**. Don't capture JHAT's console output where others can read it.
 
 **Input**
 
@@ -166,7 +176,8 @@ UpdateParameter("<Parameter Name>","<Value>");
 
 ### GetMemberProperties
 
-<p class="callout info">Writes the properties of one or more members to a UTF-8 file. For each member it writes the dimension, default parent, name and description, followed by one <code>Property:value</code> line per property.</p>
+> [!NOTE]
+> Writes the properties of one or more members to a UTF-8 file. For each member it writes the dimension, default parent, name and description, followed by one `Property:value` line per property.
 
 **Input**
 

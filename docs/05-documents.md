@@ -21,7 +21,8 @@ A **task list** is a document that groups links to other documents, such as the 
 
 ### EnumDocuments
 
-<p class="callout info">Lists the documents in a Document Manager folder and writes them to a UTF-8 file, one <code>name;description</code> line per document.</p>
+> [!NOTE]
+> Lists the documents in a Document Manager folder and writes them to a UTF-8 file, one `name;description` line per document.
 
 **Input**
 
@@ -41,7 +42,8 @@ EnumDocuments("\", "WebForm", "Form", "false", "C:\Output\documents.txt");
 
 ### EnumTasksUnderTaskList
 
-<p class="callout info">Reads a task list and writes its XML definition, including the documents it contains, to a UTF-8 file.</p>
+> [!NOTE]
+> Reads a task list and writes its XML definition, including the documents it contains, to a UTF-8 file.
 
 **Input**
 
@@ -59,9 +61,11 @@ EnumTasksUnderTaskList("\TaskLists", "MonthEnd", "C:\Output\MonthEnd.xml");
 
 ### DeleteDocument
 
-<p class="callout info">Deletes a document from Document Manager.</p>
+> [!NOTE]
+> Deletes a document from Document Manager.
 
-<p class="callout danger">Be careful when running this command.</p>
+> [!CAUTION]
+> Be careful when running this command.
 
 **Input**
 
@@ -80,7 +84,8 @@ DeleteDocument("MonthEnd", "Workspace", "XML", "\TaskLists");
 
 ### CreateTaskList
 
-<p class="callout info">Creates an empty task list owned by the logged-on user. Use <code>AddTaskToTaskList</code> to add documents to it.</p>
+> [!NOTE]
+> Creates an empty task list owned by the logged-on user. Use `AddTaskToTaskList` to add documents to it.
 
 **Input**
 
@@ -101,7 +106,8 @@ CreateTaskList("MonthEnd", "Month end tasks", "[Default]", "false", "true", "\Ta
 
 ### AddTaskToTaskList
 
-<p class="callout info">Adds an existing document to the end of a task list and saves the task list.</p>
+> [!NOTE]
+> Adds an existing document to the end of a task list and saves the task list.
 
 **Input**
 
@@ -123,7 +129,8 @@ AddTaskToTaskList("MonthEnd", "\TaskLists", "IncomeStatement", "\Forms\Actuals",
 
 ### DeleteTaskFromTaskList
 
-<p class="callout info">Removes a document from a task list and saves the task list. The entry is matched on name and path (ignoring case), document type and file type. If nothing matches, the task list is saved unchanged and the command still reports success.</p>
+> [!NOTE]
+> Removes a document from a task list and saves the task list. The entry is matched on name and path (ignoring case), document type and file type. If nothing matches, the task list is saved unchanged and the command still reports success.
 
 **Input**
 

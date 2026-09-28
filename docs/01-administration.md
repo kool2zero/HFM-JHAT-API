@@ -11,7 +11,8 @@ Commands for HFM's two audit logs. They need an open application.
 
 These commands export audit records to local files or delete them, for example to archive and purge the audit tables.
 
-<p class="callout info">All parameters are required: the command fails with "Incorrect number of parameters." if any are missing.</p>
+> [!NOTE]
+> All parameters are required: the command fails with "Incorrect number of parameters." if any are missing.
 
 - **User Name**: pass `All` (any case) or an empty string `""` to include every user.
 - **Task Name**: pass `ALL` or one of the [task names](#task-names) listed at the bottom of this page. Any other value fails with "Improper task name specified".
@@ -26,9 +27,11 @@ These commands export audit records to local files or delete them, for example t
 
 ### DeleteFilteredDataAuditRecords
 
-<p class="callout info">Deletes the data audit records that match the user and POV filter.</p>
+> [!NOTE]
+> Deletes the data audit records that match the user and POV filter.
 
-<p class="callout danger">Deleted audit records cannot be recovered.</p>
+> [!CAUTION]
+> Deleted audit records cannot be recovered.
 
 **Input**
 
@@ -45,9 +48,11 @@ DeleteFilteredDataAuditRecords("User Name","POV String");
 
 ### DeleteFilteredTaskAuditRecords
 
-<p class="callout info">Deletes the task audit records that match the user and task filter.</p>
+> [!NOTE]
+> Deletes the task audit records that match the user and task filter.
 
-<p class="callout danger">Deleted audit records cannot be recovered.</p>
+> [!CAUTION]
+> Deleted audit records cannot be recovered.
 
 **Input**
 
@@ -64,7 +69,8 @@ DeleteFilteredTaskAuditRecords("All","Consolidation");
 
 ### GetLatestTaskAuditAttachment
 
-<p class="callout info">Finds the matching task audit record with the most recent end time and downloads its attachment (for example, the log of a consolidation or data load) to the output path.</p>
+> [!NOTE]
+> Finds the matching task audit record with the most recent end time and downloads its attachment (for example, the log of a consolidation or data load) to the output path.
 
 **Input**
 
@@ -82,7 +88,8 @@ GetLatestTaskAuditAttachment("All","Data Load","C:\TaskAudit\lastload.log");
 
 ### FilterTaskAudit
 
-<p class="callout info">Exports the task audit records for one user (or all users) and one task (or all tasks) to a file.</p>
+> [!NOTE]
+> Exports the task audit records for one user (or all users) and one task (or all tasks) to a file.
 
 **Input**
 
@@ -100,7 +107,8 @@ FilterTaskAudit("All","Consolidation","C:\TaskAudit\consolidations.txt");
 
 ### GetTaskAudit
 
-<p class="callout info">Exports all task audit records, for all users and tasks, to a file.</p>
+> [!NOTE]
+> Exports all task audit records, for all users and tasks, to a file.
 
 **Input**
 
@@ -116,7 +124,8 @@ GetTaskAudit("C:\TaskAudit\task.txt");
 
 ### FilterDataAudit
 
-<p class="callout info">Exports the data audit records for one user (or all users) that match a POV to a file.</p>
+> [!NOTE]
+> Exports the data audit records for one user (or all users) that match a POV to a file.
 
 **Input**
 
@@ -134,7 +143,8 @@ FilterDataAudit("All","S#Actual.Y#2023.P#Dec","C:\DataAudit\filtered.txt");
 
 ### GetDataAudit
 
-<p class="callout info">Exports all data audit records, for all users and POVs, to a file.</p>
+> [!NOTE]
+> Exports all data audit records, for all users and POVs, to a file.
 
 **Input**
 

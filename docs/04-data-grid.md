@@ -34,7 +34,8 @@ Unless noted otherwise, these commands work on the POV set by `SetPOV` / `SetPOV
 
 #### DefineGrid
 
-<p class="callout info">Defines a data grid with one row dimension and one column dimension. All other dimensions come from the current POV. The grid is used by <code>GetGrid</code>, <code>GetGridExtDim</code> and <code>GetCellsExtDim</code>. Defining a new grid removes the previous one.</p>
+> [!NOTE]
+> Defines a data grid with one row dimension and one column dimension. All other dimensions come from the current POV. The grid is used by `GetGrid`, `GetGridExtDim` and `GetCellsExtDim`. Defining a new grid removes the previous one.
 
 **Input**
 
@@ -56,7 +57,8 @@ DefineGrid("Entity","[Base]","TotalGroup","Period","[Base]","");
 
 #### DefineGridExtDim / DefineDataRetrieval
 
-<p class="callout info">Defines a data grid that can have several row and column dimensions. <code>DefineGridExtDim</code> and <code>DefineDataRetrieval</code> are identical. All other dimensions come from the current POV. Defining a new grid removes the previous one.</p>
+> [!NOTE]
+> Defines a data grid that can have several row and column dimensions. `DefineGridExtDim` and `DefineDataRetrieval` are identical. All other dimensions come from the current POV. Defining a new grid removes the previous one.
 
 **Input**
 
@@ -78,7 +80,8 @@ DefineDataRetrieval("E{TotalGroup.[Descendants]}.A{NetIncome.[Descendants]}","P{
 
 #### GetGrid
 
-<p class="callout info">Writes rows of the grid defined by <code>DefineGrid</code> / <code>DefineGridExtDim</code> to a semicolon-separated file. Column headers come first, then one line per row with its row headers followed by the cell values. JHAT remembers the current row between calls, so you can page through a grid with <code>DOWN</code>.</p>
+> [!NOTE]
+> Writes rows of the grid defined by `DefineGrid` / `DefineGridExtDim` to a semicolon-separated file. Column headers come first, then one line per row with its row headers followed by the cell values. JHAT remembers the current row between calls, so you can page through a grid with `DOWN`.
 
 **Input**
 
@@ -107,9 +110,11 @@ GetGrid("C:\Output\grid.txt","VALUE","ALL","0");
 
 #### GetGridExtDim / GetCellsExtDim
 
-<p class="callout info">Writes the whole grid defined by <code>DefineGrid</code> / <code>DefineGridExtDim</code> to a semicolon-separated file, in the same layout as <code>GetGrid</code>. <code>GetGridExtDim</code> and <code>GetCellsExtDim</code> are identical.</p>
+> [!NOTE]
+> Writes the whole grid defined by `DefineGrid` / `DefineGridExtDim` to a semicolon-separated file, in the same layout as `GetGrid`. `GetGridExtDim` and `GetCellsExtDim` are identical.
 
-<p class="callout warning">The extract types differ from <code>GetGrid</code>. Here <code>STATUS</code> gives the raw numeric cell status, and <code>CALCSTATUS</code> gives the calculation status text.</p>
+> [!WARNING]
+> The extract types differ from `GetGrid`. Here `STATUS` gives the raw numeric cell status, and `CALCSTATUS` gives the calculation status text.
 
 **Input**
 
@@ -128,7 +133,8 @@ GetGridExtDim("C:\Output\grid.txt","VALUE");
 
 #### SetCell
 
-<p class="callout info">Sets the value of the cell at the current POV. The cell must be an input cell.</p>
+> [!NOTE]
+> Sets the value of the cell at the current POV. The cell must be an input cell.
 
 **Input**
 
@@ -144,7 +150,8 @@ SetCell("999999");
 
 #### GetCell
 
-<p class="callout info">Writes the cell at the current POV to the log: displayed data, full-resolution data, stored data, calculation status and cell status.</p>
+> [!NOTE]
+> Writes the cell at the current POV to the log: displayed data, full-resolution data, stored data, calculation status and cell status.
 
 **Input**
 
@@ -158,7 +165,8 @@ GetCell();
 
 #### GetCellInfo
 
-<p class="callout info">Writes detailed information about the cell at the current POV to the log:</p>
+> [!NOTE]
+> Writes detailed information about the cell at the current POV to the log:
 
 - **POV:** process unit, POV detail, view, phase and account calculation attribute
 - **Status:** calculation status, process level, cell status and security class (see [Status text](#status-text))
@@ -176,7 +184,8 @@ GetCellInfo();
 
 #### GetCellHistory
 
-<p class="callout info">Writes the change history of the cell at the current POV to a file: user, server, activity, time modified and value for each change.</p>
+> [!NOTE]
+> Writes the change history of the cell at the current POV to a file: user, server, activity, time modified and value for each change.
 
 **Input**
 
@@ -192,7 +201,8 @@ GetCellHistory("C:\Output\history.txt");
 
 #### GetCellEntityDetails
 
-<p class="callout info">Writes the Entity Details report for the current POV to a colon-separated file.</p>
+> [!NOTE]
+> Writes the Entity Details report for the current POV to a colon-separated file.
 
 The report includes:
 
@@ -213,7 +223,8 @@ GetCellEntityDetails("C:\Output\entitydetails.txt");
 
 #### GetSourceTransactions
 
-<p class="callout info">Writes the source transactions for the cell at the current POV (statutory applications) to a semicolon-separated file. Columns: <code>Current Entity;Parent;Source Data;Destination Data;Factor;Nature</code>.</p>
+> [!NOTE]
+> Writes the source transactions for the cell at the current POV (statutory applications) to a semicolon-separated file. Columns: `Current Entity;Parent;Source Data;Destination Data;Factor;Nature`.
 
 **Input**
 
@@ -229,7 +240,8 @@ GetSourceTransactions("C:\Output\source.txt");
 
 #### GetDestinationTransactions
 
-<p class="callout info">Writes the destination transactions for the cell at the current POV (statutory applications) to a semicolon-separated file, in the same format as <code>GetSourceTransactions</code>.</p>
+> [!NOTE]
+> Writes the destination transactions for the cell at the current POV (statutory applications) to a semicolon-separated file, in the same format as `GetSourceTransactions`.
 
 **Input**
 
@@ -245,7 +257,8 @@ GetDestinationTransactions("C:\Output\destination.txt");
 
 #### GetLineItemDetail
 
-<p class="callout info">Writes the line item detail for the cell at the current POV to a semicolon-separated file (<code>Description;Line Item Data</code>). Line item detail only applies to scenarios and accounts set up to use it, and only for the Entity Currency Value member.</p>
+> [!NOTE]
+> Writes the line item detail for the cell at the current POV to a semicolon-separated file (`Description;Line Item Data`). Line item detail only applies to scenarios and accounts set up to use it, and only for the Entity Currency Value member.
 
 **Input**
 
@@ -261,7 +274,8 @@ GetLineItemDetail("C:\Output\lineitems.txt");
 
 #### SetLineItemDetail
 
-<p class="callout info">Sets one line item on each of several cells. The POVs and values come from two string lists built with <code>AddItemToList</code> (dimension <code>""</code>). The lists must have the same number of items. The first POV gets the first value, and so on. Every line item gets the same description.</p>
+> [!NOTE]
+> Sets one line item on each of several cells. The POVs and values come from two string lists built with `AddItemToList` (dimension `""`). The lists must have the same number of items. The first POV gets the first value, and so on. Every line item gets the same description.
 
 **Input**
 
@@ -284,7 +298,8 @@ SetLineItemDetail("1","2","Opening balance");
 
 #### SetCellTextEnhanced
 
-<p class="callout info">Sets the cell text for a cell text label on the cell at the current POV.</p>
+> [!NOTE]
+> Sets the cell text for a cell text label on the cell at the current POV.
 
 **Input**
 
@@ -301,7 +316,8 @@ SetCellTextEnhanced("[Default]","Reviewed by Finance");
 
 #### deleteCellTextEnhanced
 
-<p class="callout info">Deletes the text, the attachments, or both, for a cell text label on the cell at the current POV.</p>
+> [!NOTE]
+> Deletes the text, the attachments, or both, for a cell text label on the cell at the current POV.
 
 **Input**
 
@@ -318,7 +334,8 @@ deleteCellTextEnhanced("[Default]","All");
 
 #### DetachCellDocument
 
-<p class="callout info">Removes one attached document from a cell text label on the cell at the current POV. The text and other attachments are kept.</p>
+> [!NOTE]
+> Removes one attached document from a cell text label on the cell at the current POV. The text and other attachments are kept.
 
 **Input**
 
@@ -335,7 +352,8 @@ DetachCellDocument("[Default]","Support.pdf");
 
 #### AttachCellDocumentEnhanced / AttachCellDocument
 
-<p class="callout info">Attaches a document that is already in Document Manager to the cell at the current POV. Existing text and attachments for the label are kept. <code>AttachCellDocument</code> always uses the <code>[Default]</code> label.</p>
+> [!NOTE]
+> Attaches a document that is already in Document Manager to the cell at the current POV. Existing text and attachments for the label are kept. `AttachCellDocument` always uses the `[Default]` label.
 
 **Input: AttachCellDocumentEnhanced**
 
@@ -361,7 +379,8 @@ AttachCellDocument("Support.pdf","\Documents\Support");
 
 #### GetCellTextAttachmentsEnhanced
 
-<p class="callout info">Lists the attached documents on the cell at the current POV. Each is written to the file and the log as <code>Label &lt;label&gt; attachment is : &lt;file&gt;</code>.</p>
+> [!NOTE]
+> Lists the attached documents on the cell at the current POV. Each is written to the file and the log as `Label <label> attachment is : <file>`.
 
 **Input**
 
@@ -378,7 +397,8 @@ GetCellTextAttachmentsEnhanced("All","C:\Output\attachments.txt");
 
 #### GetCellTextEnhanced
 
-<p class="callout info">Gets the cell text on the cell at the current POV. Each label is written to the file and the log as <code>Label &lt;label&gt; is : &lt;text&gt;</code>.</p>
+> [!NOTE]
+> Gets the cell text on the cell at the current POV. Each label is written to the file and the log as `Label <label> is : <text>`.
 
 **Input**
 
@@ -397,7 +417,8 @@ GetCellTextEnhanced("All","C:\Output\celltext.txt");
 
 #### Lock
 
-<p class="callout info">Runs the <a href="https://docs.oracle.com/cd/E57185_01/HFMUR/ch04s09.html">Lock</a> command on the current POV. Locking a period for an entity prevents any further changes to its data, for example after the period is closed. The command fails if the server returns an error code.</p>
+> [!NOTE]
+> Runs the [Lock](https://docs.oracle.com/cd/E57185_01/HFMUR/ch04s09.html) command on the current POV. Locking a period for an entity prevents any further changes to its data, for example after the period is closed. The command fails if the server returns an error code.
 
 **Input**
 
@@ -411,7 +432,8 @@ Lock();
 
 #### Unlock
 
-<p class="callout info">Runs the <a href="https://docs.oracle.com/cd/E57185_01/HFMUR/ch04s10.html">Unlock</a> command on the current POV, so its data can be changed again. The command fails if the server returns an error code.</p>
+> [!NOTE]
+> Runs the [Unlock](https://docs.oracle.com/cd/E57185_01/HFMUR/ch04s10.html) command on the current POV, so its data can be changed again. The command fails if the server returns an error code.
 
 **Input**
 
@@ -425,7 +447,8 @@ Unlock();
 
 #### Translate
 
-<p class="callout info">Runs the <a href="https://docs.oracle.com/cd/E57185_01/HFMUR/ch05s05.html">Translate</a> command on the current POV. Translation converts an entity's data from its own currency to its parent's currency (or another currency member of the Value dimension) using the exchange rates in the application. The command fails if the server returns an error code.</p>
+> [!NOTE]
+> Runs the [Translate](https://docs.oracle.com/cd/E57185_01/HFMUR/ch05s05.html) command on the current POV. Translation converts an entity's data from its own currency to its parent's currency (or another currency member of the Value dimension) using the exchange rates in the application. The command fails if the server returns an error code.
 
 **Input**
 
@@ -439,7 +462,8 @@ Translate();
 
 #### Allocate
 
-<p class="callout info">Runs the <a href="https://docs.oracle.com/cd/E57185_01/HFMUR/ch04s07.html">Allocate</a> command on the current POV. Allocation runs the <code>Sub Allocate</code> routine in the application's rules, which distributes amounts (such as shared costs) to other entities. The command fails if the server returns an error code.</p>
+> [!NOTE]
+> Runs the [Allocate](https://docs.oracle.com/cd/E57185_01/HFMUR/ch04s07.html) command on the current POV. Allocation runs the `Sub Allocate` routine in the application's rules, which distributes amounts (such as shared costs) to other entities. The command fails if the server returns an error code.
 
 **Input**
 
@@ -453,7 +477,8 @@ Allocate();
 
 #### Consolidate
 
-<p class="callout info">Runs the <a href="https://docs.oracle.com/cd/E57185_01/HFMUR/ch05s07.html">Consolidate</a> command on the current POV, and optionally on extra POVs from a string list. Consolidation also runs for all descendant entities and for all earlier periods in the same year. JHAT waits for every consolidation task to finish (see <a href="00-automation-with-jhat.md#long-running-tasks">long-running tasks</a>). The command fails if the last task doesn't complete.</p>
+> [!NOTE]
+> Runs the [Consolidate](https://docs.oracle.com/cd/E57185_01/HFMUR/ch05s07.html) command on the current POV, and optionally on extra POVs from a string list. Consolidation also runs for all descendant entities and for all earlier periods in the same year. JHAT waits for every consolidation task to finish (see [long-running tasks](00-automation-with-jhat.md#long-running-tasks)). The command fails if the last task doesn't complete.
 
 **Input**
 
@@ -471,7 +496,8 @@ Consolidate("AllWithData","3");
 
 #### ChartLogic
 
-<p class="callout info">Runs the <a href="https://docs.oracle.com/cd/E57185_01/HFMUR/ch05s04.html">Calculate</a> command on the current POV. Calculation runs the application's rules for the entity's own data, without translating or consolidating. Unlike <code>Consolidate</code>, it doesn't wait for a running task. The command fails if the server returns an error code.</p>
+> [!NOTE]
+> Runs the [Calculate](https://docs.oracle.com/cd/E57185_01/HFMUR/ch05s04.html) command on the current POV. Calculation runs the application's rules for the entity's own data, without translating or consolidating. Unlike `Consolidate`, it doesn't wait for a running task. The command fails if the server returns an error code.
 
 **Input**
 
@@ -487,7 +513,8 @@ ChartLogic("true");
 
 #### LockICEntity
 
-<p class="callout warning">This version's code is empty, so it does nothing. The <a href="08-intercompany.md">Intercompany</a> handler registers a working command with the same name (<code>LockICEntity</code>, parameters as below except Entities is a comma-separated list). JHAT keeps only one command per name, depending on the order the handlers are loaded. See the Intercompany page.</p>
+> [!WARNING]
+> This version's code is empty, so it does nothing. The [Intercompany](08-intercompany.md) handler registers a working command with the same name (`LockICEntity`, parameters as below except Entities is a comma-separated list). JHAT keeps only one command per name, depending on the order the handlers are loaded. See the Intercompany page.
 
 **Input**
 
@@ -506,7 +533,8 @@ LockICEntity("Actual","2023","Dec","Entity1");
 
 #### UnlockICEntity
 
-<p class="callout warning">This version's code is empty, so it does nothing. The <a href="08-intercompany.md">Intercompany</a> handler registers a working command with the same name (<code>UnLockICEntity</code>, parameters as below except Entities is a comma-separated list). JHAT keeps only one command per name, depending on the order the handlers are loaded. See the Intercompany page.</p>
+> [!WARNING]
+> This version's code is empty, so it does nothing. The [Intercompany](08-intercompany.md) handler registers a working command with the same name (`UnLockICEntity`, parameters as below except Entities is a comma-separated list). JHAT keeps only one command per name, depending on the order the handlers are loaded. See the Intercompany page.
 
 **Input**
 
@@ -537,7 +565,8 @@ The process control commands don't use `DefineGrid`. They build their own grid f
 
 #### GetProcessControlGrid
 
-<p class="callout info">Writes the process control grid to a file. The parameters and output are the same as <code>GetGrid</code>.</p>
+> [!NOTE]
+> Writes the process control grid to a file. The parameters and output are the same as `GetGrid`.
 
 **Input**
 
@@ -557,7 +586,8 @@ GetProcessControlGrid("C:\Output\pcgrid.txt","PROCESS","ALL","0");
 
 #### FilterProcessControlGrid
 
-<p class="callout info">Writes the process control grid to a file, filtered by phase, review level, pass/fail and calculation status. Text values are matched ignoring case. A filter value that isn't recognized is ignored.</p>
+> [!NOTE]
+> Writes the process control grid to a file, filtered by phase, review level, pass/fail and calculation status. Text values are matched ignoring case. A filter value that isn't recognized is ignored.
 
 **Input**
 
@@ -582,7 +612,8 @@ FilterProcessControlGrid("C:\Output\pcgrid.txt","PROCESS","ALL","0","All","Level
 
 #### DisplayProcessControlGrid
 
-<p class="callout info">Writes the process control grid to a file, with display options that match the Process Control page.</p>
+> [!NOTE]
+> Writes the process control grid to a file, with display options that match the Process Control page.
 
 **Input**
 
@@ -606,7 +637,8 @@ DisplayProcessControlGrid("C:\Output\pcgrid.txt","PROCESS","ALL","0","","List","
 
 #### GetReviewLevelSummary
 
-<p class="callout info">Writes the number of entities at each review level to a file. One <code>Level= count</code> line per level (Not Started, First Pass, Review Level 1–10, Submitted, Approved, Published), followed by <code>Entities Displayed= total</code>.</p>
+> [!NOTE]
+> Writes the number of entities at each review level to a file. One `Level= count` line per level (Not Started, First Pass, Review Level 1–10, Submitted, Approved, Published), followed by `Entities Displayed= total`.
 
 **Input**
 
@@ -622,7 +654,8 @@ GetReviewLevelSummary("C:\Output\reviewlevels.txt");
 
 #### GetCalcStatusSummary
 
-<p class="callout info">Writes the number of entities at each calculation status to a semicolon-separated file. The groups are OK (with totals), No Data, Impacted, and Locked.</p>
+> [!NOTE]
+> Writes the number of entities at each calculation status to a semicolon-separated file. The groups are OK (with totals), No Data, Impacted, and Locked.
 
 **Input**
 
@@ -639,7 +672,8 @@ GetCalcStatusSummary("C:\Output\calcstatus.txt","Translation");
 
 #### GetValidationAccountInfo
 
-<p class="callout info">Writes the phase submission validation grid for a POV and phase to a comma-separated file. It doesn't use the current POV.</p>
+> [!NOTE]
+> Writes the phase submission validation grid for a POV and phase to a comma-separated file. It doesn't use the current POV.
 
 **Input**
 
@@ -661,7 +695,8 @@ GetValidationAccountInfo("S#Actual.Y#2023.P#Dec.E#Entity1","1","","true","true",
 
 #### GetCellStatus
 
-<p class="callout danger"><b>Don't use.</b> This is leftover test code. It ignores the current POV, reads a hardcoded POV from a sample application (<code>S#Actual.Y#2011.P#Quarter4…E#GROUP.CORP_OPS…</code>) 20,000 times, and writes nothing.</p>
+> [!CAUTION]
+> **Don't use.** This is leftover test code. It ignores the current POV, reads a hardcoded POV from a sample application (`S#Actual.Y#2011.P#Quarter4…E#GROUP.CORP_OPS…`) 20,000 times, and writes nothing.
 
 **Input**
 
@@ -698,4 +733,5 @@ GetCellStatus();
 
 **Cell security class** in `GetCellInfo`: `All`, `Read only` or `None`.
 
-<p class="callout warning">JHAT mixes up <code>Read only</code> and <code>None</code> for cell security. A cell you can read but not write is reported as <code>None</code>, and a cell you can't read is reported as <code>Read only</code>. <code>All</code> is correct.</p>
+> [!WARNING]
+> JHAT mixes up `Read only` and `None` for cell security. A cell you can read but not write is reported as `None`, and a cell you can't read is reported as `Read only`. `All` is correct.

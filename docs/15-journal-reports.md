@@ -16,7 +16,8 @@ These commands need an open application.
 
 ### GetAutoJournalReportWithFilter
 
-<p class="callout info">Same as <code>GetAutoJournalReport</code>, but first sets the session's journal filter to the given entity and group filters (the new filters are written to the log). The filter is cleared again afterwards.</p>
+> [!NOTE]
+> Same as `GetAutoJournalReport`, but first sets the session's journal filter to the given entity and group filters (the new filters are written to the log). The filter is cleared again afterwards.
 
 **Input**
 
@@ -35,7 +36,8 @@ GetAutoJournalReportWithFilter("S#Actual.Y#2023.P#Dec.V#<Entity Curr Adjs>","C:\
 
 ### GetAutoJournalReport
 
-<p class="callout info">Writes every journal for a scenario, year, period and value (using the session's current journal filter) to a UTF-8 file.</p>
+> [!NOTE]
+> Writes every journal for a scenario, year, period and value (using the session's current journal filter) to a UTF-8 file.
 
 For each journal, the file contains:
 
@@ -60,9 +62,11 @@ GetAutoJournalReport("S#Actual.Y#2023.P#Dec.V#<Entity Curr Adjs>","C:\Output\jou
 
 ### GenerateReport
 
-<p class="callout info">Runs a report definition stored in Document Manager, waits for it to finish, and copies the result to a local file. The command fails if the report task doesn't complete.</p>
+> [!NOTE]
+> Runs a report definition stored in Document Manager, waits for it to finish, and copies the result to a local file. The command fails if the report task doesn't complete.
 
-<p class="callout warning">JHAT's parameter-count setting allows 5 or 6 parameters, but the command always reads the 6th. Pass all 6, using <code>""</code> for no POV override.</p>
+> [!WARNING]
+> JHAT's parameter-count setting allows 5 or 6 parameters, but the command always reads the 6th. Pass all 6, using `""` for no POV override.
 
 **Input**
 

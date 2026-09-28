@@ -33,7 +33,8 @@ These commands need an open application. Text values are matched ignoring case.
 
 #### OpenICPeriod
 
-<p class="callout info">Opens an intercompany period and sets its matching tolerances.</p>
+> [!NOTE]
+> Opens an intercompany period and sets its matching tolerances.
 
 **Input**
 
@@ -59,7 +60,8 @@ OpenICPeriod("Actual","2023","Dec","Yes","10","5","10","1");
 
 #### UpdateICPeriod
 
-<p class="callout info">Changes an intercompany period's settings. Parameters are as for <code>OpenICPeriod</code>. HFM's response status and error text are written to the log, but the command reports success either way.</p>
+> [!NOTE]
+> Changes an intercompany period's settings. Parameters are as for `OpenICPeriod`. HFM's response status and error text are written to the log, but the command reports success either way.
 
 **Example**
 
@@ -69,7 +71,8 @@ UpdateICPeriod("Actual","2023","Dec","Restrict","10","5","10","1");
 
 #### CloseICPeriod
 
-<p class="callout info">Closes an intercompany period.</p>
+> [!NOTE]
+> Closes an intercompany period.
 
 **Input**
 
@@ -87,7 +90,8 @@ CloseICPeriod("Actual","2023","Dec");
 
 #### ListICPeriods
 
-<p class="callout info">Writes each intercompany period of a scenario and year to a file. Columns: <code>Period;Status;Trans id tolerance amount;Trans id tolerance percentage;Account Tolerance;Manual Tolerance;Match/Validate Before Post</code>. Status is Unopened, Opened or Closed.</p>
+> [!NOTE]
+> Writes each intercompany period of a scenario and year to a file. Columns: `Period;Status;Trans id tolerance amount;Trans id tolerance percentage;Account Tolerance;Manual Tolerance;Match/Validate Before Post`. Status is Unopened, Opened or Closed.
 
 **Input**
 
@@ -107,7 +111,8 @@ ListICPeriods("Actual","2023","C:\Output\icperiods.txt");
 
 #### CreateICTransaction
 
-<p class="callout info">Creates an intercompany transaction.</p>
+> [!NOTE]
+> Creates an intercompany transaction.
 
 **Input**
 
@@ -136,9 +141,11 @@ CreateICTransaction("S#Actual.Y#2023.P#Dec.E#EntityA.I#EntityB.A#ICRec","T001","
 
 #### EditICTransaction
 
-<p class="callout info">Changes fields on the intercompany transactions that match a POV, transaction ID and sub ID. The field names and new values come from two string lists (built with <code>AddItemToList</code>, dimension <code>""</code>). The first name goes with the first value, and so on.</p>
+> [!NOTE]
+> Changes fields on the intercompany transactions that match a POV, transaction ID and sub ID. The field names and new values come from two string lists (built with `AddItemToList`, dimension `""`). The first name goes with the first value, and so on.
 
-<p class="callout warning">Only one custom dimension can be changed per call. <code>TRANSACTION_AMOUNT</code> and <code>TRANSACTION_CURRENCY</code> overwrite each other, so change them in separate calls.</p>
+> [!WARNING]
+> Only one custom dimension can be changed per call. `TRANSACTION_AMOUNT` and `TRANSACTION_CURRENCY` overwrite each other, so change them in separate calls.
 
 **Input**
 
@@ -165,7 +172,8 @@ EditICTransaction("S#Actual.Y#2023.P#Dec.E#EntityA.I#EntityB.A#ICRec","T001","S0
 
 #### GetICTransactions
 
-<p class="callout info">Writes every intercompany transaction for a scenario, year and period to a file.</p>
+> [!NOTE]
+> Writes every intercompany transaction for a scenario, year and period to a file.
 
 The columns are Status (`match:post`), Transaction ID, Transaction Sub ID, Entity, ICP(Partner), Account, Translated Amount, Entity Currency Amount, Translated EC amount, Reference ID, Match Code, Reason Code, Transaction Amount, Rate, then one column per custom dimension. Amounts are followed by their currency.
 
@@ -186,9 +194,11 @@ GetICTransactions("Actual","2023","Dec","C:\Output\ictrans.txt");
 
 #### FilterICTransactions
 
-<p class="callout info">Writes the intercompany transactions matching the filters to a file, in the same format as <code>GetICTransactions</code>. Leave a filter as <code>""</code> to not filter on it.</p>
+> [!NOTE]
+> Writes the intercompany transactions matching the filters to a file, in the same format as `GetICTransactions`. Leave a filter as `""` to not filter on it.
 
-<p class="callout warning">Known bugs in this command:</p>
+> [!WARNING]
+> Known bugs in this command:
 
 - **Dates:** the date filters are parsed as `mm/dd/yyyy`, where `mm` means *minutes*, so the month is ignored and the dates come out wrong.
 - **Display Partner Transactions:** this parameter overwrites Display Entity Transactions instead of setting its own option.
@@ -231,7 +241,8 @@ FilterICTransactions("Actual","2023","Dec","EntityA;EntityB","","","","","","","
 
 #### DisplayICTransactions
 
-<p class="callout info">Writes every intercompany transaction for a scenario, year and period to a file (same format as <code>GetICTransactions</code>), with display options.</p>
+> [!NOTE]
+> Writes every intercompany transaction for a scenario, year and period to a file (same format as `GetICTransactions`), with display options.
 
 **Input**
 
@@ -254,7 +265,8 @@ DisplayICTransactions("Actual","2023","Dec","","","","E#BOTH","C:\Output\ictrans
 
 #### ProcessAllICTransactions
 
-<p class="callout info">Posts, unposts, deletes or unmatches every intercompany transaction in a period, and waits for the task to finish.</p>
+> [!NOTE]
+> Posts, unposts, deletes or unmatches every intercompany transaction in a period, and waits for the task to finish.
 
 **Input**
 
@@ -273,7 +285,8 @@ ProcessAllICTransactions("Post","Actual","2023","Dec");
 
 #### InitICTransactionList
 
-<p class="callout info">Empties the in-memory list of transactions used by <code>ProcessICTransaction</code>.</p>
+> [!NOTE]
+> Empties the in-memory list of transactions used by `ProcessICTransaction`.
 
 **Input**
 
@@ -287,7 +300,8 @@ InitICTransactionList();
 
 #### AddICTransactionToList
 
-<p class="callout info">Adds a transaction to the in-memory list used by <code>ProcessICTransaction</code>. The transaction is identified by entity, partner, account, custom members, transaction ID and sub ID.</p>
+> [!NOTE]
+> Adds a transaction to the in-memory list used by `ProcessICTransaction`. The transaction is identified by entity, partner, account, custom members, transaction ID and sub ID.
 
 **Input**
 
@@ -305,7 +319,8 @@ AddICTransactionToList("S#Actual.Y#2023.P#Dec.E#EntityA.I#EntityB.A#ICRec.C1#Inc
 
 #### ProcessICTransaction
 
-<p class="callout info">Processes the transactions in the list built with <code>AddICTransactionToList</code>. JHAT looks them up among the first 5,000 transactions of the period. Unlike <code>ProcessAllICTransactions</code>, it doesn't wait for a running task.</p>
+> [!NOTE]
+> Processes the transactions in the list built with `AddICTransactionToList`. JHAT looks them up among the first 5,000 transactions of the period. Unlike `ProcessAllICTransactions`, it doesn't wait for a running task.
 
 **Input**
 
@@ -326,7 +341,8 @@ ProcessICTransaction("Post","Actual","2023","Dec");
 
 #### ProcessICTransactions
 
-<p class="callout info">Processes the transactions matching a filter, and waits for the task to finish.</p>
+> [!NOTE]
+> Processes the transactions matching a filter, and waits for the task to finish.
 
 **Input**
 
@@ -347,7 +363,8 @@ ProcessICTransactions("Post","S#Actual.Y#2023.P#Dec.E#EntityA,EntityB","","");
 
 #### ICAutoMatchByID
 
-<p class="callout info">Runs Auto Match by transaction ID or reference ID and waits for the task to finish.</p>
+> [!NOTE]
+> Runs Auto Match by transaction ID or reference ID and waits for the task to finish.
 
 **Input**
 
@@ -371,7 +388,8 @@ ICAutoMatchByID("Actual","2023","Dec","All","All","no","no","no","Transaction","
 
 #### ICAutoMatchByAccount
 
-<p class="callout info">Runs Auto Match by account and waits for the task to finish.</p>
+> [!NOTE]
+> Runs Auto Match by account and waits for the task to finish.
 
 **Input**
 
@@ -395,9 +413,11 @@ ICAutoMatchByAccount("Actual","2023","Dec","All","All","no","no","no","ICRec","I
 
 #### CreateAutoMatchByIDTemplate
 
-<p class="callout info">Saves an Auto Match by ID template to Document Manager.</p>
+> [!NOTE]
+> Saves an Auto Match by ID template to Document Manager.
 
-<p class="callout warning">The ICP value gets an <code>E#</code> prefix (not <code>I#</code>) unless it already starts with <code>E#</code> or <code>E{</code>. This looks like a bug, so check the saved template's partner filter.</p>
+> [!WARNING]
+> The ICP value gets an `E#` prefix (not `I#`) unless it already starts with `E#` or `E{`. This looks like a bug, so check the saved template's partner filter.
 
 **Input**
 
@@ -424,7 +444,8 @@ CreateAutoMatchByIDTemplate("MatchTID","Match by TID","","false","true","\","S#A
 
 #### CreateAutoMatchByAccountTemplate
 
-<p class="callout info">Saves an Auto Match by Account template to Document Manager. Parameters 1–10 are as for <code>CreateAutoMatchByIDTemplate</code>, including the ICP warning.</p>
+> [!NOTE]
+> Saves an Auto Match by Account template to Document Manager. Parameters 1–10 are as for `CreateAutoMatchByIDTemplate`, including the ICP warning.
 
 **Input**
 
@@ -444,7 +465,8 @@ CreateAutoMatchByAccountTemplate("MatchAcct","Match by account","","false","true
 
 #### CreateReasonCode
 
-<p class="callout info">Creates an intercompany reason code.</p>
+> [!NOTE]
+> Creates an intercompany reason code.
 
 **Input**
 
@@ -461,7 +483,8 @@ CreateReasonCode("TIMING","Timing difference");
 
 #### DeleteReasonCode
 
-<p class="callout info">Deletes an intercompany reason code.</p>
+> [!NOTE]
+> Deletes an intercompany reason code.
 
 **Input**
 
@@ -477,9 +500,11 @@ DeleteReasonCode("TIMING");
 
 #### DeleteAllReasonCodes
 
-<p class="callout info">Deletes every intercompany reason code.</p>
+> [!NOTE]
+> Deletes every intercompany reason code.
 
-<p class="callout danger">Be careful when running this command.</p>
+> [!CAUTION]
+> Be careful when running this command.
 
 **Input**
 
@@ -493,7 +518,8 @@ DeleteAllReasonCodes();
 
 #### ListReasonCodes
 
-<p class="callout info">Writes every reason code to a file (<code>Label;Description</code>).</p>
+> [!NOTE]
+> Writes every reason code to a file (`Label;Description`).
 
 **Input**
 
@@ -511,9 +537,11 @@ ListReasonCodes("C:\Output\reasoncodes.txt");
 
 #### LockICEntity
 
-<p class="callout info">Locks entities for intercompany in a period. Each entity's result is written to the log. The command fails if any entity couldn't be locked.</p>
+> [!NOTE]
+> Locks entities for intercompany in a period. Each entity's result is written to the log. The command fails if any entity couldn't be locked.
 
-<p class="callout warning">A command with the same name on the <a href="04-data-grid.md">Data Grid</a> page does nothing. JHAT keeps only one command per name, and which one it keeps depends on the order the handlers are loaded. Check the log for "Succesfully locked entity" lines to confirm this version ran.</p>
+> [!WARNING]
+> A command with the same name on the [Data Grid](04-data-grid.md) page does nothing. JHAT keeps only one command per name, and which one it keeps depends on the order the handlers are loaded. Check the log for "Succesfully locked entity" lines to confirm this version ran.
 
 **Input**
 
@@ -532,7 +560,8 @@ LockICEntity("Actual","2023","Dec","EntityA,EntityB");
 
 #### UnLockICEntity
 
-<p class="callout info">Unlocks entities for intercompany in a period. The same-name warning for <code>LockICEntity</code> applies.</p>
+> [!NOTE]
+> Unlocks entities for intercompany in a period. The same-name warning for `LockICEntity` applies.
 
 **Input**
 
@@ -551,7 +580,8 @@ UnLockICEntity("Actual","2023","Dec","EntityA,EntityB");
 
 #### ListMonitorIntercompany
 
-<p class="callout info">Writes the Monitor Intercompany list (up to 500 entities) to a file. Columns: <code>Entity;Process Status;Lock Status;UserId;Date/Time</code>.</p>
+> [!NOTE]
+> Writes the Monitor Intercompany list (up to 500 entities) to a file. Columns: `Entity;Process Status;Lock Status;UserId;Date/Time`.
 
 **Input**
 
@@ -570,7 +600,8 @@ ListMonitorIntercompany("Actual","2023","Dec","C:\Output\icmonitor.txt");
 
 #### ListMonitorIntercompanySummary
 
-<p class="callout info">Writes the Monitor Intercompany summary to a file: the number of Not Started and Started entities that are locked, unlocked and in total.</p>
+> [!NOTE]
+> Writes the Monitor Intercompany summary to a file: the number of Not Started and Started entities that are locked, unlocked and in total.
 
 **Input**
 
@@ -589,7 +620,8 @@ ListMonitorIntercompanySummary("Actual","2023","Dec","C:\Output\icsummary.txt");
 
 #### FilterMonitorIntercompany
 
-<p class="callout info">Writes a filtered Monitor Intercompany list (up to 500 entities) to a file, in the same format as <code>ListMonitorIntercompany</code>.</p>
+> [!NOTE]
+> Writes a filtered Monitor Intercompany list (up to 500 entities) to a file, in the same format as `ListMonitorIntercompany`.
 
 **Input**
 

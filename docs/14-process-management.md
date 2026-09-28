@@ -24,9 +24,11 @@ These commands work on the process unit at the POV set by `SetPOV` (Scenario, Ye
 
 #### ProcessFlowGetHistory
 
-<p class="callout info">Writes the cell's process flow history to a UTF-8 file: a <code>Process Flow History:</code> line, then one tab-separated line per entry (time, user, action, new state, comment).</p>
+> [!NOTE]
+> Writes the cell's process flow history to a UTF-8 file: a `Process Flow History:` line, then one tab-separated line per entry (time, user, action, new state, comment).
 
-<p class="callout warning">Because of a bug, the third parameter overwrites the second and user IDs are never suppressed. The command also reports success even if the history can't be written. Check the log for the error.</p>
+> [!WARNING]
+> Because of a bug, the third parameter overwrites the second and user IDs are never suppressed. The command also reports success even if the history can't be written. Check the log for the error.
 
 **Input**
 
@@ -44,9 +46,11 @@ ProcessFlowGetHistory("C:\Output\history.txt");
 
 #### ProcessFlowStart
 
-<p class="callout info">Starts the process unit at the current POV (without descendants), then writes its process flow history to a file (as for <code>ProcessFlowGetHistory</code>).</p>
+> [!NOTE]
+> Starts the process unit at the current POV (without descendants), then writes its process flow history to a file (as for `ProcessFlowGetHistory`).
 
-<p class="callout info">Unlike the other process flow commands, it doesn't write an "End execution" line to the log.</p>
+> [!NOTE]
+> Unlike the other process flow commands, it doesn't write an "End execution" line to the log.
 
 **Input**
 
@@ -66,7 +70,8 @@ ProcessFlowStart("Month-end","false","C:\Output\history.txt");
 
 #### ProcessFlowSubmit
 
-<p class="callout info">Submits the process unit at the current POV (without descendants), then writes its process flow history to a file (as for <code>ProcessFlowGetHistory</code>).</p>
+> [!NOTE]
+> Submits the process unit at the current POV (without descendants), then writes its process flow history to a file (as for `ProcessFlowGetHistory`).
 
 **Input**
 
@@ -86,7 +91,8 @@ ProcessFlowSubmit("Month-end","false","C:\Output\history.txt");
 
 #### ProcessFlowApprove
 
-<p class="callout info">Approves the process unit at the current POV (without descendants), then writes its process flow history to a file (as for <code>ProcessFlowGetHistory</code>).</p>
+> [!NOTE]
+> Approves the process unit at the current POV (without descendants), then writes its process flow history to a file (as for `ProcessFlowGetHistory`).
 
 **Input**
 
@@ -106,7 +112,8 @@ ProcessFlowApprove("Month-end","false","C:\Output\history.txt");
 
 #### ProcessFlowPublish
 
-<p class="callout info">Publishes the process unit at the current POV (without descendants), then writes its process flow history to a file (as for <code>ProcessFlowGetHistory</code>).</p>
+> [!NOTE]
+> Publishes the process unit at the current POV (without descendants), then writes its process flow history to a file (as for `ProcessFlowGetHistory`).
 
 **Input**
 
@@ -126,7 +133,8 @@ ProcessFlowPublish("Month-end","false","C:\Output\history.txt");
 
 #### ProcessFlowSignOff
 
-<p class="callout info">Signs off the process unit at the current POV (without descendants), then writes its process flow history to a file (as for <code>ProcessFlowGetHistory</code>).</p>
+> [!NOTE]
+> Signs off the process unit at the current POV (without descendants), then writes its process flow history to a file (as for `ProcessFlowGetHistory`).
 
 **Input**
 
@@ -146,7 +154,8 @@ ProcessFlowSignOff("Month-end","false","C:\Output\history.txt");
 
 #### ProcessFlowReject
 
-<p class="callout info">Rejects the process unit at the current POV (without descendants), then writes its process flow history to a file (as for <code>ProcessFlowGetHistory</code>).</p>
+> [!NOTE]
+> Rejects the process unit at the current POV (without descendants), then writes its process flow history to a file (as for `ProcessFlowGetHistory`).
 
 **Input**
 
@@ -166,7 +175,8 @@ ProcessFlowReject("Month-end","false","C:\Output\history.txt");
 
 #### ProcessFlowPromote
 
-<p class="callout info">Promotes the process unit at the current POV (without descendants), then writes its process flow history to a file (as for <code>ProcessFlowGetHistory</code>).</p>
+> [!NOTE]
+> Promotes the process unit at the current POV (without descendants), then writes its process flow history to a file (as for `ProcessFlowGetHistory`).
 
 **Input**
 
@@ -187,7 +197,8 @@ ProcessFlowPromote("Month-end","false","C:\Output\history.txt","RL2");
 
 #### ProcessFlowChangeIncludeDescendants
 
-<p class="callout info">Runs a process flow action on the process unit at the current POV <b>and its descendants</b>, for one or more phases. No history file is written.</p>
+> [!NOTE]
+> Runs a process flow action on the process unit at the current POV **and its descendants**, for one or more phases. No history file is written.
 
 **Input**
 
@@ -208,7 +219,8 @@ ProcessFlowChangeIncludeDescendants("Promote","RL2","1,2");
 
 #### GetPhaseSubmissionGrid
 
-<p class="callout info">Writes the phased submission group assignments for a scenario to a UTF-8, semicolon-separated file: a header of <code>Period;Phase1;Phase2;…</code>, then one line per period. It doesn't use the current POV.</p>
+> [!NOTE]
+> Writes the phased submission group assignments for a scenario to a UTF-8, semicolon-separated file: a header of `Period;Phase1;Phase2;…`, then one line per period. It doesn't use the current POV.
 
 **Input**
 
@@ -226,7 +238,8 @@ GetPhaseSubmissionGrid("Actual","All","C:\Output\phases.txt");
 
 #### ViewUnassignedGroups
 
-<p class="callout info">Writes the submission groups not assigned to a phase for a scenario and period to a UTF-8 file. The output is a single line: a header followed by the group names, each ending in <code>;</code>.</p>
+> [!NOTE]
+> Writes the submission groups not assigned to a phase for a scenario and period to a UTF-8 file. The output is a single line: a header followed by the group names, each ending in `;`.
 
 **Input**
 
@@ -244,9 +257,11 @@ ViewUnassignedGroups("Actual","Dec","C:\Output\unassigned.txt");
 
 #### SetSubmissionGroup
 
-<p class="callout info">Sets the submission group value for a period in one phase of a scenario.</p>
+> [!NOTE]
+> Sets the submission group value for a period in one phase of a scenario.
 
-<p class="callout warning">JHAT's parameter-count setting says 3, but the command reads 4. Pass all 4. Because the range check never fails (see <a href="00-automation-with-jhat.md#parameter-checking">parameter checking</a>), 4 are accepted, and 3 make the command crash.</p>
+> [!WARNING]
+> JHAT's parameter-count setting says 3, but the command reads 4. Pass all 4. Because the range check never fails (see [parameter checking](00-automation-with-jhat.md#parameter-checking)), 4 are accepted, and 3 make the command crash.
 
 **Input**
 

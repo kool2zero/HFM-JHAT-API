@@ -20,7 +20,8 @@ The load commands need an open application.
 - **Log copy failures:** if the log can't be copied, JHAT only notes it in its own log. The command doesn't fail.
 - **true/false parameters:** count only when exactly `true` (any case).
 
-<p class="callout warning">Most load commands report <b>Successful</b> even when HFM reports that the load failed. JHAT writes "Load … failed" to its log but then marks the command successful anyway. Check the load log, or the "failed" line in JHAT's log, rather than the command's status. The exceptions are <code>LoadData</code>, <code>StartLoadData</code>, <code>LoadPhaseInfo</code> and <code>LoadICTransactions</code>, which wait for the task and report failure correctly.</p>
+> [!WARNING]
+> Most load commands report **Successful** even when HFM reports that the load failed. JHAT writes "Load … failed" to its log but then marks the command successful anyway. Check the load log, or the "failed" line in JHAT's log, rather than the command's status. The exceptions are `LoadData`, `StartLoadData`, `LoadPhaseInfo` and `LoadICTransactions`, which wait for the task and report failure correctly.
 
 ## Commands
 
@@ -30,9 +31,11 @@ The load commands need an open application.
 
 ### LoadSecurity
 
-<p class="callout info">Loads a security file, including all parts (users, security classes, role access and security class access).</p>
+> [!NOTE]
+> Loads a security file, including all parts (users, security classes, role access and security class access).
 
-<p class="callout warning">JHAT's usage text lists 9 parameters, but this command only accepts exactly 5. To choose which parts to load, use <code>LoadSecurityExpanded</code>.</p>
+> [!WARNING]
+> JHAT's usage text lists 9 parameters, but this command only accepts exactly 5. To choose which parts to load, use `LoadSecurityExpanded`.
 
 **Input**
 
@@ -52,7 +55,8 @@ LoadSecurity("C:\Hfm\Security.sec","C:\Hfm\SecurityLoad.log",";","false","true")
 
 ### LoadSecurityExpanded
 
-<p class="callout info">Loads a security file, choosing which parts to load.</p>
+> [!NOTE]
+> Loads a security file, choosing which parts to load.
 
 **Input**
 
@@ -78,7 +82,8 @@ LoadSecurityExpanded("C:\Hfm\Security.sec","C:\Hfm\SecurityLoad.log",";","false"
 
 ### LoadMetaData
 
-<p class="callout info">Loads a metadata file. The format comes from the file extension: <code>.xml</code> loads XML, and anything else loads the native (<code>.app</code>) format.</p>
+> [!NOTE]
+> Loads a metadata file. The format comes from the file extension: `.xml` loads XML, and anything else loads the native (`.app`) format.
 
 **Input**
 
@@ -119,7 +124,8 @@ LoadMetaData("C:\Hfm\Metadata.app","C:\Hfm\MetadataLoad.log",";","Merge","true",
 
 ### LoadMetaDataExtDim
 
-<p class="callout info">Loads a metadata file, with dimensions chosen in a single string. The format comes from the file extension, as for <code>LoadMetaData</code>.</p>
+> [!NOTE]
+> Loads a metadata file, with dimensions chosen in a single string. The format comes from the file extension, as for `LoadMetaData`.
 
 **Input**
 
@@ -144,7 +150,8 @@ In the Dimensions string:
 - `I` and `V` can only be turned on.
 - Custom dimensions are named by their short name, written in upper case. `C1`-style aliases aren't recognized here.
 
-<p class="callout warning">If you name any custom dimension, name all of them. JHAT builds the custom dimension list only from the ones you name, so leaving some out can shift the settings onto the wrong dimensions.</p>
+> [!WARNING]
+> If you name any custom dimension, name all of them. JHAT builds the custom dimension list only from the ones you name, so leaving some out can shift the settings onto the wrong dimensions.
 
 **Example**
 
@@ -154,7 +161,8 @@ LoadMetaDataExtDim("C:\Hfm\Metadata.app","C:\Hfm\MetadataLoad.log",";","Merge","
 
 ### LoadICTransactions
 
-<p class="callout info">Loads (or scans) an intercompany transactions file and waits for the task to finish.</p>
+> [!NOTE]
+> Loads (or scans) an intercompany transactions file and waits for the task to finish.
 
 **Input**
 
@@ -176,7 +184,8 @@ LoadICTransactions("C:\HFM\ICTrans.trn","C:\HFM\ICTrans.log","Load","Merge",";")
 
 ### LoadDocument
 
-<p class="callout info">Loads a local file into Document Manager, or creates a Document Manager folder when File Type is <code>Folder</code>. The command needs all 9 parameters, though JHAT doesn't check the count.</p>
+> [!NOTE]
+> Loads a local file into Document Manager, or creates a Document Manager folder when File Type is `Folder`. The command needs all 9 parameters, though JHAT doesn't check the count.
 
 **Input: loading a document**
 
@@ -215,7 +224,8 @@ LoadDocument("Forms","Data forms","WebForm","[Default]","false","","Folder","fal
 
 ### LoadRules
 
-<p class="callout info">Loads (or scans) a rules file.</p>
+> [!NOTE]
+> Loads (or scans) a rules file.
 
 **Input**
 
@@ -233,7 +243,8 @@ LoadRules("C:\Hfm\Rules.rle","C:\Hfm\RulesLoad.log");
 
 ### LoadMemberLists
 
-<p class="callout info">Loads (or scans) a member lists file.</p>
+> [!NOTE]
+> Loads (or scans) a member lists file.
 
 **Input**
 
@@ -251,9 +262,11 @@ LoadMemberLists("C:\Hfm\MemberLists.lst","C:\Hfm\MemberListsLoad.log");
 
 ### LoadData
 
-<p class="callout info">Loads a native-format data file and waits for the task to finish (see <a href="00-automation-with-jhat.md#long-running-tasks">long-running tasks</a>). The command fails if the task doesn't complete.</p>
+> [!NOTE]
+> Loads a native-format data file and waits for the task to finish (see [long-running tasks](00-automation-with-jhat.md#long-running-tasks)). The command fails if the task doesn't complete.
 
-<p class="callout warning">An unrecognized Mode is only logged as invalid usage. The load still runs with HFM's default handling of duplicates.</p>
+> [!WARNING]
+> An unrecognized Mode is only logged as invalid usage. The load still runs with HFM's default handling of duplicates.
 
 **Input**
 
@@ -276,7 +289,8 @@ LoadData("Merge","C:\Hfm\Data.dat","C:\Hfm\DataLoad.log","false","false",";");
 
 ### StartLoadData
 
-<p class="callout info">Identical to <code>LoadData</code>, including waiting for the load to finish.</p>
+> [!NOTE]
+> Identical to `LoadData`, including waiting for the load to finish.
 
 **Input**
 
@@ -290,7 +304,8 @@ StartLoadData("Merge","C:\Hfm\Data.dat","C:\Hfm\DataLoad.log","false","false",";
 
 ### LoadPhaseInfo
 
-<p class="callout info">Loads a phase submission data file and waits for the task to finish.</p>
+> [!NOTE]
+> Loads a phase submission data file and waits for the task to finish.
 
 **Input**
 
@@ -309,7 +324,8 @@ LoadPhaseInfo("Merge","C:\Hfm\Phases.dat","C:\Hfm\PhaseLoad.log",";");
 
 ### LoadJournal
 
-<p class="callout info">Loads a journals file.</p>
+> [!NOTE]
+> Loads a journals file.
 
 **Input**
 
@@ -327,7 +343,8 @@ LoadJournal("C:\Hfm\Journals.jlf","C:\Hfm\JournalLoad.log",";");
 
 ### LoadModuleConfiguration
 
-<p class="callout info">Loads a module configuration file. JHAT doesn't check the result, so it always reports success unless the call itself errors. Check the log.</p>
+> [!NOTE]
+> Loads a module configuration file. JHAT doesn't check the result, so it always reports success unless the call itself errors. Check the log.
 
 **Input**
 

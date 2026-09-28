@@ -17,11 +17,14 @@ Commands for logging on, opening and closing applications, setting the point of 
 
 ### SetPOV / SetPOVName
 
-<p class="callout info">Sets the point of view (POV) for the commands that follow. A POV is one member from each dimension, identifying a single cell (or, for process management, a process unit). Commands that act on data, such as <code>SetCell</code>, <code>Consolidate</code>, <code>Lock</code>, <code>CalcEPU</code> and the process flow commands, use it. It stays in effect until the next <code>SetPOV</code>.</p>
+> [!NOTE]
+> Sets the point of view (POV) for the commands that follow. A POV is one member from each dimension, identifying a single cell (or, for process management, a process unit). Commands that act on data, such as `SetCell`, `Consolidate`, `Lock`, `CalcEPU` and the process flow commands, use it. It stays in effect until the next `SetPOV`.
 
-<p class="callout warning">Use this command only for applications with exactly 4 custom dimensions: it fails with fewer, and ignores any beyond the fourth. For any other number, use <code>SetPOVExtDim</code>.</p>
+> [!WARNING]
+> Use this command only for applications with exactly 4 custom dimensions: it fails with fewer, and ignores any beyond the fourth. For any other number, use `SetPOVExtDim`.
 
-<p class="callout info"><code>SetPOV</code> and <code>SetPOVName</code> are identical. All 12 parameters are required. Custom 1–4 map to the application's first four custom dimensions, in order. On success, the selected member for each dimension is written to the log.</p>
+> [!NOTE]
+> `SetPOV` and `SetPOVName` are identical. All 12 parameters are required. Custom 1–4 map to the application's first four custom dimensions, in order. On success, the selected member for each dimension is written to the log.
 
 **Input**
 
@@ -48,7 +51,8 @@ SetPOV("ACTatACIFRS","2023","DEC","YTD","TGROUP","<Entity Currency>","TOTNI","[I
 
 ### SetPOVExtDim
 
-<p class="callout info">Sets the point of view (POV) for the commands that follow, like <code>SetPOV</code>, but takes the POV as a single string. This works for applications with any number of custom dimensions. Include every dimension that the following commands need.</p>
+> [!NOTE]
+> Sets the point of view (POV) for the commands that follow, like `SetPOV`, but takes the POV as a single string. This works for applications with any number of custom dimensions. Include every dimension that the following commands need.
 
 **Input**
 
@@ -65,7 +69,8 @@ SetPOVExtDim("S#ACTatACIFRS.Y#2023.P#DEC.W#YTD.E#TGROUP.V#<Entity Currency>.A#TO
 
 ### Logon
 
-<p class="callout info">Authenticates the user against Shared Services and keeps the SSO token for the rest of the script. Only the user name and password are used. The first two parameters must be present but are ignored.</p>
+> [!NOTE]
+> Authenticates the user against Shared Services and keeps the SSO token for the rest of the script. Only the user name and password are used. The first two parameters must be present but are ignored.
 
 **Input**
 
@@ -84,7 +89,8 @@ Logon("false", "", "user", "password");
 
 ### Logout
 
-<p class="callout info">Discards the SSO token and stored credentials from <code>Logon</code>. It does not call the server.</p>
+> [!NOTE]
+> Discards the SSO token and stored credentials from `Logon`. It does not call the server.
 
 **Input**
 
@@ -98,11 +104,14 @@ Logout();
 
 ### DeleteApplication
 
-<p class="callout info">Permanently deletes an application, including all its data, from a cluster or server.</p>
+> [!NOTE]
+> Permanently deletes an application, including all its data, from a cluster or server.
 
-<p class="callout danger">Be careful when running this command.</p>
+> [!CAUTION]
+> Be careful when running this command.
 
-<p class="callout warning">This command always reports success. If the delete fails (for example, the application doesn't exist), it only logs "Not able to delete application. Application might not exist".</p>
+> [!WARNING]
+> This command always reports success. If the delete fails (for example, the application doesn't exist), it only logs "Not able to delete application. Application might not exist".
 
 **Input**
 
@@ -119,9 +128,11 @@ DeleteApplication("Server","Application");
 
 ### CreateApplicationExtDim / CreateApplicationCAS
 
-<p class="callout info">Creates an Application on the Server. <code>CreateApplicationExtDim</code> and <code>CreateApplicationCAS</code> are identical and take 7 or 8 parameters.</p>
+> [!NOTE]
+> Creates an Application on the Server. `CreateApplicationExtDim` and `CreateApplicationCAS` are identical and take 7 or 8 parameters.
 
-<p class="callout danger">Be careful when running this command.</p>
+> [!CAUTION]
+> Be careful when running this command.
 
 **Input**
 
@@ -145,7 +156,8 @@ CreateApplicationCAS("Server","TaxApp","Tax Provision","ProfilePath","StorageFol
 
 ### OpenApplication
 
-<p class="callout info">Opens a session on the specified application (locale <code>en</code>) using the SSO token from <code>Logon</code>, and loads the application's dimensions for <code>SetPOV</code>. Most other commands need an open application.</p>
+> [!NOTE]
+> Opens a session on the specified application (locale `en`) using the SSO token from `Logon`, and loads the application's dimensions for `SetPOV`. Most other commands need an open application.
 
 **Input**
 
@@ -162,7 +174,8 @@ OpenApplication("Cluster","Application");
 
 ### CloseApplication
 
-<p class="callout info">Closes the session opened by <code>OpenApplication</code>, removes any data grid the script created, and clears the cached dimensions. If no application is open, the command is ignored. It always reports success.</p>
+> [!NOTE]
+> Closes the session opened by `OpenApplication`, removes any data grid the script created, and clears the cached dimensions. If no application is open, the command is ignored. It always reports success.
 
 **Input**
 
@@ -176,11 +189,14 @@ CloseApplication();
 
 ### shutdownApplication
 
-<p class="callout info">Shuts down the currently open application (the one from <code>OpenApplication</code>) on all the Jhsxserver instances across all the clusters and servers. If no application is open, nothing happens.</p>
+> [!NOTE]
+> Shuts down the currently open application (the one from `OpenApplication`) on all the Jhsxserver instances across all the clusters and servers. If no application is open, nothing happens.
 
-<p class="callout danger">Be careful when running this command.</p>
+> [!CAUTION]
+> Be careful when running this command.
 
-<p class="callout warning">Although JHAT's built-in usage text shows <code>(&lt;Application name&gt;)</code>, the command takes no parameters. Passing one fails with "Incorrect number of parameters."</p>
+> [!WARNING]
+> Although JHAT's built-in usage text shows `(<Application name>)`, the command takes no parameters. Passing one fails with "Incorrect number of parameters."
 
 **Input**
 
@@ -195,9 +211,11 @@ shutdownApplication();
 
 ### DeleteAllApplications
 
-<p class="callout info">Deletes every application on the given cluster or server, logging each one as it is deleted. Stops at the first failure.</p>
+> [!NOTE]
+> Deletes every application on the given cluster or server, logging each one as it is deleted. Stops at the first failure.
 
-<p class="callout danger">Be careful when running this command.</p>
+> [!CAUTION]
+> Be careful when running this command.
 
 **Input**
 
@@ -213,9 +231,11 @@ DeleteAllApplications("Server");
 
 ### CopyApplication
 
-<p class="callout info">Copies one application to a new application. The copy flags are <code>true</code> only when the value is <code>true</code> (any case). Any other value counts as <code>false</code>.</p>
+> [!NOTE]
+> Copies one application to a new application. The copy flags are `true` only when the value is `true` (any case). Any other value counts as `false`.
 
-<p class="callout danger">Be careful when running this command.</p>
+> [!CAUTION]
+> Be careful when running this command.
 
 **Input**
 
@@ -237,9 +257,11 @@ CopyApplication("PRODAPP", "TESTAPP", "Copy of PRODAPP", "Cluster", "Project Nam
 
 ### SetPreferences
 
-<p class="callout info">Sets the logged-on user's preferences for an application. It needs <code>Logon</code> but not <code>OpenApplication</code>.</p>
+> [!NOTE]
+> Sets the logged-on user's preferences for an application. It needs `Logon` but not `OpenApplication`.
 
-<p class="callout danger">Be careful when running this command.</p>
+> [!CAUTION]
+> Be careful when running this command.
 
 **Input**
 
@@ -261,7 +283,8 @@ SetPreferences("Application", "Cluster", "English", ".", ",", "true", "false");
 
 ### GetPreferences
 
-<p class="callout info">Gets the logged-on user's preferences for an application and writes them to an output file, one <code>PREFERENCE=value</code> per line. The file is overwritten if it exists.</p>
+> [!NOTE]
+> Gets the logged-on user's preferences for an application and writes them to an output file, one `PREFERENCE=value` per line. The file is overwritten if it exists.
 
 **Input**
 
@@ -279,13 +302,17 @@ GetPreferences("Application Name", "Cluster","Output File Path");
 
 ### ModifyApplication
 
-<p class="callout info">Changes an existing application's number of years and which modules are enabled, like the <a href="https://docs.oracle.com/cd/E57185_01/OHFMA/help_modifyapp.htm#OHFMA-applications_508">Modify Application</a> page in HFM. The application doesn't need to be open.</p>
+> [!NOTE]
+> Changes an existing application's number of years and which modules are enabled, like the [Modify Application](https://docs.oracle.com/cd/E57185_01/OHFMA/help_modifyapp.htm#OHFMA-applications_508) page in HFM. The application doesn't need to be open.
 
-<p class="callout danger">Be careful when running this command.</p>
+> [!CAUTION]
+> Be careful when running this command.
 
-<p class="callout info">The application is put in admin mode while changes are made and taken out of it afterwards, including when the change fails.</p>
+> [!NOTE]
+> The application is put in admin mode while changes are made and taken out of it afterwards, including when the change fails.
 
-<p class="callout warning">The module flags only disable modules. Each <code>false</code> flag disables that module. A <code>true</code> flag leaves the module's current setting alone, and if every flag is <code>true</code> no module change is sent at all. So this command can't re-enable a module that is already disabled.</p>
+> [!WARNING]
+> The module flags only disable modules. Each `false` flag disables that module. A `true` flag leaves the module's current setting alone, and if every flag is `true` no module change is sent at all. So this command can't re-enable a module that is already disabled.
 
 **Input**
 

@@ -14,11 +14,14 @@ Commands for running data forms (web forms stored in Document Manager) and On De
 
 ### GetForm
 
-<p class="callout info">Runs a data form stored in Document Manager and saves the result to an output file as an HTML table. Each data cell is written as <code>value(cell status)</code> (see <a href="04-data-grid.md#status-text">Status text</a>).</p>
+> [!NOTE]
+> Runs a data form stored in Document Manager and saves the result to an output file as an HTML table. Each data cell is written as `value(cell status)` (see [Status text](04-data-grid.md#status-text)).
 
-<p class="callout warning">When "Use script POV" is <code>true</code>, the form definition is saved back to Document Manager with the <code>SetPOV</code> POV as its background POV. This permanently changes the stored form.</p>
+> [!WARNING]
+> When "Use script POV" is `true`, the form definition is saved back to Document Manager with the `SetPOV` POV as its background POV. This permanently changes the stored form.
 
-<p class="callout warning">JHAT's built-in usage text lists 12 parameters, but the command reads at most 10. It has no parameters for row or column header repeats; column header repeats are always turned off.</p>
+> [!WARNING]
+> JHAT's built-in usage text lists 12 parameters, but the command reads at most 10. It has no parameters for row or column header repeats; column header repeats are always turned off.
 
 **Input**
 
@@ -46,7 +49,8 @@ GetForm("\Forms\Actuals", "IncomeStatement", "C:\Output\IncomeStatement.html", "
 
 ### ExecuteOnDemandRule
 
-<p class="callout info">Runs an On Demand Rule against the POV set by <code>SetPOV</code>. The rule must already be loaded in the application's rules file. If the server returns an error message, the command fails with that message.</p>
+> [!NOTE]
+> Runs an On Demand Rule against the POV set by `SetPOV`. The rule must already be loaded in the application's rules file. If the server returns an error message, the command fails with that message.
 
 **Input**
 

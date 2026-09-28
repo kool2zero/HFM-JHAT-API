@@ -14,7 +14,8 @@ Commands for turning application modules, such as journals, intercompany transac
 
 ### DisableEnableModule
 
-<p class="callout info">Enables or disables one module of the open application. HFM stores the list of disabled modules: <code>Disable</code> adds the module to it and <code>Enable</code> removes it. If the module is already in the requested state, or the second parameter is neither value, nothing changes and the command still reports success.</p>
+> [!NOTE]
+> Enables or disables one module of the open application. HFM stores the list of disabled modules: `Disable` adds the module to it and `Enable` removes it. If the module is already in the requested state, or the second parameter is neither value, nothing changes and the command still reports success.
 
 **Input**
 
