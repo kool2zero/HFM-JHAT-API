@@ -2,15 +2,19 @@
 
 [← Back to index](../README.md)
 
-#### Overview
+## Overview
 
 These JHAT Commands are related to Journal Report actions
 
-#### Commands
+## Commands
 
 These commands need an open application.
 
-<details id="bkmrk-GetAutoJournalReportWithFilter-"><summary>GetAutoJournalReportWithFilter</summary>
+**Commands on this page:**
+
+[GetAutoJournalReportWithFilter](#getautojournalreportwithfilter), [GetAutoJournalReport](#getautojournalreport), [GenerateReport](#generatereport)
+
+### GetAutoJournalReportWithFilter
 
 <p class="callout info">Same as <code>GetAutoJournalReport</code>, but first sets the session's journal filter to the given entity and group filters (the new filters are written to the log). The filter is cleared again afterwards.</p>
 
@@ -29,7 +33,7 @@ These commands need an open application.
 GetAutoJournalReportWithFilter("S#Actual.Y#2023.P#Dec.V#<Entity Curr Adjs>","C:\Output\journals.txt","Entity1","");
 ```
 
-</details><details id="bkmrk-GetAutoJournalReport-"><summary>GetAutoJournalReport</summary>
+### GetAutoJournalReport
 
 <p class="callout info">Writes every journal for a scenario, year, period and value (using the session's current journal filter) to a UTF-8 file.</p>
 
@@ -54,7 +58,7 @@ Unit entries have `null` in the debit and credit columns.
 GetAutoJournalReport("S#Actual.Y#2023.P#Dec.V#<Entity Curr Adjs>","C:\Output\journals.txt");
 ```
 
-</details><details id="bkmrk-GenerateReport-"><summary>GenerateReport</summary>
+### GenerateReport
 
 <p class="callout info">Runs a report definition stored in Document Manager, waits for it to finish, and copies the result to a local file. The command fails if the report task doesn't complete.</p>
 
@@ -76,5 +80,3 @@ GetAutoJournalReport("S#Actual.Y#2023.P#Dec.V#<Entity Curr Adjs>","C:\Output\jou
 ```dart
 GenerateReport("\","JournalDetail","journal","PDF_FORMAT","C:\Output\journals.pdf","");
 ```
-
-</details>

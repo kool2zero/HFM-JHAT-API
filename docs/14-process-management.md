@@ -2,17 +2,22 @@
 
 [← Back to index](../README.md)
 
-#### Overview
+## Overview
 
 These JHAT Commands are related to Process Management actions
 
-#### Commands
+## Commands
 
 These commands work on the process unit at the POV set by `SetPOV` (Scenario, Year, Period, Entity and Value) and need an open application. A command that needs a POV fails if none has been set.
 
-##### Process flow actions
+**Commands on this page:**
 
-<details id="bkmrk-ProcessFlowGetHistory-"><summary>ProcessFlowGetHistory</summary>
+- **Process flow actions:** [ProcessFlowGetHistory](#processflowgethistory), [ProcessFlowStart](#processflowstart), [ProcessFlowSubmit](#processflowsubmit), [ProcessFlowApprove](#processflowapprove), [ProcessFlowPublish](#processflowpublish), [ProcessFlowSignOff](#processflowsignoff), [ProcessFlowReject](#processflowreject), [ProcessFlowPromote](#processflowpromote), [ProcessFlowChangeIncludeDescendants](#processflowchangeincludedescendants)
+- **Phased submission:** [GetPhaseSubmissionGrid](#getphasesubmissiongrid), [ViewUnassignedGroups](#viewunassignedgroups), [SetSubmissionGroup](#setsubmissiongroup)
+
+### Process flow actions
+
+#### ProcessFlowGetHistory
 
 <p class="callout info">Writes the cell's process flow history to a UTF-8 file: a <code>Process Flow History:</code> line, then one tab-separated line per entry (time, user, action, new state, comment).</p>
 
@@ -32,7 +37,7 @@ These commands work on the process unit at the POV set by `SetPOV` (Scenario, Ye
 ProcessFlowGetHistory("C:\Output\history.txt");
 ```
 
-</details><details id="bkmrk-ProcessFlowStart-"><summary>ProcessFlowStart</summary>
+#### ProcessFlowStart
 
 <p class="callout info">Starts the process unit at the current POV (without descendants), then writes its process flow history to a file (as for <code>ProcessFlowGetHistory</code>).</p>
 
@@ -54,7 +59,7 @@ ProcessFlowGetHistory("C:\Output\history.txt");
 ProcessFlowStart("Month-end","false","C:\Output\history.txt");
 ```
 
-</details><details id="bkmrk-ProcessFlowSubmit-"><summary>ProcessFlowSubmit</summary>
+#### ProcessFlowSubmit
 
 <p class="callout info">Submits the process unit at the current POV (without descendants), then writes its process flow history to a file (as for <code>ProcessFlowGetHistory</code>).</p>
 
@@ -74,7 +79,7 @@ ProcessFlowStart("Month-end","false","C:\Output\history.txt");
 ProcessFlowSubmit("Month-end","false","C:\Output\history.txt");
 ```
 
-</details><details id="bkmrk-ProcessFlowApprove-"><summary>ProcessFlowApprove</summary>
+#### ProcessFlowApprove
 
 <p class="callout info">Approves the process unit at the current POV (without descendants), then writes its process flow history to a file (as for <code>ProcessFlowGetHistory</code>).</p>
 
@@ -94,7 +99,7 @@ ProcessFlowSubmit("Month-end","false","C:\Output\history.txt");
 ProcessFlowApprove("Month-end","false","C:\Output\history.txt");
 ```
 
-</details><details id="bkmrk-ProcessFlowPublish-"><summary>ProcessFlowPublish</summary>
+#### ProcessFlowPublish
 
 <p class="callout info">Publishes the process unit at the current POV (without descendants), then writes its process flow history to a file (as for <code>ProcessFlowGetHistory</code>).</p>
 
@@ -114,7 +119,7 @@ ProcessFlowApprove("Month-end","false","C:\Output\history.txt");
 ProcessFlowPublish("Month-end","false","C:\Output\history.txt");
 ```
 
-</details><details id="bkmrk-ProcessFlowSignOff-"><summary>ProcessFlowSignOff</summary>
+#### ProcessFlowSignOff
 
 <p class="callout info">Signs off the process unit at the current POV (without descendants), then writes its process flow history to a file (as for <code>ProcessFlowGetHistory</code>).</p>
 
@@ -134,7 +139,7 @@ ProcessFlowPublish("Month-end","false","C:\Output\history.txt");
 ProcessFlowSignOff("Month-end","false","C:\Output\history.txt");
 ```
 
-</details><details id="bkmrk-ProcessFlowReject-"><summary>ProcessFlowReject</summary>
+#### ProcessFlowReject
 
 <p class="callout info">Rejects the process unit at the current POV (without descendants), then writes its process flow history to a file (as for <code>ProcessFlowGetHistory</code>).</p>
 
@@ -154,7 +159,7 @@ ProcessFlowSignOff("Month-end","false","C:\Output\history.txt");
 ProcessFlowReject("Month-end","false","C:\Output\history.txt");
 ```
 
-</details><details id="bkmrk-ProcessFlowPromote-"><summary>ProcessFlowPromote</summary>
+#### ProcessFlowPromote
 
 <p class="callout info">Promotes the process unit at the current POV (without descendants), then writes its process flow history to a file (as for <code>ProcessFlowGetHistory</code>).</p>
 
@@ -175,7 +180,7 @@ ProcessFlowReject("Month-end","false","C:\Output\history.txt");
 ProcessFlowPromote("Month-end","false","C:\Output\history.txt","RL2");
 ```
 
-</details><details id="bkmrk-ProcessFlowChangeIncludeDescendants-"><summary>ProcessFlowChangeIncludeDescendants</summary>
+#### ProcessFlowChangeIncludeDescendants
 
 <p class="callout info">Runs a process flow action on the process unit at the current POV <b>and its descendants</b>, for one or more phases. No history file is written.</p>
 
@@ -194,11 +199,9 @@ ProcessFlowChangeIncludeDescendants("Start","NA","1");
 ProcessFlowChangeIncludeDescendants("Promote","RL2","1,2");
 ```
 
-</details>
+### Phased submission
 
-##### Phased submission
-
-<details id="bkmrk-GetPhaseSubmissionGrid-"><summary>GetPhaseSubmissionGrid</summary>
+#### GetPhaseSubmissionGrid
 
 <p class="callout info">Writes the phased submission group assignments for a scenario to a UTF-8, semicolon-separated file: a header of <code>Period;Phase1;Phase2;…</code>, then one line per period. It doesn't use the current POV.</p>
 
@@ -216,7 +219,7 @@ ProcessFlowChangeIncludeDescendants("Promote","RL2","1,2");
 GetPhaseSubmissionGrid("Actual","All","C:\Output\phases.txt");
 ```
 
-</details><details id="bkmrk-ViewUnassignedGroups-"><summary>ViewUnassignedGroups</summary>
+#### ViewUnassignedGroups
 
 <p class="callout info">Writes the submission groups not assigned to a phase for a scenario and period to a UTF-8 file. The output is a single line: a header followed by the group names, each ending in <code>;</code>.</p>
 
@@ -234,7 +237,7 @@ GetPhaseSubmissionGrid("Actual","All","C:\Output\phases.txt");
 ViewUnassignedGroups("Actual","Dec","C:\Output\unassigned.txt");
 ```
 
-</details><details id="bkmrk-SetSubmissionGroup-"><summary>SetSubmissionGroup</summary>
+#### SetSubmissionGroup
 
 <p class="callout info">Sets the submission group value for a period in one phase of a scenario.</p>
 
@@ -254,5 +257,3 @@ ViewUnassignedGroups("Actual","Dec","C:\Output\unassigned.txt");
 ```dart
 SetSubmissionGroup("Actual","Dec","1","GroupA");
 ```
-
-</details>

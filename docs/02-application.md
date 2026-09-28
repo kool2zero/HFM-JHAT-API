@@ -2,13 +2,17 @@
 
 [← Back to index](../README.md)
 
-#### Overview
+## Overview
 
 These JHAT Commands will handle the application.
 
-#### Commands
+## Commands
 
-<details id="bkmrk-setpov-sets-the-poin"><summary>SetPOV / SetPOVName</summary>
+**Commands on this page:**
+
+[SetPOV / SetPOVName](#setpov--setpovname), [SetPOVExtDim](#setpovextdim), [Logon](#logon), [Logout](#logout), [DeleteApplication](#deleteapplication), [CreateApplicationExtDim / CreateApplicationCAS](#createapplicationextdim--createapplicationcas), [OpenApplication](#openapplication), [CloseApplication](#closeapplication), [shutdownApplication](#shutdownapplication), [DeleteAllApplications](#deleteallapplications), [CopyApplication](#copyapplication), [SetPreferences](#setpreferences), [GetPreferences](#getpreferences), [ModifyApplication](#modifyapplication)
+
+### SetPOV / SetPOVName
 
 <p class="callout info">Sets the Point of View (POV) for the commands to follow.</p>
 
@@ -37,7 +41,7 @@ These JHAT Commands will handle the application.
 SetPOV("ACTatACIFRS","2023","DEC","YTD","TGROUP","<Entity Currency>","TOTNI","[ICP Top]","TOTC1","TOTC2","TOTC3","TOTC4");
 ```
 
-</details><details id="bkmrk-setpovextdim-sets-th"><summary>SetPOVExtDim</summary>
+### SetPOVExtDim
 
 <p class="callout info">Sets the Point of View (POV) for the commands to follow.</p>
 
@@ -54,7 +58,7 @@ SetPOV("ACTatACIFRS","2023","DEC","YTD","TGROUP","<Entity Currency>","TOTNI","[I
 SetPOVExtDim("S#ACTatACIFRS.Y#2023.P#DEC.W#YTD.E#TGROUP.V#<Entity Currency>.A#TOTNI.I#[ICP Top].C1#TOTC1.C2#TOTC2.C3#TOTC3.C4#TOTC4","SHOWNAMES");
 ```
 
-</details><details id="bkmrk-logon-logs-into-hfm-"><summary>Logon</summary>
+### Logon
 
 <p class="callout info">Authenticates the user against Shared Services and keeps the SSO token for the rest of the script. Only the user name and password are used. The first two parameters must be present but are ignored.</p>
 
@@ -73,7 +77,7 @@ SetPOVExtDim("S#ACTatACIFRS.Y#2023.P#DEC.W#YTD.E#TGROUP.V#<Entity Currency>.A#TO
 Logon("false", "", "user", "password");
 ```
 
-</details><details id="bkmrk-logout-logs-out-of-h"><summary>Logout</summary>
+### Logout
 
 <p class="callout info">Discards the SSO token and stored credentials from <code>Logon</code>. It does not call the server.</p>
 
@@ -87,7 +91,7 @@ None
 Logout();
 ```
 
-</details><details id="bkmrk-deleteapplication-de"><summary>DeleteApplication</summary>
+### DeleteApplication
 
 <p class="callout info">Deletes the Application from the Server</p>
 
@@ -108,7 +112,7 @@ Logout();
 DeleteApplication("Server","Application");
 ```
 
-</details><details id="bkmrk-createapplicationext"><summary>CreateApplicationExtDim / CreateApplicationCAS</summary>
+### CreateApplicationExtDim / CreateApplicationCAS
 
 <p class="callout info">Creates an Application on the Server. <code>CreateApplicationExtDim</code> and <code>CreateApplicationCAS</code> are identical and take 7 or 8 parameters.</p>
 
@@ -134,7 +138,7 @@ CreateApplicationExtDim("Server","Application","ApplicationDescription","Profile
 CreateApplicationCAS("Server","TaxApp","Tax Provision","ProfilePath","StorageFolder","ProjectName","http://myServer:80/HFM","TAX");
 ```
 
-</details><details id="bkmrk-openapplication-open"><summary>OpenApplication</summary>
+### OpenApplication
 
 <p class="callout info">Opens a session on the specified application (locale <code>en</code>) using the SSO token from <code>Logon</code>, and loads the application's dimensions for <code>SetPOV</code>. Most other commands need an open application.</p>
 
@@ -151,7 +155,7 @@ CreateApplicationCAS("Server","TaxApp","Tax Provision","ProfilePath","StorageFol
 OpenApplication("Cluster","Application");
 ```
 
-</details><details id="bkmrk-closeapplication-clo"><summary>CloseApplication</summary>
+### CloseApplication
 
 <p class="callout info">Closes the session opened by <code>OpenApplication</code>, removes any data grid the script created, and clears the cached dimensions. If no application is open, the command is ignored. It always reports success.</p>
 
@@ -165,7 +169,7 @@ None
 CloseApplication();
 ```
 
-</details><details id="bkmrk-shutdownapplication-"><summary>shutdownApplication</summary>
+### shutdownApplication
 
 <p class="callout info">Shuts down the currently open application (the one from <code>OpenApplication</code>) on all the Jhsxserver instances across all the clusters and servers. If no application is open, nothing happens.</p>
 
@@ -184,7 +188,7 @@ OpenApplication("Cluster","Application");
 shutdownApplication();
 ```
 
-</details><details id="bkmrk-deleteallapplication"><summary>DeleteAllApplications</summary>
+### DeleteAllApplications
 
 <p class="callout info">Deletes every application on the given cluster or server, logging each one as it is deleted. Stops at the first failure.</p>
 
@@ -202,7 +206,7 @@ shutdownApplication();
 DeleteAllApplications("Server");
 ```
 
-</details><details id="bkmrk-copyapplication-copi"><summary>CopyApplication</summary>
+### CopyApplication
 
 <p class="callout info">Copies one application to a new application. The copy flags are <code>true</code> only when the value is <code>true</code> (any case). Any other value counts as <code>false</code>.</p>
 
@@ -226,7 +230,7 @@ DeleteAllApplications("Server");
 CopyApplication("PRODAPP", "TESTAPP", "Copy of PRODAPP", "Cluster", "Project Name", "false", "true");
 ```
 
-</details><details id="bkmrk-setpreferences-sets-"><summary>SetPreferences</summary>
+### SetPreferences
 
 <p class="callout info">Sets the logged-on user's preferences for an application. It needs <code>Logon</code> but not <code>OpenApplication</code>.</p>
 
@@ -250,7 +254,7 @@ CopyApplication("PRODAPP", "TESTAPP", "Copy of PRODAPP", "Cluster", "Project Nam
 SetPreferences("Application", "Cluster", "English", ".", ",", "true", "false");
 ```
 
-</details><details id="bkmrk-getpreferences-gets-"><summary>GetPreferences</summary>
+### GetPreferences
 
 <p class="callout info">Gets the logged-on user's preferences for an application and writes them to an output file, one <code>PREFERENCE=value</code> per line. The file is overwritten if it exists.</p>
 
@@ -268,7 +272,7 @@ SetPreferences("Application", "Cluster", "English", ".", ",", "true", "false");
 GetPreferences("Application Name", "Cluster","Output File Path");
 ```
 
-</details><details id="bkmrk-modifyapplication-mo"><summary>ModifyApplication</summary>
+### ModifyApplication
 
 <p class="callout info"><a href="https://docs.oracle.com/cd/E57185_01/OHFMA/help_modifyapp.htm#OHFMA-applications_508">Modify the application</a></p>
 
@@ -298,5 +302,3 @@ GetPreferences("Application Name", "Cluster","Output File Path");
 ```dart
 ModifyApplication("Application", "Cluster", "", "true", "true", "true", "true", "true", "true", "false");
 ```
-
-</details>

@@ -2,13 +2,13 @@
 
 [← Back to index](../README.md)
 
-#### Overview
+## Overview
 
 > Adapted from: [https://neonn.com/alwayson/using-jhat-automate-hfm-tasks/](https://neonn.com/alwayson/using-jhat-automate-hfm-tasks/)
 
 The `JHAT` tool is another way to automatize tasks using a batch file and the HFM API. `JHAT` offers the opportunity to use any scheduler to launch HFM tasks and provide a better flexibility than Task Flows.
 
-#### How does it work?
+## How does it work?
 
 `JHAT` utility is present in the path hereunder:
 
@@ -20,7 +20,7 @@ Before the first run, it’ mandatory to create `setenv.cmd` file and set the pa
 
 <img src="https://raw.githubusercontent.com/kool2zero/HFM-JHAT-API/main/img/a2Rimage.png?sanitize=true&raw=true" />
 
-#### JHAT usage
+## JHAT usage
 
 A text file (the script) lists the commands to run against HFM, one per line. A typical script looks like this:
 
@@ -44,7 +44,7 @@ Logout();
 
 <p class="callout warning">The JHAT API is not fully documented by Oracle. This documentation is based on examples from others and on the decompiled JHAT source.</p>
 
-#### Script syntax
+## Script syntax
 
 JHAT reads the script as follows:
 
@@ -61,7 +61,7 @@ This has some consequences:
 
 The whole script is read and checked before anything runs. The script file's encoding is detected automatically.
 
-#### Running a script
+## Running a script
 
 ```shell
 jhat.bat -I"E:\JHAT\script.txt" -O"E:\JHAT\script.log"
@@ -89,7 +89,7 @@ Any other option fails with "Argument … Not Valid". Use `jhat.bat -H` to see J
 
 <p class="callout info">This utility can be used to launch consolidations, data load, data extraction, etc...</p>
 
-#### How a script runs
+## How a script runs
 
 1. **Read:** every line is read and turned into a command. Commands with the wrong number of parameters are reported as syntax errors. Syntax errors and unknown command names are printed to the **console only**, not to the `-O` log file, which only gets their counts in the summary.
 2. **Loops:** `BeginLoop` … `EndLoop` blocks are expanded (see [Runtime Actions](16-runtime-actions.md)).
@@ -109,7 +109,7 @@ Any other option fails with "Argument … Not Valid". Use `jhat.bat -H` to see J
 
 <p class="callout warning"><b>JHAT's exit code doesn't reflect failures.</b> It exits with 1 only when it can't start or the command-line options are invalid (including <code>-H</code>). Otherwise it exits with 0, even if commands failed or the script was aborted. To detect failures from a scheduler, check the summary in the log (for example, search for <code>0 execution error(s)</code>).</p>
 
-#### Parameter checking
+## Parameter checking
 
 Before a command runs, JHAT checks how many parameters it was given:
 
@@ -122,7 +122,7 @@ If the count is wrong, the command is reported as a syntax error ("Incorrect num
 
 <p class="callout warning">Don't rely on a command's <b>Successful</b> status alone. Many load and extract commands report success even when HFM reports that the operation failed; see the <a href="10-load.md">Load</a> and <a href="07-extracts.md">Extracts</a> pages. Several other commands write HFM's errors to the log without failing.</p>
 
-#### Log output
+## Log output
 
 Each command writes a block to the log:
 
@@ -138,7 +138,7 @@ End execution at <timestamp>
 - `Comment`, `LoadMacros` and `SubstituteMacro` are not logged.
 - While `SetNegativeTestingFlag` is on, each header is marked `: Negative Testcase`.
 
-#### Long-running tasks
+## Long-running tasks
 
 JHAT polls HFM until a task such as a consolidation, load or extract finishes:
 

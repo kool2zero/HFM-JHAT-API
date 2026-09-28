@@ -2,17 +2,26 @@
 
 [← Back to index](../README.md)
 
-#### Overview
+## Overview
 
 These JHAT commands are related to Journal Entries
 
-#### Commands
+## Commands
 
 These commands need an open application. Value names are matched ignoring case.
 
-##### Journal workflow
+**Commands on this page:**
 
-<details id="bkmrk-SubmitJournal-"><summary>SubmitJournal</summary>
+- **Journal workflow:** [SubmitJournal](#submitjournal), [UnSubmitJournal](#unsubmitjournal), [ApproveJournal](#approvejournal), [RejectJournal](#rejectjournal), [PostJournal](#postjournal), [UnPostJournal](#unpostjournal), [DeleteJournal](#deletejournal), [ScanJournal](#scanjournal), [GetJournal](#getjournal)
+- **Creating journals:** [CreateJournal](#createjournal), [AddLineItemToJournal](#addlineitemtojournal), [GetAdjustments](#getadjustments)
+- **Templates:** [CreateTemplate](#createtemplate), [AddLineToTemplate](#addlinetotemplate), [GetTemplate](#gettemplate), [DeleteTemplate](#deletetemplate), [ValidateJournalTemplatePOV](#validatejournaltemplatepov), [CreateJournalFromTemplate](#createjournalfromtemplate), [GenerateRecurring](#generaterecurring), [GenerateRecurringJournal](#generaterecurringjournal)
+- **Listing:** [FilterJournals](#filterjournals), [FilterTemplates](#filtertemplates)
+- **Periods and groups:** [OpenPeriod](#openperiod), [ClosePeriod](#closeperiod), [ListJournalPeriods](#listjournalperiods), [CreateJournalGroup](#createjournalgroup), [GetJournalGroups](#getjournalgroups), [DeleteJournalGroup](#deletejournalgroup), [DeleteAllJournalGroups](#deletealljournalgroups)
+- **Settings:** [AddRegKey](#addregkey), [DeleteRegKey](#deleteregkey)
+
+### Journal workflow
+
+#### SubmitJournal
 
 <p class="callout info">Submits a journal. If HFM returns error messages, they are written to the log (as <code>error :…</code>) and the command fails.</p>
 
@@ -31,7 +40,7 @@ These commands need an open application. Value names are matched ignoring case.
 SubmitJournal("Actual","2023","Dec","JE001");
 ```
 
-</details><details id="bkmrk-UnSubmitJournal-"><summary>UnSubmitJournal</summary>
+#### UnSubmitJournal
 
 <p class="callout info">Unsubmits a journal. If HFM returns error messages, they are written to the log (as <code>error :…</code>) and the command fails.</p>
 
@@ -50,7 +59,7 @@ SubmitJournal("Actual","2023","Dec","JE001");
 UnSubmitJournal("Actual","2023","Dec","JE001");
 ```
 
-</details><details id="bkmrk-ApproveJournal-"><summary>ApproveJournal</summary>
+#### ApproveJournal
 
 <p class="callout info">Approves a journal. If HFM returns error messages, they are written to the log (as <code>error :…</code>) and the command fails.</p>
 
@@ -69,7 +78,7 @@ UnSubmitJournal("Actual","2023","Dec","JE001");
 ApproveJournal("Actual","2023","Dec","JE001");
 ```
 
-</details><details id="bkmrk-RejectJournal-"><summary>RejectJournal</summary>
+#### RejectJournal
 
 <p class="callout info">Rejects a journal. If HFM returns error messages, they are written to the log (as <code>error :…</code>) and the command fails.</p>
 
@@ -88,7 +97,7 @@ ApproveJournal("Actual","2023","Dec","JE001");
 RejectJournal("Actual","2023","Dec","JE001");
 ```
 
-</details><details id="bkmrk-PostJournal-"><summary>PostJournal</summary>
+#### PostJournal
 
 <p class="callout info">Posts a journal. If HFM returns error messages, they are written to the log (as <code>error :…</code>) and the command fails.</p>
 
@@ -107,7 +116,7 @@ RejectJournal("Actual","2023","Dec","JE001");
 PostJournal("Actual","2023","Dec","JE001");
 ```
 
-</details><details id="bkmrk-UnPostJournal-"><summary>UnPostJournal</summary>
+#### UnPostJournal
 
 <p class="callout info">Unposts a journal. If HFM returns error messages, they are written to the log (as <code>error :…</code>) and the command fails.</p>
 
@@ -126,7 +135,7 @@ PostJournal("Actual","2023","Dec","JE001");
 UnPostJournal("Actual","2023","Dec","JE001");
 ```
 
-</details><details id="bkmrk-DeleteJournal-"><summary>DeleteJournal</summary>
+#### DeleteJournal
 
 <p class="callout info">Deletes a journal. If HFM returns error messages, they are written to the log (as <code>error :…</code>) and the command fails.</p>
 
@@ -147,7 +156,7 @@ UnPostJournal("Actual","2023","Dec","JE001");
 DeleteJournal("Actual","2023","Dec","JE001");
 ```
 
-</details><details id="bkmrk-ScanJournal-"><summary>ScanJournal</summary>
+#### ScanJournal
 
 <p class="callout info">Validates a journal. Any validation errors are written to the log and the command fails.</p>
 
@@ -166,7 +175,7 @@ DeleteJournal("Actual","2023","Dec","JE001");
 ScanJournal("Actual","2023","Dec","JE001");
 ```
 
-</details><details id="bkmrk-GetJournal-"><summary>GetJournal</summary>
+#### GetJournal
 
 <p class="callout info">Writes a journal to the log: label, description, type, group, status, balance type, security class, value and period, then one tab-separated line per entry (dimension members, debit/credit/unit, amount, description). If the journal doesn't exist, nothing is logged and the command still succeeds.</p>
 
@@ -185,11 +194,9 @@ ScanJournal("Actual","2023","Dec","JE001");
 GetJournal("Actual","2023","Dec","JE001");
 ```
 
-</details>
+### Creating journals
 
-##### Creating journals
-
-<details id="bkmrk-CreateJournal-"><summary>CreateJournal</summary>
+#### CreateJournal
 
 <p class="callout info">Creates an empty journal with status Working. Add entries with <code>AddLineItemToJournal</code>. The journal's ID is written to the log.</p>
 
@@ -212,7 +219,7 @@ GetJournal("Actual","2023","Dec","JE001");
 CreateJournal("S#Actual.Y#2023.P#Dec.V#<Entity Curr Adjs>.E#Group.Entity1","Regular","Balanced","JE001","Accrual","","[Default]","Single");
 ```
 
-</details><details id="bkmrk-AddLineItemToJournal-"><summary>AddLineItemToJournal</summary>
+#### AddLineItemToJournal
 
 <p class="callout info">Adds an entry to an existing journal and saves the journal.</p>
 
@@ -233,7 +240,7 @@ AddLineItemToJournal("S#Actual.Y#2023.P#Dec.A#Accruals.I#[ICP None].C1#[None].C2
 AddLineItemToJournal("S#Actual.Y#2023.P#Dec.A#Expenses.I#[ICP None].C1#[None].C2#[None].C3#[None].C4#[None]","JE001","Debit","1000","Accrual");
 ```
 
-</details><details id="bkmrk-GetAdjustments-"><summary>GetAdjustments</summary>
+#### GetAdjustments
 
 <p class="callout info">Writes the journal adjustments for the cell at the POV set by <code>SetPOV</code> to the log, or "No adjustments found."</p>
 
@@ -247,11 +254,9 @@ None
 GetAdjustments();
 ```
 
-</details>
+### Templates
 
-##### Templates
-
-<details id="bkmrk-CreateTemplate-"><summary>CreateTemplate</summary>
+#### CreateTemplate
 
 <p class="callout info">Creates an empty journal template. Add entries with <code>AddLineToTemplate</code>.</p>
 
@@ -276,7 +281,7 @@ Note that Security Class is the **last** parameter here, unlike `CreateJournal`.
 CreateTemplate("V#<Entity Curr Adjs>.E#Group.Entity1","Balanced","TPL001","Monthly accrual","","Recurring","Single","[Default]");
 ```
 
-</details><details id="bkmrk-AddLineToTemplate-"><summary>AddLineToTemplate</summary>
+#### AddLineToTemplate
 
 <p class="callout info">Adds an entry to an existing template and saves the template.</p>
 
@@ -296,7 +301,7 @@ CreateTemplate("V#<Entity Curr Adjs>.E#Group.Entity1","Balanced","TPL001","Month
 AddLineToTemplate("A#Accruals.I#[ICP None].C1#[None].C2#[None].C3#[None].C4#[None]","TPL001","Credit","1000","Accrual");
 ```
 
-</details><details id="bkmrk-GetTemplate-"><summary>GetTemplate</summary>
+#### GetTemplate
 
 <p class="callout info">Writes a template to the log: label, description, type, group, balance type, security class and its entries.</p>
 
@@ -312,7 +317,7 @@ AddLineToTemplate("A#Accruals.I#[ICP None].C1#[None].C2#[None].C3#[None].C4#[Non
 GetTemplate("TPL001");
 ```
 
-</details><details id="bkmrk-DeleteTemplate-"><summary>DeleteTemplate</summary>
+#### DeleteTemplate
 
 <p class="callout info">Deletes a journal template.</p>
 
@@ -328,7 +333,7 @@ GetTemplate("TPL001");
 DeleteTemplate("TPL001");
 ```
 
-</details><details id="bkmrk-ValidateJournalTemplatePOV-"><summary>ValidateJournalTemplatePOV</summary>
+#### ValidateJournalTemplatePOV
 
 <p class="callout info">Asks HFM to validate a journal POV. If HFM returns an error, it's written to the log and the command fails.</p>
 
@@ -344,7 +349,7 @@ DeleteTemplate("TPL001");
 ValidateJournalTemplatePOV("S#Actual.Y#2023.P#Dec.V#<Entity Curr Adjs>.E#Entity1");
 ```
 
-</details><details id="bkmrk-CreateJournalFromTemplate-"><summary>CreateJournalFromTemplate</summary>
+#### CreateJournalFromTemplate
 
 <p class="callout info">Creates a Working journal from a template, for the Scenario, Year, Period and Value in the POV. Parameters 3–8 override the template's settings. Pass <code>""</code> to keep the template's value. The journal's ID is written to the log.</p>
 
@@ -367,7 +372,7 @@ ValidateJournalTemplatePOV("S#Actual.Y#2023.P#Dec.V#<Entity Curr Adjs>.E#Entity1
 CreateJournalFromTemplate("S#Actual.Y#2023.P#Dec.V#<Entity Curr Adjs>","TPL001","JE-DEC","","","","","");
 ```
 
-</details><details id="bkmrk-GenerateRecurring-"><summary>GenerateRecurring</summary>
+#### GenerateRecurring
 
 <p class="callout info">Generates a journal from a recurring template for the Scenario, Year and Period in the POV.</p>
 
@@ -386,7 +391,7 @@ CreateJournalFromTemplate("S#Actual.Y#2023.P#Dec.V#<Entity Curr Adjs>","TPL001",
 GenerateRecurring("S#Actual.Y#2023.P#Dec","TPL001");
 ```
 
-</details><details id="bkmrk-GenerateRecurringJournal-"><summary>GenerateRecurringJournal</summary>
+#### GenerateRecurringJournal
 
 <p class="callout warning"><b>Does nothing.</b> The command's code is empty in this version of JHAT. Use <code>GenerateRecurring</code>.</p>
 
@@ -400,11 +405,9 @@ GenerateRecurring("S#Actual.Y#2023.P#Dec","TPL001");
 GenerateRecurringJournal("","","","","","","","");
 ```
 
-</details>
+### Listing
 
-##### Listing
-
-<details id="bkmrk-FilterJournals-"><summary>FilterJournals</summary>
+#### FilterJournals
 
 <p class="callout info">Writes a list of journals matching the filters to a UTF-8, semicolon-separated file, with a header line of column names.</p>
 
@@ -437,7 +440,7 @@ GenerateRecurringJournal("","","","","","","","");
 FilterJournals("C:\Output\journals.txt","A","Actual","2023","Dec","<Entity Curr Adjs>","Jnl_Label;Jnl_Status;Jnl_Type","","","","","Regular;AutoReversing;AutoReversal;Unit","Balanced;UnBalanced;BalancedByEntity","Working;Submitted;Approved;Rejected;Posted");
 ```
 
-</details><details id="bkmrk-FilterTemplates-"><summary>FilterTemplates</summary>
+#### FilterTemplates
 
 <p class="callout info">Writes a list of journal templates matching the filters to a UTF-8, semicolon-separated file, with a header line of column names.</p>
 
@@ -463,11 +466,9 @@ FilterJournals("C:\Output\journals.txt","A","Actual","2023","Dec","<Entity Curr 
 FilterTemplates("C:\Output\templates.txt","A","Tmp_Label;Tmp_Type;Tmp_Description","","","","","Recurring","Balanced;UnBalanced;BalancedByEntity");
 ```
 
-</details>
+### Periods and groups
 
-##### Periods and groups
-
-<details id="bkmrk-OpenPeriod-"><summary>OpenPeriod</summary>
+#### OpenPeriod
 
 <p class="callout info">Opens a period for journals.</p>
 
@@ -485,7 +486,7 @@ FilterTemplates("C:\Output\templates.txt","A","Tmp_Label;Tmp_Type;Tmp_Descriptio
 OpenPeriod("Actual","2023","Dec");
 ```
 
-</details><details id="bkmrk-ClosePeriod-"><summary>ClosePeriod</summary>
+#### ClosePeriod
 
 <p class="callout info">Closes a period for journals.</p>
 
@@ -503,7 +504,7 @@ OpenPeriod("Actual","2023","Dec");
 ClosePeriod("Actual","2023","Dec");
 ```
 
-</details><details id="bkmrk-ListJournalPeriods-"><summary>ListJournalPeriods</summary>
+#### ListJournalPeriods
 
 <p class="callout info">Writes each period's journal status for a scenario and year to the log (<code>Period:…</code> / <code>Status:…</code>).</p>
 
@@ -520,7 +521,7 @@ ClosePeriod("Actual","2023","Dec");
 ListJournalPeriods("Actual","2023");
 ```
 
-</details><details id="bkmrk-CreateJournalGroup-"><summary>CreateJournalGroup</summary>
+#### CreateJournalGroup
 
 <p class="callout info">Creates a journal group.</p>
 
@@ -537,7 +538,7 @@ ListJournalPeriods("Actual","2023");
 CreateJournalGroup("ACCRUALS","Month-end accruals");
 ```
 
-</details><details id="bkmrk-GetJournalGroups-"><summary>GetJournalGroups</summary>
+#### GetJournalGroups
 
 <p class="callout info">Writes every journal group's name and description to the log.</p>
 
@@ -551,7 +552,7 @@ None
 GetJournalGroups();
 ```
 
-</details><details id="bkmrk-DeleteJournalGroup-"><summary>DeleteJournalGroup</summary>
+#### DeleteJournalGroup
 
 <p class="callout info">Deletes a journal group.</p>
 
@@ -567,7 +568,7 @@ GetJournalGroups();
 DeleteJournalGroup("ACCRUALS");
 ```
 
-</details><details id="bkmrk-DeleteAllJournalGroups-"><summary>DeleteAllJournalGroups</summary>
+#### DeleteAllJournalGroups
 
 <p class="callout info">Deletes every journal group.</p>
 
@@ -583,11 +584,9 @@ None
 DeleteAllJournalGroups();
 ```
 
-</details>
+### Settings
 
-##### Settings
-
-<details id="bkmrk-AddRegKey-"><summary>AddRegKey</summary>
+#### AddRegKey
 
 <p class="callout info">Sets HFM's cached journal-ordering system parameter.</p>
 
@@ -605,7 +604,7 @@ DeleteAllJournalGroups();
 AddRegKey("");
 ```
 
-</details><details id="bkmrk-DeleteRegKey-"><summary>DeleteRegKey</summary>
+#### DeleteRegKey
 
 <p class="callout info">Deletes HFM's cached journal-ordering system parameter.</p>
 
@@ -622,5 +621,3 @@ AddRegKey("");
 ```dart
 DeleteRegKey("");
 ```
-
-</details>
