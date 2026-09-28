@@ -4,7 +4,10 @@
 
 ## Overview
 
-These JHAT Commands will handle the application.
+Commands for logging on, opening and closing applications, setting the point of view (POV), and creating, copying, changing and deleting applications. A script normally starts with `Logon` and `OpenApplication` and ends with `CloseApplication` and `Logout`.
+
+- **Need `Logon` only:** `OpenApplication`, `CreateApplicationCAS` / `CreateApplicationExtDim`, `DeleteApplication`, `DeleteAllApplications`, `CopyApplication`, `ModifyApplication`, `SetPreferences` and `GetPreferences`. These work on an application by name, without opening it.
+- **Need an open application:** `SetPOV`, `SetPOVName`, `SetPOVExtDim`, `CloseApplication` and `shutdownApplication`.
 
 ## Commands
 
@@ -14,7 +17,9 @@ These JHAT Commands will handle the application.
 
 ### SetPOV / SetPOVName
 
-<p class="callout info">Sets the Point of View (POV) for the commands to follow.</p>
+<p class="callout info">Sets the point of view (POV) for the commands that follow. A POV is one member from each dimension, identifying a single cell (or, for process management, a process unit). Commands that act on data, such as <code>SetCell</code>, <code>Consolidate</code>, <code>Lock</code>, <code>CalcEPU</code> and the process flow commands, use it. It stays in effect until the next <code>SetPOV</code>.</p>
+
+<p class="callout warning">Use this command only for applications with exactly 4 custom dimensions: it fails with fewer, and ignores any beyond the fourth. For any other number, use <code>SetPOVExtDim</code>.</p>
 
 <p class="callout info"><code>SetPOV</code> and <code>SetPOVName</code> are identical. All 12 parameters are required. Custom 1–4 map to the application's first four custom dimensions, in order. On success, the selected member for each dimension is written to the log.</p>
 
@@ -43,7 +48,7 @@ SetPOV("ACTatACIFRS","2023","DEC","YTD","TGROUP","<Entity Currency>","TOTNI","[I
 
 ### SetPOVExtDim
 
-<p class="callout info">Sets the Point of View (POV) for the commands to follow.</p>
+<p class="callout info">Sets the point of view (POV) for the commands that follow, like <code>SetPOV</code>, but takes the POV as a single string. This works for applications with any number of custom dimensions. Include every dimension that the following commands need.</p>
 
 **Input**
 
@@ -93,7 +98,7 @@ Logout();
 
 ### DeleteApplication
 
-<p class="callout info">Deletes the Application from the Server</p>
+<p class="callout info">Permanently deletes an application, including all its data, from a cluster or server.</p>
 
 <p class="callout danger">Be careful when running this command.</p>
 
@@ -274,7 +279,7 @@ GetPreferences("Application Name", "Cluster","Output File Path");
 
 ### ModifyApplication
 
-<p class="callout info"><a href="https://docs.oracle.com/cd/E57185_01/OHFMA/help_modifyapp.htm#OHFMA-applications_508">Modify the application</a></p>
+<p class="callout info">Changes an existing application's number of years and which modules are enabled, like the <a href="https://docs.oracle.com/cd/E57185_01/OHFMA/help_modifyapp.htm#OHFMA-applications_508">Modify Application</a> page in HFM. The application doesn't need to be open.</p>
 
 <p class="callout danger">Be careful when running this command.</p>
 

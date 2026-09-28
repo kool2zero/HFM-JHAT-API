@@ -4,7 +4,7 @@
 
 ## Overview
 
-These JHAT commands are related to Equity Pickup
+These JHAT commands are related to Equity Pickup.
 
 Equity pickup (EPU) functionality enables you to revaluate the investments owned by a holding company. The purpose of the reevaluation is to adjust the investments in the Balance Sheet of the holding company to reflect the current value of the corresponding share in the equity of the subsidiary. The underlying principle of the equity pickup adjustment is to provide a fair picture of the value of the portfolio owned by the holding company.
 
@@ -33,7 +33,7 @@ These commands need an open application.
 
 ### FilterEPUGrid
 
-<p class="callout info">Retrieves the equity pickup grid for a Scenario, Year and Period with the given filters, and writes it to a UTF-8 file.</p>
+<p class="callout info">Retrieves the equity pickup grid, as shown on the Manage Equity Pickup page, for a Scenario, Year and Period with the given filters, and writes it to a UTF-8 file. Each row is an owner/owned entity pair with its ownership level, %EPU and status (whether it needs recalculating).</p>
 
 The output file is semicolon-separated. It starts with a header line (`Circular Ownership;Level;Owner;Owned;%EPU;Status;`) and a blank line, then one line per owner/owned pair. `%EPU` uses `.` as the decimal separator. JHAT requests a page size of 500 rows.
 

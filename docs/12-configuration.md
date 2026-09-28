@@ -4,7 +4,7 @@
 
 ## Overview
 
-These JHAT Commands are related to configuration actions
+Commands for turning application modules, such as journals, intercompany transactions or equity pickup, on or off. See also `ModifyApplication` on the [Application](02-application.md) page and `ExtractModuleConfiguration` / `LoadModuleConfiguration`.
 
 ## Commands
 

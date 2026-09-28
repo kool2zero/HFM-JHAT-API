@@ -4,7 +4,7 @@
 
 ## Overview
 
-These JHAT commands are related to extracting data from HFM
+Commands for extracting data, metadata, security, rules, member lists, journals, intercompany transactions and documents from HFM to local files, for example to back up an application or move content between applications. Most have a matching load command on the [Load](10-load.md) page.
 
 The extract commands need an open application.
 
@@ -240,7 +240,7 @@ ExtractPhaseInfo("C:\Voyager\Phase_Extract.dat","C:\Voyager\Phase_Extract.log","
 
 ### ExtractSecurity
 
-<p class="callout info">Extracts all security (users, security classes, role access and security class access) in the native format.</p>
+<p class="callout info">Extracts all security (users, security classes, role access and security class access) in the native format. The file can be loaded with <code>LoadSecurity</code>.</p>
 
 <p class="callout warning">JHAT's usage text shows 2 parameters, but the command needs 3. The delimiter is required.</p>
 
@@ -284,7 +284,7 @@ ExtractSecurityExpanded("C:\Voyager\Security_Extract.sec","C:\Voyager\Security_E
 
 ### ExtractJournal
 
-<p class="callout info">Extracts journals for a scenario, year and optionally one period. All statuses, journal types and balance types are included.</p>
+<p class="callout info">Extracts journals for a scenario, year and optionally one period. All statuses, journal types and balance types are included. To filter by entity, label, group, status or type, use <code>ExtractJournalPlus</code>.</p>
 
 **Input**
 
@@ -372,7 +372,7 @@ ExtractICTransactions("C:\ICM\Extract1.trn","Actual","2023","Dec","All","All","y
 
 ### ExtractRules
 
-<p class="callout info">Extracts the application's rules.</p>
+<p class="callout info">Extracts the application's rules (its calculation, translation and consolidation logic), for example to back them up before loading new rules with <code>LoadRules</code>.</p>
 
 **Input**
 
@@ -390,7 +390,7 @@ ExtractRules("RLE","C:\Output\rules.rle","C:\Output\rules.log");
 
 ### ExtractMemberlists
 
-<p class="callout info">Extracts the application's member lists file.</p>
+<p class="callout info">Extracts the application's member lists file, which defines the named member lists (such as <code>[Base]</code> alternatives) used in forms, grids and scripts. It can be loaded with <code>LoadMemberLists</code>.</p>
 
 **Input**
 
@@ -456,7 +456,7 @@ ExtractDocument("IncomeStatement","C:\Output\IncomeStatement.xml","WebForm","For
 
 ### ExtractModuleConfiguration
 
-<p class="callout info">Extracts the application's module configuration.</p>
+<p class="callout info">Extracts the application's module configuration: which modules (such as journals, intercompany transactions and equity pickup) are enabled. It can be loaded with <code>LoadModuleConfiguration</code>.</p>
 
 **Input**
 

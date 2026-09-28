@@ -4,7 +4,13 @@
 
 ## Overview
 
-These JHAT commands will perform intercompany tasks
+Commands for HFM's intercompany transactions module, where entities record the individual transactions they have with intercompany partners so that the two sides can be matched before consolidation. The usual cycle is:
+
+1. **Open the IC period** with its matching tolerances (`OpenICPeriod`).
+2. **Load or create transactions** (`LoadICTransactions`, `CreateICTransaction`).
+3. **Match** each entity's transactions against its partner's, automatically (`ICAutoMatchByID`, `ICAutoMatchByAccount`) or manually (`ProcessICTransaction` with `ManualMatch`). Differences within the period's tolerances still count as matched. Reason codes explain mismatches.
+4. **Post** transactions to the application's data (`ProcessAllICTransactions` with `Post`). The period's *Match/Validate Before Post* setting controls whether unmatched transactions can be posted.
+5. **Lock entities** so their transactions can't change, and **close the period** (`LockICEntity`, `CloseICPeriod`).
 
 ## Commands
 

@@ -4,7 +4,14 @@
 
 ## Overview
 
-These JHAT commands are related to Journal Entries
+Commands for journals, which record adjustments to data with an audit trail. Journals post to adjustment members of the Value dimension, such as `<Entity Curr Adjs>`.
+
+- **Workflow:** a journal moves from **Working** to **Submitted** to **Approved** to **Posted**. A submitted journal can be rejected back to Working, and a posted journal can be unposted.
+- **Periods:** journals can only be posted in a period that is open for journals (`OpenPeriod`).
+- **Templates:** hold journal layouts for reuse. *Standard* templates are copied into new journals (`CreateJournalFromTemplate`). *Recurring* templates generate a journal each period (`GenerateRecurring`).
+- **Balance types:** *Balanced* (total debits equal total credits), *Balanced by entity* (balanced within each entity) or *Unbalanced*.
+- **Auto-reversing** journals automatically create a reversing journal in the next period.
+- **Groups** are labels for organizing and filtering journals.
 
 ## Commands
 

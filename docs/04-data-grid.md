@@ -397,7 +397,7 @@ GetCellTextEnhanced("All","C:\Output\celltext.txt");
 
 #### Lock
 
-<p class="callout info">Runs the <a href="https://docs.oracle.com/cd/E57185_01/HFMUR/ch04s09.html">Lock</a> command on the current POV. The command fails if the server returns an error code.</p>
+<p class="callout info">Runs the <a href="https://docs.oracle.com/cd/E57185_01/HFMUR/ch04s09.html">Lock</a> command on the current POV. Locking a period for an entity prevents any further changes to its data, for example after the period is closed. The command fails if the server returns an error code.</p>
 
 **Input**
 
@@ -411,7 +411,7 @@ Lock();
 
 #### Unlock
 
-<p class="callout info">Runs the <a href="https://docs.oracle.com/cd/E57185_01/HFMUR/ch04s10.html">Unlock</a> command on the current POV. The command fails if the server returns an error code.</p>
+<p class="callout info">Runs the <a href="https://docs.oracle.com/cd/E57185_01/HFMUR/ch04s10.html">Unlock</a> command on the current POV, so its data can be changed again. The command fails if the server returns an error code.</p>
 
 **Input**
 
@@ -425,7 +425,7 @@ Unlock();
 
 #### Translate
 
-<p class="callout info">Runs the <a href="https://docs.oracle.com/cd/E57185_01/HFMUR/ch05s05.html">Translate</a> command on the current POV. The command fails if the server returns an error code.</p>
+<p class="callout info">Runs the <a href="https://docs.oracle.com/cd/E57185_01/HFMUR/ch05s05.html">Translate</a> command on the current POV. Translation converts an entity's data from its own currency to its parent's currency (or another currency member of the Value dimension) using the exchange rates in the application. The command fails if the server returns an error code.</p>
 
 **Input**
 
@@ -439,7 +439,7 @@ Translate();
 
 #### Allocate
 
-<p class="callout info">Runs the <a href="https://docs.oracle.com/cd/E57185_01/HFMUR/ch04s07.html">Allocate</a> command on the current POV. The command fails if the server returns an error code.</p>
+<p class="callout info">Runs the <a href="https://docs.oracle.com/cd/E57185_01/HFMUR/ch04s07.html">Allocate</a> command on the current POV. Allocation runs the <code>Sub Allocate</code> routine in the application's rules, which distributes amounts (such as shared costs) to other entities. The command fails if the server returns an error code.</p>
 
 **Input**
 
@@ -459,7 +459,7 @@ Allocate();
 
 | Parameter | Mandatory | Comment |
 | --- | :---: | --- |
-| Type | ✓ | `Impacted`: Consolidate. `AllWithData`: Consolidate All with Data. `All`: Consolidate All. `EntityOnly`: Calculate Contribution. `ForceEntityOnly`: Force Calculate Contribution. Any other value fails with "Invalid arguments value for consolidation." |
+| Type | ✓ | `Impacted`: consolidate only the entities whose data has changed since the last consolidation. `AllWithData`: consolidate every entity that has data. `All`: consolidate every entity, even those without data (slowest). `EntityOnly`: calculate contribution, meaning the entity's contribution to its parent (translation, proportion and eliminations), without consolidating the parent. `ForceEntityOnly`: the same, even if nothing has changed. Any other value fails with "Invalid arguments value for consolidation." |
 | POV List Number | | Number of a string list (built with `AddItemToList`, dimension `""`) of extra POV strings to consolidate along with the current POV |
 
 **Example**
@@ -471,7 +471,7 @@ Consolidate("AllWithData","3");
 
 #### ChartLogic
 
-<p class="callout info">Runs the <a href="https://docs.oracle.com/cd/E57185_01/HFMUR/ch05s04.html">Calculate</a> command on the current POV. Unlike <code>Consolidate</code>, it doesn't wait for a running task. The command fails if the server returns an error code.</p>
+<p class="callout info">Runs the <a href="https://docs.oracle.com/cd/E57185_01/HFMUR/ch05s04.html">Calculate</a> command on the current POV. Calculation runs the application's rules for the entity's own data, without translating or consolidating. Unlike <code>Consolidate</code>, it doesn't wait for a running task. The command fails if the server returns an error code.</p>
 
 **Input**
 

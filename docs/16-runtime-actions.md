@@ -4,7 +4,7 @@
 
 ## Overview
 
-These JHAT Commands are related to Runtime actions
+Commands that control how a script runs (loops, delays, abort on error, running other programs), time parts of a script, and compare or edit local files. Comparing files is useful for testing, for example checking an extract against a known-good copy. These commands don't need an open application.
 
 ## Commands
 

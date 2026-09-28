@@ -4,7 +4,7 @@
 
 ## Overview
 
-These commands are related to the Data Form
+Commands for running data forms (web forms stored in Document Manager) and On Demand Rules. They need an open application.
 
 ## Commands
 

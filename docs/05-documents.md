@@ -4,7 +4,9 @@
 
 ## Overview
 
-These JHAT Commands are related to document management
+Commands for Document Manager, where HFM stores data forms, data grids, reports, task lists and folders. They need an open application.
+
+A **task list** is a document that groups links to other documents, such as the forms and reports a user works through at month end.
 
 - **Folders:** pass `\` for the root folder of Document Manager.
 - **Document Type** and **File Type:** see [Document and file types](#document-and-file-types) below.

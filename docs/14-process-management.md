@@ -4,7 +4,12 @@
 
 ## Overview
 
-These JHAT Commands are related to Process Management actions
+Commands for HFM process management, which controls the review and approval of data.
+
+- **Process units:** data is reviewed in process units, a combination of scenario, year, period, entity and value.
+- **Review levels:** a process unit moves through *Not Started*, *First Pass*, *Review Level 1* to *10*, *Submitted*, *Approved* and *Published*.
+- **Actions:** *Start*, *Promote* (to a review level), *Submit*, *Approve*, *Publish*, *Sign Off* and *Reject* move it between levels. Who can take each action depends on the user's process management role.
+- **Phased submission:** accounts, custom and ICP members are assigned to submission groups, groups are assigned to phases (up to 9), and each phase is reviewed separately.
 
 ## Commands
 

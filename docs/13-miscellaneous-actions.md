@@ -4,7 +4,7 @@
 
 ## Overview
 
-These JHAT Commands are related to miscellaneous actions
+Commands for managing data (copying, clearing and cleaning it up), calculating ownership, reading member properties, changing HFM system settings and ending a script.
 
 ## Commands
 
@@ -16,7 +16,7 @@ These commands need an open application, except `exit`. Where a parameter takes 
 
 ### CalculateOwnership
 
-<p class="callout info">Runs the Manage Ownership shares calculation for a scenario, year and periods.</p>
+<p class="callout info">Calculates ownership from the shares data entered in Manage Ownership, like HFM's Calculate Ownership command. For each entity it can calculate percent control, consolidation method, percent ownership, percent consolidation and direct percent ownership. Parameters 5–9 choose which of these are calculated.</p>
 
 <p class="callout warning">Mode <code>Descendants</code> must be spelled <code>Decendants</code> (as in the code). The correct spelling isn't recognized and falls back to all entities.</p>
 
@@ -47,7 +47,7 @@ CalculateOwnership("Actual","2023","1","Group","true","true","true","true","true
 
 ### CopyData
 
-<p class="callout info">Copies data from one scenario/year to another, and copies the server's log to a local file.</p>
+<p class="callout info">Copies data from one scenario and year to another, for example to seed a forecast from actuals. The server's log is copied to a local file.</p>
 
 **Input**
 
@@ -116,7 +116,7 @@ ClearData("Actual","2023","All","All","All","false","true","true","C:\Output\cle
 
 ### DeleteInvalidRecords
 
-<p class="callout info">Runs HFM's Delete Invalid Records task and copies its log to a local file.</p>
+<p class="callout info">Runs HFM's Delete Invalid Records task, which removes data stored at intersections that are no longer valid, typically after metadata changes. Its log is copied to a local file.</p>
 
 **Input**
 

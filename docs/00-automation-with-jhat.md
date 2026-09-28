@@ -109,6 +109,26 @@ Any other option fails with "Argument … Not Valid". Use `jhat.bat -H` to see J
 
 <p class="callout warning"><b>JHAT's exit code doesn't reflect failures.</b> It exits with 1 only when it can't start or the command-line options are invalid (including <code>-H</code>). Otherwise it exits with 0, even if commands failed or the script was aborted. To detect failures from a scheduler, check the summary in the log (for example, search for <code>0 execution error(s)</code>).</p>
 
+## What commands need
+
+| Before the command, run | Commands |
+| --- | --- |
+| Nothing | [Runtime Actions](16-runtime-actions.md), [Macros](11-macros.md), `Logon`, `exit` |
+| `Logon` | `OpenApplication`, the create, copy, modify and delete application commands, `SetPreferences`, `GetPreferences` (see [Application](02-application.md)), and `UpdateParameter` |
+| `Logon` and `OpenApplication` | All other commands |
+| Also `SetPOV` or `SetPOVExtDim` | Commands that act on a cell or process unit: most [Data Grid](04-data-grid.md) commands, the [Process Management](14-process-management.md) process flow commands, `CalcEPU`, `ExecuteOnDemandRule`, `GetAdjustments`, and `GetForm` when it uses the script POV |
+
+## Command name patterns
+
+Many commands come in variants. The suffix tells you how the variant differs:
+
+- **ExtDim** ("extended dimensionality"): takes dimensions as a single string instead of one parameter per dimension, so it works with any number of custom dimensions. HFM 11.1.2.2 and later allow more than the classic four (Custom1–Custom4). Examples: `SetPOVExtDim`, `DefineGridExtDim`, `ExtractMetaDataExtDim`, `LoadMetaDataExtDim`, `ExtractDataExtDim`.
+- **Expanded:** more options than the base command (`LoadSecurityExpanded`, `ExtractSecurityExpanded`).
+- **Plus:** more filters (`ExtractJournalPlus`).
+- **Enhanced:** works on a named cell text label (`SetCellTextEnhanced`, `GetCellTextEnhanced`, …).
+
+Some variants are simply identical, such as `SetPOV` / `SetPOVName`, `CreateApplicationCAS` / `CreateApplicationExtDim`, and `LoadData` / `StartLoadData`. Each page says so where it applies.
+
 ## Parameter checking
 
 Before a command runs, JHAT checks how many parameters it was given:

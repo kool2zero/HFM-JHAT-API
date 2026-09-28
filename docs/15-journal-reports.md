@@ -4,7 +4,7 @@
 
 ## Overview
 
-These JHAT Commands are related to Journal Report actions
+Commands for writing journal listings to files and for running system reports (journal, intercompany, equity pickup and intercompany matching reports) whose definitions are stored in Document Manager.
 
 ## Commands
 

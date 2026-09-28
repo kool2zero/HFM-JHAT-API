@@ -4,7 +4,7 @@
 
 ## Overview
 
-These JHAT Commands are related to Macros
+Macros let you write a value once, such as a server name, folder or scenario, and use it throughout a script. They're also a way to keep environment-specific values in a separate macro file, so the same script can run against different environments.
 
 ## How macros work
 

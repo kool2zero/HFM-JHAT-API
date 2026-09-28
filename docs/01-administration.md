@@ -4,7 +4,12 @@
 
 ## Overview
 
-These JHAT Commands will deal with administration of HFM
+Commands for HFM's two audit logs. They need an open application.
+
+- The **task audit** records user activity: who ran which task (a consolidation, a data load, a logon, and so on) and when. Some tasks store an attachment, such as the task's log.
+- The **data audit** records changes to data values, for scenarios and accounts that have data auditing enabled.
+
+These commands export audit records to local files or delete them, for example to archive and purge the audit tables.
 
 <p class="callout info">All parameters are required: the command fails with "Incorrect number of parameters." if any are missing.</p>
 
@@ -77,7 +82,7 @@ GetLatestTaskAuditAttachment("All","Data Load","C:\TaskAudit\lastload.log");
 
 ### FilterTaskAudit
 
-<p class="callout info">Filter the task audit and export to file</p>
+<p class="callout info">Exports the task audit records for one user (or all users) and one task (or all tasks) to a file.</p>
 
 **Input**
 
@@ -111,7 +116,7 @@ GetTaskAudit("C:\TaskAudit\task.txt");
 
 ### FilterDataAudit
 
-<p class="callout info">Filter the Data Audit Records</p>
+<p class="callout info">Exports the data audit records for one user (or all users) that match a POV to a file.</p>
 
 **Input**
 
